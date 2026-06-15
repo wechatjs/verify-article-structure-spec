@@ -120,8 +120,12 @@ curl -X POST http://mp.weixin.qq.com/article-bin/verify_article_structure \
 
 ```
 
-![](https://res.wx.qq.com/op_res/E9qS-cRr1mdHr60yRyQHk1eXcKZx9Waab30DnythidOM97Ejz0uqf0EXmt4jNTUkQBjBHfuuY0NV49Ea_4LGlA)
-![](https://res.wx.qq.com/op_res/E9qS-cRr1mdHr60yRyQHkzQlg46O2UErgiweqanLsKwFoLgBJ9LIZuMNSYXqCKAc6yasAD3J8SC7oc_1ZzyZmA)
+<table>
+  <tr>
+    <td width="50%" align="center"><img src="https://res.wx.qq.com/op_res/E9qS-cRr1mdHr60yRyQHk1eXcKZx9Waab30DnythidOM97Ejz0uqf0EXmt4jNTUkQBjBHfuuY0NV49Ea_4LGlA" width="300" height="200" style="object-fit: contain;" /></td>
+    <td width="50%" align="center"><img src="https://res.wx.qq.com/op_res/E9qS-cRr1mdHr60yRyQHkzQlg46O2UErgiweqanLsKwFoLgBJ9LIZuMNSYXqCKAc6yasAD3J8SC7oc_1ZzyZmA" width="300" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 **影响说明**
 
@@ -162,19 +166,14 @@ caret-color: rgba(0, 0, 0, 0);
 
 行高小于字体大小时，多行文字会重叠在一起，严重影响内容的可读性。
 
-![](https://res.wx.qq.com/op_res/E9qS-cRr1mdHr60yRyQHk4TeBvDg1D8a4VQdzBb-yzxZ1-__ZMj2cT2boEIVxdVWt2BcyfT0jdF_0s3y_6E3wQ)
+<table>
+  <tr>
+    <td width="50%" align="center"><img src="https://res.wx.qq.com/op_res/E9qS-cRr1mdHr60yRyQHk4TeBvDg1D8a4VQdzBb-yzxZ1-__ZMj2cT2boEIVxdVWt2BcyfT0jdF_0s3y_6E3wQ" width="300" height="200" style="object-fit: contain;" /></td>
+    <td width="50%" align="center"><img src="https://res.wx.qq.com/op_res/E9qS-cRr1mdHr60yRyQHk6F9wPUQJzwz_MHY2OGdPH-J72w9eG6Qo2OsLO0ivL0ESfTdfSyXtF72DQNUBVWu-A" width="300" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 实际案例中 DOM 结构可能更为复杂，但根本原因均为行高过小导致文字重叠。
-
-![](https://res.wx.qq.com/op_res/E9qS-cRr1mdHr60yRyQHk6F9wPUQJzwz_MHY2OGdPH-J72w9eG6Qo2OsLO0ivL0ESfTdfSyXtF72DQNUBVWu-A)
-
-另一种常见情况是设置了非零但小于字体大小的行高值：
-
-```html
-<section style="line-height: 5px; font-size: 16px;">
-  <span leaf="">这是第一行文字，由于行高远小于字体大小，当文字换行时将导致多行文字重叠在一起，严重影响可读性。</span>
-</section>
-```
 
 **排除场景**
 
@@ -223,9 +222,16 @@ caret-color: rgba(0, 0, 0, 0);
 
 固定宽度会破坏响应式布局，在不同尺寸屏幕下显示不一致。小屏幕可能刚好撑满，大屏幕则会留白并左对齐。
 
-| 编辑器居中显示 | PC端居左显示 |
-|---------------|-------------|
-| ![](https://res.wx.qq.com/op_res/E9qS-cRr1mdHr60yRyQHk_VpeIoedAUczUP8p2bySueZ5iMeXVtn7UxyxlU2dPnZwDNfmccjmQ6quqlLJ8JJpg) | ![](https://res.wx.qq.com/op_res/E9qS-cRr1mdHr60yRyQHkwsqo9LGBnANyUXOCY0wOixOKXKqidGuwEQs9LHoGzd7eeiA2yBmchr-LMoN-kG_eA) |
+<table>
+  <tr>
+    <th width="50%" align="center">编辑器居中显示</th>
+    <th width="50%" align="center">PC端居左显示</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/E9qS-cRr1mdHr60yRyQHk_VpeIoedAUczUP8p2bySueZ5iMeXVtn7UxyxlU2dPnZwDNfmccjmQ6quqlLJ8JJpg" width="300" height="200" style="object-fit: contain;" /></td>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/E9qS-cRr1mdHr60yRyQHkwsqo9LGBnANyUXOCY0wOixOKXKqidGuwEQs9LHoGzd7eeiA2yBmchr-LMoN-kG_eA" width="300" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 ---
 
@@ -261,15 +267,29 @@ caret-color: rgba(0, 0, 0, 0);
 
 **案例一：内容向左偏移导致超出屏幕左侧边界**
 
-| 编辑器显示 | 移动端显示 |
-|-----------|-----------|
-| ![](https://res.wx.qq.com/op_res/WpXz4JKn-PmRB4c4QpCe9IHxXYJ-DC7HhJUdIJqRyQy3LXv0uZJ9PkscAdqVwYnUziiqgzPdd9G1lX-VYmbGZw) | ![](https://res.wx.qq.com/op_res/WpXz4JKn-PmRB4c4QpCe9N41l7monb5EU3krHZ2nGfQhtxPuJr0J0pEq7Ms6hX_UTVPozhD0xuWgisZDB1tULw) |
+<table>
+  <tr>
+    <th width="50%" align="center">编辑器显示</th>
+    <th width="50%" align="center">移动端显示</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/WpXz4JKn-PmRB4c4QpCe9IHxXYJ-DC7HhJUdIJqRyQy3LXv0uZJ9PkscAdqVwYnUziiqgzPdd9G1lX-VYmbGZw" width="300" height="200" style="object-fit: contain;" /></td>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/WpXz4JKn-PmRB4c4QpCe9N41l7monb5EU3krHZ2nGfQhtxPuJr0J0pEq7Ms6hX_UTVPozhD0xuWgisZDB1tULw" width="300" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 **案例二：表格列宽固定宽屏正常、窄屏溢出**
 
-| 大屏显示 | 移动端显示 |
-|---------|-----------|
-| ![](https://res.wx.qq.com/op_res/WpXz4JKn-PmRB4c4QpCe9KQ2_Gf94d_HyAFA8EKE8mkAbMflVPOVRcFA1jJhhgr8RLuvxN7pqxQBKiJDU3r4Ug) | ![](https://res.wx.qq.com/op_res/WpXz4JKn-PmRB4c4QpCe9EEABii7Gu0XNQdDRtwhPwkIQv3RqDhtIprckjL-LG8KSpl_g4o2fXaNq3w3wlOlmA) |
+<table>
+  <tr>
+    <th width="50%" align="center">大屏显示</th>
+    <th width="50%" align="center">移动端显示</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/WpXz4JKn-PmRB4c4QpCe9KQ2_Gf94d_HyAFA8EKE8mkAbMflVPOVRcFA1jJhhgr8RLuvxN7pqxQBKiJDU3r4Ug" width="300" height="200" style="object-fit: contain;" /></td>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/WpXz4JKn-PmRB4c4QpCe9EEABii7Gu0XNQdDRtwhPwkIQv3RqDhtIprckjL-LG8KSpl_g4o2fXaNq3w3wlOlmA" width="300" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 ---
 
@@ -292,9 +312,16 @@ caret-color: rgba(0, 0, 0, 0);
 
 不同屏幕下宽度比例不一致将导致排版在移动端、PC 端、小程序内呈现差异，影响作者预期的视觉效果。
 
-| 编辑器显示 | 移动端显示 |
-|-----------|-----------|
-| ![](https://res.wx.qq.com/op_res/wCMDedoKJ_uTB2EMqKKkhvQqasbkkZVqk7TdnEtFxpCg5KX_G8pCKaddTyokuOcUQ6wICkEj1Nri7tFjeXOllw) | ![](https://res.wx.qq.com/op_res/wCMDedoKJ_uTB2EMqKKkhvs-4cafps0S-hkbCdypIlypu-AWRyFSavVEXflkqqst6BIkGCe-nLdCMtkvgt85lQ) |
+<table>
+  <tr>
+    <th width="50%" align="center">编辑器显示</th>
+    <th width="50%" align="center">移动端显示</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/wCMDedoKJ_uTB2EMqKKkhvQqasbkkZVqk7TdnEtFxpCg5KX_G8pCKaddTyokuOcUQ6wICkEj1Nri7tFjeXOllw" width="300" height="200" style="object-fit: contain;" /></td>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/wCMDedoKJ_uTB2EMqKKkhvs-4cafps0S-hkbCdypIlypu-AWRyFSavVEXflkqqst6BIkGCe-nLdCMtkvgt85lQ" width="300" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 ### 2.5 height
 
@@ -325,9 +352,16 @@ caret-color: rgba(0, 0, 0, 0);
 
 当容器高度设置为0px时，在编辑器环境中由于设置了外层容器的最小高度，内容仍可显示。但在移动端设备上无此设置，将导致内容完全不可见，造成页面空白问题。
 
-| 编辑器 | 移动端 |
-|-------|-------|
-| ![](https://res.wx.qq.com/op_res/E9qS-cRr1mdHr60yRyQHkxQaSTapfoE7Ag9daooHlHRWESv2W4V1ogqtC5vs-lMKvOfBJH5_fGdtMzbKiJH4ww) | ![](https://res.wx.qq.com/op_res/g11aOZPetd9ZqnkrGAVep0PAYy0rwKut5oc4UQytpZGA5vbVNbGYXpgN2wNsPpMPCFOkGW0W8JB7QAjvCS_XzQ) |
+<table>
+  <tr>
+    <th width="50%" align="center">编辑器</th>
+    <th width="50%" align="center">移动端</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/E9qS-cRr1mdHr60yRyQHkxQaSTapfoE7Ag9daooHlHRWESv2W4V1ogqtC5vs-lMKvOfBJH5_fGdtMzbKiJH4ww" width="300" height="200" style="object-fit: contain;" /></td>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/g11aOZPetd9ZqnkrGAVep0PAYy0rwKut5oc4UQytpZGA5vbVNbGYXpgN2wNsPpMPCFOkGW0W8JB7QAjvCS_XzQ" width="300" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 **排除场景**
 
@@ -387,9 +421,16 @@ caret-color: rgba(0, 0, 0, 0);
 不同终端对 `start` 值兼容性存在差异，造成部分设备文字居中、部分设备文字居左的不一致体验。
 
 
-| 编辑器 | IOS 18+ |
-|-------|--------|
-| ![](https://res.wx.qq.com/op_res/g11aOZPetd9ZqnkrGAVepxNnYgjRpJmClnrMxCqkwGg75sPsECo2eC_hpbrMhp67Qcr4hLy0Rw7tq95WlQk6Ng) | ![](https://res.wx.qq.com/op_res/g11aOZPetd9ZqnkrGAVep71kn_3uxRuGGQIGeONOVPw9gbW3eBmNFuv9Euki98ajqRdqe50PUypvHBqfAwI8oA) 
+<table>
+  <tr>
+    <th width="50%" align="center">编辑器</th>
+    <th width="50%" align="center">IOS 18+</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/g11aOZPetd9ZqnkrGAVepxNnYgjRpJmClnrMxCqkwGg75sPsECo2eC_hpbrMhp67Qcr4hLy0Rw7tq95WlQk6Ng" width="300" height="200" style="object-fit: contain;" /></td>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/g11aOZPetd9ZqnkrGAVep71kn_3uxRuGGQIGeONOVPw9gbW3eBmNFuv9Euki98ajqRdqe50PUypvHBqfAwI8oA" width="300" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 ### 2.7 begin
 
@@ -428,9 +469,16 @@ caret-color: rgba(0, 0, 0, 0);
 
 **影响说明：** `<pre>` 标签默认携带 `white-space: pre` 样式，文字不自动换行，在移动端窄屏下内容将被水平截断。
 
-| 编辑器，正常显示 | 移动端，文字溢出 |
-|-----------------|------------------|
-| ![](https://res.wx.qq.com/op_res/TjbAnF0MPLQ9upy4yVA9_XSkaDeFn3i0sb6RGOG9UoyJ7xvQOekfZRGgUb2cu_SrZIFKwmpLRe1JfQPssj_GJA) | ![](https://res.wx.qq.com/op_res/vYBNXhIBmjTBJ8bdK-XCpRlxl4Te1X8Jtlj2qthOKFGYmCglalSzaYDlCqHi9gToS78sys-c5Md39Qzh3JYJdQ) |
+<table>
+  <tr>
+    <th width="50%" align="center">编辑器，正常显示</th>
+    <th width="50%" align="center">移动端，文字溢出</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/TjbAnF0MPLQ9upy4yVA9_XSkaDeFn3i0sb6RGOG9UoyJ7xvQOekfZRGgUb2cu_SrZIFKwmpLRe1JfQPssj_GJA" width="300" height="200" style="object-fit: contain;" /></td>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/vYBNXhIBmjTBJ8bdK-XCpRlxl4Te1X8Jtlj2qthOKFGYmCglalSzaYDlCqHi9gToS78sys-c5Md39Qzh3JYJdQ" width="300" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 **推荐做法：** 普通段落文本应使用 `<section>` 或 `<p>` 标签替代。
 
@@ -529,9 +577,16 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 | iOS 17+ 部分版本   |  两段文字因分别映射到 system-ui 和 PingFang SC 的同一字体不同版本，使得实际渲染后的文字大小和字间距上较为明显  | 
 
 
-| 编辑器 | iOS 17+ 部分版本 |
-|-----------------|------------------|
-| ![](https://res.wx.qq.com/op_res/g11aOZPetd9ZqnkrGAVep3XxMeO6Vuzb-PEJnQbJmy32j6np8B8ZYG6hDfQex8BKYEXD0hOidiu0VnViMfHHLQ) | ![](https://res.wx.qq.com/op_res/g11aOZPetd9ZqnkrGAVepwkk8jdZjT4-7EhWaNJOzHttq-DLjkLSJGtuwtzlbM4ve0AEpDWOtDSV019WU7rWiA) |
+<table>
+  <tr>
+    <th width="50%" align="center">编辑器</th>
+    <th width="50%" align="center">iOS 17+ 部分版本</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/g11aOZPetd9ZqnkrGAVep3XxMeO6Vuzb-PEJnQbJmy32j6np8B8ZYG6hDfQex8BKYEXD0hOidiu0VnViMfHHLQ" width="300" height="200" style="object-fit: contain;" /></td>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/g11aOZPetd9ZqnkrGAVepwkk8jdZjT4-7EhWaNJOzHttq-DLjkLSJGtuwtzlbM4ve0AEpDWOtDSV019WU7rWiA" width="300" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 
 ## 5、Dark Mode
@@ -556,7 +611,11 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 <div style="background-color: rgb(194, 43, 76); color: rgb(73, 68, 41);">平台自动提高文本亮度，使其在 Dark Mode 下仍可清晰辨识</div>
 ```
 
-![](https://res.wx.qq.com/op_res/OrcPOrqCHUZIUCn-gvS_MAhnuABnAYRzNUjs-5eI0PSV6vp-oXOwqTfpfolK06xG08ONQ7_WURnuUYMHONO05g)
+<table>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/OrcPOrqCHUZIUCn-gvS_MAhnuABnAYRzNUjs-5eI0PSV6vp-oXOwqTfpfolK06xG08ONQ7_WURnuUYMHONO05g" width="600" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 #### 5.1.2 如非必要，文字背景尽量不要使用渐变
 
@@ -567,7 +626,11 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 <div style="background-image: linear-gradient(rgb(248, 245, 247), rgb(194, 43, 76)); color: yellow;">文字背景为白到红的渐变色</div>
 ```
 
-![](https://res.wx.qq.com/op_res/OrcPOrqCHUZIUCn-gvS_MK0ZC1hZzoM_-SWicIWNAwYYnYEiW8BWftUEFwv6F_8HNMdv5sUHfTN-K0fR_jWpHA)
+<table>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/OrcPOrqCHUZIUCn-gvS_MK0ZC1hZzoM_-SWicIWNAwYYnYEiW8BWftUEFwv6F_8HNMdv5sUHfTN-K0fR_jWpHA" width="600" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 以下问题案例同样由渐变引起：由于使用了渐变来实现格子背景，在 Dark Mode 下格子背景将无法呈现。
 
@@ -576,7 +639,11 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 <div style="background-color: rgb(248, 251, 248); background-image: linear-gradient(rgba(180, 190, 185, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(180, 190, 185, 0.3) 1px, transparent 1px); background-size: 20px 20px; color: rgb(51, 51, 51);">有格子背景</div>
 ```
 
-![](https://res.wx.qq.com/op_res/OrcPOrqCHUZIUCn-gvS_MGb_4kfsuEBvlN8F5VahEcUibX1zQgepk9WuocfqYPaSSmdCystjKLBBrmIcMGI9Kw)
+<table>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/OrcPOrqCHUZIUCn-gvS_MGb_4kfsuEBvlN8F5VahEcUibX1zQgepk9WuocfqYPaSSmdCystjKLBBrmIcMGI9Kw" width="600" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 #### 5.1.3 纯背景可以使用渐变
 
@@ -587,7 +654,11 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 <div style="background-image: linear-gradient(rgb(248, 245, 247), rgb(194, 43, 76));"><br></div>
 ```
 
-![](https://res.wx.qq.com/op_res/OrcPOrqCHUZIUCn-gvS_MJA5WB30lpi3k2Gd3hpJQhdABcHm_Ur1crT-kph1ARpvD8bLZYrmznyO_07T77Db7Q)
+<table>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/OrcPOrqCHUZIUCn-gvS_MJA5WB30lpi3k2Gd3hpJQhdABcHm_Ur1crT-kph1ARpvD8bLZYrmznyO_07T77Db7Q" width="600" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 ### 5.2 结构
 
@@ -604,7 +675,11 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 </div>
 ```
 
-![](https://res.wx.qq.com/op_res/coOfx8lhv5jNDzvOHXSt-pl1ol1lX_YbO8-fMBfRXEGxOo29d5TNJT6AQl3-9jP5Tm6vAsi32qcIC8hIB4qUOw)
+<table>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/coOfx8lhv5jNDzvOHXSt-pl1ol1lX_YbO8-fMBfRXEGxOo29d5TNJT6AQl3-9jP5Tm6vAsi32qcIC8hIB4qUOw" width="600" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 推荐做法：将背景样式写在公共容器上。
 
@@ -617,7 +692,11 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 </div>
 ```
 
-![](https://res.wx.qq.com/op_res/coOfx8lhv5jNDzvOHXSt-lbWDwvPjSBNF2QDa9ZA-BFYT6x78qX25I5uhcBsQv4z7Xbfus4C9Q18HkMima9x_A)
+<table>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/coOfx8lhv5jNDzvOHXSt-lbWDwvPjSBNF2QDa9ZA-BFYT6x78qX25I5uhcBsQv4z7Xbfus4C9Q18HkMima9x_A" width="600" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 #### 5.2.2 保持正确的嵌套关系
 
@@ -643,7 +722,11 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 </div>
 ```
 
-![](https://res.wx.qq.com/op_res/coOfx8lhv5jNDzvOHXSt-pMkv2EY5NEwb8VSdCTqvzvvP7Xma0A-vaue-tm-Xe4KhTZ6meYPNGLvTVPjW0Of7A)
+<table>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/coOfx8lhv5jNDzvOHXSt-pMkv2EY5NEwb8VSdCTqvzvvP7Xma0A-vaue-tm-Xe4KhTZ6meYPNGLvTVPjW0Of7A" width="600" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 ### 5.3 图片
 
@@ -657,7 +740,11 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 <div>上面是一张白底图片，有一个浅蓝色文字"答"</div>
 ```
 
-![](https://res.wx.qq.com/op_res/coOfx8lhv5jNDzvOHXSt-naG0kTCUYaKcuxIofO6jM0l49u7rwkofPyUhm59dRFMd0wdqsXInc362SQDc74q1A)
+<table>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/coOfx8lhv5jNDzvOHXSt-naG0kTCUYaKcuxIofO6jM0l49u7rwkofPyUhm59dRFMd0wdqsXInc362SQDc74q1A" width="600" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 #### 5.3.2 谨慎使用透明底色图片
 
@@ -669,7 +756,11 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 <div>上面是一张有"黑灰"两个字的透明底色图片</div>
 ```
 
-![](https://res.wx.qq.com/op_res/coOfx8lhv5jNDzvOHXSt-gX9wrx3UnmFPDQQZPTFkbFn0wEJgrrLGH0zI2EXJ6OXukmdVsKhlKqoEPncAFpoLA)
+<table>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/coOfx8lhv5jNDzvOHXSt-gX9wrx3UnmFPDQQZPTFkbFn0wEJgrrLGH0zI2EXJ6OXukmdVsKhlKqoEPncAFpoLA" width="600" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 #### 5.3.3 背景图片的补色机制
 
@@ -690,7 +781,11 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 </div>
 ```
 
-![](https://res.wx.qq.com/op_res/coOfx8lhv5jNDzvOHXSt-tsobj6JpfQiZQbgr5wC_VLoeJFVqHoYAjK9VZfPRW6pU-X6P1zcZpoaA8vAn5EiIw)
+<table>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/coOfx8lhv5jNDzvOHXSt-tsobj6JpfQiZQbgr5wC_VLoeJFVqHoYAjK9VZfPRW6pU-X6P1zcZpoaA8vAn5EiIw" width="600" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 补色机制的具体实现细节（文字检测方式、补色策略等）此处不再展开。
 
@@ -710,7 +805,11 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 </div>
 ```
 
-![](https://res.wx.qq.com/op_res/coOfx8lhv5jNDzvOHXSt-qtCt0vaXfhgC06_1qxYCt60klUbj5ZsQyCDoIbQ-MLkZYR-FmikK_Un3Tjxn2E_wQ)
+<table>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/coOfx8lhv5jNDzvOHXSt-qtCt0vaXfhgC06_1qxYCt60klUbj5ZsQyCDoIbQ-MLkZYR-FmikK_Un3Tjxn2E_wQ" width="600" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 为规避上述问题，可指定 `stroke="currentColor" fill="currentColor"`，或添加底色。
 
@@ -727,7 +826,11 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 </ul>
 ```
 
-![](https://res.wx.qq.com/op_res/coOfx8lhv5jNDzvOHXSt-sRyP9sdreDpNCJhXpHoloep8fJhSWBUYQSdtG7aXoSgNeBrj0JrNhgbBKotEINY3g)
+<table>
+  <tr>
+    <td align="center"><img src="https://res.wx.qq.com/op_res/coOfx8lhv5jNDzvOHXSt-sRyP9sdreDpNCJhXpHoloep8fJhSWBUYQSdtG7aXoSgNeBrj0JrNhgbBKotEINY3g" width="600" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
 
 #### 5.5.2 不要使用 `!important`
 
