@@ -165,18 +165,18 @@ caret-color: rgba(0, 0, 0, 0);
 **影响说明**
 
 行高小于字体大小时，多行文字会重叠在一起，严重影响内容的可读性。
-
 <table>
   <tr>
     <td width="50%" align="center"><img src="https://res.wx.qq.com/op_res/E9qS-cRr1mdHr60yRyQHk4TeBvDg1D8a4VQdzBb-yzxZ1-__ZMj2cT2boEIVxdVWt2BcyfT0jdF_0s3y_6E3wQ" width="300" height="200" style="object-fit: contain;" /></td>
+  </tr>
+</table>
+实际案例中 DOM 结构可能更为复杂，但根本原因均为行高过小导致文字重叠。
+<table>
+  <tr>
     <td width="50%" align="center"><img src="https://res.wx.qq.com/op_res/E9qS-cRr1mdHr60yRyQHk6F9wPUQJzwz_MHY2OGdPH-J72w9eG6Qo2OsLO0ivL0ESfTdfSyXtF72DQNUBVWu-A" width="300" height="200" style="object-fit: contain;" /></td>
   </tr>
 </table>
-
-实际案例中 DOM 结构可能更为复杂，但根本原因均为行高过小导致文字重叠。
-
 **排除场景**
-
 1. 当行高过小用于图片无缝拼接时（即元素内部不含文字，仅包含图片等非文字元素），不视为违规。这是常见的排版技巧，用于消除图片之间的间隙。
 2. **单行文字场景**：元素内部虽有文字，但实际渲染后仅为单行文本时，不会导致行与行之间的重叠，因此不视为违规。
 
