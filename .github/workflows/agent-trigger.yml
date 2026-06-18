@@ -1,0 +1,106 @@
+name: AI Agent 处理 Issue
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  validate-and-trigger:
+    # 仅当打上 "agent" 标签时触发
+    if: github.event.label.name == 'agent'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📋 校验 Issue 格式
+        id: validate
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const body = issue.body || '';
+
+            // 检查必填字段
+            const checks = [
+              { field: '反馈类型', pattern: /### 反馈类型\s*\n\s*(.+)/ },
+              { field: '涉及规则', pattern: /### 涉及规则\s*\n\s*(.+)/ },
+              { field: '文章链接', pattern: /### 文章链接\s*\n\s*(.+)/ },
+              { field: '问题描述', pattern: /### 问题描述\s*\n\s*(.+)/ },
+              { field: '期望行为', pattern: /### 期望行为\s*\n\s*(.+)/ },
+            ];
+
+            const missing = [];
+            for (const check of checks) {
+              const match = body.match(check.pattern);
+              if (!match || !match[1].trim() || match[1].trim().startsWith('_')) {
+                missing.push(check.field);
+              }
+            }
+
+            if (missing.length > 0) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `⚠️ **Issue 信息不完整，无法自动处理。**\n\n缺少以下必填字段：\n${missing.map(f => `- ${f}`).join('\n')}\n\n请补充后重新打上 \`agent\` 标签。`,
+              });
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                name: 'agent',
+              });
+              core.setFailed('Issue 格式校验失败');
+              return;
+            }
+
+            core.setOutput('valid', 'true');
+
+      - name: 🔔 通知 Agent 处理
+        if: steps.validate.outputs.valid == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+
+            // 给 Issue 添加 "processing" 标签，表示正在处理
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              labels: ['processing'],
+            });
+
+            // 评论通知用户
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: [
+                `🤖 **AI Agent 已收到反馈，正在处理中...**`,
+                ``,
+                `处理流程：`,
+                `1. ✅ 格式校验通过`,
+                `2. 🔄 分析规则问题`,
+                `3. ✏️ 修改检测代码`,
+                `4. 🧪 运行测试（unit + integration）`,
+                `5. 📤 测试全部通过后创建 MR`,
+                ``,
+                `> 此过程可能需要几分钟，处理结果将在此 Issue 中反馈。`,
+              ].join('\n'),
+            });
+
+            // TODO: 调用内部 Agent Webhook
+            // 这里需要替换为实际的内部 Agent API 地址
+            // const agentUrl = process.env.AGENT_WEBHOOK_URL;
+            // await fetch(agentUrl, {
+            //   method: 'POST',
+            //   headers: { 'Content-Type': 'application/json' },
+            //   body: JSON.stringify({
+            //     issue_number: issue.number,
+            //     title: issue.title,
+            //     body: issue.body,
+            //     html_url: issue.html_url,
+            //   }),
+            // });
+
+            console.log('Issue 已标记为 processing，等待 Agent 处理');
+            console.log(`Issue #${issue.number}: ${issue.title}`);

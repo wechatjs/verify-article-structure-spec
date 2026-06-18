@@ -2,7 +2,7 @@
 /**
  * fetch-fixtures.js
  *
- * 把 cases.config.js 中所有 case 的文章 HTML 抓取到本地 __tests__/fixtures/，
+ * 把 cases.config.js（包根目录）中所有 case 的文章 HTML 抓取到本地 __tests__/fixtures/，
  * 用于：
  *   1. 单元测试（vitest）离线读取 → 不依赖网络，CI 友好
  *   2. 集成测试缓存兜底 → 即使原文被删/改，回归测试依然可重放
@@ -21,7 +21,7 @@ const path = require('path');
 const https = require('https');
 const http = require('http');
 
-const { badcases, goodcases } = require('../__tests__/cases.config.js');
+const { badcases, goodcases } = require('../cases.config.js');
 
 const FIXTURES_DIR = path.resolve(__dirname, '../__tests__/fixtures');
 const BAD_DIR = path.join(FIXTURES_DIR, 'badcases');

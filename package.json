@@ -6,12 +6,12 @@
   "main": "verify_article_structure.md",
   "files": [
     "verify_article_structure.md",
+    "cases.config.js",
     "vitest.config.js",
     "__tests__/",
     "scripts/"
   ],
   "scripts": {
-    "postinstall": "node scripts/copy-to-legacy.js",
     "publish-spec": "node scripts/publish-spec.js",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest",
