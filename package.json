@@ -2,21 +2,17 @@
   "name": "verify-article-structure-spec",
   "version": "0.1.0",
   "private": true,
-  "description": "微信公众平台文章结构验证规范文档 —— 面向第三方编辑器的排版合规指南与 API 参考，附完整测试套件",
+  "description": "微信公众平台文章结构验证规范包 —— 面向第三方编辑器的排版合规规范文档、测试用例配置与 fixtures",
   "main": "verify_article_structure.md",
   "files": [
     "verify_article_structure.md",
     "cases.config.js",
-    "vitest.config.js",
-    "__tests__/",
+    "DESIGN.md",
+    "docs/",
+    "__tests__/fixtures/",
     "scripts/"
   ],
   "scripts": {
-    "publish-spec": "node scripts/publish-spec.js",
-    "test:unit": "vitest run",
-    "test:unit:watch": "vitest",
-    "test:integration": "node __tests__/integration/run.js",
-    "test": "npm run test:unit",
     "fetch:fixtures": "node scripts/fetch-fixtures.js"
   },
   "repository": {
@@ -32,11 +28,5 @@
     "css",
     "排版规范"
   ],
-  "license": "MIT",
-  "devDependencies": {
-    "vitest": "^1.6.0",
-    "jsdom": "^24.0.0",
-    "@vitest/ui": "^1.6.0",
-    "puppeteer": "^21.0.0"
-  }
+  "license": "MIT"
 }
