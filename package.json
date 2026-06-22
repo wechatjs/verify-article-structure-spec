@@ -7,13 +7,12 @@
   "files": [
     "verify_article_structure.md",
     "cases.config.js",
-    "DESIGN.md",
-    "docs/",
     "__tests__/fixtures/",
     "scripts/"
   ],
   "scripts": {
-    "fetch:fixtures": "node scripts/fetch-fixtures.js"
+    "fetch:fixtures": "node scripts/fetch-fixtures.js",
+    "push:spec": "bash scripts/push-to-standalone-repo.sh"
   },
   "repository": {
     "type": "git",

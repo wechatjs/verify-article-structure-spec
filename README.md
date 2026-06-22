@@ -8,52 +8,19 @@
 
 ## 这是什么
 
-本仓库是「文章结构验证规则」的**对外开源规范包**，包含三类内容：
+本仓库定义微信公众平台对**文章 HTML 结构**的合规性要求，并提供配套的测试用例与反馈渠道。如果你在开发第三方公众号编辑器、批量发文工具或排版校验插件，本仓库是你的参考标准。
 
 | 内容 | 文件 | 作用 |
 |---|---|---|
 | 📜 **规范文档** | [`verify_article_structure.md`](./verify_article_structure.md) | 所有检测规则的权威定义（章节号、阈值、判定逻辑） |
-| 🧪 **测试用例** | [`cases.config.js`](./cases.config.js) | 违规用例（badcases）+ 合规反向用例（goodcases）的统一定义 |
-| 📂 **文章 Fixtures** | [`__tests__/fixtures/`](./__tests__/fixtures/) | 缓存的真实公众号文章 HTML，供回归测试比对 |
-
-> **🚫 不包含检测引擎代码**——`verify_article_structure.js`（实际的 JS 检测逻辑）保留在内部仓库，不对外开源。
-
-## 三仓关系
-
-本仓库是「文章结构校验」体系中三个仓库之一，关系如下：
-
-```mermaid
-graph TB
-    SPEC["📖 verify-article-structure-spec<br/>（本仓 / 公开）<br/>规范文档 + 测试 case + fixtures"]
-    MAIN["🔒 mmbizwebnew 主仓<br/>（内部）<br/>verify_article_structure.js<br/>检测逻辑唯一真理源"]
-    ENGINE["🧪 verify-article-structure-engine<br/>（内部 npm 包）<br/>只读测试沙箱 + 浏览器 bundle"]
-
-    MAIN -->|"forward-sync.js<br/>单向同步"| ENGINE
-    SPEC -.->|"fixtures + cases<br/>被 engine 测试消费"| ENGINE
-    SPEC -.->|"规范文档<br/>被 desc/章节号引用"| ENGINE
-
-    classDef truth fill:#d4edda,stroke:#28a745
-    classDef derived fill:#fff3cd,stroke:#ffc107
-    classDef opensrc fill:#cce5ff,stroke:#007bff
-
-    class MAIN truth
-    class ENGINE derived
-    class SPEC opensrc
-```
-
-| 仓 / 包 | 角色 | 真理源 | 对外开源 |
-|---|---|---|---|
-| **本仓 spec** | 规范 + 测试数据 + 反馈入口 | ✅（针对规范） | ✅ |
-| 内部主仓 | 检测逻辑唯一真理源 | ✅（针对逻辑） | ❌ |
-| engine 包 | 只读测试沙箱（vitest + puppeteer） | ❌ 派生制品 | ❌ |
-
-> 详细同步链路见内部文档 [`docs/SYNC_WORKFLOW.md`](./docs/SYNC_WORKFLOW.md)。
+| 🧪 **测试用例** | [`cases.config.js`](./cases.config.js) | 违规用例（badcases）+ 合规反向用例（goodcases）|
+| 📂 **HTML 缓存** | [`__tests__/fixtures/`](./__tests__/fixtures/) | cases 对应的真实公众号文章 HTML 快照 |
 
 ---
 
 ## 提交 Issue / 反馈规则问题
 
-> 这是本仓库**最重要**的对外功能：用 Issue 驱动 AI Agent 自动修复规则。
+> 这是本仓库**最重要**的对外功能：用 Issue 驱动规则演进。
 
 ### Issue 类型
 
@@ -68,21 +35,7 @@ graph TB
 
 1. 点击 **New Issue** → 选择 **「规则反馈」** 模板
 2. 按模板填写必填字段（涉及规则、文章链接、问题描述、期望行为）
-3. 提交后，维护者审核并打上 `agent` 标签
-4. AI Agent 自动分析 → 修改主仓代码 → 在 engine 包跑测试 → 通过后创建 MR
-
-```mermaid
-flowchart LR
-    A["📝 用户提交 Issue"] --> B["🏷️ 维护者打 agent 标签"]
-    B --> C["🤖 Agent 分析规则"]
-    C --> D["✏️ 修改主仓代码"]
-    D --> E["🧪 engine 跑全量测试"]
-    E --> F{"全部通过?"}
-    F -->|"✅"| G["📤 创建 MR"]
-    F -->|"❌"| H["🔄 重试修复"]
-    H -->|"最多 3 次"| D
-    G --> I["🔀 合并 → 同步发布"]
-```
+3. 提交后维护者会跟进，修复后会在 Issue 中回复并关闭
 
 ### 必填信息
 
@@ -111,141 +64,66 @@ flowchart LR
 
 ```
 verify-article-structure-spec/
-├── verify_article_structure.md    ← 📜 规范文档权威源
-├── cases.config.js                ← 🧪 所有测试 case 的统一定义
+├── verify_article_structure.md    ← 📜 规范文档（权威源）
+├── cases.config.js                ← 🧪 测试用例配置
 ├── __tests__/
 │   └── fixtures/                  ← 📂 文章 HTML 缓存
 │       ├── badcases/              ← 违规用例文章
 │       └── goodcases/             ← 合规反向用例文章
 ├── scripts/
 │   └── fetch-fixtures.js          ← 从公众号抓取 fixtures 到本地缓存
-├── docs/
-│   └── SYNC_WORKFLOW.md           ← 三仓同步链路（内部参考）
 ├── 公众号新功能提示测试汇总/        ← 人工测试记录归档
 ├── .github/
-│   ├── ISSUE_TEMPLATE/            ← Issue 模板
-│   └── workflows/                 ← Agent 触发工作流
-├── DESIGN.md                      ← Issue 驱动闭环设计文档
+│   └── ISSUE_TEMPLATE/            ← Issue 模板
 ├── package.json
-└── README.md                      ← 本文件
+└── README.md
 ```
-
-> ⚠️ 本仓库不含 `src/`、不含 vitest/puppeteer 测试 runner——**测试在内部 engine 包执行**，本仓库只提供测试**数据**（cases + fixtures）。
 
 ---
 
-## 测试用例维护（cases.config.js）
+## 测试用例字段说明（cases.config.js）
 
-[`cases.config.js`](./cases.config.js) 是 spec 仓与 engine 包之间的**唯一契约**——engine 包的 vitest 单测、puppeteer 集成测、本仓的 fetch-fixtures 脚本都消费同一份配置。
+[`cases.config.js`](./cases.config.js) 定义了用于回归测试的违规与合规用例。提 Issue 时如果你想"附带补一个 case"，可以参照下表字段格式提供：
 
-### 字段说明
-
-#### `badcases`（违规用例）
+### `badcases`（违规用例）
 
 | 字段 | 类型 | 必填 | 说明 |
 |---|---|---|---|
-| `id` | string | ✅ | 文章短链 ID（`mp.weixin.qq.com/s/` 后的部分），同时用于 fixture 文件名 |
-| `url` | string | ✅ | 文章完整 URL，供 `fetch:fixtures` 拉取与集成测使用 |
+| `id` | string | ✅ | 文章短链 ID（`mp.weixin.qq.com/s/` 后的部分），同时用作 fixture 文件名 |
+| `url` | string | ✅ | 文章完整 URL |
 | `relatedRule` | string | ✅ | 期望命中的规则 key，对应 `propertyRules` 中的键（如 `opacity` / `width` / `pre`） |
-| `expectInvalidKeys` | string[] | ✅ | `inValidInfo` 实际产物中**必须出现**的外层桶名（如 `['width']`），参与断言；实际产出可多于这些 |
+| `expectInvalidKeys` | string[] | ✅ | 验证结果 `inValidInfo` 中**必须出现**的外层桶名（如 `['width']`） |
 | `desc` | string | ✅ | 人类可读描述，**必须以 `#章节号` 开头**对应 `verify_article_structure.md` 章节，例：`'#2.1 opacity - 图片透明度为 0'` |
-| `skip` | boolean | ❌ | 标记暂时无法稳定触发的 case，集成测会跳过（计入 skip 但不算 fail） |
+| `skip` | boolean | ❌ | 标记暂时无法稳定触发的 case |
 | `skipReason` | string | ❌ | `skip:true` 时的原因说明 |
-| `requireLocalTpl` | boolean | ❌ | 标记需要本地模板模式（`--use-local-tpl`）才能正确处理（如含复杂 table 的文章） |
-| `note` | string | ❌ | 内部排查辅助说明，不参与断言 |
+| `requireLocalTpl` | boolean | ❌ | 标记需要本地模板模式才能正确处理（如含复杂 table 的文章） |
+| `note` | string | ❌ | 排查辅助说明，不参与断言 |
 
-#### `goodcases`（合规反向用例）
+### `goodcases`（合规反向用例）
 
 | 字段 | 类型 | 必填 | 说明 |
 |---|---|---|---|
 | `id` | string | ✅ | 同上 |
 | `url` | string | ✅ | 同上 |
-| `desc` | string | ✅ | 人类可读描述（无章节号约束，因为合规用例不挂特定规则） |
+| `desc` | string | ✅ | 人类可读描述（无章节号约束） |
 
-> 期望：`isValid: true` 且 `inValidInfo` 为空。任何 `goodcase` 炸了都说明规则改严了，需立即定位修复。
+> goodcase 期望：`isValid: true` 且 `inValidInfo` 为空。
 
-### 新增 case 流程
-
-1. 在 `cases.config.js` 的 `badcases` 或 `goodcases` 数组中追加一条记录（字段按上表填写）。
-2. 抓取文章 HTML 到本地 fixtures：
-   ```bash
-   pnpm --filter verify-article-structure-spec run fetch:fixtures
-   ```
-3. 提交本仓 → engine 包测试侧自动消费新 case 跑回归。
-
-### 维护原则
-
-1. 每当主仓 `verify_article_structure.js` 的 `propertyRules` 注释里新增 URL，必须在 `cases.config.js` 中同步录入对应 case。
-2. 新增 case 的 `desc` 必须带 `#章节号` 前缀；若规范文档中尚无对应章节，需**先补章节再加 case**。
-3. `expectInvalidKeys` 是 `inValidInfo` 中「必须出现」的键，实际产物可能多于这些（多余的不影响断言通过）。
-4. `skip:true` 用于「暂时测不出来」的场景——集成测跳过但不视为失败。
-
----
-
-## 编辑规范文档的工作流
-
-修改本仓内容（规范文档 / cases）的标准流程：
-
-```mermaid
-flowchart LR
-    A["编辑 .md / cases.config.js"] --> C["在 engine 包跑测试<br/>验证规则与 case 自洽"]
-    C --> D["bump package.json version"]
-    D --> E["git push 主仓"]
-    E --> F["同步推送到本开源仓库"]
-```
-
-### 步骤 1：编辑权威源
+### 抓取 fixtures 到本地
 
 ```bash
-vim packages/verify-article-structure-spec/verify_article_structure.md
-# 或
-vim packages/verify-article-structure-spec/cases.config.js
+pnpm --filter verify-article-structure-spec run fetch:fixtures
 ```
 
-### 步骤 2：让测试在 engine 包跑一遍
-
-```bash
-cd packages/verify-article-structure-engine
-npm run test:unit          # vitest + jsdom，毫秒级
-npm run test:integration   # puppeteer 真实浏览器，秒级
-```
-
-> 测试 runner、mock、脚手架全部在 engine 包，本 spec 包不再维护测试代码。
-
-### 步骤 3：bump 版本号
-
-编辑 `package.json`，将 `version` 字段递增（如 `0.1.0 → 0.1.1`）。
-
-### 步骤 4：提交主仓
-
-```bash
-git add packages/verify-article-structure-spec/
-git commit -m "docs: 更新文章结构验证规范 v0.1.1"
-git push
-```
-
-### 步骤 5：同步到开源仓库
-
-> 当前没有自动化发布脚本，由维护者手动执行（克隆开源仓 → rsync 本目录 → commit → push）。
+会按 `cases.config.js` 中的 URL 从公众号抓取 HTML 缓存到 `__tests__/fixtures/`。
 
 ---
 
 ## 脚本说明
 
-| 脚本 | 触发方式 | 作用 |
+| 脚本 | 命令 | 作用 |
 |---|---|---|
-| `fetch:fixtures` | `pnpm --filter verify-article-structure-spec run fetch:fixtures` | 按 `cases.config.js` 中的 URL 从公众号抓取 HTML 缓存到 `__tests__/fixtures/` |
-
-> **测试在哪跑？** 本仓不再维护测试 runner。所有单测 / 集成测都在 `packages/verify-article-structure-engine` 包内执行，详见 [engine 包 README](../verify-article-structure-engine/README.md)。
-
----
-
-## 设计文档
-
-| 文档 | 内容 | 受众 |
-|---|---|---|
-| [`DESIGN.md`](./DESIGN.md) | Issue 驱动的 Agent 自动修复闭环设计 | 维护者 |
-| [`docs/SYNC_WORKFLOW.md`](./docs/SYNC_WORKFLOW.md) | 三仓（spec / 主仓 / engine）同步链路 | 维护者 |
+| `fetch:fixtures` | `pnpm --filter verify-article-structure-spec run fetch:fixtures` | 按 `cases.config.js` 中的 URL 抓取文章 HTML |
 
 ---
 
@@ -253,8 +131,9 @@ git push
 
 | 版本 | 日期 | 变更 |
 |---|---|---|
-| 0.1.0 | 2026-06-15 | 初始版本，从 `web-webapp-common/js/` 独立为 workspace 包 |
-| —     | 2026-06-18 | 测试套件迁出至 engine 包；本仓回归「纯规范 + 数据」定位；新增 Issue 驱动闭环设计 |
+| 0.1.0 | 2026-06-15 | 初始版本 |
+| —     | 2026-06-18 | 测试套件迁出本仓；本仓回归「纯规范 + 数据」定位 |
+| —     | 2026-06-22 | 移除内部协作信息，本仓只展示对外规范与反馈入口 |
 
 ---
 
