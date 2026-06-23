@@ -6,21 +6,18 @@
 
 ---
 
-## 这是什么
-
-本仓库定义微信公众平台对**文章 HTML 结构**的合规性要求，并提供配套的测试用例与反馈渠道。如果你在开发第三方公众号编辑器、批量发文工具或排版校验插件，本仓库是你的参考标准。
+本仓库制定微信公众号文章 HTML 结构的合规标准，涵盖测试用例与反馈机制。供第三方编辑器、批量发文工具及排版校验插件的开发者参考。
 
 | 内容 | 文件 | 作用 |
 |---|---|---|
 | 📜 **规范文档** | [`verify_article_structure.md`](./verify_article_structure.md) | 所有检测规则的权威定义（章节号、阈值、判定逻辑） |
 | 🧪 **测试用例** | [`cases.config.js`](./cases.config.js) | 违规用例（badcases）+ 合规反向用例（goodcases）|
-| 📂 **HTML 缓存** | [`__tests__/fixtures/`](./__tests__/fixtures/) | cases 对应的真实公众号文章 HTML 快照 |
 
 ---
 
 ## 提交 Issue / 反馈规则问题
 
-> 这是本仓库**最重要**的对外功能：用 Issue 驱动规则演进。
+> 本仓库的核心对外机制：通过 Issue 驱动规则迭代与完善。
 
 ### Issue 类型
 
@@ -77,7 +74,7 @@ verify-article-structure-spec/
 
 ## 测试用例字段说明（cases.config.js）
 
-[`cases.config.js`](./cases.config.js) 定义了用于回归测试的违规与合规用例。提 Issue 时如果你想"附带补一个 case"，可以参照下表字段格式提供：
+[`cases.config.js`](./cases.config.js) 定义了用于回归测试的违规与合规用例。如有意附带补充用例，可参照下表字段格式提供：
 
 ### `badcases`（违规用例）
 
@@ -87,7 +84,7 @@ verify-article-structure-spec/
 | `url` | string | ✅ | 文章完整 URL |
 | `relatedRule` | string | ✅ | 期望命中的规则 key，对应 `propertyRules` 中的键（如 `opacity` / `width` / `pre`） |
 | `expectInvalidKeys` | string[] | ✅ | 验证结果 `inValidInfo` 中**必须出现**的外层桶名（如 `['width']`） |
-| `desc` | string | ✅ | 人类可读描述，**必须以 `#章节号` 开头**对应 `verify_article_structure.md` 章节，例：`'#2.1 opacity - 图片透明度为 0'` |
+| `desc` | string | ✅ | 可读描述，**必须以 `#章节号` 开头**对应 `verify_article_structure.md` 章节，例：`'#2.1 opacity - 图片透明度为 0'` |
 
 ### `goodcases`（合规反向用例）
 
@@ -95,33 +92,8 @@ verify-article-structure-spec/
 |---|---|---|---|
 | `id` | string | ✅ | 同上 |
 | `url` | string | ✅ | 同上 |
-| `desc` | string | ✅ | 人类可读描述（无章节号约束） |
-
-> goodcase 期望：`isValid: true` 且 `inValidInfo` 为空。
-
-### 抓取 fixtures 到本地
-
-```bash
-pnpm --filter verify-article-structure-spec run fetch:fixtures
-```
-
-会按 `cases.config.js` 中的 URL 从公众号抓取 HTML 缓存到 `__tests__/fixtures/`。
-
----
-
-## 脚本说明
-
-| 脚本 | 命令 | 作用 |
-|---|---|---|
-| `fetch:fixtures` | `pnpm --filter verify-article-structure-spec run fetch:fixtures` | 按 `cases.config.js` 中的 URL 抓取文章 HTML |
-
----
-
-## 版本历史
-
-| 版本 | 日期 | 变更 |
-|---|---|---|
-| 0.1.0 | 2026-06-15 | 初始版本 |
+| `desc` | string | ✅ | 可读描述（无章节号约束） |
+| 初始版本 |
 | —     | 2026-06-18 | 测试套件迁出本仓；本仓回归「纯规范 + 数据」定位 |
 | —     | 2026-06-22 | 移除内部协作信息，本仓只展示对外规范与反馈入口 |
 
