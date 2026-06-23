@@ -93,7 +93,32 @@ verify-article-structure-spec/
 | `id` | string | ✅ | 同上 |
 | `url` | string | ✅ | 同上 |
 | `desc` | string | ✅ | 可读描述（无章节号约束） |
-| 初始版本 |
+
+> goodcase 期望：`isValid: true` 且 `inValidInfo` 为空。
+
+### 抓取 fixtures 到本地
+
+```bash
+pnpm --filter verify-article-structure-spec run fetch:fixtures
+```
+
+会按 `cases.config.js` 中的 URL 从公众号抓取 HTML 缓存到 `__tests__/fixtures/`。
+
+---
+
+## 脚本说明
+
+| 脚本 | 命令 | 作用 |
+|---|---|---|
+| `fetch:fixtures` | `pnpm --filter verify-article-structure-spec run fetch:fixtures` | 按 `cases.config.js` 中的 URL 抓取文章 HTML |
+
+---
+
+## 版本历史
+
+| 版本 | 日期 | 变更 |
+|---|---|---|
+| 0.1.0 | 2026-06-15 | 初始版本 |
 | —     | 2026-06-18 | 测试套件迁出本仓；本仓回归「纯规范 + 数据」定位 |
 | —     | 2026-06-22 | 移除内部协作信息，本仓只展示对外规范与反馈入口 |
 
