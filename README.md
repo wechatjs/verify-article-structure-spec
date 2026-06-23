@@ -96,22 +96,6 @@ verify-article-structure-spec/
 
 > goodcase 期望：`isValid: true` 且 `inValidInfo` 为空。
 
-### 抓取 fixtures 到本地
-
-```bash
-pnpm --filter verify-article-structure-spec run fetch:fixtures
-```
-
-会按 `cases.config.js` 中的 URL 从公众号抓取 HTML 缓存到 `__tests__/fixtures/`。
-
----
-
-## 脚本说明
-
-| 脚本 | 命令 | 作用 |
-|---|---|---|
-| `fetch:fixtures` | `pnpm --filter verify-article-structure-spec run fetch:fixtures` | 按 `cases.config.js` 中的 URL 抓取文章 HTML |
-
 ---
 
 ## 版本历史
