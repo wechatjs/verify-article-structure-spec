@@ -39,24 +39,18 @@
 
 ### 必填信息
 
-无论哪种 Issue 类型，请务必提供：
+无论哪种 Issue 类型，须提供：
 
-1. **涉及规则**：指明是哪条规则（如 `2.4 width`、`2.1 opacity`、`3.1 嵌套层级`、`5.1 颜色` 等），方便快速定位。
-2. **文章链接**：提供触发问题的公众号文章链接（`https://mp.weixin.qq.com/s/xxx`），用于复现和验证。
+1. **涉及规则**：指明是哪条规则（如 `2.4 width`、`2.1 opacity`、`3.1 嵌套层级`、`5.1 颜色` 等），便于定位。
+2. **文章链接** / **文章 HTML**（二选一）：提供以下任一即可用于复现和验证。
+   - **文章链接**：触发问题的公众号文章链接（`https://mp.weixin.qq.com/s/xxx`）。
+   - **文章 HTML**：提供文章 HTML 源码以便精准排查。
 3. **问题描述**：清晰说明期望行为 vs 实际行为。
-
-#### 误报 / 漏报额外需要
-
-4. **文章 HTML**（强烈推荐）：截图无法反映具体样式数值，请提供 HTML 原文以达到精准排查：
-   - **方式一（推荐）**：保存为 `.html` 文件，直接拖拽上传到 Issue 评论区。
-   - **方式二**：在 Issue 中使用代码块粘贴关键 HTML 片段（太长可只贴 `<div id="js_content">` 内的部分）。
-
-   > 💡 **如何提取文章 HTML**：在 Chrome 中打开文章 → F12 开发者工具 → 找到 `<div id="js_content">` 节点 → 右键 → Copy → Copy outerHTML。
 
 #### 规则建议额外需要
 
-4. **场景描述**：描述你遇到的排版问题场景，附上截图或效果对比更佳。
-5. **检测思路**（可选）：如果你对如何自动检测该问题有思路，欢迎一并提出。
+4. **场景描述**：描述所遇排版问题的场景，附截图或效果对比。
+5. **检测思路**（可选）：如有自动检测该问题的思路，可一并提出。
 
 ---
 
@@ -94,10 +88,6 @@ verify-article-structure-spec/
 | `relatedRule` | string | ✅ | 期望命中的规则 key，对应 `propertyRules` 中的键（如 `opacity` / `width` / `pre`） |
 | `expectInvalidKeys` | string[] | ✅ | 验证结果 `inValidInfo` 中**必须出现**的外层桶名（如 `['width']`） |
 | `desc` | string | ✅ | 人类可读描述，**必须以 `#章节号` 开头**对应 `verify_article_structure.md` 章节，例：`'#2.1 opacity - 图片透明度为 0'` |
-| `skip` | boolean | ❌ | 标记暂时无法稳定触发的 case |
-| `skipReason` | string | ❌ | `skip:true` 时的原因说明 |
-| `requireLocalTpl` | boolean | ❌ | 标记需要本地模板模式才能正确处理（如含复杂 table 的文章） |
-| `note` | string | ❌ | 排查辅助说明，不参与断言 |
 
 ### `goodcases`（合规反向用例）
 
