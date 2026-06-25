@@ -30,7 +30,7 @@
 
 ### 提交流程
 
-1. 点击 **[New Issue](https://git.woa.com/daisyhhuang/verify-article-structure-spec/issues/new)** → 选择 **「规则反馈」** 模板
+1. 点击 **[New Issue](https://github.com/wechatjs/verify-article-structure-spec/issues/new)** → 选择 **「规则反馈」** 模板
 2. 按模板填写必填字段（涉及规则、文章链接、问题描述、期望行为）
 3. 提交后维护者会跟进，修复后会在 Issue 中回复并关闭
 
