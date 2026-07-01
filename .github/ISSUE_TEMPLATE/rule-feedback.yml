@@ -34,10 +34,12 @@ body:
     id: article_url
     attributes:
       label: 文章链接
-      description: 提供触发问题的公众号文章链接
-      placeholder: "https://mp.weixin.qq.com/s/xxx"
+      description: |
+        提供触发问题的公众号文章链接。
+        ⚠️ **文章链接** 和下方的 **文章 HTML** 二选一，至少提供一个。
+      placeholder: "https://mp.weixin.qq.com/s/xxx（如提供了 HTML 可填「无」）"
     validations:
-      required: true
+      required: false
 
   - type: textarea
     id: description
@@ -63,8 +65,9 @@ body:
   - type: textarea
     id: html_snippet
     attributes:
-      label: 文章 HTML（强烈推荐）
+      label: 文章 HTML
       description: |
+        ⚠️ **文章链接** 和 **文章 HTML** 二选一，至少提供一个。
         截图无法反映具体样式数值，请提供 HTML 以精准排查：
         - **方式一（推荐）**：保存为 `.html` 文件，拖拽上传到评论区
         - **方式二**：在下方代码块中粘贴关键 HTML 片段（太长可只贴 `<div id="js_content">` 内的部分）
@@ -94,7 +97,7 @@ body:
       options:
         - label: 我已阅读规范文档，确认此问题未被现有规则覆盖
           required: true
-        - label: 我提供的文章链接可公开访问（无需登录）
-          required: true
+        - label: 如提供了文章链接，我确认该链接可公开访问（无需登录）
+          required: false
         - label: 我理解此 Issue 将由 AI Agent 自动处理，处理结果会在此 Issue 中反馈
           required: true
