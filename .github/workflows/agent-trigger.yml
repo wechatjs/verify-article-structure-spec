@@ -1,8 +1,8 @@
 name: AI Agent 处理 Issue
 
 on:
-  issues:
-    types: [labeled]
+  # 已改为手动触发：轮询服务已接管 Issue 处理，此 workflow 不再自动响应 labeled 事件
+  workflow_dispatch:
 
 jobs:
   validate-and-trigger:
@@ -57,6 +57,8 @@ jobs:
       - name: 🔔 通知 Agent 处理
         if: steps.validate.outputs.valid == 'true'
         uses: actions/github-script@v7
+        env:
+          AGENT_WEBHOOK_URL: ${{ secrets.AGENT_WEBHOOK_URL }}
         with:
           script: |
             const issue = context.payload.issue;
@@ -88,19 +90,37 @@ jobs:
               ].join('\n'),
             });
 
-            // TODO: 调用内部 Agent Webhook
-            // 这里需要替换为实际的内部 Agent API 地址
-            // const agentUrl = process.env.AGENT_WEBHOOK_URL;
-            // await fetch(agentUrl, {
-            //   method: 'POST',
-            //   headers: { 'Content-Type': 'application/json' },
-            //   body: JSON.stringify({
-            //     issue_number: issue.number,
-            //     title: issue.title,
-            //     body: issue.body,
-            //     html_url: issue.html_url,
-            //   }),
-            // });
+            // 调用 fix-service Webhook，触发 Agent 自动修复
+            const agentUrl = process.env.AGENT_WEBHOOK_URL;
+            if (!agentUrl) {
+              core.warning('AGENT_WEBHOOK_URL 未配置，跳过 webhook 调用');
+            } else {
+              console.log(`🚀 调用 Agent Webhook: ${agentUrl}`);
+              const resp = await fetch(agentUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  action: 'labeled',
+                  issue: {
+                    number: issue.number,
+                    title: issue.title,
+                    body: issue.body,
+                    html_url: issue.html_url,
+                    labels: issue.labels,
+                    state: issue.state,
+                  },
+                  repository: {
+                    full_name: `${context.repo.owner}/${context.repo.repo}`,
+                  },
+                  sender: context.payload.sender,
+                }),
+              });
+              const result = await resp.json().catch(() => resp.text());
+              console.log(`Agent Webhook 响应 (${resp.status}):`, JSON.stringify(result));
+              if (!resp.ok) {
+                core.warning(`Agent Webhook 返回非 2xx: ${resp.status}`);
+              }
+            }
 
-            console.log('Issue 已标记为 processing，等待 Agent 处理');
+            console.log('Issue 已标记为 processing，Agent Webhook 已调用');
             console.log(`Issue #${issue.number}: ${issue.title}`);
