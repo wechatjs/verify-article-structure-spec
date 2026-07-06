@@ -6,6 +6,7 @@
   "main": "verify_article_structure.md",
   "files": [
     "verify_article_structure.md",
+    "verify_api_usage.md",
     "cases.config.js",
     "__tests__/fixtures/",
     "scripts/"

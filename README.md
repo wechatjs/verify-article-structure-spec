@@ -11,6 +11,7 @@
 | 内容 | 文件 | 作用 |
 |---|---|---|
 | 📜 **规范文档** | [`verify_article_structure.md`](./verify_article_structure.md) | 所有检测规则的权威定义（章节号、阈值、判定逻辑） |
+| 🔌 **校验接口** | [`verify_api_usage.md`](./verify_api_usage.md) | 文章结构校验接口的请求方式、参数、响应结构与调用示例 |
 | 🧪 **测试用例** | [`cases.config.js`](./cases.config.js) | 违规用例（badcases）+ 合规反向用例（goodcases）|
 
 ---
@@ -92,6 +93,7 @@
 ```
 verify-article-structure-spec/
 ├── verify_article_structure.md    ← 📜 规范文档（权威源）
+├── verify_api_usage.md            ← 🔌 校验接口使用说明
 ├── cases.config.js                ← 🧪 测试用例配置
 ├── __tests__/
 │   └── fixtures/                  ← 📂 文章 HTML 缓存
