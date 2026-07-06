@@ -4,11 +4,11 @@
 
 注：文中代码均可在编辑器中运行查看实际效果。
 
-## 2、CSS 属性使用规范
+## 1、CSS 属性使用规范
 
 以下CSS属性的不当使用，会直接影响编辑器的功能或文章的最终呈现，请在开发中严格规避。
 
-### 2.1 opacity
+### 1.1 opacity
 
 **错误场景**：
 
@@ -44,7 +44,7 @@
 导致发布后无法在公众号后台修改图片。因为实际显示的是`SVG`背景图，而公众号编辑器不支持修改`SVG`背景图。
 
 
-### 2.2 caret-color
+### 1.2 caret-color
 
 **错误场景**
 
@@ -59,7 +59,7 @@ caret-color: rgba(0, 0, 0, 0);
 
 光标在编辑器中不可见，导致作者无法确定当前的输入位置，影响编辑体验。
 
-### 2.3 line-height
+### 1.3 line-height
 
 **错误场景**
 
@@ -104,7 +104,7 @@ caret-color: rgba(0, 0, 0, 0);
 </section>
 ```
 
-### 2.4 width
+### 1.4 width
 
 **错误场景**
 
@@ -116,7 +116,7 @@ caret-color: rgba(0, 0, 0, 0);
 
 ---
 
-#### 2.4.1 居中布局不一致
+#### 1.4.1 居中布局不一致
 
 **错误场景**
 
@@ -147,7 +147,7 @@ caret-color: rgba(0, 0, 0, 0);
 
 ---
 
-#### 2.4.2 存在溢出问题
+#### 1.4.2 存在溢出问题
 
 **错误场景**
 
@@ -205,7 +205,7 @@ caret-color: rgba(0, 0, 0, 0);
 
 ---
 
-#### 2.4.3 不同屏幕下宽度差异
+#### 1.4.3 不同屏幕下宽度差异
 
 **错误场景**
 
@@ -235,11 +235,11 @@ caret-color: rgba(0, 0, 0, 0);
   </tr>
 </table>
 
-### 2.5 height
+### 1.5 height
 
 高度设置不当将导致文字内容在移动端不可见，分为以下两种场景。
 
-#### 2.5.1 height:0
+#### 1.5.1 height:0
 
 **错误场景**
 
@@ -290,7 +290,7 @@ caret-color: rgba(0, 0, 0, 0);
 </section>
 ```
 
-#### 2.5.2 内容溢出容器
+#### 1.5.2 内容溢出容器
 
 **错误场景**
 
@@ -316,7 +316,7 @@ caret-color: rgba(0, 0, 0, 0);
 
 设置了滚动属性的容器（内容可滚动查看）不会触发此检测。
 
-### 2.6 text-align
+### 1.6 text-align
 
 **错误场景**
 
@@ -344,7 +344,7 @@ caret-color: rgba(0, 0, 0, 0);
   </tr>
 </table>
 
-### 2.7 begin
+### 1.7 begin
 
 **错误场景**
 
@@ -365,7 +365,7 @@ caret-color: rgba(0, 0, 0, 0);
 
 仅设置 `touchstart` 事件会导致`SVG`动画在PC端无法触发，因为PC端使用鼠标点击（`click`）事件而非触摸事件。需同时设置 `touchstart` 和 `click` 事件，确保跨平台兼容性，即`begin="touchstart; click"`
 
-### 2.8 pre
+### 1.8 pre
 
 **错误场景：** 使用 `<pre>` 标签包裹普通段落文本内容。
 
@@ -395,10 +395,10 @@ caret-color: rgba(0, 0, 0, 0);
 **推荐做法：** 普通段落文本应使用 `<section>` 或 `<p>` 标签替代。
 
 
-## 3、文章结构类
+## 2、文章结构类
 为保证文章DOM树的清晰与编辑器的解析性能，文章结构需遵循以下基本规则。不符合规则的结构会被编辑器自动删除。
 
-### 3.1 嵌套层级限制
+### 2.1 嵌套层级限制
 
 **规范要求**
 
@@ -431,7 +431,7 @@ caret-color: rgba(0, 0, 0, 0);
 </section>
 ```
 
-### 3.2 span[leaf] 节点规范
+### 2.2 span[leaf] 节点规范
 
 **规范要求**
 
@@ -444,7 +444,7 @@ caret-color: rgba(0, 0, 0, 0);
   <section> 这是一个块级元素，禁止放入！ </section>
 </span>
 ```
-### 3.3 section[nodeleaf] 节点规范
+### 2.3 section[nodeleaf] 节点规范
 
 **规范要求**
 
@@ -458,7 +458,7 @@ caret-color: rgba(0, 0, 0, 0);
 </section>
 ```
 
-## 4、字体使用规范
+## 3、字体使用规范
 
 **核心原则**：不建议设置任何字体族（`font-family`）。
 
@@ -501,7 +501,7 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 </table>
 
 
-## 5、Dark Mode
+## 4、Dark Mode
 
 微信公众平台 Dark Mode 转换算法秉承**尽可能保留原文信息**的原则（颜色亦为信息的一种，算法不会将红色转为橙色），仅当信息在 Dark Mode 下**难以辨识**（对比度不足）或**视觉不适**（亮度过高）时才进行调整。
 
@@ -509,9 +509,9 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 
 以下将从「颜色」、「结构」、「图片」、「SVG」和「排版技巧与注意事项」五个维度逐一说明。
 
-### 5.1 颜色
+### 4.1 颜色
 
-#### 5.1.1 使用对比度适中的颜色
+#### 4.1.1 使用对比度适中的颜色
 
 尽管平台对颜色方面不作限制，但为确保文本在 Dark Mode 下保持清晰可读与视觉舒适，算法会检测文本与背景的对比度。若对比度过低或过高，将进行相应的平衡调整。
 
@@ -529,7 +529,7 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
   </tr>
 </table>
 
-#### 5.1.2 如非必要，文字背景尽量不要使用渐变
+#### 4.1.2 如非必要，文字背景尽量不要使用渐变
 
 渐变背景（如 `background-image: linear-gradient(rgb(248, 245, 247), rgb(194, 43, 76))`，表示从白色到红色的渐变）。若仅对渐变的起止两个颜色进行算法转换，无法保证渐变中间过程的颜色在 Dark Mode 下保持良好的阅读体验（例如渐变带有透明度且背后存在其他渐变色背景，或渐变上方有带渐变的文本，均可能导致文本失去可读性）。因此，算法会先对渐变进行 mix 混合计算，将渐变转换为纯色后再执行转换，以降低不确定性。
 
@@ -557,7 +557,7 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
   </tr>
 </table>
 
-#### 5.1.3 纯背景可以使用渐变
+#### 4.1.3 纯背景可以使用渐变
 
 渐变背景上方若无文字，算法将不对该渐变进行处理。
 
@@ -572,9 +572,9 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
   </tr>
 </table>
 
-### 5.2 结构
+### 4.2 结构
 
-#### 5.2.1 建议使用背景容器 + 多文本节点的结构
+#### 4.2.1 建议使用背景容器 + 多文本节点的结构
 
 如果需要给多个文本添加同一个背景（背景颜色或渐变），建议将这些文本节点包裹在一个容器里，背景样式写到这个容器上，而非给每个文本节点添加相同的背景样式。这样既可以提高算法性能，减少重复计算，也可避免以下问题。
 
@@ -610,7 +610,7 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
   </tr>
 </table>
 
-#### 5.2.2 保持正确的嵌套关系
+#### 4.2.2 保持正确的嵌套关系
 
 由于算法采用深度优先遍历（与视觉顺序一致——自上而下、从左至右），因此严禁使用绝对定位或变形等手段破坏视觉与结构顺序的一致性（如将结构上靠前的节点通过绝对定位移至后方，或将文本定位到没有从属关系的背景色区域）。
 
@@ -640,9 +640,9 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
   </tr>
 </table>
 
-### 5.3 图片
+### 4.3 图片
 
-#### 5.3.1 如非必要，不要使用图片来承载纯文本
+#### 4.3.1 如非必要，不要使用图片来承载纯文本
 
 出于对性能方面的考虑，算法目前没有对图片进行内容识别，因此无法提取图片中的文本做转换，并且也不建议使用图片来承载纯文本。
 
@@ -658,7 +658,7 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
   </tr>
 </table>
 
-#### 5.3.2 谨慎使用透明底色图片
+#### 4.3.2 谨慎使用透明底色图片
 
 创作过程中可能使用到透明底色图片，需注意：若图片中含有黑色系颜色，应确保在 Dark Mode 下与正文底色 `#191919` 保持足够的对比度，否则内容将难以辨识。
 
@@ -674,7 +674,7 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
   </tr>
 </table>
 
-#### 5.3.3 背景图片的补色机制
+#### 4.3.3 背景图片的补色机制
 
 此处特指**背景图片**（`background-image`，非 `<img>` 标签）。此外，背景图片上方的文字颜色在 Dark Mode 下将保留 Light Mode 原色。
 
@@ -701,9 +701,9 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 
 补色机制的具体实现细节（文字检测方式、补色策略等）此处不再展开。
 
-### 5.4 SVG
+### 4.4 SVG
 
-#### 5.4.1 如非必要，不要使用图片来承载纯文本
+#### 4.4.1 如非必要，不要使用图片来承载纯文本
 
 算法目前不会对 SVG 进行处理，绝大部分 SVG 在 Dark Mode 下都和 Light Mode 表现一致。
 
@@ -725,9 +725,9 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 
 为规避上述问题，可指定 `stroke="currentColor" fill="currentColor"`，或添加底色。
 
-### 5.5 排版技巧 & 注意事项
+### 4.5 排版技巧 & 注意事项
 
-#### 5.5.1 指定节点跳过算法转换
+#### 4.5.1 指定节点跳过算法转换
 
 可以使用 `data-no-dark` 属性来指定当前节点跳过算法转换，但仅针对当前节点生效，其后代节点如果有内联样式，依然会进行算法转换。
 
@@ -744,7 +744,7 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
   </tr>
 </table>
 
-#### 5.5.2 不要使用 `!important`
+#### 4.5.2 不要使用 `!important`
 
 无论何种场景，平台均不建议创作者在排版时使用 `!important`，这会使平台添加的公共样式失效，同时 Dark Mode 算法也需搭配 `!important` 来实现样式覆盖。
 

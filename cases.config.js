@@ -11,8 +11,8 @@
  *   - expectInvalidKeys:      inValidInfo 实际产物中"必须出现"的外层桶名，参与断言
  *   - desc:                   人类可读描述，**必须以 "#章节号" 开头**，对应
  *                             verify_article_structure.md 中的章节，例如：
- *                               '#2.1 opacity - 图片透明度为 0'
- *                               '#2.4.2 width - 段落节点水平溢出'
+ *                               '#1.1 opacity - 图片透明度为 0'
+ *                               '#1.4.2 width - 段落节点水平溢出'
  *                             开源用户可据此快速从规范文档查到对应规则说明。
  *   - skip / skipReason:      标记暂时无法稳定触发的 case，集成测会跳过（不算 fail）
  *   - requireLocalTpl / note: 内部排查辅助字段
@@ -34,14 +34,14 @@ const badcases = [
     skip: true,
     skipReason:
       'verify_article_structure.js#L309 注释里明确标注"测不出来，暂时不测，自动化跳过"',
-    desc: '#2.1 opacity - 图片 opacity:0 + SVG 背景图叠加（跳过）',
+    desc: '#1.1 opacity - 图片 opacity:0 + SVG 背景图叠加（跳过）',
   },
   {
     id: 'hykSi86rGj3BmUK70z6Tsg',
     url: 'https://mp.weixin.qq.com/s/hykSi86rGj3BmUK70z6Tsg',
     relatedRule: 'opacity',
     expectInvalidKeys: ['opacity'],
-    desc: '#2.1 opacity - 图片透明度为 0',
+    desc: '#1.1 opacity - 图片透明度为 0',
   },
 
   // ===== caret-color =====
@@ -50,7 +50,7 @@ const badcases = [
     url: 'https://mp.weixin.qq.com/s/xKpKjTmXCHUqrTWkQ6h6yA',
     relatedRule: 'caret-color',
     expectInvalidKeys: ['caret-color'],
-    desc: '#2.2 caret-color - 输入光标颜色透明',
+    desc: '#1.2 caret-color - 输入光标颜色透明',
   },
 
   // ===== line-height-overlapping =====
@@ -65,7 +65,7 @@ const badcases = [
     // 兜底捕获"继承式 line-height: 0"导致的叠字（如本 fixture 的"往期推荐"模块）。
     relatedRule: 'line-height-overlapping',
     expectInvalidKeys: ['line-height'],
-    desc: '#2.3 line-height - 行高小于字号导致多行文字重叠（含继承式 line-height: 0）',
+    desc: '#1.3 line-height - 行高小于字号导致多行文字重叠（含继承式 line-height: 0）',
   },
 
   // ===== height =====
@@ -74,7 +74,7 @@ const badcases = [
     url: 'https://mp.weixin.qq.com/s/I6UWLvQ3pMKoocfIK__6vA',
     relatedRule: 'height',
     expectInvalidKeys: ['height'],
-    desc: '#2.5.1 height:0 - 容器高度为 0 导致文字内容在移动端不可见',
+    desc: '#1.5.1 height:0 - 容器高度为 0 导致文字内容在移动端不可见',
     requireLocalTpl: true,
     note: '包含复杂结构，about:blank stub 无法正确处理，需 --use-local-tpl 模式',
   },
@@ -85,7 +85,7 @@ const badcases = [
     url: 'https://mp.weixin.qq.com/s/ab3CS56Mvj43fZhRjBctDw',
     relatedRule: 'width',
     expectInvalidKeys: ['width'],
-    desc: '#2.4.2 width - 表格列宽固定导致窄屏溢出',
+    desc: '#1.4.2 width - 表格列宽固定导致窄屏溢出',
     requireLocalTpl: true,
     note: '含复杂 table，about:blank stub 无法正确处理，需 --use-local-tpl 模式',
   },
@@ -94,21 +94,21 @@ const badcases = [
     url: 'https://mp.weixin.qq.com/s/42ApGiMTpDD9hotlfOqspA',
     relatedRule: 'width',
     expectInvalidKeys: ['width'],
-    desc: '#2.4.1 width - 段落设置固定宽度，居中布局不一致',
+    desc: '#1.4.1 width - 段落设置固定宽度，居中布局不一致',
   },
   {
     id: 'vURwUL9N98iHuh5lYGHTPQ',
     url: 'https://mp.weixin.qq.com/s/vURwUL9N98iHuh5lYGHTPQ',
     relatedRule: 'width',
     expectInvalidKeys: ['width'],
-    desc: '#2.4.3 width - 段落设置固定宽度，不同屏幕下宽度比例差异',
+    desc: '#1.4.3 width - 段落设置固定宽度，不同屏幕下宽度比例差异',
   },
   {
     id: 'zB35yqcdMs2QboNPAaw_ug',
     url: 'https://mp.weixin.qq.com/s/zB35yqcdMs2QboNPAaw_ug',
     relatedRule: 'width',
     expectInvalidKeys: ['width'],
-    desc: '#2.4.1 width - 段落设置固定宽度，居中布局不一致',
+    desc: '#1.4.1 width - 段落设置固定宽度，居中布局不一致',
   },
 
   // ===== paragraph-overflow =====
@@ -118,7 +118,7 @@ const badcases = [
     relatedRule: 'paragraph-overflow',
     // paragraph-overflow 在 detectLayoutIssues 中归类到 width 桶
     expectInvalidKeys: ['width'],
-    desc: '#2.4.2 width - 段落 margin-left 过大导致水平溢出',
+    desc: '#1.4.2 width - 段落 margin-left 过大导致水平溢出',
   },
 
   // ===== animate-begin =====
@@ -127,7 +127,7 @@ const badcases = [
     url: 'https://mp.weixin.qq.com/s/KMe2Vh-LXs22LbqAEqLQhA',
     relatedRule: 'animate-begin',
     expectInvalidKeys: ['animate-begin'],
-    desc: '#2.7 begin - SVG 动画 begin 仅设置 touchstart，PC 端无法触发',
+    desc: '#1.7 begin - SVG 动画 begin 仅设置 touchstart，PC 端无法触发',
   },
 
   // ===== height-nodisplay =====
@@ -136,7 +136,7 @@ const badcases = [
     url: 'https://mp.weixin.qq.com/s/Xo_hRprDLhLbm9oabjX9CA',
     relatedRule: 'height-nodisplay',
     expectInvalidKeys: ['height-nodisplay'],
-    desc: '#2.5.2 height-nodisplay - 父容器固定高度，子内容超出被裁剪',
+    desc: '#1.5.2 height-nodisplay - 父容器固定高度，子内容超出被裁剪',
   },
   {
     id: 'yMQwPSVKxU4Sphp2i02h_A',
@@ -146,14 +146,14 @@ const badcases = [
     skip: true,
     skipReason:
       'verify_article_structure.js#L325 注释里明确标注"测不出来，暂时不测，自动化跳过"',
-    desc: '#2.5.2 height-nodisplay - 父容器固定高度，子内容超出被裁剪（跳过）',
+    desc: '#1.5.2 height-nodisplay - 父容器固定高度，子内容超出被裁剪（跳过）',
   },
   {
     id: '75N-79iGrHJEWvBrR3X2Tg',
     url: 'https://mp.weixin.qq.com/s/75N-79iGrHJEWvBrR3X2Tg',
     relatedRule: 'height-nodisplay',
     expectInvalidKeys: ['height-nodisplay'],
-    desc: '#2.5.2 height-nodisplay - 父容器固定高度，子内容超出被裁剪',
+    desc: '#1.5.2 height-nodisplay - 父容器固定高度，子内容超出被裁剪',
     note: 'height-nodisplay 规则在本 fixture 中未触发，实际命中 nestNodes',
   },
 
@@ -163,7 +163,7 @@ const badcases = [
     url: 'https://mp.weixin.qq.com/s/LBlADJfjh0YNIp82pVDKMw',
     relatedRule: 'nest-level',
     expectInvalidKeys: ['nestNodes'],
-    desc: '#3.1 嵌套层级 - 同标签同样式连续嵌套超过限制层数',
+    desc: '#2.1 嵌套层级 - 同标签同样式连续嵌套超过限制层数',
   },
 
   // ===== pre =====
@@ -172,14 +172,14 @@ const badcases = [
     url: 'https://mp.weixin.qq.com/s/JAk9Sa9c7cCu9sX5pNIcZg',
     relatedRule: 'pre',
     expectInvalidKeys: ['pre'],
-    desc: '#2.8 pre - 使用 <pre> 包裹正文导致移动端文字不换行',
+    desc: '#1.8 pre - 使用 <pre> 包裹正文导致移动端文字不换行',
   },
   {
     id: 'VqGvM5ozeQnBVW8F7-YM3Q',
     url: 'https://mp.weixin.qq.com/s/VqGvM5ozeQnBVW8F7-YM3Q',
     relatedRule: 'pre',
     expectInvalidKeys: ['pre'],
-    desc: '#2.8 pre - 使用 <pre> 包裹正文导致移动端文字不换行',
+    desc: '#1.8 pre - 使用 <pre> 包裹正文导致移动端文字不换行',
   },
 ];
 

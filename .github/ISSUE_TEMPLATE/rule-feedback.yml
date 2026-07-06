@@ -25,8 +25,8 @@ body:
     id: rule_name
     attributes:
       label: 涉及规则
-      description: 指明是哪条规则，例如 `2.4 width`、`2.1 opacity`、`3.1 嵌套层级`、`5.1 颜色` 等。如不确定，写"不确定"。
-      placeholder: "例如：2.4 width"
+      description: 指明是哪条规则，例如 `1.4 width`、`1.1 opacity`、`2.1 嵌套层级`、`4.1 颜色` 等。如不确定，写"不确定"。
+      placeholder: "例如：1.4 width"
     validations:
       required: true
 

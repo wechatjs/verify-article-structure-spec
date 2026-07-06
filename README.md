@@ -39,7 +39,7 @@
 
 无论哪种 Issue 类型，须提供：
 
-1. **涉及规则**：指明是哪条规则（如 `2.4 width`、`2.1 opacity`、`3.1 嵌套层级`、`5.1 颜色` 等），便于定位。
+1. **涉及规则**：指明是哪条规则（如 `1.4 width`、`1.1 opacity`、`2.1 嵌套层级`、`4.1 颜色` 等），便于定位。
 2. **文章链接** / **文章 HTML**（二选一）：提供以下任一即可用于复现和验证。
    - **文章链接**：触发问题的公众号文章链接（`https://mp.weixin.qq.com/s/xxx`）。
    - **文章 HTML**：提供文章 HTML 源码以便精准排查。
@@ -54,9 +54,9 @@
 
 ##### 📝 误报示例
 
-> **标题**：[误报] 2.4 width 规则错杀响应式图片
+> **标题**：[误报] 1.4 width 规则错杀响应式图片
 >
-> **1. 涉及规则**：`2.4 width`
+> **1. 涉及规则**：`1.4 width`
 >
 > **2. 文章链接**：`https://mp.weixin.qq.com/s/AbCdEfGhIjKlMnOp`
 >
@@ -69,7 +69,7 @@
 
 > **标题**：[规则建议] 检测正文中的空 `<a>` 标签
 >
-> **1. 涉及规则**：建议新增 `6.x 空链接`
+> **1. 涉及规则**：建议新增 `5.x 空链接`
 >
 > **2. 文章 HTML**：
 > ```html
@@ -122,7 +122,7 @@ verify-article-structure-spec/
 | `url` | string | ✅ | 文章完整 URL |
 | `relatedRule` | string | ✅ | 期望命中的规则 key，对应 `propertyRules` 中的键（如 `opacity` / `width` / `pre`） |
 | `expectInvalidKeys` | string[] | ✅ | 验证结果 `inValidInfo` 中**必须出现**的外层桶名（如 `['width']`） |
-| `desc` | string | ✅ | 可读描述，**必须以 `#章节号` 开头**对应 `verify_article_structure.md` 章节，例：`'#2.1 opacity - 图片透明度为 0'` |
+| `desc` | string | ✅ | 可读描述，**必须以 `#章节号` 开头**对应 `verify_article_structure.md` 章节，例：`'#1.1 opacity - 图片透明度为 0'` |
 
 ### `goodcases`（合规反向用例）
 
