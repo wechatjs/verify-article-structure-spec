@@ -1,0 +1,31 @@
+{
+  "name": "verify-article-structure-spec",
+  "version": "0.1.0",
+  "private": true,
+  "description": "微信公众平台文章结构验证规范包 —— 面向第三方编辑器的排版合规规范文档、测试用例配置与 fixtures",
+  "main": "verify_article_structure.md",
+  "files": [
+    "verify_article_structure.md",
+    "cases.config.js",
+    "__tests__/fixtures/",
+    "scripts/"
+  ],
+  "scripts": {
+    "fetch:fixtures": "node scripts/fetch-fixtures.js",
+    "push:spec": "bash scripts/push-to-standalone-repo.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.woa.com/daisyhhuang/verify-article-structure-spec"
+  },
+  "keywords": [
+    "wechat",
+    "article",
+    "structure",
+    "specification",
+    "dark-mode",
+    "css",
+    "排版规范"
+  ],
+  "license": "MIT"
+}

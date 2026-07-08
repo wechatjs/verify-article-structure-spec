@@ -1,0 +1,16 @@
+node_modules/
+
+# 同步生成的代码副本（由 packages/web-webapp-common 同步而来，开源前需移除此规则）
+src/verify_article_structure.js
+src/verify_article_structure.md
+
+# fixtures 暂时纳入版本控制（CI 要用），如改为 LFS 或开源前清理可调整本规则
+# __tests__/fixtures/
+
+# vitest 报告
+test-result/
+coverage/
+
+# 临时
+*.log
+.DS_Store
