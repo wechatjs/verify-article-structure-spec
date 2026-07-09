@@ -1,0 +1,1133 @@
+<section data-role="outer" class="article135" style="padding: 0px; background-size: 100%; background-repeat: repeat-y; background-image: url(&quot;https://bcn.135editor.com/files/images/editor_styles/c609fac3e84c5f5672868e94f1176484.png&quot;); background-position: left top; box-sizing: border-box;" data-tplid="172793">
+	<section class="_135editor" data-tools="135编辑器" data-id="105041">
+		<section data-role="absolute-layout" data-mode="svg" data-width="375" data-height="564" data-ratio="1.504" style="overflow:hidden;grid-template-rows:100%;grid-template-columns:100%;font-size:16px;display:grid;max-width:100% !important; width: 100%;-webkit-text-size-adjust:none;text-size-adjust:none;box-sizing:border-box;">
+			<section data-role="ratio" style="grid-row-start: 1; grid-column-start: 1; height: 100%;" >
+				<svg viewbox="0 0 375 564" style="max-width:100% !important;pointer-events: none; display: inline-block; width: 100%; vertical-align: top; -webkit-tap-highlight-color: transparent; user-select: none;box-sizing:border-box;" xml:space="default"></svg>
+			</section>
+			<section data-role="block" style="width:100%;margin-top:0%;margin-left:0%;grid-row-start:1;grid-column-start:1;height:max-content;max-width:100% !important;line-height:0; display: block; font-size: 16px; z-index: 1;box-sizing:border-box;" class="_135editor">
+				<svg style="max-width:100% !important;display: inline-block; width: 100%; vertical-align: top; line-height: 1.6; overflow: visible;box-sizing:border-box;" version="1.1" viewbox="0 0 375 514" xml:space="default" xmlns="http://www.w3.org/2000/svg">
+					<foreignobject data-role="block-content" height="100%" width="100%">
+						<img data-role="target" style="overflow:hidden;width: 100%; vertical-align: top;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/788c23744ab80af4d0c73f90751aa0d5.png" class="" draggable="false" data-ratio="1.371875" data-w="640"/>
+					</foreignobject>
+				</svg>
+			</section>
+			<section data-role="block" style="width:100%;margin-top:0%;margin-left:0%;grid-row-start:1;grid-column-start:1;height:max-content;max-width:100% !important;line-height:0; display: block; font-size: 16px; z-index: 2;box-sizing:border-box;" class="_135editor">
+				<svg style="max-width:100% !important;display: inline-block; width: 100%; vertical-align: top; line-height: 1.6; overflow: visible;box-sizing:border-box;" version="1.1" viewbox="0 0 375 321" xml:space="default" xmlns="http://www.w3.org/2000/svg">
+					<foreignobject data-role="block-content" height="100%" width="100%">
+						<img data-role="target" style="overflow:hidden;width: 100%; vertical-align: top;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/8107f4687498ddf57ce4bca24995b46b.png" class="" draggable="false" data-ratio="0.8546875" data-w="640"/>
+					</foreignobject>
+				</svg>
+			</section>
+			<section data-role="block" style="width:80%;margin-top:53.477333333333334%;margin-left:-6.666667666666667%;grid-row-start:1;grid-column-start:1;height:max-content;line-height:0; display: block; font-size: 12.8px; z-index: 3;box-sizing:border-box;max-width:80% !important;" class="_135editor">
+				<svg style="max-width:100% !important;display: inline-block; width: 100%; vertical-align: top; line-height: 1.6; overflow: visible;box-sizing:border-box;" version="1.1" viewbox="0 0 300 260" xml:space="default" xmlns="http://www.w3.org/2000/svg">
+					<foreignobject data-role="block-content" height="100%" width="100%">
+						<img data-role="target" style="overflow:hidden;width: 100%; vertical-align: top;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/f916c1d52010780ac5d3d144b30aaad6.png" class="" draggable="false" data-ratio="0.8680555555555556" data-w="432"/>
+					</foreignobject>
+				</svg>
+			</section>
+			<section data-role="block" style="width:100%;margin-top:78.20266666666666%;margin-left:0%;grid-row-start:1;grid-column-start:1;height:max-content;max-width:100% !important;line-height:0; display: block; font-size: 16px; z-index: 4;box-sizing:border-box;" class="_135editor">
+				<svg style="max-width:100% !important;display: inline-block; width: 100%; vertical-align: top; line-height: 1.6; overflow: visible;box-sizing:border-box;" version="1.1" viewbox="0 0 375 225" xml:space="default" xmlns="http://www.w3.org/2000/svg">
+					<foreignobject data-role="block-content" height="100%" width="100%">
+						<img data-role="target" style="overflow:hidden;width: 100%; vertical-align: top;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/1d616cd81b6d86b646ac11fdedcbc2ac.png" class="" draggable="false" data-ratio="0.6" data-w="640"/>
+					</foreignobject>
+				</svg>
+			</section>
+			<section data-role="block" style="width:100%;margin-top:1.0666666666666667%;margin-left:5.333333333333334%;grid-row-start:1;grid-column-start:1;height:max-content;max-width:100% !important;line-height:0; display: block; font-size: 16px; z-index: 5;box-sizing:border-box;" class="_135editor">
+				<svg style="max-width:100% !important;display: inline-block; width: 100%; vertical-align: top; line-height: 1.6; overflow: visible;box-sizing:border-box;" version="1.1" viewbox="0 0 375 96" xml:space="default" xmlns="http://www.w3.org/2000/svg">
+					<foreignobject data-role="block-content" height="100%" width="100%">
+						<section data-role="paragraph" style="overflow:hidden;">
+							<p style="text-align:left;" class="" align="left">
+								<span style="font-size:3.75em; color: #7F6455;"><span style="font-size:0.933em;"><strong class="135brush" data-brushtype="text">5·18</strong></span></span>
+							</p>
+						</section>
+					</foreignobject>
+				</svg>
+			</section>
+			<section data-role="block" style="width:100%;margin-top:18.666666666666668%;margin-left:5.333333333333334%;grid-row-start:1;grid-column-start:1;height:max-content;max-width:100% !important;line-height:0; display: block; font-size: 16px; z-index: 6;box-sizing:border-box;" class="_135editor">
+				<svg style="max-width:100% !important;display: inline-block; width: 100%; vertical-align: top; line-height: 1.6; overflow: visible;box-sizing:border-box;" version="1.1" viewbox="0 0 375 77" xml:space="default" xmlns="http://www.w3.org/2000/svg">
+					<foreignobject data-role="block-content" height="100%" width="100%">
+						<section data-role="paragraph" style="overflow:hidden;" class="">
+							<p style="text-align:left;" class="" align="left">
+								<span style="font-size:3em; color: #5d3a26;"><span style="font-size:0.958em;"><strong class="135brush" data-brushtype="text">国际博物馆日</strong></span></span>
+							</p>
+						</section>
+					</foreignobject>
+				</svg>
+			</section>
+			<section data-role="block" style="width:100%;margin-top:38.93066666666667%;margin-left:5.6000000000000005%;grid-row-start:1;grid-column-start:1;height:max-content;max-width:100% !important;line-height:0; display: block; font-size: 16px; z-index: 7;box-sizing:border-box;" class="_135editor">
+				<svg style="max-width:100% !important;display: inline-block; width: 100%; vertical-align: top; line-height: 1.6; overflow: visible;box-sizing:border-box;" version="1.1" viewbox="0 0 375 26" xml:space="default" xmlns="http://www.w3.org/2000/svg">
+					<foreignobject data-role="block-content" height="100%" width="100%">
+						<section data-role="paragraph" style="overflow:hidden;">
+							<p style="text-align:left;" class="" align="left">
+								<span style="font-size:1em;text-transform: uppercase; color: #827167;" class="135brush" data-brushtype="text">International</span>
+							</p>
+						</section>
+					</foreignobject>
+				</svg>
+			</section>
+			<section data-role="block" style="width:100%;margin-top:44.800000000000004%;margin-left:5.866666666666666%;grid-row-start:1;grid-column-start:1;height:max-content;max-width:100% !important;line-height:0; display: block; font-size: 16px; z-index: 8;box-sizing:border-box;" class="_135editor">
+				<svg style="max-width:100% !important;display: inline-block; width: 100%; vertical-align: top; line-height: 1.6; overflow: visible;box-sizing:border-box;" version="1.1" viewbox="0 0 375 26" xml:space="default" xmlns="http://www.w3.org/2000/svg">
+					<foreignobject data-role="block-content" height="100%" width="100%">
+						<section data-role="paragraph" style="overflow:hidden;">
+							<p style="text-align:left;" class="" align="left">
+								<span style="font-size:0.875em;text-transform: uppercase; color: #827167;" class="135brush" data-brushtype="text">Museum Day</span>
+							</p>
+						</section>
+					</foreignobject>
+				</svg>
+			</section>
+			<section data-role="block" style="width:100%;margin-top:104.53066666666666%;margin-left:-5.066667666666667%;grid-row-start:1;grid-column-start:1;height:max-content;max-width:100% !important;line-height:0; display: block; font-size: 16px; z-index: 9;box-sizing:border-box;" class="_135editor">
+				<svg style="max-width:100% !important;display: inline-block; width: 100%; vertical-align: top; line-height: 1.6; overflow: visible;box-sizing:border-box;" version="1.1" viewbox="0 0 375 51" xml:space="default" xmlns="http://www.w3.org/2000/svg">
+					<foreignobject data-role="block-content" height="100%" width="100%">
+						<section data-role="paragraph" style="overflow:hidden;">
+							<p style="text-align:right;" class="" align="right">
+								<span style="color: #5D3A26;"><strong><span style="font-size:2em;" class="135brush" data-brushtype="text">馆藏风华</span></strong></span>
+							</p>
+						</section>
+					</foreignobject>
+				</svg>
+			</section>
+			<section data-role="block" style="width:100%;margin-top:116.26666666666668%;margin-left:-4.800001%;grid-row-start:1;grid-column-start:1;height:max-content;max-width:100% !important;line-height:0; display: block; font-size: 16px; z-index: 10;box-sizing:border-box;" class="_135editor">
+				<svg style="max-width:100% !important;display: inline-block; width: 100%; vertical-align: top; line-height: 1.6; overflow: visible;box-sizing:border-box;" version="1.1" viewbox="0 0 375 51" xml:space="default" xmlns="http://www.w3.org/2000/svg">
+					<foreignobject data-role="block-content" height="100%" width="100%">
+						<section data-role="paragraph" style="overflow:hidden;">
+							<p style="text-align:right;" class="" align="right">
+								<span style="color: #5d3a26;"><strong><span style="font-size:2em;" class="135brush" data-brushtype="text">赴一场文明之宴</span></strong></span>
+							</p>
+						</section>
+					</foreignobject>
+				</svg>
+			</section>
+			<section data-role="block" style="width:100%;margin-top:129.06666666666666%;margin-left:-5.333334333333334%;grid-row-start:1;grid-column-start:1;height:max-content;max-width:100% !important;line-height:0; display: block; font-size: 16px; z-index: 11;box-sizing:border-box;" class="_135editor">
+				<svg style="max-width:100% !important;display: inline-block; width: 100%; vertical-align: top; line-height: 1.6; overflow: visible;box-sizing:border-box;" version="1.1" viewbox="0 0 375 26" xml:space="default" xmlns="http://www.w3.org/2000/svg">
+					<foreignobject data-role="block-content" height="100%" width="100%">
+						<section data-role="paragraph" style="overflow:hidden;">
+							<p style="text-align:right;" class="" align="right">
+								<span style="font-size:0.875em;color: #675347;" class="135brush" data-brushtype="text">5月18日—7月18日</span>
+							</p>
+						</section>
+					</foreignobject>
+				</svg>
+			</section>
+			<section data-role="block" style="width:58%;margin-top:-3.4666666666666663%;margin-left:54.53333333333333%;grid-row-start:1;grid-column-start:1;height:max-content;line-height:0; display: block; font-size: 13.8507px; z-index: 12;box-sizing:border-box;max-width:58% !important;" class="_135editor">
+				<svg style="max-width:100% !important;display: inline-block; width: 100%; vertical-align: top; line-height: 1.6; overflow: visible;box-sizing:border-box;" version="1.1" viewbox="0 0 217 100" xml:space="default" xmlns="http://www.w3.org/2000/svg">
+					<foreignobject data-role="block-content" height="100%" width="100%">
+						<section style="overflow:hidden;width: 15.625em; display: inline-block;box-sizing:border-box;">
+							<img src="https://bcn.135editor.com/files/images/editor_styles/f667cc427f3095a438e105aee58376cc.png" alt="" style="overflow: hidden; width: 100%; vertical-align: top;box-sizing:border-box;max-width:100% !important;" width="250" data-width="250px" class="" draggable="false" data-ratio="0.4308390022675737" data-w="441"/>
+						</section>
+					</foreignobject>
+				</svg>
+			</section>
+			<section data-role="block" style="width:44%;margin-top:129.59733333333335%;margin-left:-5.333334333333334%;grid-row-start:1;grid-column-start:1;height:max-content;line-height:0; display: block; font-size: 7.04px; z-index: 13;box-sizing:border-box;max-width:44% !important;" class="_135editor">
+				<svg style="max-width:100% !important;display: inline-block; width: 100%; vertical-align: top; line-height: 1.6; overflow: visible;box-sizing:border-box;" version="1.1" viewbox="0 0 165 71" xml:space="default" xmlns="http://www.w3.org/2000/svg">
+					<foreignobject data-role="block-content" height="100%" width="100%">
+						<img src="https://bcn.135editor.com/files/images/editor_styles/f667cc427f3095a438e105aee58376cc.png" alt="" style="overflow:hidden; width: 100%; vertical-align: top;box-sizing:border-box;max-width:100% !important;" width="250" data-width="250px" draggable="false" data-ratio="0.4308390022675737" data-w="441"/>
+					</foreignobject>
+				</svg>
+			</section>
+		</section>
+	</section>
+	<section class="_135editor" data-tools="135编辑器" data-id="159236" data-width="90%" style="width: 90%; flex: 0 0 90%; margin-left: auto; margin-right: auto;box-sizing:border-box;max-width:90% !important;">
+		<section style="margin: 10px auto; display: flex; justify-content: center;">
+			<section style="flex-shrink: 0;padding-bottom: 8px;box-sizing: border-box;">
+				<section style="width: 8px;height: 3px;background-color: #b67e47;margin: 0 auto;box-sizing:border-box;"></section>
+				<section style="width: 14px;height: 100%;background: linear-gradient(to right,#efddc3,#fffaf2,#e3ccab);box-sizing:border-box;"></section>
+				<section style="width: 8px;height: 3px;background-color: #b67e47;margin: 0 auto;box-sizing:border-box;"></section>
+			</section>
+			<section style="width: 100%;max-width: 100% !important;box-sizing:border-box;" data-width="100%">
+				<section style="background-color: #fffaf2; margin: 8px 0px; border-top: 6px solid #f6e5cd; border-bottom: 6px solid #f6e5cd; padding: 10px; box-sizing: border-box;">
+					<section style="padding: 8px 0px; background-position: 100% 100%; background-repeat: no-repeat; background-attachment: initial; background-origin: initial; background-clip: initial; background-size: 30%; box-sizing: border-box;">
+						<section>
+							<section style="line-height: 2;text-align: justify; color: #242c33; text-shadow: none; font-size: 14px;" class="135brush" data-autoskip="1">
+								<p>
+									在2026年国际博物馆日“博物馆：联结世界的桥梁”主题指引下，提子博物馆紧扣“传承文明、联结人心”的核心，精心策划一系列精彩纷呈的活动，涵盖精品展览、公共教育、互动体验等多个板块，以专业、多元的形式，让公众近距离感受文物魅力，共赴一场跨越时光的文化之约，具体活动安排如下：
+								</p>
+							</section>
+						</section>
+					</section>
+				</section>
+			</section>
+			<section style="flex-shrink: 0;padding-bottom: 8px;box-sizing: border-box;">
+				<section style="width: 8px;height: 3px;background-color: #b67e47;margin: 0 auto;box-sizing:border-box;"></section>
+				<section style="width: 14px;height: 100%;background: linear-gradient(to right,#efddc3,#fffaf2,#e3ccab);box-sizing:border-box;"></section>
+				<section style="width: 8px;height: 3px;background-color: #b67e47;margin: 0 auto;box-sizing:border-box;"></section>
+			</section>
+		</section>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section class="_135editor" data-tools="135编辑器" data-id="159246">
+		<section style="margin: 10px auto; display: flex; justify-content: center;">
+			<section style="display: flex;align-items: flex-end;">
+				<section style="flex-shrink: 0;margin-right: -20px;z-index: 4;margin-bottom: -6px;">
+					<section class="assistant" style="width: 40px;box-sizing:border-box;">
+						<img class="assistant" style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/1cc879684d76a4c27626ca77b650bb19.png" data-width="100%" draggable="false" data-ratio="1.3004866180048662" data-w="1644"/>
+					</section>
+				</section>
+				<section class="135bg" style="background: url(&quot;https://bcn.135editor.com/files/images/editor_styles/e924f17a197af09e63d1a6956fb54f91.png&quot;) center center / 100% 100% no-repeat; padding: 12px 15px; box-sizing: border-box;">
+					<section style="font-size: 16px;color: #ffffff;text-align: center;padding: 0 10px;box-sizing: border-box;">
+						<strong class="135brush" data-brushtype="text">精品展览：解锁文明联结密码</strong>
+					</section>
+				</section>
+			</section>
+		</section>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section class="_135editor" data-tools="135编辑器" data-id="172742" data-width="90%" style="width: 90%; flex: 0 0 90%; margin-left: auto; margin-right: auto;box-sizing:border-box;max-width:90% !important;">
+		<section style="margin: 10px auto; text-align: center;">
+			<section style="background: linear-gradient(to bottom,#c29265,#bf9765);padding: 5px;box-sizing: border-box;">
+				<section style="width: 100%;max-width: 100% !important;box-sizing:border-box;" data-width="100%">
+					<img style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/25b61f2a64feec696f8a3ecd0f7261de.png" data-width="100%" draggable="false" data-ratio="0.6833333333333333" data-w="600"/>
+				</section>
+			</section>
+		</section>
+	</section>
+	<section class="_135editor" data-width="90%" style="width: 90%; flex: 0 0 90%; margin-left: auto; margin-right: auto;box-sizing:border-box;max-width:90% !important;">
+		<section style="line-height: 2;text-align: justify; color: #261c1c; text-shadow: none; font-size: 14px;" class="135brush" data-autoskip="1">
+			<p>
+				本次国际博物馆日期间，提子博物馆推出3场特色展览，兼顾专业性与观赏性，聚焦文明传承与跨文化交流，让每一件文物都成为联结世界的纽带：
+			</p>
+		</section>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section class="_135editor" data-tools="135编辑器" data-id="142986" data-width="90%" style="width: 90%; flex: 0 0 90%; margin-left: auto; margin-right: auto;box-sizing:border-box;max-width:90% !important;">
+		<section style="margin: 10px auto;">
+			<section style="width: 25px;box-sizing:border-box;">
+				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 30 30" style="display: block;" xml:space="default">
+					<g id="图层_2" data-name="图层 2">
+						<g id="图层_1-2" data-name="图层 1">
+							<path d="M3,30V3H30" style="fill: none;stroke: #f6e7c0;stroke-width: 6px;"></path>
+						</g>
+					</g>
+				</svg>
+			</section>
+			<section style="display: flex; align-items: center; margin: -10px 0px 10px 10px; box-sizing: border-box;">
+				<section style="flex-shrink: 0;">
+					<section style="font-size: 16px;color: #333333;text-align: center;padding: 0 7px;box-sizing: border-box;">
+						<strong class="135brush" data-brushtype="text">中外文物精品联展</strong>
+					</section>
+				</section>
+			</section>
+			<section style="background-color: #fffaf2; padding: 15px 10px 20px; margin: 5px 0px; box-sizing: border-box;">
+				<section>
+					<section data-role="title" data-tools="135编辑器" data-id="125173">
+						<section style="margin: 10px auto; text-align: center;">
+							<section style="display: flex; justify-content: flex-start; margin: 0px 0px 15px; box-sizing: border-box;">
+								<section>
+									<section style="border-left: 4px solid #ffd466; box-sizing: border-box;">
+										<section style="font-size: 14px; letter-spacing: 1.5px; line-height: 20px; margin-left: 8px;">
+											<span style="color: #703525;"><strong><p>
+												<span style="font-size: 14px;" class="135brush" data-brushtype="text">时间：5月18日—6月18日</span>
+											</p></strong></span>
+										</section>
+									</section>
+								</section>
+							</section>
+						</section>
+					</section>
+				</section>
+				<section>
+					<section data-role="title" data-tools="135编辑器" data-id="125173">
+						<section style="margin: 10px auto; text-align: center;">
+							<section style="display: flex; justify-content: flex-start;">
+								<section>
+									<section style="border-left: 4px solid #ffd466; box-sizing: border-box;">
+										<section style="font-size: 14px; letter-spacing: 1.5px; line-height: 20px; margin-left: 8px;">
+											<span style="color: #703525;"><strong><p>
+												<span style="font-size: 14px;" class="135brush" data-brushtype="text">地点：博物馆一层展厅</span>
+											</p></strong></span>
+										</section>
+									</section>
+								</section>
+							</section>
+						</section>
+					</section>
+				</section>
+				<section>
+					<section style="line-height: 2;text-align: justify; color: #242c33; text-shadow: none; font-size: 14px;" class="135brush" data-autoskip="1">
+						<p>
+							汇聚馆内馆藏精品与海外友好博物馆借展文物共120件（套），涵盖青铜器、陶瓷、书画、民俗文物等多个品类，分为“华夏文脉”“异域风情”“文明交融”三大板块，通过文物对比展示，直观呈现不同文明的独特魅力与共通之处。
+						</p>
+					</section>
+				</section>
+				<section>
+					<p>
+						<br/>
+					</p>
+				</section>
+				<section>
+					<section data-tools="135编辑器" data-id="172216">
+						<section style="margin: 10px auto;">
+							<section data-op="division" style="display: flex;justify-content: space-between;align-items: center;">
+								<section style="flex: 1;">
+									<section style="width: 100%;max-width: 100% !important;box-sizing:border-box;" data-width="100%">
+										<img style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/a722bc4538ba7b3744165c0d389a9d66.png" data-width="100%" draggable="false" data-ratio="1.2396694214876034" data-w="726"/>
+									</section>
+								</section>
+								<section style="flex: 1;margin-left: 14px;">
+									<section style="width: 100%;max-width: 100% !important;box-sizing:border-box;" data-width="100%">
+										<img style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/a81ef2bb4386418ddf818d0d71f70fe6.png" data-width="100%" draggable="false" data-ratio="1.0477299185098952" data-w="859"/>
+									</section>
+								</section>
+							</section>
+						</section>
+					</section>
+				</section>
+			</section>
+			<section style="width: 30%;height: 19px;background: linear-gradient(to right,#ffd466,rgba(244,247,253,0.09));margin-left: auto;margin-top: -14px;box-sizing:border-box;max-width:30% !important;" data-width="30%"></section>
+		</section>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section class="_135editor" data-tools="135编辑器" data-id="142986" data-width="90%" style="width: 90%; flex: 0 0 90%; margin-left: auto; margin-right: auto;box-sizing:border-box;max-width:90% !important;">
+		<section style="margin: 10px auto;">
+			<section style="width: 25px;box-sizing:border-box;">
+				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 30 30" style="display: block;" xml:space="default">
+					<g id="图层_2" data-name="图层 2">
+						<g id="图层_1-2" data-name="图层 1">
+							<path d="M3,30V3H30" style="fill: none;stroke: #f6e7c0;stroke-width: 6px;"></path>
+						</g>
+					</g>
+				</svg>
+			</section>
+			<section style="display: flex; align-items: center; margin: -10px 0px 10px 10px; box-sizing: border-box;">
+				<section style="flex-shrink: 0;">
+					<section style="font-size: 16px;color: #333333;text-align: center;padding: 0 7px;box-sizing: border-box;">
+						<strong class="135brush" data-brushtype="text">地区文物考古成果展</strong>
+					</section>
+				</section>
+			</section>
+			<section style="background-color: #fffaf2; padding: 15px 10px 20px; margin: 5px 0px; box-sizing: border-box;">
+				<section>
+					<section data-role="title" data-tools="135编辑器" data-id="125173">
+						<section style="margin: 10px auto; text-align: center;">
+							<section style="display: flex; justify-content: flex-start; margin: 0px 0px 15px; box-sizing: border-box;">
+								<section>
+									<section style="border-left: 4px solid #ffd466; box-sizing: border-box;">
+										<section style="font-size: 14px; letter-spacing: 1.5px; line-height: 20px; margin-left: 8px;">
+											<span style="color: #703525;"><strong><p>
+												<span style="font-size: 14px;" class="135brush" data-brushtype="text">时间：5月18日—7月18日</span>
+											</p></strong></span>
+										</section>
+									</section>
+								</section>
+							</section>
+						</section>
+					</section>
+				</section>
+				<section>
+					<section data-role="title" data-tools="135编辑器" data-id="125173">
+						<section style="margin: 10px auto; text-align: center;">
+							<section style="display: flex; justify-content: flex-start;">
+								<section>
+									<section style="border-left: 4px solid #ffd466; box-sizing: border-box;">
+										<section style="font-size: 14px; letter-spacing: 1.5px; line-height: 20px; margin-left: 8px;">
+											<span style="color: #703525;"><strong><p>
+												<span style="font-size: 14px;" class="135brush" data-brushtype="text">地点：博物馆二层考古展厅</span>
+											</p></strong></span>
+										</section>
+									</section>
+								</section>
+							</section>
+						</section>
+					</section>
+				</section>
+				<section>
+					<section style="line-height: 2;text-align: justify; color: #242c33; text-shadow: none; font-size: 14px;" class="135brush" data-autoskip="1">
+						<p>
+							集中展示近3年来地区考古发掘的300余件（套）新品文物，包括彩陶、石器、骨器等，通过图文、视频、场景复原等形式，还原考古发掘过程，解读文物所承载的历史信息，展现本地区在中华文明多元一体进程中的重要作用。
+						</p>
+					</section>
+				</section>
+				<section>
+					<p>
+						<br/>
+					</p>
+				</section>
+				<section>
+					<section data-tools="135编辑器" data-id="171385">
+						<section data-op="division" style="margin: 10px auto; display: flex; justify-content: space-between;">
+							<section style="width: 55%;box-sizing:border-box;max-width:55% !important;" data-width="55%">
+								<section style="width: 100%;max-width: 100% !important;box-sizing:border-box;" data-width="100%">
+									<img style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/04c2e64299c12123ddcc8255445fb452.png" data-width="100%" draggable="false" data-ratio="0.7208333333333333" data-w="1200"/>
+								</section>
+								<section style="border: 1px solid #c7af8d;padding: 5px;margin: 10px 10px 0;box-sizing: border-box;">
+									<section style="width: 100%;max-width: 100% !important;box-sizing:border-box;" data-width="100%">
+										<img style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/198f8720ac750874e2c99750f4c50823.png" data-width="100%" draggable="false" data-ratio="0.7058333333333333" data-w="1200"/>
+									</section>
+								</section>
+								<section style="width: 12px;height: 12px;background-color: #8c642e;margin-left: 5px;margin-top: -7px;box-sizing:border-box;"></section>
+							</section>
+							<section style="width: 41%;box-sizing:border-box;max-width:41% !important;" data-width="41%">
+								<section class="assistant" style="width: 41px;margin: 0 auto 15px;box-sizing:border-box;">
+									<img class="assistant" style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/51e162c04559148c834df86e498cb313.png" data-width="100%" draggable="false" data-ratio="1.4377162629757785" data-w="1156"/>
+								</section>
+								<section style="width: 100%;max-width: 100% !important;box-sizing:border-box;" data-width="100%">
+									<img style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/fb32d39b018abe757d201d15081f7334.png" data-width="100%" draggable="false" data-ratio="1.171875" data-w="768"/>
+								</section>
+							</section>
+						</section>
+					</section>
+				</section>
+			</section>
+			<section style="width: 30%;height: 19px;background: linear-gradient(to right,#ffd466,rgba(244,247,253,0.09));margin-left: auto;margin-top: -14px;box-sizing:border-box;max-width:30% !important;" data-width="30%"></section>
+		</section>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section class="_135editor" data-tools="135编辑器" data-id="159246">
+		<section style="margin: 10px auto; display: flex; justify-content: center;">
+			<section style="display: flex;align-items: flex-end;">
+				<section style="flex-shrink: 0;margin-right: -20px;z-index: 4;margin-bottom: -6px;">
+					<section class="assistant" style="width: 40px;box-sizing:border-box;">
+						<img class="assistant" style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/1cc879684d76a4c27626ca77b650bb19.png" data-width="100%" draggable="false" data-ratio="1.3004866180048662" data-w="1644"/>
+					</section>
+				</section>
+				<section class="135bg" style="background: url(&quot;https://bcn.135editor.com/files/images/editor_styles/e924f17a197af09e63d1a6956fb54f91.png&quot;) center center / 100% 100% no-repeat; padding: 12px 15px; box-sizing: border-box;">
+					<section style="font-size: 16px;color: #ffffff;text-align: center;padding: 0 10px;box-sizing: border-box;">
+						<strong class="135brush" data-brushtype="text">寓教于乐，传承文明薪火</strong>
+					</section>
+				</section>
+			</section>
+		</section>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section class="_135editor" data-tools="135编辑器" data-id="172742" data-width="90%" style="width: 90%; flex: 0 0 90%; margin-left: auto; margin-right: auto;box-sizing:border-box;max-width:90% !important;">
+		<section style="margin: 10px auto; text-align: center;">
+			<section style="background: linear-gradient(to bottom,#c29265,#bf9765);padding: 5px;box-sizing: border-box;">
+				<section style="width: 100%;max-width: 100% !important;box-sizing:border-box;" data-width="100%">
+					<img style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/25b61f2a64feec696f8a3ecd0f7261de.png" data-width="100%" draggable="false" data-ratio="0.6833333333333333" data-w="600"/>
+				</section>
+			</section>
+		</section>
+	</section>
+	<section class="_135editor" data-width="90%" style="width: 90%; flex: 0 0 90%; margin-left: auto; margin-right: auto;box-sizing:border-box;max-width:90% !important;">
+		<section style="line-height: 2;text-align: justify; color: #242c33; text-shadow: none; font-size: 14px;" class="135brush" data-autoskip="1">
+			<p>
+				围绕国际博物馆日主题，结合展览内容，提子博物馆推出多场公共教育活动，覆盖青少年、成年人、老年人等不同群体，推动文化知识普及，增强公众文化自信：
+			</p>
+		</section>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section class="_135editor" data-role="title" data-tools="135编辑器" data-id="172757" data-width="90%" style="width: 90%; flex: 0 0 90%; margin-left: auto; margin-right: auto;box-sizing:border-box;max-width:90% !important;">
+		<section style="margin: 10px auto; padding-bottom: 5px;box-sizing: border-box;">
+			<section style="padding-left: 10px;overflow: hidden;margin-right: 10px;box-sizing: border-box;">
+				<section style="background-color: #a8703b;padding: 6px 0;box-sizing: border-box;">
+					<section style="display: flex;align-items: center;">
+						<section style="flex-shrink: 0;transform: translateX(-10px);-webkit-transform: translateX(-10px);-moz-transform: translateX(-10px);-o-transform: translateX(-10px);">
+							<section style="background-color: #ad3a3a;padding: 3px;box-sizing: border-box;">
+								<section style="border: 1px solid #d0ae90;padding: 6px 9px;box-sizing: border-box;">
+									<section class="assistant" style="font-size: 16px;color: #ffffff;text-align: center;">
+										<strong>0</strong><strong class="autonum" data-num="2">1</strong>
+									</section>
+								</section>
+							</section>
+						</section>
+						<section style="width: 100%;max-width: 100% !important;box-sizing:border-box;" data-width="100%">
+							<section style="font-size: 16px;color: #ffffff;text-align: left; ;">
+								<strong class="135brush" data-brushtype="text">专家专题讲座</strong>
+							</section>
+						</section>
+					</section>
+					<section style="width: 35px;margin-left: auto;margin-top: -40px;margin-bottom: 4px;box-sizing:border-box;transform: scale(1.3);-webkit-transform: scale(1.3);-moz-transform: scale(1.3);-o-transform: scale(1.3);">
+						<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 118.469 126.09" style="display: block;" data-height="100%" xml:space="default">
+							<path style="fill: #945928;fill-rule: evenodd;" d="M701.232,2166.97a2.428,2.428,0,0,0-.842-0.85,100.535,100.535,0,0,0-8.632-5.62,35.109,35.109,0,0,0-15.145-3.83,43.146,43.146,0,0,0-17.2,3.05c-4.134,1.59-8.208,3.35-12.371,4.86-5.858,2.13-11.859,3.62-18.174,2.67a21.541,21.541,0,0,1-11.612-5.15q1.168-.72,2.295-1.56a16.913,16.913,0,0,0,5.906-8.24c0.446-1.27.164-1.84-1.2-2.21a18.38,18.38,0,0,1-11.175-8.5c-3.729-6.27-4.267-12.72-.173-19.06a14.251,14.251,0,0,1,22.213-2.22c2.974,3.14,3.488,6.89,1.064,10.08a11.885,11.885,0,0,0-.743,1.2l-0.529-.17a16.372,16.372,0,0,0,.074-1.77c-0.391-5.17-5.342-8.72-10.548-8.14-6.217.69-9.168,7.17-8.032,12.71,0.961,4.69,3.846,8.03,7.959,10.37,4.234,2.41,8.8,3.08,13.659,2.98a27.374,27.374,0,0,0,17.34-6.46c4.648-3.85,8.06-8.62,8.891-14.69,0.7-5.08.693-10.16-1.534-15.05a26.985,26.985,0,0,0-14.152-13.86,25.391,25.391,0,0,0-9.546-2.1,0.918,0.918,0,0,1-1.126-.79c-0.734-14.15-11.06-25.68-26.5-30.87-1.266-.43-2.514-0.91-3.748-1.42a40.565,40.565,0,0,0-18.491-2.77c-23.132,1.62-39.933,15.49-40.877,33.68a0.917,0.917,0,0,1-1.125.79,25.58,25.58,0,0,0-9.546,2.1,26.987,26.987,0,0,0-14.153,13.86c-2.226,4.89-2.228,9.98-1.533,15.05,0.83,6.07,4.243,10.84,8.891,14.69a27.318,27.318,0,0,0,17.34,6.46c4.861,0.1,9.425-.57,13.659-2.98,4.113-2.34,7-5.68,7.959-10.37,1.136-5.54-1.815-12.02-8.032-12.71-5.207-.58-10.157,2.97-10.548,8.14a16.556,16.556,0,0,0,.073,1.78c-0.281.08-.247,0.07-0.529,0.16a11.7,11.7,0,0,0-.742-1.2c-2.424-3.19-1.91-6.94,1.064-10.08a14.251,14.251,0,0,1,22.213,2.22c4.094,6.34,3.556,12.8-.173,19.06a18.347,18.347,0,0,1-11.175,8.5c-1.36.38-1.642,0.94-1.195,2.22a16.932,16.932,0,0,0,5.906,8.23c3.6,2.68,7.456,4.54,12.061,4.25,2.585-.16,5.157-0.53,7.532-0.79a75.866,75.866,0,0,0,4.4,7.75,35.687,35.687,0,0,0,16.751,12.44,44.3,44.3,0,0,0,19.955,2.54,61.316,61.316,0,0,0,10.263-2.06c6.242-1.68,11.772-4.9,17.272-8.2a119.225,119.225,0,0,1,12.616-6.76,38.813,38.813,0,0,1,13.1-2.96,43.328,43.328,0,0,1,13,1.2c2.244,0.52,4.446,1.22,6.682,1.78a1.166,1.166,0,0,0,1.019-.3A1.293,1.293,0,0,0,701.232,2166.97Z" transform="translate(-521.531 -2059.47)"></path>
+						</svg>
+					</section>
+				</section>
+			</section>
+			<section style="width: 70%;height: 1px;margin-left: auto;border-bottom: 1px solid #dac6ac;margin-top: -8px;box-sizing:border-box;max-width:70% !important;transform: rotateZ(0deg);-webkit-transform: rotateZ(0deg);-moz-transform: rotateZ(0deg);-o-transform: rotateZ(0deg);" data-width="70%"></section>
+		</section>
+	</section>
+	<section class="_135editor" data-tools="135编辑器" data-id="172750" data-width="90%" style="width: 90%; flex: 0 0 90%; margin-left: auto; margin-right: auto;box-sizing:border-box;max-width:90% !important;">
+		<section style="margin: 10px auto; padding-top: 15px;box-sizing: border-box;">
+			<section style="background-color: #c7af8d;padding: 0 5px 5px;border: 1px solid transparent;box-sizing: border-box;">
+				<section style="padding: 20px 10px;border: 1px solid #c7ad98;background-color: #fffaf2;margin-top: -15px;box-sizing: border-box;">
+					<section class="box-edit" style="margin-top: 15px;margin-bottom: 10px;">
+						<section style="display: flex;justify-content: center;align-items: center;margin-bottom: 3px;">
+							<section style="flex-shrink: 0;">
+								<section style="width: 30px;box-sizing:border-box;">
+									<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 50.63 21.19" style="display: block;" xml:space="default">
+										<g id="图层_2" data-name="图层 2">
+											<g id="图层_1-2" data-name="图层 1">
+												<path d="M48.86,21.19a10.11,10.11,0,1,0-20.21,0H26.88a11.8,11.8,0,0,1,1.35-5.49,2.92,2.92,0,0,0-5.83,0,11.8,11.8,0,0,1,1.35,5.49H22a10.11,10.11,0,1,0-20.21,0H0A11.9,11.9,0,0,1,10.91,9.34a15.78,15.78,0,0,1,28.81,0A11.9,11.9,0,0,1,50.63,21.19ZM21.12,13.74a4.68,4.68,0,0,1,8.39,0,11.85,11.85,0,0,1,2.57-2.38,8.08,8.08,0,0,0-13.53,0A11.62,11.62,0,0,1,21.12,13.74Zm4.2-12A14,14,0,0,0,12.87,9.34,11.63,11.63,0,0,1,17,10.47a9.86,9.86,0,0,1,16.6,0,11.57,11.57,0,0,1,4.14-1.13A14,14,0,0,0,25.32,1.77ZM11.88,13.66a7.53,7.53,0,0,1,7.51,7.53H17.62a5.75,5.75,0,1,0-11.49,0H4.36A7.53,7.53,0,0,1,11.88,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H13.8a1.92,1.92,0,1,0-3.84,0H8.19A3.69,3.69,0,0,1,11.88,17.5Zm26.88-3.84a7.53,7.53,0,0,1,7.51,7.53H44.5a5.75,5.75,0,1,0-11.49,0H31.24A7.53,7.53,0,0,1,38.76,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H40.67a1.92,1.92,0,1,0-3.83,0H35.07A3.69,3.69,0,0,1,38.76,17.5Z" style="fill: #ebd3b1;fill-rule: evenodd;"></path>
+											</g>
+										</g>
+									</svg>
+								</section>
+							</section>
+							<section>
+								<section style="font-size: 16px;color: #a17653;text-align: center;padding: 0 5px;box-sizing: border-box;">
+									<strong class="135brush" data-brushtype="text">活动时间</strong>
+								</section>
+							</section>
+							<section style="flex-shrink: 0;">
+								<section style="width: 30px;box-sizing:border-box;">
+									<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 50.63 21.19" style="display: block;" xml:space="default">
+										<g id="图层_2" data-name="图层 2">
+											<g id="图层_1-2" data-name="图层 1">
+												<path d="M48.86,21.19a10.11,10.11,0,1,0-20.21,0H26.88a11.8,11.8,0,0,1,1.35-5.49,2.92,2.92,0,0,0-5.83,0,11.8,11.8,0,0,1,1.35,5.49H22a10.11,10.11,0,1,0-20.21,0H0A11.9,11.9,0,0,1,10.91,9.34a15.78,15.78,0,0,1,28.81,0A11.9,11.9,0,0,1,50.63,21.19ZM21.12,13.74a4.68,4.68,0,0,1,8.39,0,11.85,11.85,0,0,1,2.57-2.38,8.08,8.08,0,0,0-13.53,0A11.62,11.62,0,0,1,21.12,13.74Zm4.2-12A14,14,0,0,0,12.87,9.34,11.63,11.63,0,0,1,17,10.47a9.86,9.86,0,0,1,16.6,0,11.57,11.57,0,0,1,4.14-1.13A14,14,0,0,0,25.32,1.77ZM11.88,13.66a7.53,7.53,0,0,1,7.51,7.53H17.62a5.75,5.75,0,1,0-11.49,0H4.36A7.53,7.53,0,0,1,11.88,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H13.8a1.92,1.92,0,1,0-3.84,0H8.19A3.69,3.69,0,0,1,11.88,17.5Zm26.88-3.84a7.53,7.53,0,0,1,7.51,7.53H44.5a5.75,5.75,0,1,0-11.49,0H31.24A7.53,7.53,0,0,1,38.76,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H40.67a1.92,1.92,0,1,0-3.83,0H35.07A3.69,3.69,0,0,1,38.76,17.5Z" style="fill: #ebd3b1;fill-rule: evenodd;"></path>
+											</g>
+										</g>
+									</svg>
+								</section>
+							</section>
+						</section>
+						<section style="text-align: center;line-height: 1.75em;letter-spacing: 1.5px;font-size: 14px;color: #333333;background-color: transparent;">
+							<section class="135brush" data-brushtype="text">
+								5月18日14:30—16:00
+							</section>
+						</section>
+					</section>
+					<section class="box-edit" style="margin-top: 15px;margin-bottom: 10px;">
+						<section style="display: flex;justify-content: center;align-items: center;margin-bottom: 3px;">
+							<section style="flex-shrink: 0;">
+								<section style="width: 30px;box-sizing:border-box;">
+									<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 50.63 21.19" style="display: block;" xml:space="default">
+										<g id="图层_2" data-name="图层 2">
+											<g id="图层_1-2" data-name="图层 1">
+												<path d="M48.86,21.19a10.11,10.11,0,1,0-20.21,0H26.88a11.8,11.8,0,0,1,1.35-5.49,2.92,2.92,0,0,0-5.83,0,11.8,11.8,0,0,1,1.35,5.49H22a10.11,10.11,0,1,0-20.21,0H0A11.9,11.9,0,0,1,10.91,9.34a15.78,15.78,0,0,1,28.81,0A11.9,11.9,0,0,1,50.63,21.19ZM21.12,13.74a4.68,4.68,0,0,1,8.39,0,11.85,11.85,0,0,1,2.57-2.38,8.08,8.08,0,0,0-13.53,0A11.62,11.62,0,0,1,21.12,13.74Zm4.2-12A14,14,0,0,0,12.87,9.34,11.63,11.63,0,0,1,17,10.47a9.86,9.86,0,0,1,16.6,0,11.57,11.57,0,0,1,4.14-1.13A14,14,0,0,0,25.32,1.77ZM11.88,13.66a7.53,7.53,0,0,1,7.51,7.53H17.62a5.75,5.75,0,1,0-11.49,0H4.36A7.53,7.53,0,0,1,11.88,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H13.8a1.92,1.92,0,1,0-3.84,0H8.19A3.69,3.69,0,0,1,11.88,17.5Zm26.88-3.84a7.53,7.53,0,0,1,7.51,7.53H44.5a5.75,5.75,0,1,0-11.49,0H31.24A7.53,7.53,0,0,1,38.76,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H40.67a1.92,1.92,0,1,0-3.83,0H35.07A3.69,3.69,0,0,1,38.76,17.5Z" style="fill: #ebd3b1;fill-rule: evenodd;"></path>
+											</g>
+										</g>
+									</svg>
+								</section>
+							</section>
+							<section>
+								<section style="font-size: 16px;color: #a17653;text-align: center;padding: 0 5px;box-sizing: border-box;">
+									<strong class="135brush" data-brushtype="text">活动地点</strong>
+								</section>
+							</section>
+							<section style="flex-shrink: 0;">
+								<section style="width: 30px;box-sizing:border-box;">
+									<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 50.63 21.19" style="display: block;" xml:space="default">
+										<g id="图层_2" data-name="图层 2">
+											<g id="图层_1-2" data-name="图层 1">
+												<path d="M48.86,21.19a10.11,10.11,0,1,0-20.21,0H26.88a11.8,11.8,0,0,1,1.35-5.49,2.92,2.92,0,0,0-5.83,0,11.8,11.8,0,0,1,1.35,5.49H22a10.11,10.11,0,1,0-20.21,0H0A11.9,11.9,0,0,1,10.91,9.34a15.78,15.78,0,0,1,28.81,0A11.9,11.9,0,0,1,50.63,21.19ZM21.12,13.74a4.68,4.68,0,0,1,8.39,0,11.85,11.85,0,0,1,2.57-2.38,8.08,8.08,0,0,0-13.53,0A11.62,11.62,0,0,1,21.12,13.74Zm4.2-12A14,14,0,0,0,12.87,9.34,11.63,11.63,0,0,1,17,10.47a9.86,9.86,0,0,1,16.6,0,11.57,11.57,0,0,1,4.14-1.13A14,14,0,0,0,25.32,1.77ZM11.88,13.66a7.53,7.53,0,0,1,7.51,7.53H17.62a5.75,5.75,0,1,0-11.49,0H4.36A7.53,7.53,0,0,1,11.88,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H13.8a1.92,1.92,0,1,0-3.84,0H8.19A3.69,3.69,0,0,1,11.88,17.5Zm26.88-3.84a7.53,7.53,0,0,1,7.51,7.53H44.5a5.75,5.75,0,1,0-11.49,0H31.24A7.53,7.53,0,0,1,38.76,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H40.67a1.92,1.92,0,1,0-3.83,0H35.07A3.69,3.69,0,0,1,38.76,17.5Z" style="fill: #ebd3b1;fill-rule: evenodd;"></path>
+											</g>
+										</g>
+									</svg>
+								</section>
+							</section>
+						</section>
+						<section style="text-align: center;line-height: 1.75em;letter-spacing: 1.5px;font-size: 14px;color: #333333;background-color: transparent;">
+							<section class="135brush" data-brushtype="text">
+								博物馆学术报告厅
+							</section>
+						</section>
+					</section>
+					<section style="display: flex;align-items: center;margin: 10px 0;">
+						<section style="width: 50%;height: 1px;border-top: 1px solid #c3a67d;box-sizing:border-box;max-width:50% !important;" data-width="50%"></section>
+						<section style="flex-shrink: 0;padding: 0 15px;box-sizing: border-box;">
+							<section style="width: 10px;height: 10px;background-color: #ad3a3a;box-sizing:border-box;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);-o-transform: rotate(45deg);"></section>
+						</section>
+						<section style="width: 50%;height: 1px;border-top: 1px solid #c3a67d;box-sizing:border-box;max-width:50% !important;" data-width="50%"></section>
+					</section>
+					<section>
+						<p>
+							<br/>
+						</p>
+					</section>
+					<section style="text-align: justify;line-height: 1.75em;letter-spacing: 1.5px;font-size: 14px;color: #333333;background-color: transparent;">
+						<section style="line-height: 2;text-align: justify; color: #4b4b4b; text-shadow: none; letter-spacing: 2px; font-size: 14px;" class="135brush" data-autoskip="1">
+							<p>
+								邀请知名文博专家，围绕2026年国际博物馆日主题，结合全球博物馆发展现状与我国博物馆事业成果，解读博物馆在跨文化交流、文明互鉴中的重要作用。
+							</p>
+						</section>
+					</section>
+					<section>
+						<p>
+							<br/>
+						</p>
+					</section>
+					<section>
+						<section data-tools="135编辑器" data-id="172756">
+							<section style="margin: 10px auto;">
+								<section data-op="division" style="display: flex;justify-content: space-between; align-items: center;">
+									<section style="flex: 1;">
+										<section style="background: linear-gradient(#ffffff, #ffffff); padding: 6px; box-sizing: border-box; box-shadow: #baa48c 0px 0px 5px;">
+											<section style="width: 100%;max-width: 100% !important;box-sizing:border-box;" data-width="100%">
+												<img style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/715a64485c0af292b8c5b01829bf405c.png" data-width="100%" draggable="false" data-ratio="1.251937984496124" data-w="258"/>
+											</section>
+										</section>
+									</section>
+									<section style="flex: 1;margin-left: 10px;">
+										<section style="width: 35px;margin: 0 auto; ;box-sizing:border-box;">
+											<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 50.63 21.19" style="display: block;" xml:space="default">
+												<g id="图层_2" data-name="图层 2">
+													<g id="图层_1-2" data-name="图层 1">
+														<path d="M48.86,21.19a10.11,10.11,0,1,0-20.21,0H26.88a11.8,11.8,0,0,1,1.35-5.49,2.92,2.92,0,0,0-5.83,0,11.8,11.8,0,0,1,1.35,5.49H22a10.11,10.11,0,1,0-20.21,0H0A11.9,11.9,0,0,1,10.91,9.34a15.78,15.78,0,0,1,28.81,0A11.9,11.9,0,0,1,50.63,21.19ZM21.12,13.74a4.68,4.68,0,0,1,8.39,0,11.85,11.85,0,0,1,2.57-2.38,8.08,8.08,0,0,0-13.53,0A11.62,11.62,0,0,1,21.12,13.74Zm4.2-12A14,14,0,0,0,12.87,9.34,11.63,11.63,0,0,1,17,10.47a9.86,9.86,0,0,1,16.6,0,11.57,11.57,0,0,1,4.14-1.13A14,14,0,0,0,25.32,1.77ZM11.88,13.66a7.53,7.53,0,0,1,7.51,7.53H17.62a5.75,5.75,0,1,0-11.49,0H4.36A7.53,7.53,0,0,1,11.88,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H13.8a1.92,1.92,0,1,0-3.84,0H8.19A3.69,3.69,0,0,1,11.88,17.5Zm26.88-3.84a7.53,7.53,0,0,1,7.51,7.53H44.5a5.75,5.75,0,1,0-11.49,0H31.24A7.53,7.53,0,0,1,38.76,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H40.67a1.92,1.92,0,1,0-3.83,0H35.07A3.69,3.69,0,0,1,38.76,17.5Z" style="fill: #ebd3b1;fill-rule: evenodd;"></path>
+													</g>
+												</g>
+											</svg>
+										</section>
+										<section style="background: linear-gradient(to bottom,#dbba8d,#dbbb8d);padding: 6px;box-sizing: border-box;">
+											<section style="width: 100%;max-width: 100% !important;box-sizing:border-box;" data-width="100%">
+												<img style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/6d0a2f543da9709f6cd5e937c25be653.png" data-width="100%" draggable="false" data-ratio="1.003875968992248" data-w="258"/>
+											</section>
+										</section>
+										<section style="width: 35px;margin: 0 auto;box-sizing:border-box;transform: rotateX(180deg);-webkit-transform: rotateX(180deg);-moz-transform: rotateX(180deg);-o-transform: rotateX(180deg);">
+											<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 50.63 21.19" style="display: block;" xml:space="default">
+												<g id="图层_2" data-name="图层 2">
+													<g id="图层_1-2" data-name="图层 1">
+														<path d="M48.86,21.19a10.11,10.11,0,1,0-20.21,0H26.88a11.8,11.8,0,0,1,1.35-5.49,2.92,2.92,0,0,0-5.83,0,11.8,11.8,0,0,1,1.35,5.49H22a10.11,10.11,0,1,0-20.21,0H0A11.9,11.9,0,0,1,10.91,9.34a15.78,15.78,0,0,1,28.81,0A11.9,11.9,0,0,1,50.63,21.19ZM21.12,13.74a4.68,4.68,0,0,1,8.39,0,11.85,11.85,0,0,1,2.57-2.38,8.08,8.08,0,0,0-13.53,0A11.62,11.62,0,0,1,21.12,13.74Zm4.2-12A14,14,0,0,0,12.87,9.34,11.63,11.63,0,0,1,17,10.47a9.86,9.86,0,0,1,16.6,0,11.57,11.57,0,0,1,4.14-1.13A14,14,0,0,0,25.32,1.77ZM11.88,13.66a7.53,7.53,0,0,1,7.51,7.53H17.62a5.75,5.75,0,1,0-11.49,0H4.36A7.53,7.53,0,0,1,11.88,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H13.8a1.92,1.92,0,1,0-3.84,0H8.19A3.69,3.69,0,0,1,11.88,17.5Zm26.88-3.84a7.53,7.53,0,0,1,7.51,7.53H44.5a5.75,5.75,0,1,0-11.49,0H31.24A7.53,7.53,0,0,1,38.76,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H40.67a1.92,1.92,0,1,0-3.83,0H35.07A3.69,3.69,0,0,1,38.76,17.5Z" style="fill: #ebd3b1;fill-rule: evenodd;"></path>
+													</g>
+												</g>
+											</svg>
+										</section>
+									</section>
+								</section>
+							</section>
+						</section>
+					</section>
+				</section>
+			</section>
+		</section>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section class="_135editor" data-role="title" data-tools="135编辑器" data-id="172757" data-width="90%" style="width: 90%; flex: 0 0 90%; margin-left: auto; margin-right: auto;box-sizing:border-box;max-width:90% !important;">
+		<section style="margin: 10px auto; padding-bottom: 5px;box-sizing: border-box;">
+			<section style="padding-left: 10px;overflow: hidden;margin-right: 10px;box-sizing: border-box;">
+				<section style="background-color: #a8703b;padding: 6px 0;box-sizing: border-box;">
+					<section style="display: flex;align-items: center;">
+						<section style="flex-shrink: 0;transform: translateX(-10px);-webkit-transform: translateX(-10px);-moz-transform: translateX(-10px);-o-transform: translateX(-10px);">
+							<section style="background-color: #ad3a3a;padding: 3px;box-sizing: border-box;">
+								<section style="border: 1px solid #d0ae90;padding: 6px 9px;box-sizing: border-box;">
+									<section class="assistant" style="font-size: 16px;color: #ffffff;text-align: center;">
+										<strong>0</strong><strong class="autonum" data-num="2">2</strong>
+									</section>
+								</section>
+							</section>
+						</section>
+						<section style="width: 100%;max-width: 100% !important;box-sizing:border-box;" data-width="100%">
+							<section style="font-size: 16px;color: #ffffff;text-align: left; ;">
+								<strong class="135brush" data-brushtype="text">青少年研学营</strong>
+							</section>
+						</section>
+					</section>
+					<section style="width: 35px;margin-left: auto;margin-top: -40px;margin-bottom: 4px;box-sizing:border-box;transform: scale(1.3);-webkit-transform: scale(1.3);-moz-transform: scale(1.3);-o-transform: scale(1.3);">
+						<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 118.469 126.09" style="display: block; width: 100%;max-width: 100% !important;box-sizing:border-box;" data-height="100%" xml:space="default">
+							<path style="fill: #945928;fill-rule: evenodd;" d="M701.232,2166.97a2.428,2.428,0,0,0-.842-0.85,100.535,100.535,0,0,0-8.632-5.62,35.109,35.109,0,0,0-15.145-3.83,43.146,43.146,0,0,0-17.2,3.05c-4.134,1.59-8.208,3.35-12.371,4.86-5.858,2.13-11.859,3.62-18.174,2.67a21.541,21.541,0,0,1-11.612-5.15q1.168-.72,2.295-1.56a16.913,16.913,0,0,0,5.906-8.24c0.446-1.27.164-1.84-1.2-2.21a18.38,18.38,0,0,1-11.175-8.5c-3.729-6.27-4.267-12.72-.173-19.06a14.251,14.251,0,0,1,22.213-2.22c2.974,3.14,3.488,6.89,1.064,10.08a11.885,11.885,0,0,0-.743,1.2l-0.529-.17a16.372,16.372,0,0,0,.074-1.77c-0.391-5.17-5.342-8.72-10.548-8.14-6.217.69-9.168,7.17-8.032,12.71,0.961,4.69,3.846,8.03,7.959,10.37,4.234,2.41,8.8,3.08,13.659,2.98a27.374,27.374,0,0,0,17.34-6.46c4.648-3.85,8.06-8.62,8.891-14.69,0.7-5.08.693-10.16-1.534-15.05a26.985,26.985,0,0,0-14.152-13.86,25.391,25.391,0,0,0-9.546-2.1,0.918,0.918,0,0,1-1.126-.79c-0.734-14.15-11.06-25.68-26.5-30.87-1.266-.43-2.514-0.91-3.748-1.42a40.565,40.565,0,0,0-18.491-2.77c-23.132,1.62-39.933,15.49-40.877,33.68a0.917,0.917,0,0,1-1.125.79,25.58,25.58,0,0,0-9.546,2.1,26.987,26.987,0,0,0-14.153,13.86c-2.226,4.89-2.228,9.98-1.533,15.05,0.83,6.07,4.243,10.84,8.891,14.69a27.318,27.318,0,0,0,17.34,6.46c4.861,0.1,9.425-.57,13.659-2.98,4.113-2.34,7-5.68,7.959-10.37,1.136-5.54-1.815-12.02-8.032-12.71-5.207-.58-10.157,2.97-10.548,8.14a16.556,16.556,0,0,0,.073,1.78c-0.281.08-.247,0.07-0.529,0.16a11.7,11.7,0,0,0-.742-1.2c-2.424-3.19-1.91-6.94,1.064-10.08a14.251,14.251,0,0,1,22.213,2.22c4.094,6.34,3.556,12.8-.173,19.06a18.347,18.347,0,0,1-11.175,8.5c-1.36.38-1.642,0.94-1.195,2.22a16.932,16.932,0,0,0,5.906,8.23c3.6,2.68,7.456,4.54,12.061,4.25,2.585-.16,5.157-0.53,7.532-0.79a75.866,75.866,0,0,0,4.4,7.75,35.687,35.687,0,0,0,16.751,12.44,44.3,44.3,0,0,0,19.955,2.54,61.316,61.316,0,0,0,10.263-2.06c6.242-1.68,11.772-4.9,17.272-8.2a119.225,119.225,0,0,1,12.616-6.76,38.813,38.813,0,0,1,13.1-2.96,43.328,43.328,0,0,1,13,1.2c2.244,0.52,4.446,1.22,6.682,1.78a1.166,1.166,0,0,0,1.019-.3A1.293,1.293,0,0,0,701.232,2166.97Z" transform="translate(-521.531 -2059.47)"></path>
+						</svg>
+					</section>
+				</section>
+			</section>
+			<section style="width: 70%;height: 1px;margin-left: auto;border-bottom: 1px solid #dac6ac;margin-top: -8px;box-sizing:border-box;max-width:70% !important;transform: rotateZ(0deg);-webkit-transform: rotateZ(0deg);-moz-transform: rotateZ(0deg);-o-transform: rotateZ(0deg);" data-width="70%"></section>
+		</section>
+	</section>
+	<section class="_135editor" data-tools="135编辑器" data-id="172750" data-width="90%" style="width: 90%; flex: 0 0 90%; margin-left: auto; margin-right: auto;box-sizing:border-box;max-width:90% !important;">
+		<section style="margin: 10px auto; padding-top: 15px;box-sizing: border-box;">
+			<section style="background-color: #c7af8d;padding: 0 5px 5px;border: 1px solid transparent;box-sizing: border-box;">
+				<section style="padding: 20px 10px;border: 1px solid #c7ad98;background-color: #fffaf2;margin-top: -15px;box-sizing: border-box;">
+					<section class="box-edit" style="margin-top: 15px;margin-bottom: 10px;">
+						<section style="display: flex;justify-content: center;align-items: center;margin-bottom: 3px;">
+							<section style="flex-shrink: 0;">
+								<section style="width: 30px;box-sizing:border-box;">
+									<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 50.63 21.19" style="display: block;" xml:space="default">
+										<g id="图层_2" data-name="图层 2">
+											<g id="图层_1-2" data-name="图层 1">
+												<path d="M48.86,21.19a10.11,10.11,0,1,0-20.21,0H26.88a11.8,11.8,0,0,1,1.35-5.49,2.92,2.92,0,0,0-5.83,0,11.8,11.8,0,0,1,1.35,5.49H22a10.11,10.11,0,1,0-20.21,0H0A11.9,11.9,0,0,1,10.91,9.34a15.78,15.78,0,0,1,28.81,0A11.9,11.9,0,0,1,50.63,21.19ZM21.12,13.74a4.68,4.68,0,0,1,8.39,0,11.85,11.85,0,0,1,2.57-2.38,8.08,8.08,0,0,0-13.53,0A11.62,11.62,0,0,1,21.12,13.74Zm4.2-12A14,14,0,0,0,12.87,9.34,11.63,11.63,0,0,1,17,10.47a9.86,9.86,0,0,1,16.6,0,11.57,11.57,0,0,1,4.14-1.13A14,14,0,0,0,25.32,1.77ZM11.88,13.66a7.53,7.53,0,0,1,7.51,7.53H17.62a5.75,5.75,0,1,0-11.49,0H4.36A7.53,7.53,0,0,1,11.88,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H13.8a1.92,1.92,0,1,0-3.84,0H8.19A3.69,3.69,0,0,1,11.88,17.5Zm26.88-3.84a7.53,7.53,0,0,1,7.51,7.53H44.5a5.75,5.75,0,1,0-11.49,0H31.24A7.53,7.53,0,0,1,38.76,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H40.67a1.92,1.92,0,1,0-3.83,0H35.07A3.69,3.69,0,0,1,38.76,17.5Z" style="fill: #ebd3b1;fill-rule: evenodd;"></path>
+											</g>
+										</g>
+									</svg>
+								</section>
+							</section>
+							<section>
+								<section style="font-size: 16px;color: #a17653;text-align: center;padding: 0 5px;box-sizing: border-box;">
+									<strong class="135brush" data-brushtype="text">活动时间</strong>
+								</section>
+							</section>
+							<section style="flex-shrink: 0;">
+								<section style="width: 30px;box-sizing:border-box;">
+									<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 50.63 21.19" style="display: block;" xml:space="default">
+										<g id="图层_2" data-name="图层 2">
+											<g id="图层_1-2" data-name="图层 1">
+												<path d="M48.86,21.19a10.11,10.11,0,1,0-20.21,0H26.88a11.8,11.8,0,0,1,1.35-5.49,2.92,2.92,0,0,0-5.83,0,11.8,11.8,0,0,1,1.35,5.49H22a10.11,10.11,0,1,0-20.21,0H0A11.9,11.9,0,0,1,10.91,9.34a15.78,15.78,0,0,1,28.81,0A11.9,11.9,0,0,1,50.63,21.19ZM21.12,13.74a4.68,4.68,0,0,1,8.39,0,11.85,11.85,0,0,1,2.57-2.38,8.08,8.08,0,0,0-13.53,0A11.62,11.62,0,0,1,21.12,13.74Zm4.2-12A14,14,0,0,0,12.87,9.34,11.63,11.63,0,0,1,17,10.47a9.86,9.86,0,0,1,16.6,0,11.57,11.57,0,0,1,4.14-1.13A14,14,0,0,0,25.32,1.77ZM11.88,13.66a7.53,7.53,0,0,1,7.51,7.53H17.62a5.75,5.75,0,1,0-11.49,0H4.36A7.53,7.53,0,0,1,11.88,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H13.8a1.92,1.92,0,1,0-3.84,0H8.19A3.69,3.69,0,0,1,11.88,17.5Zm26.88-3.84a7.53,7.53,0,0,1,7.51,7.53H44.5a5.75,5.75,0,1,0-11.49,0H31.24A7.53,7.53,0,0,1,38.76,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H40.67a1.92,1.92,0,1,0-3.83,0H35.07A3.69,3.69,0,0,1,38.76,17.5Z" style="fill: #ebd3b1;fill-rule: evenodd;"></path>
+											</g>
+										</g>
+									</svg>
+								</section>
+							</section>
+						</section>
+						<section style="text-align: center;line-height: 1.75em;letter-spacing: 1.5px;font-size: 14px;color: #333333;background-color: transparent;">
+							<section class="135brush" data-autoskip="1">
+								<p>
+									5月18日—5月19日（每日9:30—16:00）
+								</p>
+							</section>
+						</section>
+					</section>
+					<section class="box-edit" style="margin-top: 15px;margin-bottom: 10px;">
+						<section style="display: flex;justify-content: center;align-items: center;margin-bottom: 3px;">
+							<section style="flex-shrink: 0;">
+								<section style="width: 30px;box-sizing:border-box;">
+									<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 50.63 21.19" style="display: block;" xml:space="default">
+										<g id="图层_2" data-name="图层 2">
+											<g id="图层_1-2" data-name="图层 1">
+												<path d="M48.86,21.19a10.11,10.11,0,1,0-20.21,0H26.88a11.8,11.8,0,0,1,1.35-5.49,2.92,2.92,0,0,0-5.83,0,11.8,11.8,0,0,1,1.35,5.49H22a10.11,10.11,0,1,0-20.21,0H0A11.9,11.9,0,0,1,10.91,9.34a15.78,15.78,0,0,1,28.81,0A11.9,11.9,0,0,1,50.63,21.19ZM21.12,13.74a4.68,4.68,0,0,1,8.39,0,11.85,11.85,0,0,1,2.57-2.38,8.08,8.08,0,0,0-13.53,0A11.62,11.62,0,0,1,21.12,13.74Zm4.2-12A14,14,0,0,0,12.87,9.34,11.63,11.63,0,0,1,17,10.47a9.86,9.86,0,0,1,16.6,0,11.57,11.57,0,0,1,4.14-1.13A14,14,0,0,0,25.32,1.77ZM11.88,13.66a7.53,7.53,0,0,1,7.51,7.53H17.62a5.75,5.75,0,1,0-11.49,0H4.36A7.53,7.53,0,0,1,11.88,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H13.8a1.92,1.92,0,1,0-3.84,0H8.19A3.69,3.69,0,0,1,11.88,17.5Zm26.88-3.84a7.53,7.53,0,0,1,7.51,7.53H44.5a5.75,5.75,0,1,0-11.49,0H31.24A7.53,7.53,0,0,1,38.76,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H40.67a1.92,1.92,0,1,0-3.83,0H35.07A3.69,3.69,0,0,1,38.76,17.5Z" style="fill: #ebd3b1;fill-rule: evenodd;"></path>
+											</g>
+										</g>
+									</svg>
+								</section>
+							</section>
+							<section>
+								<section style="font-size: 16px;color: #a17653;text-align: center;padding: 0 5px;box-sizing: border-box;">
+									<strong class="135brush" data-brushtype="text">活动地点</strong>
+								</section>
+							</section>
+							<section style="flex-shrink: 0;">
+								<section style="width: 30px;box-sizing:border-box;">
+									<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 50.63 21.19" style="display: block;" xml:space="default">
+										<g id="图层_2" data-name="图层 2">
+											<g id="图层_1-2" data-name="图层 1">
+												<path d="M48.86,21.19a10.11,10.11,0,1,0-20.21,0H26.88a11.8,11.8,0,0,1,1.35-5.49,2.92,2.92,0,0,0-5.83,0,11.8,11.8,0,0,1,1.35,5.49H22a10.11,10.11,0,1,0-20.21,0H0A11.9,11.9,0,0,1,10.91,9.34a15.78,15.78,0,0,1,28.81,0A11.9,11.9,0,0,1,50.63,21.19ZM21.12,13.74a4.68,4.68,0,0,1,8.39,0,11.85,11.85,0,0,1,2.57-2.38,8.08,8.08,0,0,0-13.53,0A11.62,11.62,0,0,1,21.12,13.74Zm4.2-12A14,14,0,0,0,12.87,9.34,11.63,11.63,0,0,1,17,10.47a9.86,9.86,0,0,1,16.6,0,11.57,11.57,0,0,1,4.14-1.13A14,14,0,0,0,25.32,1.77ZM11.88,13.66a7.53,7.53,0,0,1,7.51,7.53H17.62a5.75,5.75,0,1,0-11.49,0H4.36A7.53,7.53,0,0,1,11.88,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H13.8a1.92,1.92,0,1,0-3.84,0H8.19A3.69,3.69,0,0,1,11.88,17.5Zm26.88-3.84a7.53,7.53,0,0,1,7.51,7.53H44.5a5.75,5.75,0,1,0-11.49,0H31.24A7.53,7.53,0,0,1,38.76,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H40.67a1.92,1.92,0,1,0-3.83,0H35.07A3.69,3.69,0,0,1,38.76,17.5Z" style="fill: #ebd3b1;fill-rule: evenodd;"></path>
+											</g>
+										</g>
+									</svg>
+								</section>
+							</section>
+						</section>
+						<section style="text-align: center;line-height: 1.75em;letter-spacing: 1.5px;font-size: 14px;color: #333333;background-color: transparent;">
+							<section class="135brush" data-brushtype="text">
+								博物馆各展厅、研学教室
+							</section>
+						</section>
+					</section>
+					<section style="display: flex;align-items: center;margin: 10px 0;">
+						<section style="width: 50%;height: 1px;border-top: 1px solid #c3a67d;box-sizing:border-box;max-width:50% !important;" data-width="50%"></section>
+						<section style="flex-shrink: 0;padding: 0 15px;box-sizing: border-box;">
+							<section style="width: 10px;height: 10px;background-color: #ad3a3a;box-sizing:border-box;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);-o-transform: rotate(45deg);"></section>
+						</section>
+						<section style="width: 50%;height: 1px;border-top: 1px solid #c3a67d;box-sizing:border-box;max-width:50% !important;" data-width="50%"></section>
+					</section>
+					<section>
+						<p>
+							<br/>
+						</p>
+					</section>
+					<section style="text-align: justify;line-height: 1.75em;letter-spacing: 1.5px;font-size: 14px;color: #333333;background-color: transparent;">
+						<section style="line-height: 2;text-align: justify; color: #4b4b4b; text-shadow: none; letter-spacing: 2px; font-size: 14px;" class="135brush" data-autoskip="1">
+							<p>
+								由专业讲解员带领青少年参观精品展览，开展文物寻宝、文物临摹、文创DIY等活动；邀请非遗传承人现场授课，教授传统手工艺技巧；组织“文物故事分享会”，鼓励青少年分享自己了解的中外文物故事，让青少年在实践中传承文明、联结梦想。
+							</p>
+						</section>
+					</section>
+					<section>
+						<p>
+							<br/>
+						</p>
+					</section>
+					<section>
+						<section data-tools="135编辑器" data-id="172744">
+							<section style="margin: 10px auto;">
+								<section data-op="division" style="display: flex;justify-content: space-between; align-items: center;">
+									<section style="flex: 1;">
+										<section style="width: 35px;margin: 0 auto; ;box-sizing:border-box;">
+											<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 50.63 21.19" style="display: block;" xml:space="default">
+												<g id="图层_2" data-name="图层 2">
+													<g id="图层_1-2" data-name="图层 1">
+														<path d="M48.86,21.19a10.11,10.11,0,1,0-20.21,0H26.88a11.8,11.8,0,0,1,1.35-5.49,2.92,2.92,0,0,0-5.83,0,11.8,11.8,0,0,1,1.35,5.49H22a10.11,10.11,0,1,0-20.21,0H0A11.9,11.9,0,0,1,10.91,9.34a15.78,15.78,0,0,1,28.81,0A11.9,11.9,0,0,1,50.63,21.19ZM21.12,13.74a4.68,4.68,0,0,1,8.39,0,11.85,11.85,0,0,1,2.57-2.38,8.08,8.08,0,0,0-13.53,0A11.62,11.62,0,0,1,21.12,13.74Zm4.2-12A14,14,0,0,0,12.87,9.34,11.63,11.63,0,0,1,17,10.47a9.86,9.86,0,0,1,16.6,0,11.57,11.57,0,0,1,4.14-1.13A14,14,0,0,0,25.32,1.77ZM11.88,13.66a7.53,7.53,0,0,1,7.51,7.53H17.62a5.75,5.75,0,1,0-11.49,0H4.36A7.53,7.53,0,0,1,11.88,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H13.8a1.92,1.92,0,1,0-3.84,0H8.19A3.69,3.69,0,0,1,11.88,17.5Zm26.88-3.84a7.53,7.53,0,0,1,7.51,7.53H44.5a5.75,5.75,0,1,0-11.49,0H31.24A7.53,7.53,0,0,1,38.76,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H40.67a1.92,1.92,0,1,0-3.83,0H35.07A3.69,3.69,0,0,1,38.76,17.5Z" style="fill: #ebd3b1;fill-rule: evenodd;"></path>
+													</g>
+												</g>
+											</svg>
+										</section>
+										<section style="background: linear-gradient(to bottom,#dbba8d,#dbbb8d);padding: 6px;box-sizing: border-box;">
+											<section style="width: 100%;max-width: 100% !important;box-sizing:border-box;" data-width="100%">
+												<img style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/6d0a2f543da9709f6cd5e937c25be653.png" data-width="100%" draggable="false" data-ratio="1.003875968992248" data-w="258"/>
+											</section>
+										</section>
+										<section style="width: 35px;margin: 0 auto;box-sizing:border-box;transform: rotateX(180deg);-webkit-transform: rotateX(180deg);-moz-transform: rotateX(180deg);-o-transform: rotateX(180deg);">
+											<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 50.63 21.19" style="display: block;" xml:space="default">
+												<g id="图层_2" data-name="图层 2">
+													<g id="图层_1-2" data-name="图层 1">
+														<path d="M48.86,21.19a10.11,10.11,0,1,0-20.21,0H26.88a11.8,11.8,0,0,1,1.35-5.49,2.92,2.92,0,0,0-5.83,0,11.8,11.8,0,0,1,1.35,5.49H22a10.11,10.11,0,1,0-20.21,0H0A11.9,11.9,0,0,1,10.91,9.34a15.78,15.78,0,0,1,28.81,0A11.9,11.9,0,0,1,50.63,21.19ZM21.12,13.74a4.68,4.68,0,0,1,8.39,0,11.85,11.85,0,0,1,2.57-2.38,8.08,8.08,0,0,0-13.53,0A11.62,11.62,0,0,1,21.12,13.74Zm4.2-12A14,14,0,0,0,12.87,9.34,11.63,11.63,0,0,1,17,10.47a9.86,9.86,0,0,1,16.6,0,11.57,11.57,0,0,1,4.14-1.13A14,14,0,0,0,25.32,1.77ZM11.88,13.66a7.53,7.53,0,0,1,7.51,7.53H17.62a5.75,5.75,0,1,0-11.49,0H4.36A7.53,7.53,0,0,1,11.88,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H13.8a1.92,1.92,0,1,0-3.84,0H8.19A3.69,3.69,0,0,1,11.88,17.5Zm26.88-3.84a7.53,7.53,0,0,1,7.51,7.53H44.5a5.75,5.75,0,1,0-11.49,0H31.24A7.53,7.53,0,0,1,38.76,13.66Zm0,3.84a3.69,3.69,0,0,1,3.68,3.69H40.67a1.92,1.92,0,1,0-3.83,0H35.07A3.69,3.69,0,0,1,38.76,17.5Z" style="fill: #ebd3b1;fill-rule: evenodd;"></path>
+													</g>
+												</g>
+											</svg>
+										</section>
+									</section>
+									<section style="flex: 1;margin-left: 10px;">
+										<section style="background: linear-gradient(#ffffff, #ffffff); padding: 6px; box-sizing: border-box; box-shadow: #baa48c 0px 0px 5px;">
+											<section style="width: 100%;max-width: 100% !important;box-sizing:border-box;" data-width="100%">
+												<img style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/715a64485c0af292b8c5b01829bf405c.png" data-width="100%" draggable="false" data-ratio="1.251937984496124" data-w="258"/>
+											</section>
+										</section>
+									</section>
+								</section>
+							</section>
+						</section>
+					</section>
+				</section>
+			</section>
+		</section>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section class="_135editor" data-tools="135编辑器" data-id="159246">
+		<section style="margin: 10px auto; display: flex; justify-content: center;">
+			<section style="display: flex;align-items: flex-end;">
+				<section style="flex-shrink: 0;margin-right: -20px;z-index: 4;margin-bottom: -6px;">
+					<section class="assistant" style="width: 40px;box-sizing:border-box;">
+						<img class="assistant" style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/1cc879684d76a4c27626ca77b650bb19.png" data-width="100%" draggable="false" data-ratio="1.3004866180048662" data-w="1644"/>
+					</section>
+				</section>
+				<section class="135bg" style="background: url(&quot;https://bcn.135editor.com/files/images/editor_styles/e924f17a197af09e63d1a6956fb54f91.png&quot;) center center / 100% 100% no-repeat; padding: 12px 15px; box-sizing: border-box;">
+					<section style="font-size: 16px;color: #ffffff;text-align: center;padding: 0 10px;box-sizing: border-box;">
+						<strong class="135brush" data-brushtype="text">趣味参与，联结你我同行</strong>
+					</section>
+				</section>
+			</section>
+		</section>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section class="_135editor" data-tools="135编辑器" data-id="172742" data-width="90%" style="width: 90%; flex: 0 0 90%; margin-left: auto; margin-right: auto;box-sizing:border-box;max-width:90% !important;">
+		<section style="margin: 10px auto; text-align: center;">
+			<section style="background: linear-gradient(to bottom,#c29265,#bf9765);padding: 5px;box-sizing: border-box;">
+				<section style="width: 100%;max-width: 100% !important;box-sizing:border-box;" data-width="100%">
+					<img style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/25b61f2a64feec696f8a3ecd0f7261de.png" data-width="100%" draggable="false" data-ratio="0.6833333333333333" data-w="600"/>
+				</section>
+			</section>
+		</section>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section class="_135editor" data-width="90%" style="width: 90%; flex: 0 0 90%; margin-left: auto; margin-right: auto;box-sizing:border-box;max-width:90% !important;">
+		<section style="line-height: 2;text-align: justify; color: #242c33; text-shadow: none; font-size: 14px;" class="135brush" data-autoskip="1">
+			<p>
+				为增强活动的趣味性与参与感，让公众更好地感受国际博物馆日的氛围，提子博物馆同步推出多项配套互动活动，全民可参与、有收获：
+			</p>
+		</section>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section class="_135editor" data-tools="135编辑器" data-id="172747" data-width="90%" style="width: 90%; flex: 0 0 90%; margin-left: auto; margin-right: auto;box-sizing:border-box;max-width:90% !important;">
+		<section style="margin: 10px auto;">
+			<section class="box-edit" style="margin-bottom: 25px;">
+				<section style="display: flex;justify-content: flex-start;margin-bottom: 12px;">
+					<section style="display: flex;">
+						<section style="flex-shrink: 0;margin-right: -9px;">
+							<section style="width: 13px;height: 100%;border: 1px solid #d69438;box-sizing:border-box;"></section>
+						</section>
+						<section style="padding: 4px 0;z-index: 3;box-sizing: border-box;">
+							<section style="width: 7px;height: 7px;background-color: #ad3a3a;margin-left: auto;margin-top: -7px;margin-right: -10px;box-sizing:border-box;"></section>
+							<section style="font-size: 16px; color: #2b2424; text-align: left; background-color: #d3c3b2; margin: 0px 0px 0px 5px; box-sizing: border-box;">
+								<strong class="135brush" data-brushtype="text">“博物馆打卡赢好礼”活动</strong>
+							</section>
+						</section>
+					</section>
+				</section>
+				<section style="background-color: #fffaf2;padding: 15px 10px;box-sizing: border-box;">
+					<section style="text-align: justify;line-height: 1.75em;letter-spacing: 1.5px;font-size: 14px;color: #333333;background-color: transparent; ;">
+						<section style="line-height: 2;text-align: justify; color: #4b4b4b; text-shadow: none; letter-spacing: 2px; font-size: 14px;" class="135brush" data-autoskip="1">
+							<p>
+								作为博物馆的经典常设展览，本次将结合国际博物馆日主题进行优化升级，集中展出博物馆典藏重器，包括各类历史文物、艺术珍品与民俗器物。展览以时间为轴、以文化为脉，系统呈现本区域文明的发展脉络、人文底蕴与时代变迁。
+							</p>
+						</section>
+					</section>
+				</section>
+			</section>
+			<section class="box-edit" style="margin-bottom: 25px;">
+				<section style="display: flex;justify-content: flex-start;margin-bottom: 12px;">
+					<section style="display: flex;">
+						<section style="flex-shrink: 0;margin-right: -9px;">
+							<section style="width: 13px;height: 100%;border: 1px solid #d69438;box-sizing:border-box;"></section>
+						</section>
+						<section style="padding: 4px 0;z-index: 3;box-sizing: border-box;">
+							<section style="width: 7px;height: 7px;background-color: #ad3a3a;margin-left: auto;margin-top: -7px;margin-right: -10px;box-sizing:border-box;"></section>
+							<section style="font-size: 16px; color: #2b2424; text-align: left; background-color: #d3c3b2; padding: 0px 0px 0px 5px; box-sizing: border-box;">
+								<strong class="135brush" data-brushtype="text">线上知识闯关活动</strong>
+							</section>
+						</section>
+					</section>
+				</section>
+				<section style="background-color: #fffaf2;padding: 15px 10px;box-sizing: border-box;">
+					<section style="text-align: justify;line-height: 1.75em;letter-spacing: 1.5px;font-size: 14px;color: #333333;background-color: transparent; ;">
+						<section style="line-height: 2;text-align: justify; color: #4b4b4b; text-shadow: none; letter-spacing: 2px; font-size: 14px;" class="135brush" data-autoskip="1">
+							<p>
+								作为博物馆的经典常设展览，本次将结合国际博物馆日主题进行优化升级，集中展出博物馆典藏重器，包括各类历史文物、艺术珍品与民俗器物。展览以时间为轴、以文化为脉，系统呈现本区域文明的发展脉络、人文底蕴与时代变迁。
+							</p>
+						</section>
+					</section>
+				</section>
+			</section>
+			<section class="box-edit" style="margin-bottom: 25px;">
+				<section style="display: flex;justify-content: flex-start;margin-bottom: 12px;">
+					<section style="display: flex;">
+						<section style="flex-shrink: 0;margin-right: -9px;">
+							<section style="width: 13px;height: 100%;border: 1px solid #d69438;box-sizing:border-box;"></section>
+						</section>
+						<section style="padding: 4px 0;z-index: 3;box-sizing: border-box;">
+							<section style="width: 7px;height: 7px;background-color: #ad3a3a;margin-left: auto;margin-top: -7px;margin-right: -10px;box-sizing:border-box;"></section>
+							<section style="font-size: 16px; color: #2b2424; text-align: left; background-color: #d3c3b2; padding: 0px 0px 0px 5px; box-sizing: border-box;">
+								<strong class="135brush" data-brushtype="text">“博物馆之夜”特别活动</strong>
+							</section>
+						</section>
+					</section>
+				</section>
+				<section style="background-color: #fffaf2;padding: 15px 10px;box-sizing: border-box;">
+					<section style="text-align: justify;line-height: 1.75em;letter-spacing: 1.5px;font-size: 14px;color: #333333;background-color: transparent; ;">
+						<section style="line-height: 2;text-align: justify; color: #4b4b4b; text-shadow: none; letter-spacing: 2px; font-size: 14px;" class="135brush" data-autoskip="1">
+							<p>
+								作为博物馆的经典常设展览，本次将结合国际博物馆日主题进行优化升级，集中展出博物馆典藏重器，包括各类历史文物、艺术珍品与民俗器物。展览以时间为轴、以文化为脉，系统呈现本区域文明的发展脉络、人文底蕴与时代变迁。
+							</p>
+						</section>
+					</section>
+				</section>
+			</section>
+		</section>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section class="_135editor" data-tools="135编辑器" data-id="172737" data-width="95%" style="width: 95%; flex: 0 0 95%; margin-left: auto; margin-right: auto;box-sizing:border-box;max-width:95% !important;">
+		<section style="margin: 10px auto;">
+			<section style="width: 100%;max-width: 100% !important;box-sizing:border-box;" data-width="100%">
+				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 580.01 29.07" style="display: block;" xml:space="default">
+					<g id="图层_2" data-name="图层 2">
+						<g id="图层_1-2" data-name="图层 1">
+							<path d="M237.4,15.91H19.06a4.63,4.63,0,0,1,0-9.26H42.2a2,2,0,0,0,0-4.05H0V0H42.2a4.63,4.63,0,0,1,0,9.26H19.06a2,2,0,0,0,0,4.05H237.4Z" style="fill: #b59d7b;fill-rule: evenodd;"></path>
+							<path d="M444.59,26.06a11.71,11.71,0,1,0-23.42,0h-2.05a13.67,13.67,0,0,1,1.56-6.37,3.38,3.38,0,0,0-6.75,0,13.67,13.67,0,0,1,1.56,6.37h-2.05a11.71,11.71,0,1,0-23.42,0h-2a13.79,13.79,0,0,1,12.65-13.74,18.28,18.28,0,0,1,33.38,0,13.79,13.79,0,0,1,12.64,13.74Zm-32.14-8.64a5.4,5.4,0,0,1,9.71,0,14,14,0,0,1,3-2.76,9.37,9.37,0,0,0-15.68,0A14.19,14.19,0,0,1,412.45,17.42ZM417.3,3.55a16.16,16.16,0,0,0-14.41,8.77,13.79,13.79,0,0,1,4.8,1.31,11.42,11.42,0,0,1,19.23,0,13.91,13.91,0,0,1,4.8-1.31A16.17,16.17,0,0,0,417.3,3.55ZM401.73,17.33a8.73,8.73,0,0,1,8.71,8.73h-2.05a6.66,6.66,0,1,0-13.31,0H393A8.73,8.73,0,0,1,401.73,17.33Zm0,4.44A4.29,4.29,0,0,1,406,26.06H404a2.23,2.23,0,1,0-4.45,0h-2.05A4.29,4.29,0,0,1,401.73,21.77Zm31.15-4.44a8.73,8.73,0,0,1,8.7,8.73h-2.05a6.66,6.66,0,1,0-13.31,0h-2.05A8.73,8.73,0,0,1,432.88,17.33Zm0,4.44a4.29,4.29,0,0,1,4.27,4.29h-2a2.23,2.23,0,1,0-4.45,0h-2A4.29,4.29,0,0,1,432.88,21.77Z" style="fill: #b59d7b;fill-rule: evenodd;"></path>
+							<path d="M310,29.07H561a4.66,4.66,0,0,0,0-9.31h-23.1a2,2,0,0,1,0-4.08H580V13.06H537.87a4.66,4.66,0,0,0,0,9.31H561a2,2,0,0,1,0,4.08H310Z" style="fill: #b59d7b;fill-rule: evenodd;"></path>
+							<path d="M328,29.07H252a4.66,4.66,0,0,1,0-9.31h23.1a2,2,0,0,0,0-4.08H233V13.06h42.14a4.66,4.66,0,0,1,0,9.31H252a2,2,0,0,0,0,4.08h76Z" style="fill: #b59d7b;fill-rule: evenodd;"></path>
+						</g>
+					</g>
+				</svg>
+			</section>
+		</section>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section class="_135editor" data-tools="135编辑器" data-id="172738">
+		<section style="margin: 10px auto; display: flex; justify-content: center; padding-bottom: 7px;box-sizing: border-box;">
+			<section>
+				<section style="display: flex;align-items: center;margin: 0 10px;">
+					<section style="width: 65px;-webkit-mask-image: linear-gradient(to bottom,#ffffff,transparent);box-sizing:border-box;">
+						<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 133 133" style="display: block;" xml:space="default">
+							<g id="图层_2" data-name="图层 2">
+								<g id="图层_1-2" data-name="图层 1">
+									<path d="M105,105a40.51,40.51,0,0,1-77,0,40.51,40.51,0,0,1,0-77,40.51,40.51,0,0,1,77,0,40.51,40.51,0,0,1,0,77Z" style="fill: #f4ecdf;fill-rule: evenodd;"></path>
+								</g>
+							</g>
+						</svg>
+					</section>
+					<section style="width: 65px;margin-left: -65px;z-index: 3;box-sizing:border-box;">
+						<section style="font-size: 14px;color: #703525;text-align: center; ;">
+							<strong class="135brush" data-brushtype="text">END</strong>
+						</section>
+					</section>
+				</section>
+				<section style="display: flex;justify-content: space-between;margin-top: -19px;">
+					<section style="width: 30px;box-sizing:border-box;">
+						<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 64.99 16" style="display: block;" xml:space="default">
+							<g id="图层_2" data-name="图层 2">
+								<g id="图层_1-2" data-name="图层 1">
+									<path d="M65,16H19a4.66,4.66,0,0,1,0-9.31h23a2,2,0,0,0,2-2,2,2,0,0,0-2-2H0V0H41.94a4.61,4.61,0,0,1,4.55,4.66,4.61,4.61,0,0,1-4.55,4.65H19a2,2,0,0,0,0,4.08H65Z" style="fill: #ebd2b0;fill-rule: evenodd;"></path>
+								</g>
+							</g>
+						</svg>
+					</section>
+					<section style="width: 30px;box-sizing:border-box;transform: rotateY(180deg);-webkit-transform: rotateY(180deg);-moz-transform: rotateY(180deg);-o-transform: rotateY(180deg);">
+						<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 64.99 16" style="display: block;" xml:space="default">
+							<g id="图层_2" data-name="图层 2">
+								<g id="图层_1-2" data-name="图层 1">
+									<path d="M65,16H19a4.66,4.66,0,0,1,0-9.31h23a2,2,0,0,0,2-2,2,2,0,0,0-2-2H0V0H41.94a4.61,4.61,0,0,1,4.55,4.66,4.61,4.61,0,0,1-4.55,4.65H19a2,2,0,0,0,0,4.08H65Z" style="fill: #ebd2b0;fill-rule: evenodd;"></path>
+								</g>
+							</g>
+						</svg>
+					</section>
+				</section>
+			</section>
+		</section>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section class="_135editor" data-tools="135编辑器" data-id="159219" data-width="90%" style="width: 90%; flex: 0 0 90%; margin-left: auto; margin-right: auto;box-sizing:border-box;max-width:90% !important;">
+		<section style="margin: 10px auto;">
+			<section class="assistant" style="width: 85px;margin-bottom: -28px;box-sizing:border-box;transform: rotateY(180deg);-webkit-transform: rotateY(180deg);-moz-transform: rotateY(180deg);-o-transform: rotateY(180deg);">
+				<img class="assistant" style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/f052c4732ea22d7eab84e65f8abce1fe.png" data-width="100%" draggable="false" data-ratio="0.4308390022675737" data-w="441"/>
+			</section>
+			<section style="display: flex;justify-content: center;">
+				<section style="flex-shrink: 0;padding-bottom: 8px;box-sizing: border-box;">
+					<section style="width: 12px;height: 4px;background-color: #b67e47;margin: 0 auto;box-sizing:border-box;"></section>
+					<section style="width: 17px;height: 100%;background: linear-gradient(to right,#efddc3,#fffaf2,#e3ccab);box-sizing:border-box;"></section>
+					<section style="width: 12px;height: 4px;background-color: #b67e47;margin: 0 auto;box-sizing:border-box;"></section>
+				</section>
+				<section style="width: 100%;max-width: 100% !important;box-sizing:border-box;" data-width="100%">
+					<section style="background-color: #f8f0e4;margin: 8px 0;border-top: 4px solid #f5e4cc;border-bottom: 4px solid #f5e4cc;padding: 20px 10px;box-sizing: border-box;">
+						<section style="display: flex;justify-content: space-between;align-items: center;box-sizing: border-box;">
+							<section style="width: 35%;box-sizing:border-box;max-width:35% !important;" data-width="35%">
+								<section style="width: 120px;margin: 0 auto;max-width: 100% !important;box-sizing:border-box;">
+									<img style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/fa816d7629223a94412b4622cf579104.jpg" data-width="100%" draggable="false" data-ratio="1" data-w="258"/>
+								</section>
+							</section>
+							<section style="width: 55%;text-align: center;box-sizing:border-box;max-width:55% !important;" data-width="55%">
+								<section style="display: inline-block;">
+									<section style="display: flex;justify-content: flex-start;margin-bottom: 5px;">
+										<section>
+											<section style="background-color: #b67e47;display: flex;align-items: center;">
+												<section style="flex-shrink: 0;">
+													<section style="width: 7px;height: 9px;border-radius: 0 25px 25px 0;background-color: #f8f1e4;box-sizing:border-box;"></section>
+												</section>
+												<section style="padding: 7px 10px;box-sizing: border-box;">
+													<section style="font-size: 16px;color: #ffffff;text-align: center;">
+														<strong class="135brush" data-brushtype="text">国际博物馆日</strong>
+													</section>
+												</section>
+												<section style="flex-shrink: 0;">
+													<section style="width: 7px;height: 9px;border-radius: 25px 0 0 25px;background-color: #f8f1e4;box-sizing:border-box;"></section>
+												</section>
+											</section>
+										</section>
+									</section>
+									<section style="text-align: center;line-height: 1.75em;letter-spacing: 1.5px;font-size: 14px;color: #aa351e;background: transparent;margin-top: 6px;">
+										<section class="135brush" data-autoskip="1">
+											<p>
+												传承古韵
+											</p>
+										</section>
+										<section class="135brush" data-autoskip="1">
+											<p>
+												创新未来
+											</p>
+										</section>
+									</section>
+								</section>
+							</section>
+						</section>
+					</section>
+				</section>
+				<section style="flex-shrink: 0;padding-bottom: 8px;box-sizing: border-box;">
+					<section style="width: 12px;height: 4px;background-color: #b67e47;margin: 0 auto;box-sizing:border-box;"></section>
+					<section style="width: 17px;height: 100%;background: linear-gradient(to right,#efddc3,#fffaf2,#e3ccab);box-sizing:border-box;"></section>
+					<section style="width: 12px;height: 4px;background-color: #b67e47;margin: 0 auto;box-sizing:border-box;"></section>
+				</section>
+			</section>
+			<section class="assistant" style="width: 40px;margin-left: auto;margin-top: -40px;margin-right: 20px;box-sizing:border-box;">
+				<img class="assistant" style="width: 100%; display: block;vertical-align:baseline;box-sizing:border-box;max-width:100% !important;" src="https://bcn.135editor.com/files/images/editor_styles/1cc879684d76a4c27626ca77b650bb19.png" data-width="100%" draggable="false" data-ratio="1.3004866180048662" data-w="1644"/>
+			</section>
+		</section>
+	</section>
+	<section>
+		<p>
+			<br/>
+		</p>
+	</section>
+	<section class="_135editor">
+		<section style="line-height: 2em;text-align: center;">
+			<section style="line-height: 2.5;">
+				<span style="color: #35404a;"><strong><span style="font-size: 14px; text-shadow: none; letter-spacing: 1.5px;" class="135brush" data-brushtype="text">【模板版权声明】</span></strong></span>
+			</section>
+		</section>
+		<section style="line-height: 2em;text-align: center;text-shadow: none; letter-spacing: 1.5px; font-size: 14px; color: #35404a;">
+			<section style="line-height: 2.5;text-shadow: none; letter-spacing: 1.5px; font-size: 14px; color: #35404a;" class="135brush" data-autoskip="1">
+				<p>
+					<span style="text-shadow: none; letter-spacing: 1.5px; font-size: 14px; color: #35404a;" class="135brush" data-brushtype="text">排版|135编辑器</span>
+				</p>
+				<p>
+					<span style="text-shadow: none; letter-spacing: 1.5px; font-size: 14px; color: #35404a;" class="135brush" data-brushtype="text">头图|来源于135摄影图（ID：94328）</span>
+				</p>
+			</section>
+		</section>
+		<section style="line-height: 2em;text-align: center; text-shadow: none; letter-spacing: 1.5px; font-size: 14px; color: #35404a;">
+			<section style="line-height: 2.5; text-shadow: none; letter-spacing: 1.5px; font-size: 14px; color: #35404a;" class="135brush" data-autoskip="1">
+				<p>
+					<span style=" text-shadow: none; letter-spacing: 1.5px; font-size: 14px; color: #35404a;" class="135brush" data-brushtype="text">图片|来源于135摄影图</span>
+				</p>
+			</section>
+			<section style="line-height: 2.5;" class="135brush" data-autoskip="1">
+				<p>
+					<span class="135brush" data-brushtype="text">（ID：101058、94817）</span>
+				</p>
+			</section>
+		</section>
+		<section>
+			<section style="line-height: 2.5;text-align: center;color: #35404a;  letter-spacing: 1.5px;">
+				<span style="color: #35404a; font-size: 14px; letter-spacing: 1.5px; ;" class="135brush" data-brushtype="text">使用请替换</span>
+			</section>
+		</section>
+		<section style="line-height: 2em;text-align: center; color: #35404a; font-size: 14px; letter-spacing: 1.5px;">
+			<section style="line-height: 2.5; color: #35404a;  letter-spacing: 1.5px;">
+				<span style=" color: #35404a; font-size: 14px; letter-spacing: 1.5px;" class="135brush" data-brushtype="text">贴纸|135编辑器，AI生成</span>
+			</section>
+		</section>
+		<section style="line-height: 2em;text-align: center;text-shadow: none; letter-spacing: 1.5px; font-size: 14px; color: #35404a;">
+			<section style="line-height: 2.5;text-shadow: none; letter-spacing: 1.5px; font-size: 14px; color: #35404a;" class="135brush" data-autoskip="1">
+				<p>
+					文字|来源于135AI写作，使用请替换
+				</p>
+			</section>
+		</section>
+		<p>
+			<br/>
+		</p>
+	</section>
+</section>

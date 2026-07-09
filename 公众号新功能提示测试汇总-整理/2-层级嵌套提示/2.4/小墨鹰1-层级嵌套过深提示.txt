@@ -1,0 +1,681 @@
+<section data-tools="小墨鹰编辑器" class="tpl_ratio chuan_1 xmyeditor fullMB" tpl-ratio="90" powered-by="xmyeditor.com" xmyfull="full5816" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+    <section id="xmyBackground" style="background-color: rgb(255, 255, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_2" data-md5="e9967">
+        <section class="xmyeditor chuan_3" data-id="165082" data-type="lspecial04" powered-by="xmyeditor.com" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+            <section class="xmy-bacolor wxqq-bg chuan_4" style="background: linear-gradient(to bottom, #80ceff 20%, transparent 100%);" powered-by="xmyeditor.com" data-md5="e9967">
+                <section id="quyubeijingtu" class="xmy-baimg xmy-duanluo chuan_5" style="background:url(https://web2.xmyeditor.com/sucai-png/20231113/1d35455a985839708b14511f596ace65.png) no-repeat left top/100% 100%;box-sizing: border-box;padding:34.1% 0 22.1%;" powered-by="xmyeditor.com" data-md5="e9967">
+                    <section style="width: 90%; margin: 0px auto; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_6" data-md5="e9967">
+                        <section class="xmy-banone wxqq-bg wxqq-borderBottomColor wxqq-borderTopColor wxqq-borderRightColor wxqq-borderLeftColor xmy-duanluo xmyeditor chuan_7" style="box-sizing: border-box; border: 9px solid rgb(202, 235, 255); background-color: rgb(255, 254, 255); padding: 4.5% 0px 16.1%; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <section style="display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmyeditor chuan_8" data-md5="e9967">
+                                <section class="xmy-banone wxqq-bg chuan_9" style="width: 5px; height: 7px; background-color: rgb(118, 209, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                    <br/>
+                                </section>
+                                <section class="xmy-banone wxqq-bg chuan_10" style="width: 20px; height: 5px; background-color: rgb(118, 209, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                    <br/>
+                                </section>
+                                <section class="xmy-banone wxqq-bg chuan_11" style="width: 5px; height: 7px; background-color: rgb(118, 209, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                    <br/>
+                                </section>
+                            </section>
+                            <section class="xmyeditor buchai chuan_12" style="margin-top: 4.5%; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                <section class="wxqq-Color chuan_13" style="color: rgb(10, 171, 234); line-height: 1.06em; text-align: center; font-size: 32px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                    <p class="xmybrush chuan_14" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                                        <strong class="chuan_15" data-md5="e9967">医疗能力提升纪实</strong>
+                                    </p>
+                                </section>
+                            </section>
+                            <section class="xmyeditor buchai chuan_16" style="margin-top: 7.1%; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                <section class="wxqq-Color chuan_17" style="color: rgb(0, 164, 214); line-height: 1.33em; text-align: center; font-size: 18px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                    <p class="xmybrush chuan_18" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                                        <strong class="chuan_19" data-md5="e9967">医疗有温度 ,服务无止境</strong>
+                                    </p>
+                                </section>
+                            </section>
+                        </section>
+                        <section class="xmyeditor buchai chuan_20" style="width: 67px; margin: -35px -8px 0px auto; line-height: 2px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <p style="padding:0px;margin:0px;" data-md5="e9967">
+                                <img src="https://web2.xmyeditor.com/sucai-png/20231114/0ef697d166a5fe7ca5729cb1c4b4e82f.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="small_image chuan_21" data-isstyleimage="1" data-md5="e9967"/>
+                            </p>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <section class="xmyeditor chuan_22" data-id="165081" data-type="lspecial02" style="width: 90%; margin: 0px auto; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+            <section class="wxqq-borderBottomColor wxqq-borderTopColor wxqq-borderRightColor wxqq-borderLeftColor xmy-duanluo xmyeditor chuan_23" style="box-sizing: border-box; border: 1px dashed rgb(29, 189, 239); padding: 10px; border-radius: 12px; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                <section style="transform: translate(0px); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_24" data-md5="e9967">
+                    <section class="wxqq-Color chuan_25" style="font-size: 14px; color: rgb(51, 51, 51); line-height: 1.71em; text-align: left; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                        <p class="xmybrush chuan_26" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                            &nbsp; &nbsp; &nbsp;《医疗服务能力提升工程活动方案》的全面为深入推进《进一步改善医疗服务行动计划》、落实，我院始终以为患者提供最优质的医疗服务为使命，肩负着促进人民健康的重任，“医疗有温度、服务无止境”不仅仅是一个口号，更是我们对于患者的承诺
+                        </p>
+                        <p class="xmybrush chuan_27" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                            我院质控办在晃献召院长的指导下，以“项目管理”为抓手，提高医疗服务能力，持续提升患者就医体验，让医疗服务更有温度。
+                        </p>
+                    </section>
+                </section>
+            </section>
+            <section style="display: flex; justify-content: flex-end; margin-top: -21px; margin-right: 3px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_28" data-md5="e9967">
+                <section style="display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_29" data-md5="e9967">
+                    <section class="xmy-banone wxqq-bg chuan_30" style="width: 9px; height: 12px; background-color: rgb(118, 209, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                        <br/>
+                    </section>
+                    <section class="xmy-banone wxqq-bg chuan_31" style="width: 36px; height: 9px; background-color: rgb(118, 209, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                        <br/>
+                    </section>
+                    <section class="xmy-banone wxqq-bg chuan_32" style="width: 9px; height: 12px; background-color: rgb(118, 209, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                        <br/>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <p style="font-size: 15px;line-height: 60px; padding:0px;margin:0px;" class="chuan_33" data-md5="e9967">
+            <br class="chuan_34" data-md5="e9967"/>
+        </p>
+        <section class="xmyeditor chuan_35" data-id="165080" data-type="lspecial02" style="width: 90%; margin: 0px auto; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+            <section style="text-align: left; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_36" data-md5="e9967">
+                <section style="display: inline-block; vertical-align: middle; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_37" data-md5="e9967">
+                    <section style="display: flex; align-items: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_38" data-md5="e9967">
+                        <section class="wxqq-borderBottomColor wxqq-borderTopColor wxqq-borderRightColor wxqq-borderLeftColor chuan_39" style="width: 24px; height: 24px; box-sizing: border-box; border: 5px solid rgb(10, 171, 234); border-radius: 50%; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <br/>
+                        </section>
+                        <section style="display: flex; flex-direction: row-reverse; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmyeditor chuan_40" data-md5="e9967">
+                            <section style="display: flex; margin-left: -1px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_41" data-md5="e9967">
+                                <section class="xmy-banone wxqq-bg xmy-duanluo chuan_42" style="display: flex; background-color: rgb(118, 223, 255); clip-path: polygon(46% 0px, 98% 54%, 52% 100%, 0px 100%, 0px 0px); padding: 0px 3px 3px 0px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                    <section class="xmy-banone wxqq-bg chuan_43" style="width: 28px; background-color: rgb(10, 171, 234); clip-path: polygon(50% 0px, 100% 50%, 50% 100%, 0px 100%, 0px 0px); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                        <br/>
+                                    </section>
+                                </section>
+                            </section>
+                            <section class="xmy-banone wxqq-bg xmy-duanluo xmyeditor chuan_44" style="background-color: rgb(10, 171, 234); padding: 0px 25px 0px 0px; margin-left: 5px; box-shadow: rgb(118, 223, 255) 0px 3px 0px; margin-bottom: 3px; transform: translate(0px); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                <section class="wxqq-Color chuan_45" style="color: rgb(255, 255, 255); line-height: 32px; text-align: left; font-size: 18px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                    <p class="xmybrush chuan_46" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                                        <strong class="chuan_47" data-md5="e9967">&nbsp;&nbsp;护理涵义&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                                    </p>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <p style="font-size: 15px;line-height: 25px; padding:0px;margin:0px;" class="chuan_48" data-md5="e9967">
+            <br class="chuan_49" data-md5="e9967"/>
+        </p>
+        <section class="xmyeditor chuan_50" data-id="165079" data-type="lspecial04" style="width: 90%; margin: 0px auto; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+            <section powered-by="xmyeditor.com" class="chuan_51" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                <section class="xmyeditor buchai chuan_52" powered-by="xmyeditor.com" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                    <section powered-by="xmyeditor.com" class="xmyeditor chuan_53" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                        <p style="padding:0px;margin:0px;" data-md5="e9967">
+                            <img src="https://web2.xmyeditor.com/sucai-png/20231113/d11cb83a747572d87a574ab703f37d75.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="brushimg chuan_54" data-isstyleimage="1" data-md5="e9967"/>
+                        </p>
+                    </section>
+                    <section class="xmyeditor buchai chuan_55" style="width: 67px; margin: -38px 0px 0px -13px; line-height: 2px; transform: translate(0px); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                        <p style="padding:0px;margin:0px;" data-md5="e9967">
+                            <img src="https://web2.xmyeditor.com/sucai-png/20231114/0ef697d166a5fe7ca5729cb1c4b4e82f.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="small_image chuan_56" data-isstyleimage="1" data-md5="e9967"/>
+                        </p>
+                    </section>
+                </section>
+                <p style="font-size: 5px;line-height: 5px; padding:0px;margin:0px;" class="chuan_57" data-md5="e9967">
+                    <br class="chuan_58" data-md5="e9967"/>
+                </p>
+                <section powered-by="xmyeditor.com" class="xmyeditor chuan_59" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                    <section class="wxqq-Color chuan_60" style="font-size: 14px; color: rgb(51, 51, 51); line-height: 1.71em; text-align: left; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                        <p class="xmybrush chuan_61" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                            &nbsp; &nbsp; &nbsp; 本次医疗服务能力提升行动全员参与，集思广益，各科室、部门从科室实际情况出发，加强人文关怀，以患者需求为导向，确定体现科室专科技术、对惠者有益的改进项目，把“看好病、少花钱、暖民心、顺民意”的工作做到患者心坎上。
+                        </p>
+                        <p class="xmybrush chuan_62" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                            &nbsp; &nbsp; &nbsp; 霍院长指导科室运用品管圈的思维，从“项目主题、提升目标、实施措施、改进成效”等步骤开展工作，给大家明确了服务能力提升的工作思路和方法。本次医疗服务能力提升活动将在年终统一进行效果评价，希望通过开展这项工作，能够全方位改善患者的就医体验。
+                        </p>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <p style="font-size: 15px;line-height: 30px; padding:0px;margin:0px;" class="chuan_63" data-md5="e9967">
+            <br class="chuan_64" data-md5="e9967"/>
+        </p>
+        <section class="xmyeditor chuan_65" data-id="165078" data-type="lspecial04" style="width: 90%; margin: 0px auto; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+            <section powered-by="xmyeditor.com" class="chuan_66" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                <section class="xmyeditor buchai chuan_67" powered-by="xmyeditor.com" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                    <section style="display: flex; align-items: center; justify-content: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_68" data-md5="e9967">
+                        <section style="width: 49.8%; margin-right: 2.1%; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmyeditor chuan_69" data-md5="e9967">
+                            <section powered-by="xmyeditor.com" class="xmyeditor chuan_70" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                                <p style="padding:0px;margin:0px;" data-md5="e9967">
+                                    <img src="https://web2.xmyeditor.com/sucai-png/20231113/d11cb83a747572d87a574ab703f37d75.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="brushimg chuan_71" data-isstyleimage="1" data-md5="e9967"/>
+                                </p>
+                            </section>
+                            <section style="margin-top: 3.1%; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmyeditor chuan_72" data-md5="e9967">
+                                <p style="padding:0px;margin:0px;" data-md5="e9967">
+                                    <img src="https://web2.xmyeditor.com/sucai-png/20231113/d11cb83a747572d87a574ab703f37d75.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="brushimg chuan_73" data-isstyleimage="1" data-md5="e9967"/>
+                                </p>
+                            </section>
+                        </section>
+                        <section style="flex: 1 1 0%; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_74" data-md5="e9967">
+                            <p style="padding:0px;margin:0px;" data-md5="e9967">
+                                <img src="https://web2.xmyeditor.com/sucai-png/20231113/9247a4999e1ef9e8572f05d69c595bc7.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="brushimg chuan_75" data-isstyleimage="1" data-md5="e9967"/>
+                            </p>
+                        </section>
+                    </section>
+                </section>
+                <p style="font-size: 15px;line-height: 20px; padding:0px;margin:0px;" class="chuan_76" data-md5="e9967">
+                    <br class="chuan_77" data-md5="e9967"/>
+                </p>
+                <section powered-by="xmyeditor.com" class="xmyeditor chuan_78" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                    <section class="wxqq-Color chuan_79" style="font-size: 14px; color: rgb(51, 51, 51); line-height: 1.71em; text-align: left; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                        <p class="xmybrush chuan_80" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                            &nbsp; &nbsp; &nbsp; 本次医疗服务能力提升行动全员参与，集思广益，各科室、部门从科室实际情况出发，加强人文关怀，以患者需求为导向，确定体现科室专科技术、对惠者有益的改进项目，把“看好病、少花钱、暖民心、顺民意”的工作做到患者心坎上。
+                        </p>
+                        <p class="xmybrush chuan_81" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                            &nbsp; &nbsp; &nbsp; 霍院长指导科室运用品管圈的思维，从“项目主题、提升目标、实施措施、改进成效”等步骤开展工作，给大家明确了服务能力提升的工作思路和方法。本次医疗服务能力提升活动将在年终统一进行效果评价，希望通过开展这项工作，能够全方位改善患者的就医体验。
+                        </p>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <p style="font-size: 15px;line-height: 20px; padding:0px;margin:0px;" class="chuan_82" data-md5="e9967">
+            <br class="chuan_83" data-md5="e9967"/>
+        </p>
+        <section class="xmyeditor chuan_84" data-id="165077" data-type="lspecial04" style="width: 90%; margin: 0px auto; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+            <section powered-by="xmyeditor.com" class="chuan_85" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                <section class="xmyeditor buchai chuan_86" powered-by="xmyeditor.com" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                    <section class="xmyeditor buchai chuan_87" style="width: 70px; margin: 0px 0px -16px -8px; line-height: 2px; transform: translate(0px); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                        <p style="padding:0px;margin:0px;" data-md5="e9967">
+                            <img src="https://web2.xmyeditor.com/sucai-png/20231113/ec3d6b6d95d998e93d22b357a9ca620c.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="small_image chuan_88" data-isstyleimage="1" data-md5="e9967"/>
+                        </p>
+                    </section>
+                    <section style="display: flex; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmyeditor chuan_89" data-md5="e9967">
+                        <section style="width: 50.7%; margin-right: 3.1%; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmyeditor chuan_90" data-md5="e9967">
+                            <section powered-by="xmyeditor.com" class="chuan_91" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                                <p style="padding:0px;margin:0px;" data-md5="e9967">
+                                    <img src="https://web2.xmyeditor.com/sucai-png/20231113/d030b87ec64601a826acf50606baa2e7.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="brushimg chuan_92" data-isstyleimage="1" data-md5="e9967"/>
+                                </p>
+                            </section>
+                        </section>
+                        <section style="flex: 1 1 0%; margin-top: 4.1%; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_93" data-md5="e9967">
+                            <section class="xmyeditor buchai chuan_94" style="width: 100%; margin: 0px 0px 3.1%; line-height: 2px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                <p style="padding:0px;margin:0px;" data-md5="e9967">
+                                    <img src="https://web2.xmyeditor.com/sucai-png/20231113/ab004e7dc682d58eb2ef1a0782d5a6cc.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="small_image chuan_95" data-isstyleimage="1" data-md5="e9967"/>
+                                </p>
+                            </section>
+                            <section powered-by="xmyeditor.com" class="xmyeditor chuan_96" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                                <p style="padding:0px;margin:0px;" data-md5="e9967">
+                                    <img src="https://web2.xmyeditor.com/sucai-png/20231113/d11cb83a747572d87a574ab703f37d75.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="brushimg chuan_97" data-isstyleimage="1" data-md5="e9967"/>
+                                </p>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+                <p style="font-size: 15px;line-height: 20px; padding:0px;margin:0px;" class="chuan_98" data-md5="e9967">
+                    <br class="chuan_99" data-md5="e9967"/>
+                </p>
+                <section powered-by="xmyeditor.com" class="xmyeditor chuan_100" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                    <section class="wxqq-Color chuan_101" style="font-size: 14px; color: rgb(51, 51, 51); line-height: 1.71em; text-align: left; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                        <p class="xmybrush chuan_102" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                            &nbsp; &nbsp; &nbsp; 本次医疗服务能力提升行动全员参与，集思广益，各科室、部门从科室实际情况出发，加强人文关怀，以患者需求为导向，确定体现科室专科技术、对惠者有益的改进项目，把“看好病、少花钱、暖民心、顺民意”的工作做到患者心坎上。
+                        </p>
+                        <p class="xmybrush chuan_103" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                            &nbsp; &nbsp; &nbsp; 霍院长指导科室运用品管圈的思维，从“项目主题、提升目标、实施措施、改进成效”等步骤开展工作，给大家明确了服务能力提升的工作思路和方法。本次医疗服务能力提升活动将在年终统一进行效果评价，希望通过开展这项工作，能够全方位改善患者的就医体验。
+                        </p>
+                    </section>
+                </section>
+                <p style="font-size: 15px;line-height: 20px; padding:0px;margin:0px;" class="chuan_104" data-md5="e9967">
+                    <br class="chuan_105" data-md5="e9967"/>
+                </p>
+                <section class="xmyeditor buchai chuan_106" powered-by="xmyeditor.com" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                    <section style="display: flex; align-items: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_107" data-md5="e9967">
+                        <section class="xmy-banone wxqq-bg chuan_108" style="flex: 1 1 0%; height: 1px; background-color: rgb(34, 190, 239); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <br/>
+                        </section>
+                        <section class="xmy-banone wxqq-bg chuan_109" style="width: 12px; height: 12px; background-color: rgb(118, 223, 255); border-radius: 50%; margin: 0px 6px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <br/>
+                        </section>
+                        <section class="xmy-banone wxqq-bg chuan_110" style="width: 13px; height: 13px; background-color: rgb(34, 190, 239); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <br/>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <p style="font-size: 15px;line-height: 60px; padding:0px;margin:0px;" class="chuan_111" data-md5="e9967">
+            <br class="chuan_112" data-md5="e9967"/>
+        </p>
+        <section class="xmyeditor chuan_113" data-id="165076" data-type="lspecial02" style="width: 90%; margin: 0px auto; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+            <section style="text-align: left; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_114" data-md5="e9967">
+                <section style="display: inline-block; vertical-align: middle; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_115" data-md5="e9967">
+                    <section style="display: flex; align-items: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_116" data-md5="e9967">
+                        <section class="wxqq-borderBottomColor wxqq-borderTopColor wxqq-borderRightColor wxqq-borderLeftColor chuan_117" style="width: 24px; height: 24px; box-sizing: border-box; border: 5px solid rgb(10, 171, 234); border-radius: 50%; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <br/>
+                        </section>
+                        <section style="display: flex; flex-direction: row-reverse; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmyeditor chuan_118" data-md5="e9967">
+                            <section style="display: flex; margin-left: -1px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_119" data-md5="e9967">
+                                <section class="xmy-banone wxqq-bg xmy-duanluo chuan_120" style="display: flex; background-color: rgb(118, 223, 255); clip-path: polygon(46% 0px, 98% 54%, 52% 100%, 0px 100%, 0px 0px); padding: 0px 3px 3px 0px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                    <section class="xmy-banone wxqq-bg chuan_121" style="width: 28px; background-color: rgb(10, 171, 234); clip-path: polygon(50% 0px, 100% 50%, 50% 100%, 0px 100%, 0px 0px); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                        <br/>
+                                    </section>
+                                </section>
+                            </section>
+                            <section class="xmy-banone wxqq-bg xmy-duanluo xmyeditor chuan_122" style="background-color: rgb(10, 171, 234); padding: 0px 5px 0px 0px; margin-left: 5px; box-shadow: rgb(118, 223, 255) 0px 3px 0px; margin-bottom: 3px; transform: translate(0px); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                <section class="wxqq-Color chuan_123" style="color: rgb(255, 255, 255); line-height: 1.78em; text-align: left; font-size: 18px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                    <p class="xmybrush chuan_124" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                                        <strong class="chuan_125" data-md5="e9967">&nbsp;&nbsp;如何开展优质服务</strong>
+                                    </p>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <section class="xmyeditor chuan_126" data-id="165075" data-type="lspecial04" style="width: 90%; margin: 0px auto; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+            <section powered-by="xmyeditor.com" class="chuan_127" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                <section class="xmyeditor buchai chuan_128" powered-by="xmyeditor.com" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                    <section class="xmyeditor buchai chuan_129" style="width: 52px; margin: 0px -5px -20px auto; line-height: 2px; transform: translate(0px); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                        <p style="padding:0px;margin:0px;" data-md5="e9967">
+                            <img src="https://web2.xmyeditor.com/sucai-png/20231114/0ef697d166a5fe7ca5729cb1c4b4e82f.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="small_image chuan_130" data-isstyleimage="1" data-md5="e9967"/>
+                        </p>
+                    </section>
+                    <section powered-by="xmyeditor.com" class="xmyeditor chuan_131" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                        <p style="padding:0px;margin:0px;" data-md5="e9967">
+                            <img src="https://web2.xmyeditor.com/sucai-png/20231113/d11cb83a747572d87a574ab703f37d75.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="brushimg chuan_132" data-isstyleimage="1" data-md5="e9967"/>
+                        </p>
+                    </section>
+                    <section style="display: flex; align-items: center; justify-content: center; margin-top: 2.5%; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmyeditor chuan_133" data-md5="e9967">
+                        <section style="flex: 1 1 0%; margin-right: 2.5%; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_134" data-md5="e9967">
+                            <p style="padding:0px;margin:0px;" data-md5="e9967">
+                                <img src="https://web2.xmyeditor.com/sucai-png/20231113/d11cb83a747572d87a574ab703f37d75.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="brushimg chuan_135" data-isstyleimage="1" data-md5="e9967"/>
+                            </p>
+                        </section>
+                        <section style="flex: 1 1 0%; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_136" data-md5="e9967">
+                            <p style="padding:0px;margin:0px;" data-md5="e9967">
+                                <img src="https://web2.xmyeditor.com/sucai-png/20231113/d11cb83a747572d87a574ab703f37d75.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="brushimg chuan_137" data-isstyleimage="1" data-md5="e9967"/>
+                            </p>
+                        </section>
+                    </section>
+                </section>
+                <p style="font-size: 15px;line-height: 20px; padding:0px;margin:0px;" class="chuan_138" data-md5="e9967">
+                    <br class="chuan_139" data-md5="e9967"/>
+                </p>
+                <section powered-by="xmyeditor.com" class="xmyeditor chuan_140" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                    <section class="wxqq-Color chuan_141" style="font-size: 14px; color: rgb(51, 51, 51); line-height: 1.71em; text-align: left; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                        <p class="xmybrush chuan_142" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                            &nbsp; &nbsp; &nbsp; 我院质控办在晁献召院长的指导下，以“项目管理&quot;为抓手，提高医疗服务能力，持续提升患者就医体验，让医疗服务更有温度
+                        </p>
+                        <p class="xmybrush chuan_143" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                            &nbsp; &nbsp; &nbsp; 本次医疗服务能力提升行动全员参与，集思广益，各科室、部门从科室实际情况出发，加强人文关怀，以患者需求为导向，确定体现科室专科技术、对惠者有益的改进项目，把“看好病、少花钱、暖民心、顺民意”的工作做到患者心坎上。
+                        </p>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <p style="font-size: 15px;line-height: 30px; padding:0px;margin:0px;" class="chuan_144" data-md5="e9967">
+            <br class="chuan_145" data-md5="e9967"/>
+        </p>
+        <section class="xmyeditor chuan_146" data-id="165074" data-type="lspecial04" style="width: 90%; margin: 0px auto; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+            <section powered-by="xmyeditor.com" class="chuan_147" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                <section class="xmyeditor buchai chuan_148" powered-by="xmyeditor.com" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                    <section style="display: flex; align-items: center; justify-content: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_149" data-md5="e9967">
+                        <section style="flex: 1 1 0%; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_150" data-md5="e9967">
+                            <p style="padding:0px;margin:0px;" data-md5="e9967">
+                                <img src="https://web2.xmyeditor.com/sucai-png/20231113/9247a4999e1ef9e8572f05d69c595bc7.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="brushimg chuan_151" data-isstyleimage="1" data-md5="e9967"/>
+                            </p>
+                        </section>
+                        <section style="width: 49.8%; margin-left: 2.1%; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmyeditor chuan_152" data-md5="e9967">
+                            <section powered-by="xmyeditor.com" class="xmyeditor chuan_153" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                                <p style="padding:0px;margin:0px;" data-md5="e9967">
+                                    <img src="https://web2.xmyeditor.com/sucai-png/20231113/d11cb83a747572d87a574ab703f37d75.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="brushimg chuan_154" data-isstyleimage="1" data-md5="e9967"/>
+                                </p>
+                            </section>
+                            <section style="margin-top: 3.1%; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmyeditor chuan_155" data-md5="e9967">
+                                <p style="padding:0px;margin:0px;" data-md5="e9967">
+                                    <img src="https://web2.xmyeditor.com/sucai-png/20231113/d11cb83a747572d87a574ab703f37d75.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="brushimg chuan_156" data-isstyleimage="1" data-md5="e9967"/>
+                                </p>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+                <p style="font-size: 15px;line-height: 20px; padding:0px;margin:0px;" class="chuan_157" data-md5="e9967">
+                    <br class="chuan_158" data-md5="e9967"/>
+                </p>
+                <section powered-by="xmyeditor.com" class="xmyeditor chuan_159" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                    <section class="wxqq-Color chuan_160" style="font-size: 14px; color: rgb(51, 51, 51); line-height: 1.71em; text-align: left; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                        <p class="xmybrush chuan_161" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                            &nbsp; &nbsp; &nbsp; 我院质控办在晁献召院长的指导下，以“项目管理&quot;为抓手，提高医疗服务能力，持续提升患者就医体验，让医疗服务更有温度
+                        </p>
+                        <p class="xmybrush chuan_162" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                            &nbsp; &nbsp; &nbsp; 本次医疗服务能力提升行动全员参与，集思广益，各科室、部门从科室实际情况出发，加强人文关怀，以患者需求为导向，确定体现科室专科技术、对惠者有益的改进项目，把“看好病、少花钱、暖民心、顺民意”的工作做到患者心坎上。
+                        </p>
+                    </section>
+                </section>
+                <p style="font-size: 15px;line-height: 20px; padding:0px;margin:0px;" class="chuan_163" data-md5="e9967">
+                    <br class="chuan_164" data-md5="e9967"/>
+                </p>
+                <section class="xmyeditor buchai chuan_165" powered-by="xmyeditor.com" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                    <section style="display: flex; align-items: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_166" data-md5="e9967">
+                        <section class="xmy-banone wxqq-bg chuan_167" style="width: 13px; height: 13px; background-color: rgb(34, 190, 239); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <br/>
+                        </section>
+                        <section class="xmy-banone wxqq-bg chuan_168" style="width: 12px; height: 12px; background-color: rgb(118, 223, 255); border-radius: 50%; margin: 0px 6px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <br/>
+                        </section>
+                        <section class="xmy-banone wxqq-bg chuan_169" style="flex: 1 1 0%; height: 1px; background-color: rgb(34, 190, 239); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <br/>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <p style="font-size: 15px;line-height: 60px; padding:0px;margin:0px;" class="chuan_170" data-md5="e9967">
+            <br class="chuan_171" data-md5="e9967"/>
+        </p>
+        <section class="xmyeditor chuan_172" data-id="165073" data-type="lspecial02" style="width: 90%; margin: 0px auto; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+            <section style="text-align: left; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_173" data-md5="e9967">
+                <section style="display: inline-block; vertical-align: middle; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_174" data-md5="e9967">
+                    <section style="display: flex; align-items: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_175" data-md5="e9967">
+                        <section class="wxqq-borderBottomColor wxqq-borderTopColor wxqq-borderRightColor wxqq-borderLeftColor chuan_176" style="width: 24px; height: 24px; box-sizing: border-box; border: 5px solid rgb(10, 171, 234); border-radius: 50%; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <br/>
+                        </section>
+                        <section style="display: flex; flex-direction: row-reverse; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmyeditor chuan_177" data-md5="e9967">
+                            <section style="display: flex; margin-left: -1px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_178" data-md5="e9967">
+                                <section class="xmy-banone wxqq-bg xmy-duanluo chuan_179" style="display: flex; background-color: rgb(118, 223, 255); clip-path: polygon(46% 0px, 98% 54%, 52% 100%, 0px 100%, 0px 0px); padding: 0px 3px 3px 0px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                    <section class="xmy-banone wxqq-bg chuan_180" style="width: 28px; background-color: rgb(10, 171, 234); clip-path: polygon(50% 0px, 100% 50%, 50% 100%, 0px 100%, 0px 0px); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                        <br/>
+                                    </section>
+                                </section>
+                            </section>
+                            <section class="xmy-banone wxqq-bg xmy-duanluo xmyeditor chuan_181" style="background-color: rgb(10, 171, 234); padding: 0px 5px 0px 0px; margin-left: 5px; box-shadow: rgb(118, 223, 255) 0px 3px 0px; margin-bottom: 3px; transform: translate(0px); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                <section class="wxqq-Color chuan_182" style="color: rgb(255, 255, 255); line-height: 1.78em; text-align: left; font-size: 18px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                    <p class="xmybrush chuan_183" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                                        <strong class="chuan_184" data-md5="e9967">&nbsp;&nbsp;优质服务内涵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                                    </p>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <p style="font-size: 15px;line-height: 25px; padding:0px;margin:0px;" class="chuan_185" data-md5="e9967">
+            <br class="chuan_186" data-md5="e9967"/>
+        </p>
+        <section class="xmyeditor chuan_187" data-id="165079" data-type="lspecial04" style="width: 90%; margin: 0px auto; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+            <section powered-by="xmyeditor.com" class="chuan_188" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                <section class="xmyeditor buchai chuan_189" powered-by="xmyeditor.com" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                    <section class="xmyeditor buchai chuan_190" style="width: 110px; margin: 0px -1px -13px auto; line-height: 2px; transform: translate(0px); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                        <p style="padding:0px;margin:0px;" data-md5="e9967">
+                            <img src="https://web2.xmyeditor.com/sucai-png/20231113/4ac7ac2c33a22d35e1259c3249ce0752.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="small_image chuan_191" data-isstyleimage="1" data-md5="e9967"/>
+                        </p>
+                    </section>
+                    <section powered-by="xmyeditor.com" class="xmyeditor chuan_192" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                        <p style="padding:0px;margin:0px;" data-md5="e9967">
+                            <img src="https://web2.xmyeditor.com/sucai-png/20231113/d11cb83a747572d87a574ab703f37d75.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="brushimg chuan_193" data-isstyleimage="1" data-md5="e9967"/>
+                        </p>
+                    </section>
+                </section>
+                <p style="font-size: 15px;line-height: 15px; padding:0px;margin:0px;" class="chuan_194" data-md5="e9967">
+                    <br class="chuan_195" data-md5="e9967"/>
+                </p>
+                <section powered-by="xmyeditor.com" class="xmyeditor chuan_196" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                    <section class="wxqq-Color chuan_197" style="font-size: 14px; color: rgb(51, 51, 51); line-height: 1.71em; text-align: left; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                        <p class="xmybrush chuan_198" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                            &nbsp; &nbsp; &nbsp; 我院质控办在晁献召院长的指导下，以“项目管理&quot;为抓手，提高医疗服务能力，持续提升患者就医体验，让医疗服务更有温度
+                        </p>
+                        <p class="xmybrush chuan_199" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                            &nbsp; &nbsp; &nbsp; 本次医疗服务能力提升行动全员参与，集思广益，各科室、部门从科室实际情况出发，加强人文关怀，以患者需求为导向，确定体现科室专科技术、对惠者有益的改进项目，把“看好病、少花钱、暖民心、顺民意”的工作做到患者心坎上。
+                        </p>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <p style="font-size: 15px;line-height: 30px; padding:0px;margin:0px;" class="chuan_200" data-md5="e9967">
+            <br class="chuan_201" data-md5="e9967"/>
+        </p>
+        <section class="xmyeditor chuan_202" data-id="165072" data-type="lspecial04" style="width: 90%; margin: 0px auto; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+            <section powered-by="xmyeditor.com" class="chuan_203" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                <section class="xmyeditor buchai chuan_204" powered-by="xmyeditor.com" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                    <section style="display: flex; align-items: center; justify-content: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_205" data-md5="e9967">
+                        <section style="width: 49.8%; margin-right: 2.1%; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmyeditor chuan_206" data-md5="e9967">
+                            <section powered-by="xmyeditor.com" class="xmyeditor chuan_207" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                                <p style="padding:0px;margin:0px;" data-md5="e9967">
+                                    <img src="https://web2.xmyeditor.com/sucai-png/20231113/d11cb83a747572d87a574ab703f37d75.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="brushimg chuan_208" data-isstyleimage="1" data-md5="e9967"/>
+                                </p>
+                            </section>
+                            <section style="margin-top: 3.1%; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmyeditor chuan_209" data-md5="e9967">
+                                <p style="padding:0px;margin:0px;" data-md5="e9967">
+                                    <img src="https://web2.xmyeditor.com/sucai-png/20231113/d11cb83a747572d87a574ab703f37d75.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="brushimg chuan_210" data-isstyleimage="1" data-md5="e9967"/>
+                                </p>
+                            </section>
+                        </section>
+                        <section style="flex: 1 1 0%; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_211" data-md5="e9967">
+                            <p style="padding:0px;margin:0px;" data-md5="e9967">
+                                <img src="https://web2.xmyeditor.com/sucai-png/20231113/9247a4999e1ef9e8572f05d69c595bc7.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="brushimg chuan_212" data-isstyleimage="1" data-md5="e9967"/>
+                            </p>
+                        </section>
+                    </section>
+                </section>
+                <p style="font-size: 15px;line-height: 20px; padding:0px;margin:0px;" class="chuan_213" data-md5="e9967">
+                    <br class="chuan_214" data-md5="e9967"/>
+                </p>
+                <section powered-by="xmyeditor.com" class="xmyeditor chuan_215" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                    <section class="wxqq-Color chuan_216" style="font-size: 14px; color: rgb(51, 51, 51); line-height: 1.71em; text-align: left; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                        <p class="xmybrush chuan_217" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                            &nbsp; &nbsp; &nbsp; 我院质控办在晁献召院长的指导下，以“项目管理&quot;为抓手，提高医疗服务能力，持续提升患者就医体验，让医疗服务更有温度
+                        </p>
+                        <p class="xmybrush chuan_218" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                            &nbsp; &nbsp; &nbsp; 本次医疗服务能力提升行动全员参与，集思广益，各科室、部门从科室实际情况出发，加强人文关怀，以患者需求为导向，确定体现科室专科技术、对惠者有益的改进项目，把“看好病、少花钱、暖民心、顺民意”的工作做到患者心坎上。
+                        </p>
+                    </section>
+                </section>
+                <p style="font-size: 15px;line-height: 20px; padding:0px;margin:0px;" class="chuan_219" data-md5="e9967">
+                    <br class="chuan_220" data-md5="e9967"/>
+                </p>
+                <section class="xmyeditor buchai chuan_221" powered-by="xmyeditor.com" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                    <section style="display: flex; align-items: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_222" data-md5="e9967">
+                        <section class="xmy-banone wxqq-bg chuan_223" style="flex: 1 1 0%; height: 1px; background-color: rgb(34, 190, 239); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <br/>
+                        </section>
+                        <section class="xmy-banone wxqq-bg chuan_224" style="width: 12px; height: 12px; background-color: rgb(118, 223, 255); border-radius: 50%; margin: 0px 6px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <br/>
+                        </section>
+                        <section class="xmy-banone wxqq-bg chuan_225" style="width: 13px; height: 13px; background-color: rgb(34, 190, 239); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <br/>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <p style="font-size: 15px;line-height: 50px; padding:0px;margin:0px;" class="chuan_226" data-md5="e9967">
+            <br class="chuan_227" data-md5="e9967"/>
+        </p>
+        <section style="display: flex; margin-left: 45px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmyeditor chuan_228" data-md5="e9967">
+            <section style="display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_229" data-md5="e9967">
+                <section class="xmy-banone wxqq-bg chuan_230" style="width: 5px; height: 7px; background-color: rgb(118, 209, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                    <br/>
+                </section>
+                <section class="xmy-banone wxqq-bg chuan_231" style="width: 20px; height: 5px; background-color: rgb(118, 209, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                    <br/>
+                </section>
+                <section class="xmy-banone wxqq-bg chuan_232" style="width: 5px; height: 7px; background-color: rgb(118, 209, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                    <br/>
+                </section>
+            </section>
+        </section>
+        <p style="font-size: 7px;line-height: 7px; padding:0px;margin:0px;" class="chuan_233" data-md5="e9967">
+            <br class="chuan_234" data-md5="e9967"/>
+        </p>
+        <section class="xmyeditor chuan_235" data-id="165071" data-type="lspecial04" powered-by="xmyeditor.com" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+            <section style="text-align: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_236" data-md5="e9967">
+                <section style="display: inline-block; vertical-align: middle; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_237" data-md5="e9967">
+                    <section class="xmyeditor buchai chuan_238" style="width: 64px; margin: 0px auto -3px; line-height: 2px; transform: translate(0px); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                        <p style="padding:0px;margin:0px;" data-md5="e9967">
+                            <img src="https://web2.xmyeditor.com/sucai-png/20231113/4ac7ac2c33a22d35e1259c3249ce0752.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="small_image chuan_239" data-isstyleimage="1" data-md5="e9967"/>
+                        </p>
+                    </section>
+                    <section style="display: flex; justify-content: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmyeditor chuan_240" data-md5="e9967">
+                        <section class="xmy-banone wxqq-bg xmy-duanluo chuan_241" style="background-color: rgb(133, 208, 255); padding: 2px 6px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <section class="wxqq-Color chuan_242" style="color: rgb(255, 255, 255); line-height: 24px; text-align: center; font-size: 16px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                <p class="xmybrush chuan_243" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                                    <strong class="chuan_244" data-md5="e9967">END</strong>
+                                </p>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <p style="font-size: 15px;line-height: 60px; padding:0px;margin:0px;" class="chuan_245" data-md5="e9967">
+            <br class="chuan_246" data-md5="e9967"/>
+        </p>
+        <section style="display: flex; margin: 0px 0px -30px 45px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmyeditor chuan_247" data-md5="e9967">
+            <section style="display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_248" data-md5="e9967">
+                <section class="xmy-banone wxqq-bg chuan_249" style="width: 5px; height: 6px; background-color: rgb(204, 243, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                    <br/>
+                </section>
+                <section class="xmy-banone wxqq-bg chuan_250" style="width: 17px; height: 5px; background-color: rgb(204, 243, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                    <br/>
+                </section>
+                <section class="xmy-banone wxqq-bg chuan_251" style="width: 5px; height: 6px; background-color: rgb(204, 243, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                    <br/>
+                </section>
+            </section>
+        </section>
+        <section class="xmyeditor buchai chuan_252" powered-by="xmyeditor.com" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+            <section style="text-align: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_253" data-md5="e9967">
+                <section style="display: inline-block; vertical-align: middle; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_254" data-md5="e9967">
+                    <section powered-by="xmyeditor.com" class="chuan_255" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+                        <section class="wxqq-Color chuan_256" style="color: rgb(51, 51, 51); letter-spacing: 0px; line-height: 1.71em; text-align: center; font-size: 14px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <p class="xmybrush chuan_257" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                                设计师 | 沈小盈
+                            </p>
+                            <p class="xmybrush chuan_258" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                                文案 | 来源于网络
+                            </p>
+                            <p class="xmybrush chuan_259" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                                排版设计 | 沈小盈
+                            </p>
+                            <p class="xmybrush chuan_260" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                                摄影图片 | 来源于网络
+                            </p>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <section style="display: flex; justify-content: flex-end; margin: -25px 50px 0px 0px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_261" data-md5="e9967">
+            <section style="display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_262" data-md5="e9967">
+                <section class="xmy-banone wxqq-bg chuan_263" style="width: 7px; height: 9px; background-color: rgb(204, 243, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                    <br/>
+                </section>
+                <section class="xmy-banone wxqq-bg chuan_264" style="width: 25px; height: 7px; background-color: rgb(204, 243, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                    <br/>
+                </section>
+                <section class="xmy-banone wxqq-bg chuan_265" style="width: 7px; height: 9px; background-color: rgb(204, 243, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                    <br/>
+                </section>
+            </section>
+        </section>
+        <p style="font-size: 15px;line-height: 60px; padding:0px;margin:0px;" class="chuan_266" data-md5="e9967">
+            <br class="chuan_267" data-md5="e9967"/>
+        </p>
+        <section class="xmyeditor chuan_268" data-id="165070" data-type="lspecial02" powered-by="xmyeditor.com" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+            <section style="text-align: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_269" data-md5="e9967">
+                <section style="display: inline-block;vertical-align:middle;" powered-by="xmyeditor.com" class="chuan_270" data-md5="e9967">
+                    <section class="xmy-bacolor wxqq-bg xmy-duanluo chuan_271" style="background-color: rgb(133, 208, 255); padding: 4px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                        <section class="xmy-bacolor wxqq-bg xmy-duanluo chuan_272" style="background-color: rgb(255, 255, 255); padding: 3px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <section class="wxqq-borderBottomColor wxqq-borderTopColor wxqq-borderRightColor wxqq-borderLeftColor chuan_273" style="box-sizing: border-box; border: 1px dashed rgb(133, 208, 255); max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                <section style="display: flex; align-items: center; padding: 8px 0px 8px 5px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmy-duanluo chuan_274" data-md5="e9967">
+                                    <section class="xmy-banone wxqq-bg xmy-duanluo xmyeditor chuan_275" style="background-color: rgb(133, 208, 255); padding: 3px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                        <section style="width: 85px; transform: translate(0px); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_276" data-md5="e9967">
+                                            <p style="padding:0px;margin:0px;" data-md5="e9967">
+                                                <img src="https://web2.xmyeditor.com/static/public/ewm.jpg" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="brushimg userewm chuan_277" data-isstyleimage="1" data-md5="e9967"/>
+                                            </p>
+                                        </section>
+                                    </section>
+                                    <section style="flex: 1 1 0%; margin-left: 15px; transform: translate(0px); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_278" data-md5="e9967">
+                                        <section class="xmy-bacolor wxqq-bg xmy-duanluo chuan_279" style="flex: 1 1 0%; background-color: rgb(133, 208, 255); padding: 0px 3px 0px 0px; transform: translate(5px, 0px); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                            <section class="wxqq-Color chuan_280" style="color: rgb(255, 255, 255); line-height: 1.86em; text-align: center; font-size: 14px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                                <p class="xmybrush chuan_281" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                                                    扫码关注我们
+                                                </p>
+                                            </section>
+                                        </section>
+                                        <section style="padding-left: 5px; padding-right: 8px; margin-top: 8px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmy-duanluo xmyeditor chuan_282" data-md5="e9967">
+                                            <section class="wxqq-Color chuan_283" style="color: rgb(66, 66, 66); line-height: 1.43em; text-align: left; font-size: 14px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                                                <p class="xmybrush chuan_284" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                                                    小墨鹰编辑器
+                                                </p>
+                                                <p class="xmybrush chuan_285" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                                                    获取更多精彩资讯
+                                                </p>
+                                            </section>
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <p style="font-size: 15px;line-height: 20px; padding:0px;margin:0px;" class="chuan_286" data-md5="e9967">
+            <br class="chuan_287" data-md5="e9967"/>
+        </p>
+        <section style="display: flex; justify-content: flex-end; margin: 0px 40px 0px 0px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="xmyeditor chuan_288" data-md5="e9967">
+            <section style="display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_289" data-md5="e9967">
+                <section class="xmy-banone wxqq-bg chuan_290" style="width: 5px; height: 7px; background-color: rgb(204, 243, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                    <br/>
+                </section>
+                <section class="xmy-banone wxqq-bg chuan_291" style="width: 20px; height: 5px; background-color: rgb(204, 243, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                    <br/>
+                </section>
+                <section class="xmy-banone wxqq-bg chuan_292" style="width: 5px; height: 7px; background-color: rgb(204, 243, 255); box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                    <br/>
+                </section>
+            </section>
+        </section>
+        <p style="font-size: 15px;line-height: 30px; padding:0px;margin:0px;" class="chuan_293" data-md5="e9967">
+            <br class="chuan_294" data-md5="e9967"/>
+        </p>
+        <section class="xmyeditor buchai chuan_295" data-type="lspecial02" powered-by="xmyeditor.com" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+            <section style="text-align: center; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_296" data-md5="e9967">
+                <section style="display: inline-block; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" class="chuan_297" data-md5="e9967">
+                    <section style="box-sizing: border-box; border: 1px dashed rgb(51, 51, 51); padding: 10px; border-radius: 8px; transform: translate(0px); max-width: 100% !important;" powered-by="xmyeditor.com" class="xmy-duanluo chuan_298" data-md5="e9967">
+                        <section class="wxqq-Color xmyeditor chuan_299" style="color: rgb(51, 51, 51); font-size: 14px; line-height: 30px; text-align: left; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <p class="xmybrush chuan_300" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                                使用说明:
+                            </p>
+                        </section>
+                        <section class="wxqq-Color xmyeditor chuan_301" style="color: rgb(51, 51, 51); line-height: 22px; text-align: left; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                            <p class="xmybrush chuan_302" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                                摄影图片/CCO无版权图（请替换）
+                            </p>
+                            <p class="xmybrush chuan_303" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                                头部插画/小墨鹰编辑器原创（会员可商用）
+                            </p>
+                            <p class="xmybrush chuan_304" style="padding: 0px;margin: 0px;" data-md5="e9967">
+                                样式图片/小墨鹰编辑器原创（会员可商用）
+                            </p>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <section class="xmyeditor buchai chuan_305" powered-by="xmyeditor.com" data-md5="e9967" style="box-sizing: border-box; max-width: 100% !important;">
+            <section class="xmy-banone wxqq-bg chuan_306" style="background: linear-gradient(to top, #82cfff 20%, transparent 100%);margin-top: -40px;" powered-by="xmyeditor.com" data-md5="e9967">
+                <p style="font-size: 15px;line-height: 30px; padding:0px;margin:0px;" class="chuan_307" data-md5="e9967">
+                    <br class="chuan_308" data-md5="e9967"/>
+                </p>
+                <section class="xmyeditor buchai chuan_309" style="width: 40px; margin: 0px 0px 0px 20px; line-height: 2px; box-sizing: border-box; max-width: 100% !important;" powered-by="xmyeditor.com" data-md5="e9967">
+                    <p style="padding:0px;margin:0px;" data-md5="e9967">
+                        <img src="https://web2.xmyeditor.com/sucai-png/20231113/4115f3beb02f20089e8b63be2259b10d.png" style="vertical-align: middle; width: 100%; max-width: 100% !important;" class="small_image chuan_310" data-isstyleimage="1" data-md5="e9967"/>
+                    </p>
+                </section>
+                <p style="font-size: 15px;line-height: 50px; padding:0px;margin:0px;" class="chuan_311" data-md5="e9967">
+                    <br class="chuan_312" data-md5="e9967"/>
+                </p>
+            </section>
+        </section>
+    </section>
+</section>
+<section class="text-xmyeditor" style="box-sizing: border-box; max-width: 100% !important;">
+    <p>
+        <br/>
+    </p>
+</section>
