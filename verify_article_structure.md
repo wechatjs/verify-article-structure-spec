@@ -795,11 +795,10 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 
 - `low-contrast`：跳过「文字与背景色对比度太低」违规检测
 - `text-bg-gradient`：跳过「文字背景尽量不要使用渐变」违规检测
-- `whitelist`：跳过「注意，此处包含白名单属性，会跳过darkmode算法转换」违规检测
 
 ```html
-<!-- 该 section 将跳过 low-contrast、text-bg-gradient、whitelist 违规检测 -->
-<section data-ignore-dm="low-contrast text-bg-gradient whitelist">...</section>
+<!-- 该 section 将跳过 low-contrast、text-bg-gradient 违规检测 -->
+<section data-ignore-dm="low-contrast text-bg-gradient">...</section>
 ```
 
 **生效范围**
