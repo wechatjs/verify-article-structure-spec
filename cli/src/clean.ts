@@ -5,6 +5,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { runClean, runCleanWithVerify } from './clean-runner.js';
 
 const HELP = `文章冗余嵌套清理 CLI（jsdom 解析 → deleteNestNode 真删 → 序列化输出）
@@ -68,29 +69,29 @@ async function readHtml(args: ParsedArgs): Promise<string> {
   return fs.readFileSync(filePath, 'utf8');
 }
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
-  if (args.help) {
+async function main(args: string[]) {
+  const parsed = parseArgs(args);
+  if (parsed.help) {
     process.stdout.write(HELP);
     process.exit(0);
   }
 
   let html: string;
   try {
-    html = await readHtml(args);
+    html = await readHtml(parsed);
   } catch (e) {
     process.stderr.write(`✗ 读取来源失败：${(e as Error).message}\n`);
     process.exit(2);
   }
 
   try {
-    if (args.verify) {
+    if (parsed.verify) {
       const { cleanedHtml, before, after } = await runCleanWithVerify(html);
       process.stderr.write(`nestNodes: ${before} → ${after}\n`);
-      writeOutput(args, cleanedHtml);
+      writeOutput(parsed, cleanedHtml);
     } else {
       const cleanedHtml = runClean(html);
-      writeOutput(args, cleanedHtml);
+      writeOutput(parsed, cleanedHtml);
     }
     process.exit(0);
   } catch (e) {
@@ -110,7 +111,21 @@ function writeOutput(args: ParsedArgs, cleanedHtml: string): void {
   }
 }
 
-main().catch((e) => {
-  process.stderr.write(`✗ 未捕获异常：${(e as Error)?.stack || e}\n`);
-  process.exit(2);
-});
+/**
+ * Programmatic dedupe entry: parse the given args and run the clean pipeline.
+ * Exported so the bin dispatcher (cli.ts) and tests can call it. Internally
+ * calls process.exit on completion (0 success / 2 error).
+ */
+export async function runDedupe(args: string[]): Promise<void> {
+  await main(args);
+}
+
+// Run directly via `tsx src/clean.ts ...` (tests / legacy `pnpm dedupe`), but
+// stay inert when imported by the dispatcher (cli.ts). The ESM direct-execute
+// guard compares the current module URL against the entry script path.
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main(process.argv.slice(2)).catch((e) => {
+    process.stderr.write(`✗ 未捕获异常：${(e as Error)?.stack || e}\n`);
+    process.exit(2);
+  });
+}

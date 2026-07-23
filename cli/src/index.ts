@@ -3,6 +3,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { launchBrowser, runVerify } from './browser-runner.js';
 import { formatHuman, formatJson } from './result-formatter.js';
 
@@ -69,9 +70,9 @@ async function readHtml(args: ParsedArgs): Promise<{ html: string; source: strin
   return { html, source: args.file };
 }
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
-  if (args.help) {
+async function main(args: string[]) {
+  const parsed = parseArgs(args);
+  if (parsed.help) {
     process.stdout.write(HELP);
     process.exit(0);
   }
@@ -79,16 +80,16 @@ async function main() {
   let html: string;
   let source: string;
   try {
-    ({ html, source } = await readHtml(args));
+    ({ html, source } = await readHtml(parsed));
   } catch (e) {
     process.stderr.write(`✗ 读取来源失败：${(e as Error).message}\n`);
     process.exit(2);
   }
 
-  const { browser, page } = await launchBrowser({ executablePath: args.executablePath });
+  const { browser, page } = await launchBrowser({ executablePath: parsed.executablePath });
   try {
     const result = await runVerify(page, html);
-    const out = args.json ? formatJson(result, source) : formatHuman(result, source);
+    const out = parsed.json ? formatJson(result, source) : formatHuman(result, source);
     process.stdout.write(out + '\n');
     process.exit(result.isValid ? 0 : 1);
   } catch (e) {
@@ -99,7 +100,21 @@ async function main() {
   }
 }
 
-main().catch((e) => {
-  process.stderr.write(`✗ 未捕获异常：${(e as Error)?.stack || e}\n`);
-  process.exit(2);
-});
+/**
+ * Programmatic check entry: parse the given args and run full-rule detection.
+ * Exported so the bin dispatcher (cli.ts) and tests can call it. Internally
+ * calls process.exit on completion (0 clean / 1 violations / 2 error).
+ */
+export async function runCheck(args: string[]): Promise<void> {
+  await main(args);
+}
+
+// Run directly via `tsx src/index.ts ...` (tests / legacy `pnpm check`), but
+// stay inert when imported by the dispatcher (cli.ts). The ESM direct-execute
+// guard compares the current module URL against the entry script path.
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main(process.argv.slice(2)).catch((e) => {
+    process.stderr.write(`✗ 未捕获异常：${(e as Error)?.stack || e}\n`);
+    process.exit(2);
+  });
+}

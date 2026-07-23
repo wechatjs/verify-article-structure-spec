@@ -1,18 +1,31 @@
 {
-  "name": "verify-article-structure-cli",
+  "name": "@tencent/verify-article-structure",
   "version": "0.1.0",
-  "private": true,
-  "description": "文章结构检测 CLI(本地跑全规则检测 + 清理冗余嵌套;puppeteer 真实浏览器)",
+  "private": false,
+  "description": "Article structure & style checker CLI — full-rule detection via a real Puppeteer browser, plus redundant-nesting dedupe cleanup.",
   "type": "module",
   "license": "MIT",
+  "main": "dist/src/cli.js",
+  "bin": {
+    "verify-article-structure": "dist/src/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://mirrors.tencent.com/npm/"
+  },
   "scripts": {
     "check": "tsx src/index.ts",
     "probe": "tsx src/probe.ts",
     "dedupe": "tsx src/clean.ts",
+    "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
     "test:behavior": "vitest run tests/behavior/regression.test.ts",
     "test:e2e": "vitest run tests/cli.test.ts",
-    "test": "vitest run"
+    "test": "vitest run",
+    "prepublishOnly": "pnpm build && pnpm test"
   },
   "dependencies": {
     "esbuild": "^0.21.5",
