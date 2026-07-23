@@ -165,6 +165,16 @@ const badcases = [
     expectInvalidKeys: ['nestNodes'],
     desc: '#2.1 嵌套层级 - 同标签同样式连续嵌套超过限制层数',
   },
+  {
+    // Synthetic minimal repro for issue #5 (https://github.com/wechatjs/verify-article-structure-spec/issues/5):
+    // 16 same-tag same-style <span> layers → nestNodes violation that `dedupe` cleans to 0.
+    // Fixture is local (no network fetch); use it to demo the check→dedupe→recheck flow.
+    id: 'issue5-redundant-nesting',
+    relatedRule: 'nest-level',
+    expectInvalidKeys: ['nestNodes'],
+    desc: '#2.1 嵌套层级 - 冗余嵌套（dedupe 可清理，issue #5 用例）',
+    requireLocalTpl: true,
+  },
 
   // ===== pre =====
   {

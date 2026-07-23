@@ -114,7 +114,7 @@ function validate(articleBody: Node, opts?: DarkmodeRunOptions): DarkmodeViolati
       violations.push({ dom: el, key: 'darkmode-no-gradient', violateRules: '文字背景尽量不要使用渐变（参考文档#4.1.2如非必要，文字背景尽量不要使用渐变）' });
     }
 
-    if (!ignoreRules.includes('whitelist') && whitelistAttrs.some(attr => el.hasAttribute(attr))) {
+    if (whitelistAttrs.some(attr => el.hasAttribute(attr))) {
       violations.push({ dom: el, key: 'darkmode-whitelist', violateRules: '注意，此处包含白名单属性，会跳过darkmode算法转换（参考文档#4.5.1 指定节点跳过算法转换）' });
     }
   }
