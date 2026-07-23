@@ -1,6 +1,6 @@
 {
   "name": "@tencent/verify-article-structure",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "description": "Article structure & style checker CLI — full-rule detection via a real Puppeteer browser, plus redundant-nesting dedupe cleanup.",
   "type": "module",
