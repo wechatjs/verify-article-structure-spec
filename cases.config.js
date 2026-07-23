@@ -191,6 +191,22 @@ const badcases = [
     expectInvalidKeys: ['pre'],
     desc: '#1.8 pre - 使用 <pre> 包裹正文导致移动端文字不换行',
   },
+
+  // ===== darkmode =====
+  {
+    id: 'issue12-darkmode-low-contrast',
+    relatedRule: 'darkmode-low-contrast',
+    expectInvalidKeys: ['darkmode-low-contrast'],
+    desc: '#4.1.1 文字与背景色对比度太低',
+    requireLocalTpl: true,
+  },
+  {
+    id: 'issue8-darkmode-no-gradient',
+    relatedRule: 'darkmode-no-gradient',
+    expectInvalidKeys: ['darkmode-no-gradient'],
+    desc: '#4.1.2 文字背景尽量不要使用渐变',
+    requireLocalTpl: true,
+  },
 ];
 
 // const badcases = [

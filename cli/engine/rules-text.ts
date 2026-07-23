@@ -15,7 +15,9 @@ export const propertyRules: Record<string, string> = {
   'redundant-node': '当前内容存在大量空白子节点（子节点数 > 20 且空节点数 > 15），这些冗余空节点会被编辑器自动删除，请核实是否符合预期（参考文档 #3.4 冗余空节点限制）',
   'node-leaf': '组件容器（nodeleaf）内部结构可能不符合规范，该容器仅允许包含单个图片、视频或组件元素，请核实（参考文档 #3.3 section[nodeleaf] 节点规范）',
   'span-leaf': '行内容器（span[leaf]）中检测到块级子元素，该容器仅允许包含文本、链接及行内图片，请核实结构是否正确（参考文档 #3.2 span[leaf] 节点规范）',
-  'pre': '当前使用了 pre 标签（预格式化文本），内容不会自动换行，移动端可能出现水平溢出，请核实显示是否正常（参考文档 #2.8 pre 标签）'
+  'pre': '当前使用了 pre 标签（预格式化文本），内容不会自动换行，移动端可能出现水平溢出，请核实显示是否正常（参考文档 #2.8 pre 标签）',
+  'darkmode-low-contrast': '文字与背景色对比度太低（参考文档#4.1.1使用对比度适中的颜色）',
+  'darkmode-no-gradient': '文字背景尽量不要使用渐变（参考文档#4.1.2如非必要，文字背景尽量不要使用渐变）'
 };
 
 export const WIDTH_DETAIL_RULES: Record<string, string> = {

@@ -31,12 +31,28 @@ const DARK_COLOR_ATTR = /^data-darkmode-color-/;
 const DARK_BG_ATTR = /^data-darkmode-bgcolor-/;
 const DARK_ORIG_BG_ATTR = /^data-darkmode-original-bgcolor-/;
 const DARK_BGIMAGE_ATTR = /^data-darkmode-bgimage-/;
+// Gradient backgrounds are marked by mp-darkmode with the bggradient-mix-color
+// attr (NOT bgimage, which only covers url() images) — mirror upstream's
+// text-bg-gradient check keyed on this marker.
+const DARK_BGGRADIENT_ATTR = /^data-darkmode-bggradient-mix-color-/;
 const HAS_URL = /url\([^)]*\)/i;
 
+// mp-darkmode stamps its per-node markers as JS expando PROPERTIES on the DOM
+// object (e.g. `dom['data-darkmode-color-<RANDOM>'] = <Color>`), NOT as HTML
+// attributes — so we must look at own-property keys, not `el.attributes`. Values
+// may be Color objects; stringify them to a css-parseable color string.
 function readDarkAttr(el: HTMLElement, re: RegExp): string | null {
   for (let i = 0; i < el.attributes.length; i++) {
     const attr = el.attributes[i];
     if (re.test(attr.name)) return attr.value;
+  }
+  for (const key of Object.keys(el as any)) {
+    if (re.test(key)) {
+      const val = (el as any)[key];
+      if (val == null) return null;
+      if (val === true) return 'true';
+      return String(val);
+    }
   }
   return null;
 }
@@ -103,14 +119,14 @@ function validate(articleBody: Node, opts?: DarkmodeRunOptions): DarkmodeViolati
     );
     if (!ignoreRules.includes('low-contrast') && hasText) {
       const textColor = readDarkAttr(el, DARK_COLOR_ATTR) || defaultDarkTextColor;
-      const bgColor = readDarkAttr(el, DARK_ORIG_BG_ATTR) || readDarkAttr(el, DARK_BG_ATTR) || defaultDarkBgColor;
+      const bgColor = readDarkAttr(el, DARK_BG_ATTR) || readDarkAttr(el, DARK_ORIG_BG_ATTR) || defaultDarkBgColor;
       const contrast = (Darkmode as any).getContrast ? (Darkmode as any).getContrast(textColor, bgColor) : 1;
       if (contrast < minContrast) {
         violations.push({ dom: el, key: 'darkmode-low-contrast', violateRules: '文字与背景色对比度太低（参考文档#4.1.1使用对比度适中的颜色）' });
       }
     }
 
-    if (!ignoreRules.includes('text-bg-gradient') && readDarkAttr(el, DARK_BGIMAGE_ATTR)) {
+    if (!ignoreRules.includes('text-bg-gradient') && readDarkAttr(el, DARK_BGGRADIENT_ATTR)) {
       violations.push({ dom: el, key: 'darkmode-no-gradient', violateRules: '文字背景尽量不要使用渐变（参考文档#4.1.2如非必要，文字背景尽量不要使用渐变）' });
     }
 

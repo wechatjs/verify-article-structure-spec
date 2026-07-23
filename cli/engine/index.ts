@@ -35,9 +35,19 @@ function resolveParagraphIndex(node: any, paragraphList: any[]): number {
 
 async function verifyArticleStructure(articleBody: any, opts: VerifyOpts = {}): Promise<VerifyResult> {
   const nodes = articleBody.querySelectorAll('*');
+  // mp-darkmode's conversion resolves backgrounds/gradients via the live render
+  // tree (getComputedStyle), so the node must be attached to the document during
+  // the darkmode stage — otherwise gradient/contrast markers are never stamped
+  // and darkmode rules silently produce nothing. Attach only for this stage, then
+  // detach again so the subsequent layout measurement keeps its detached sandbox
+  // (attaching there caused false positives — see browser-runner.ts).
+  const doc = typeof document !== 'undefined' ? document : null;
+  const detached = doc && doc.body && !articleBody.parentNode;
+  if (detached) doc!.body.appendChild(articleBody);
   Darkmode.reset(nodes, DARKMODE_RUN_OPTS);
   Darkmode.run(nodes, DARKMODE_RUN_OPTS);
   const darkmodeResult = Darkmode.validate(articleBody, DARKMODE_RUN_OPTS);
+  if (detached) doc!.body.removeChild(articleBody);
 
   const paragraphList = getParaList(articleBody, {
     isMarkNode(node: any) { return domUtils.isMarkNode(node); },
