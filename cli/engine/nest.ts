@@ -1,7 +1,7 @@
-// Nested-level detection via the editor's deleteNestNode dry-run (isTest) mode.
-// Aligned with web-webapp-common/js/editor_filter.js (MAX_STYLE_LEVEL = 15 + new
-// unwrap simulation). Debug console.log stripped for cli style; the data-nest-level
-// attribute annotation is kept (detection semantic, used to locate nesting depth).
+// Nested-level detection via the deleteNestNode dry-run (isTest) mode.
+// Threshold MAX_STYLE_LEVEL = 15 with the unwrap simulation. Debug console.log
+// stripped for cli style; the data-nest-level attribute annotation is kept
+// (detection semantic, used to locate nesting depth).
 
 import { domUtils } from './dom.js';
 
