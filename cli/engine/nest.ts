@@ -27,12 +27,10 @@ const getElementChildren = (node: any): any[] => {
 };
 
 function deleteNestNode({ root, isNeedDelete = false, isTest = false }: DeleteNestNodeOpts): any[] | undefined {
-  // Real-delete (isNeedDelete) mutates structure via plain assignment:
-  // currentNode.parentNode = temp; children[0] = currentNode; etc. These only
-  // take effect on a mutable AST (parentNode/children are plain writable props).
-  // On a live DOM they are no-ops (parentNode is readonly, children is a live
-  // HTMLCollection). Callers MUST pass a mutable AST root, not a DOM node, for
-  // isNeedDelete to actually delete. (dedupe does this via domToAst.)
+  // Real-delete (isNeedDelete) supports both real DOM and mutable AST: when a
+  // node exposes replaceChild (real DOM) it uses the standard DOM API; otherwise
+  // it mutates the AST children array. dedupe passes a mutable AST (domToAst),
+  // but the engine may also run on a real DOM root.
   const MAX_STYLE_LEVEL = 15;
   const hasNestedNode: any[] = [];
   // isTest only: record one "will-be-deleted" representative per nested problem node.
@@ -130,10 +128,17 @@ function deleteNestNode({ root, isNeedDelete = false, isTest = false }: DeleteNe
           } else {
             if (!domUtils.specialTags.test(nodeTagName)) {
               if (!isTest) {
-                // real delete: upward replace
-                const temp = currentNode.parentNode.parentNode;
-                currentNode.parentNode = temp;
-                currentNode.parentNode.children[0] = currentNode;
+                // real delete: upward replace (drop the wrapping parent layer)
+                const deletedNode = currentNode.parentNode;
+                const grandParentNode = currentNode.parentNode.parentNode;
+                if (grandParentNode.replaceChild) {
+                  // real DOM: standard DOM API
+                  grandParentNode.replaceChild(currentNode, deletedNode);
+                } else {
+                  // AST: mutate the children array (indexOf, not [0])
+                  currentNode.parentNode = grandParentNode;
+                  grandParentNode.children[grandParentNode.children.indexOf(deletedNode)] = currentNode;
+                }
               } else {
                 // isTest: one will-be-deleted node is enough
                 pushWillBeDeleted(currentNode.parentNode);
@@ -181,10 +186,16 @@ function deleteNestNode({ root, isNeedDelete = false, isTest = false }: DeleteNe
                 // skip special tags when deleting
                 if (!domUtils.specialTags.test(nodeTagName)) {
                   if (!isTest) {
-                    // real delete: downward replace
+                    // real delete: downward replace (lift child's children)
                     const tmp = childChildren[0];
-                    downNode.children[downNode.children.indexOf(child)] = tmp;
-                    tmp.parentNode = downNode;
+                    if (downNode.replaceChild) {
+                      // real DOM: standard DOM API
+                      downNode.replaceChild(tmp, child);
+                    } else {
+                      // AST: mutate the children array
+                      downNode.children[downNode.children.indexOf(child)] = tmp;
+                      tmp.parentNode = downNode;
+                    }
                     stack.push(downNode);
                   } else {
                     // isTest: record will-be-deleted node
