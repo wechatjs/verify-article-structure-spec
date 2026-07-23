@@ -6,9 +6,9 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "start": "tsx src/index.ts",
+    "check": "tsx src/index.ts",
     "probe": "tsx src/probe.ts",
-    "clean": "tsx src/clean.ts",
+    "dedupe": "tsx src/clean.ts",
     "typecheck": "tsc --noEmit",
     "test:behavior": "vitest run tests/behavior/regression.test.ts",
     "test:e2e": "vitest run tests/cli.test.ts",

@@ -13,7 +13,7 @@
 | 内容 | 文件 | 作用 |
 |---|---|---|
 | 📜 **规范文档** | [`verify_article_structure.md`](./verify_article_structure.md) | 所有检测规则的权威定义（章节号、阈值、判定逻辑） |
-| 🖥️ **本地检测 CLI** | [`cli/`](./cli/) | 本地跑全规则检测（`editor:check`）+ 清理冗余嵌套（`editor:clean`），puppeteer 真实浏览器 |
+| 🖥️ **本地检测 CLI** | [`cli/`](./cli/) | 本地跑全规则检测（`check`）+ 清理冗余嵌套（`dedupe`），puppeteer 真实浏览器 |
 | 🔌 **在线校验接口** | [`verify_api_usage.md`](./verify_api_usage.md) | 文章结构校验接口的请求方式、参数、响应结构与调用示例 |
 | 🧪 **测试用例** | [`cases.config.js`](./cases.config.js) | 违规用例（badcases）+ 合规反向用例（goodcases）|
 
@@ -25,8 +25,8 @@
 
 `cli/` 子目录是一个**自包含**的检测 CLI（TypeScript + puppeteer），可独立安装运行，复用本仓的 `cases.config.js` 与 `__tests__/fixtures/` 作为回归用例。
 
-- **`editor:check`（`pnpm start`）**：对本地 HTML 文件或线上文章 URL 跑引擎**全规则**校验（含布局类规则 width 差异 / height-zero / line-height 实测叠字等），输出违规结果。
-- **`editor:clean`（`pnpm clean`）**：`editor:check` 的姊妹能力，把检测出的冗余嵌套层真删掉，输出清理后的 HTML，形成「检测 → 清理 → 复测清零」闭环。
+- **`check`（`pnpm check`）**：对本地 HTML 文件或线上文章 URL 跑引擎**全规则**校验（含布局类规则 width 差异 / height-zero / line-height 实测叠字等），输出违规结果。
+- **`dedupe`（`pnpm dedupe`）**：`check` 的姊妹能力，把检测出的冗余嵌套层真删掉，输出清理后的 HTML，形成「检测 → 清理 → 复测清零」闭环。
 
 ### 安装
 
@@ -39,7 +39,7 @@ puppeteer 需要 Chromium：`pnpm install` 时会自动下载到 `~/.cache/puppe
 
 ```bash
 PUPPETEER_SKIP_DOWNLOAD=true pnpm install --ignore-workspace
-PUPPETEER_EXECUTABLE_PATH=/path/to/chrome pnpm start ./article.html
+PUPPETEER_EXECUTABLE_PATH=/path/to/chrome pnpm check ./article.html
 ```
 
 ### 快速上手
@@ -48,16 +48,16 @@ PUPPETEER_EXECUTABLE_PATH=/path/to/chrome pnpm start ./article.html
 cd cli
 
 # 检测本地 HTML 文件
-pnpm start ./article.html
+pnpm check ./article.html
 
 # 检测线上文章 URL
-pnpm start --url=https://mp.weixin.qq.com/s/xxxx
+pnpm check --url=https://mp.weixin.qq.com/s/xxxx
 
 # 输出结构化 JSON
-pnpm start ./article.html --json
+pnpm check ./article.html --json
 
 # 清理冗余嵌套，输出清理后的 HTML
-pnpm clean ./article.html --out=./cleaned.html
+pnpm dedupe ./article.html --out=./cleaned.html
 ```
 
 更多用法、参数、退出码与架构说明见 [`cli/README.md`](./cli/README.md)。
@@ -143,7 +143,7 @@ verify-article-structure-spec/
 ├── verify_article_structure.md    ← 📜 规范文档（权威源）
 ├── verify_api_usage.md            ← 🔌 在线校验接口使用说明
 ├── cases.config.js                ← 🧪 测试用例配置
-├── cli/                           ← 🖥️ 本地检测 CLI（editor:check 检测 + editor:clean 清理冗余嵌套）
+├── cli/                           ← 🖥️ 本地检测 CLI（check 检测 + dedupe 清理冗余嵌套）
 ├── __tests__/
 │   └── fixtures/                  ← 📂 文章 HTML 缓存
 │       ├── badcases/              ← 违规用例文章

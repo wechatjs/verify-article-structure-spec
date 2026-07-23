@@ -1,4 +1,4 @@
-// CLI entry for editor:clean: parse args -> read HTML -> jsdom clean pipeline
+// CLI entry for dedupe: parse args -> read HTML -> jsdom clean pipeline
 // -> output cleaned HTML (stdout / --out), optionally --verify prints before/after
 // nestNodes to stderr. HELP text and error messages stay Chinese (clean.test.ts
 // asserts on them). Cleaned HTML always goes to stdout so it can be redirected.
@@ -11,8 +11,8 @@ import { runClean, runCleanWithVerify } from './clean-runner.js';
 const HELP = `文章冗余嵌套清理 CLI（jsdom 解析 → deleteNestNode 真删 → 序列化输出）
 
 用法:
-  pnpm editor:clean <file.html> [options]
-  pnpm editor:clean --url=<url> [options]
+  pnpm dedupe <file.html> [options]
+  pnpm dedupe --url=<url> [options]
 
 位置参数:
   file                HTML 文件路径（必填，除非用 --url）

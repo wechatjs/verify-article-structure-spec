@@ -1,5 +1,5 @@
 /**
- * clean.test.ts — E2E test for editor:clean CLI
+ * clean.test.ts — E2E test for dedupe CLI
  *
  * Runs the real CLI as a subprocess (tsx src/clean.ts), no engine/jsdom mock —
  * same "drive the surface" approach as cli.test.ts (surface = CLI subprocess,
@@ -59,7 +59,7 @@ function countTags(html: string, tag: string): number {
   return (html.match(new RegExp(`<${tag}[\\s/>]`, 'g')) || []).length;
 }
 
-describe('editor:clean CLI (E2E)', () => {
+describe('dedupe CLI (E2E)', () => {
   const nestedPath = writeFixture('clean-nested.html', nestedSpans(16));
   const cleanPath = writeFixture('clean-clean.html', '<p>普通段落，无冗余嵌套。</p>');
   // Clipped fragment echoing issue #5's redundant-nesting shape: a deep span
@@ -109,10 +109,10 @@ describe('editor:clean CLI (E2E)', () => {
     expect(fileContent).toBe(stdoutClean);
   });
 
-  test('-h / --help → 退出码 0，stdout 含 editor:clean 与 --verify', () => {
+  test('-h / --help → 退出码 0，stdout 含 dedupe 与 --verify', () => {
     const r = runClean(['--help']);
     expect(r.code).toBe(0);
-    expect(r.stdout).toContain('editor:clean');
+    expect(r.stdout).toContain('pnpm dedupe');
     expect(r.stdout).toContain('--verify');
   });
 

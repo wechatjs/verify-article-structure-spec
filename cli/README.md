@@ -1,6 +1,6 @@
 # verify-article-structure-cli
 
-基于 **puppeteer 真实浏览器**的文章结构检测 CLI，对指定 HTML 文件或线上文章 URL 跑引擎**全规则**校验（含布局类规则 `height-nodisplay` / `width` 差异 / `height-zero` / `line-height` 实测叠字 / `checkChildHeightOverflow`），并输出违规结果；`editor:clean` 还能清理冗余嵌套。
+基于 **puppeteer 真实浏览器**的文章结构检测 CLI，对指定 HTML 文件或线上文章 URL 跑引擎**全规则**校验（含布局类规则 `height-nodisplay` / `width` 差异 / `height-zero` / `line-height` 实测叠字 / `checkChildHeightOverflow`），并输出违规结果；`dedupe` 还能清理冗余嵌套。
 
 本子目录**自包含**：自带 `package.json` 显式声明 `puppeteer` / `esbuild` / `tsx` 等依赖，可独立 `pnpm install`。它就位于 `verify-article-structure-spec` 仓内，直接复用本仓的 `cases.config.js` 与 `__tests__/fixtures/` 作为回归用例。
 
@@ -26,43 +26,43 @@ pnpm install --ignore-workspace   # 或 npm install
 PUPPETEER_SKIP_DOWNLOAD=true pnpm install
 
 # 2. 指定系统 Chromium 路径运行
-PUPPETEER_EXECUTABLE_PATH=/path/to/chrome pnpm start ./article.html
+PUPPETEER_EXECUTABLE_PATH=/path/to/chrome pnpm check ./article.html
 ```
 
 `browser-runner.ts` 会读取 `process.env.PUPPETEER_EXECUTABLE_PATH` 作为 `executablePath`（未设置则用 puppeteer 自带 Chromium）。
 
 ## 使用
 
-在 `cli/` 目录执行（`pnpm start` = `editor:check` 检测，`pnpm clean` = `editor:clean` 清理冗余嵌套）：
+在 `cli/` 目录执行（`pnpm check` = `check` 检测，`pnpm dedupe` = `dedupe` 清理冗余嵌套）：
 
 ```bash
 cd cli
 
 # 检测本地 HTML 文件
-pnpm start ./path/to/article.html
+pnpm check ./path/to/article.html
 
 # 检测线上文章 URL（截取 #js_content innerHTML）
-pnpm start --url=https://mp.weixin.qq.com/s/xxxx
+pnpm check --url=https://mp.weixin.qq.com/s/xxxx
 
 # 输出结构化 JSON
-pnpm start ./article.html --json
+pnpm check ./article.html --json
 
 # 清理冗余嵌套并输出清理后的 HTML
-pnpm clean ./article.html --out=./cleaned.html
+pnpm dedupe ./article.html --out=./cleaned.html
 ```
 
 也可以用 tsx 直接跑源码：
 
 ```bash
 cd cli
-pnpm start ./article.html
-pnpm start --url=https://mp.weixin.qq.com/s/xxxx --json
+pnpm check ./article.html
+pnpm check --url=https://mp.weixin.qq.com/s/xxxx --json
 ```
 
 ### 参数
 
 ```
-Usage: pnpm start <file.html> [options]   # editor:check
+Usage: pnpm check <file.html> [options]   # check
 
 位置参数：
   file              HTML 文件路径（必填，除非用 --url）
@@ -82,21 +82,21 @@ Usage: pnpm start <file.html> [options]   # editor:check
 | 检测到违规 | 1 |
 | 执行异常（puppeteer 启动失败 / 抓取失败等） | 2 |
 
-## editor:clean —— 冗余嵌套清理
+## dedupe —— 冗余嵌套清理
 
-`editor:clean` 是 `editor:check` 的姊妹能力：check 报「哪里有冗余嵌套」，clean 直接「把冗余嵌套层真删掉」并输出清理后的 HTML。两者组合形成「检测 → 清理 → 复测清零」闭环。
+`dedupe` 是 `check` 的姊妹能力：check 报「哪里有冗余嵌套」，clean 直接「把冗余嵌套层真删掉」并输出清理后的 HTML。两者组合形成「检测 → 清理 → 复测清零」闭环。
 
 ### 机制
 
 clean 读 HTML → **jsdom** 解析成 DOM（中间态）→ `domToAst` 转成**可变 AST**（节点结构对齐 UE.uNode）→ `deleteNestNode({ isNeedDelete: true })` 在 AST 上跑真删 → `stripNestLevelAnnotations` 去掉检测标注 → `astToHtml` 序列化回 HTML → 输出。
 
-关键纠偏：`editor:check` 的 `runVerify` 用 `container.innerHTML = html` 在**真实 DOM** 上跑 `deleteNestNode`，而 `isNeedDelete` 真删分支的 4 处赋值（`currentNode.parentNode = ...` / `children[0] = ...`）在真实 DOM 上是 no-op（`parentNode` 只读、`children` 是 live HTMLCollection）。clean 的正解是把 HTML 转成**可变 AST**（普通 JS 对象树，`parentNode` / `children` 都是可写属性）再调真删，让那 4 处赋值真正生效。
+关键纠偏：`check` 的 `runVerify` 用 `container.innerHTML = html` 在**真实 DOM** 上跑 `deleteNestNode`，而 `isNeedDelete` 真删分支的 4 处赋值（`currentNode.parentNode = ...` / `children[0] = ...`）在真实 DOM 上是 no-op（`parentNode` 只读、`children` 是 live HTMLCollection）。clean 的正解是把 HTML 转成**可变 AST**（普通 JS 对象树，`parentNode` / `children` 都是可写属性）再调真删，让那 4 处赋值真正生效。
 
 ### 为什么用 jsdom 而非 puppeteer
 
-`deleteNestNode` 真删是**纯树操作**——只读 `tagName` / `style` 属性 / `.children` 结构，不碰 `getComputedStyle` / `offsetHeight` / `getBoundingClientRect`。clean 不需要布局测量，jsdom（纯 Node，无 Chromium 进程）足够且更轻（启动快、CI 友好、无 Chromium 下载依赖）。`editor:check` 必须用 puppeteer 是因为它要跑布局类规则，clean 不背这个包袱。
+`deleteNestNode` 真删是**纯树操作**——只读 `tagName` / `style` 属性 / `.children` 结构，不碰 `getComputedStyle` / `offsetHeight` / `getBoundingClientRect`。clean 不需要布局测量，jsdom（纯 Node，无 Chromium 进程）足够且更轻（启动快、CI 友好、无 Chromium 下载依赖）。`check` 必须用 puppeteer 是因为它要跑布局类规则，clean 不背这个包袱。
 
-唯一用 puppeteer 的场景是 `--verify` 复测 nestNodes 数——因为复测要走 `editor:check` 的完整检测链路（含布局规则判定 nestNodes），必须真实浏览器。默认 clean 不开 `--verify` 就不启 Chromium。
+唯一用 puppeteer 的场景是 `--verify` 复测 nestNodes 数——因为复测要走 `check` 的完整检测链路（含布局规则判定 nestNodes），必须真实浏览器。默认 clean 不开 `--verify` 就不启 Chromium。
 
 ### round-trip 保真
 
@@ -104,28 +104,28 @@ clean 读 HTML → **jsdom** 解析成 DOM（中间态）→ `domToAst` 转成**
 
 ### 使用
 
-在 `cli/` 目录执行（`pnpm clean` = `editor:clean`）：
+在 `cli/` 目录执行（`pnpm dedupe` = `dedupe`）：
 
 ```bash
 cd cli
 
 # 清理本地 HTML 文件，结果写 stdout
-pnpm clean ./path/to/article.html
+pnpm dedupe ./path/to/article.html
 
 # 清理后写入指定文件
-pnpm clean ./article.html --out=./cleaned.html
+pnpm dedupe ./article.html --out=./cleaned.html
 
 # 抓取线上文章并清理
-pnpm clean --url=https://mp.weixin.qq.com/s/xxxx
+pnpm dedupe --url=https://mp.weixin.qq.com/s/xxxx
 
 # 清理并复测 before/after nestNodes 数（走 puppeteer）
-pnpm clean ./article.html --out=./cleaned.html --verify
+pnpm dedupe ./article.html --out=./cleaned.html --verify
 ```
 
 ### 参数
 
 ```
-Usage: pnpm clean <file.html> [options]   # editor:clean
+Usage: pnpm dedupe <file.html> [options]   # dedupe
 
 位置参数：
   file              HTML 文件路径（必填，除非用 --url）
@@ -144,11 +144,11 @@ Usage: pnpm clean <file.html> [options]   # editor:clean
 | 清理成功（clean 不区分违规/合规，总是输出清理结果） | 0 |
 | 执行异常（读取来源失败 / jsdom 解析失败 / 抓取失败等） | 2 |
 
-> `--verify` 的 before/after 信息走 **stderr**，保证 stdout 是纯 HTML（可 `pnpm clean f.html --verify > out.html` 重定向）。
+> `--verify` 的 before/after 信息走 **stderr**，保证 stdout 是纯 HTML（可 `pnpm dedupe f.html --verify > out.html` 重定向）。
 
-### 与 editor:check 的关系
+### 与 check 的关系
 
-| 维度 | `editor:check` | `editor:clean` |
+| 维度 | `check` | `dedupe` |
 |---|---|---|
 | 职责 | 检测样式违规（puppeteer 跑全规则，含布局类） | 真删冗余嵌套层，输出清理后 HTML |
 | deleteNestNode 模式 | `isTest: true`（干跑只检测） | `isNeedDelete: true`（真删，改 AST 结构） |
@@ -221,8 +221,8 @@ cli/
 │       ├── types.ts          # RuleContext / RuleCandidate
 │       └── index.ts          # barrel
 ├── src/                      # CLI 外壳（重构 TS，行为不变）
-│   ├── index.ts              # editor:check 入口：参数解析 + 主流程 + 退出码
-│   ├── clean.ts              # editor:clean 入口：参数解析 + 清理流程 + 退出码
+│   ├── index.ts              # check 入口：参数解析 + 主流程 + 退出码
+│   ├── clean.ts              # dedupe 入口：参数解析 + 清理流程 + 退出码
 │   ├── clean-runner.ts       # jsdom parse → domToAst → deleteNestNode 真删 → astToHtml
 │   ├── ast/                  # DOM↔AST 转换 / 序列化（对齐 UE.uNode 结构）
 │   │   ├── ast-convert.ts    # jsdom Node → 可变 AstNode（挂 parentNode 双向链）
@@ -234,8 +234,8 @@ cli/
 │   ├── result-formatter.ts   # 人类可读 + --json
 │   └── probe.ts              # 最小可行性探针
 ├── tests/
-│   ├── cli.test.ts           # editor:check E2E 测试（5 个）
-│   ├── clean.test.ts         # editor:clean E2E 测试（7 个）
+│   ├── cli.test.ts           # check E2E 测试（5 个）
+│   ├── clean.test.ts         # dedupe E2E 测试（7 个）
 │   ├── behavior/regression.test.ts  # badcases/goodcases 行为回归
 │   └── fixtures/
 └── dist/                     # esbuild 产物（自建，不再读 ../dist）

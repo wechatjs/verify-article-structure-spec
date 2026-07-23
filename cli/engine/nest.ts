@@ -32,7 +32,7 @@ function deleteNestNode({ root, isNeedDelete = false, isTest = false }: DeleteNe
   // take effect on a mutable AST (parentNode/children are plain writable props).
   // On a live DOM they are no-ops (parentNode is readonly, children is a live
   // HTMLCollection). Callers MUST pass a mutable AST root, not a DOM node, for
-  // isNeedDelete to actually delete. (editor:clean does this via domToAst.)
+  // isNeedDelete to actually delete. (dedupe does this via domToAst.)
   const MAX_STYLE_LEVEL = 15;
   const hasNestedNode: any[] = [];
   // isTest only: record one "will-be-deleted" representative per nested problem node.

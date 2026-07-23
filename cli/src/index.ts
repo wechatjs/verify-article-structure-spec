@@ -10,8 +10,8 @@ import { formatHuman, formatJson } from './result-formatter.js';
 const HELP = `文章样式检测 CLI（puppeteer 真实浏览器跑全规则）
 
 用法:
-  pnpm editor:check <file.html> [options]
-  pnpm editor:check --url=<url> [options]
+  pnpm check <file.html> [options]
+  pnpm check --url=<url> [options]
 
 位置参数:
   file                HTML 文件路径（必填，除非用 --url）

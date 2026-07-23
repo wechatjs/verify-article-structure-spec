@@ -90,7 +90,7 @@ describe('article-style-checker CLI (E2E)', () => {
   test('--help：退出码 0，含用法说明', () => {
     const r = runCli(['--help']);
     expect(r.code).toBe(0);
-    expect(r.stdout).toContain('editor:check');
+    expect(r.stdout).toContain('pnpm check');
     expect(r.stdout).toContain('--json');
   });
 
