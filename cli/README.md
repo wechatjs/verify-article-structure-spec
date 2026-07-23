@@ -42,7 +42,6 @@ cd cli
 pnpm check ./path/to/article.html
 
 # 检测线上文章 URL（截取 #js_content innerHTML）
-pnpm check --url=https://mp.weixin.qq.com/s/xxxx
 
 # 输出结构化 JSON
 pnpm check ./article.html --json
@@ -56,7 +55,6 @@ pnpm dedupe ./article.html --out=./cleaned.html
 ```bash
 cd cli
 pnpm check ./article.html
-pnpm check --url=https://mp.weixin.qq.com/s/xxxx --json
 ```
 
 ### 参数
@@ -65,10 +63,9 @@ pnpm check --url=https://mp.weixin.qq.com/s/xxxx --json
 Usage: pnpm check <file.html> [options]   # check
 
 位置参数：
-  file              HTML 文件路径（必填，除非用 --url）
+  file              HTML 文件路径（必填）
 
 选项：
-  --url=<url>       抓取文章 URL（截取 #js_content innerHTML）
   --json            输出结构化 JSON
   --executable-path=<path>  指定 Chromium 可执行文件路径（同 PUPPETEER_EXECUTABLE_PATH）
   -h, --help        帮助
@@ -116,7 +113,6 @@ pnpm dedupe ./path/to/article.html
 pnpm dedupe ./article.html --out=./cleaned.html
 
 # 抓取线上文章并清理
-pnpm dedupe --url=https://mp.weixin.qq.com/s/xxxx
 
 # 清理并复测 before/after nestNodes 数（走 puppeteer）
 pnpm dedupe ./article.html --out=./cleaned.html --verify
@@ -128,10 +124,9 @@ pnpm dedupe ./article.html --out=./cleaned.html --verify
 Usage: pnpm dedupe <file.html> [options]   # dedupe
 
 位置参数：
-  file              HTML 文件路径（必填，除非用 --url）
+  file              HTML 文件路径（必填）
 
 选项：
-  --url=<url>       抓取文章 URL（截取 #js_content innerHTML）
   --out=<path>      清理后 HTML 写入指定文件（默认写 stdout）
   --verify          额外用 puppeteer 跑 before/after nestNodes 数，打印到 stderr
   -h, --help        帮助

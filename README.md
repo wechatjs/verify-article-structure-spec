@@ -51,7 +51,6 @@ cd cli
 pnpm check ./article.html
 
 # 检测线上文章 URL
-pnpm check --url=https://mp.weixin.qq.com/s/xxxx
 
 # 输出结构化 JSON
 pnpm check ./article.html --json

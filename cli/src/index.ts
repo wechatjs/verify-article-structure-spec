@@ -4,20 +4,17 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { launchBrowser, runVerify } from './browser-runner.js';
-import { fetchArticleContent } from './fetch-article.js';
 import { formatHuman, formatJson } from './result-formatter.js';
 
 const HELP = `文章样式检测 CLI（puppeteer 真实浏览器跑全规则）
 
 用法:
   pnpm check <file.html> [options]
-  pnpm check --url=<url> [options]
 
 位置参数:
-  file                HTML 文件路径（必填，除非用 --url）
+  file                HTML 文件路径（必填）
 
 选项:
-  --url=<url>         抓取文章 URL（截取 #js_content innerHTML，参考 run.js）
   --json              输出结构化 JSON
   --executable-path=<path>  指定 Chromium 可执行文件路径（CI 场景）
   -h, --help          显示帮助
@@ -25,12 +22,11 @@ const HELP = `文章样式检测 CLI（puppeteer 真实浏览器跑全规则）
 退出码:
   0  无违规
   1  检测到违规
-  2  执行异常（puppeteer 启动失败 / 抓取失败 / 读取文件失败等）
+  2  执行异常（puppeteer 启动失败 / 读取文件失败等）
 `;
 
 interface ParsedArgs {
   file?: string;
-  url?: string;
   json: boolean;
   executablePath?: string;
   help: boolean;
@@ -44,8 +40,6 @@ function parseArgs(argv: string[]): ParsedArgs {
       args.help = true;
     } else if (a === '--json') {
       args.json = true;
-    } else if (a.startsWith('--url=')) {
-      args.url = a.slice('--url='.length);
     } else if (a.startsWith('--executable-path=')) {
       args.executablePath = a.slice('--executable-path='.length);
     } else if (a.startsWith('--')) {
@@ -59,12 +53,8 @@ function parseArgs(argv: string[]): ParsedArgs {
 }
 
 async function readHtml(args: ParsedArgs): Promise<{ html: string; source: string }> {
-  if (args.url) {
-    const html = await fetchArticleContent(args.url);
-    return { html, source: args.url };
-  }
   if (!args.file) {
-    throw new Error('未指定 HTML 来源：需提供文件路径或 --url=<url>');
+    throw new Error('未指定 HTML 来源：需提供文件路径');
   }
   // npm scripts run `cd .../cli && tsx ...`, so process.cwd() is cli/ and a
   // relative path would resolve against cli/ and miss the file. npm/pnpm inject

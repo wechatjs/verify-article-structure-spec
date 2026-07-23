@@ -5,32 +5,28 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { fetchArticleContent } from './fetch-article.js';
 import { runClean, runCleanWithVerify } from './clean-runner.js';
 
 const HELP = `文章冗余嵌套清理 CLI（jsdom 解析 → deleteNestNode 真删 → 序列化输出）
 
 用法:
   pnpm dedupe <file.html> [options]
-  pnpm dedupe --url=<url> [options]
 
 位置参数:
-  file                HTML 文件路径（必填，除非用 --url）
+  file                HTML 文件路径（必填）
 
 选项:
-  --url=<url>         抓取文章 URL（截取 #js_content innerHTML）
   --out=<path>        清理后 HTML 写入指定文件（默认写 stdout）
   --verify            额外用 puppeteer 跑 before/after nestNodes 数，打印到 stderr
   -h, --help          显示帮助
 
 退出码:
   0  清理成功（clean 不区分违规/合规，总是输出清理结果）
-  2  执行异常（读取来源失败 / jsdom 解析失败 / 抓取失败等）
+  2  执行异常（读取来源失败 / jsdom 解析失败等）
 `;
 
 interface ParsedArgs {
   file?: string;
-  url?: string;
   out?: string;
   verify: boolean;
   help: boolean;
@@ -44,8 +40,6 @@ function parseArgs(argv: string[]): ParsedArgs {
       args.help = true;
     } else if (a === '--verify') {
       args.verify = true;
-    } else if (a.startsWith('--url=')) {
-      args.url = a.slice('--url='.length);
     } else if (a.startsWith('--out=')) {
       args.out = a.slice('--out='.length);
     } else if (a.startsWith('--')) {
@@ -59,11 +53,8 @@ function parseArgs(argv: string[]): ParsedArgs {
 }
 
 async function readHtml(args: ParsedArgs): Promise<string> {
-  if (args.url) {
-    return fetchArticleContent(args.url);
-  }
   if (!args.file) {
-    throw new Error('未指定 HTML 来源：需提供文件路径或 --url=<url>');
+    throw new Error('未指定 HTML 来源：需提供文件路径');
   }
   // npm scripts run `cd .../cli && tsx ...`, so process.cwd() is cli/ and a
   // relative path would resolve against cli/ and miss the file. npm/pnpm inject
