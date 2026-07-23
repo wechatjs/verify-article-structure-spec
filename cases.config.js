@@ -18,7 +18,7 @@
  *   - requireLocalTpl / note: 内部排查辅助字段
  *
  * 维护原则：
- *   1. 每当 verify_article_structure.js 的 propertyRules 注释里新增 URL，必须在此处录入
+ *   1. 每当检测规则的 propertyRules 新增 URL，必须在此处录入
  *   2. 新增 case 的 desc 必须带 #章节号前缀；若规范文档中尚无对应章节，需先补章节再加 case
  *   3. expectInvalidKeys 是 inValidInfo 中"必须出现"的键（实际可能多于这些）
  *   4. skip:true 的 case 会被集成测跳过（计入 skip 但不算 fail），用于"暂时测不出来"的场景
@@ -33,7 +33,7 @@ const badcases = [
     expectInvalidKeys: ['opacity'],
     skip: true,
     skipReason:
-      'verify_article_structure.js#L309 注释里明确标注"测不出来，暂时不测，自动化跳过"',
+      '规则注释里明确标注"测不出来，暂时不测，自动化跳过"',
     desc: '#1.1 opacity - 图片 opacity:0 + SVG 背景图叠加（跳过）',
   },
   {
@@ -145,7 +145,7 @@ const badcases = [
     expectInvalidKeys: ['height-nodisplay'],
     skip: true,
     skipReason:
-      'verify_article_structure.js#L325 注释里明确标注"测不出来，暂时不测，自动化跳过"',
+      '规则注释里明确标注"测不出来，暂时不测，自动化跳过"',
     desc: '#1.5.2 height-nodisplay - 父容器固定高度，子内容超出被裁剪（跳过）',
   },
   {
