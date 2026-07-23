@@ -1,9 +1,6 @@
-// darkmode stage: open-source mp-darkmode for conversion + engine-owned validate/reset.
-// The npm package only exports run/init/getContrast/convertBg/extend/updateStyle; the
-// engine's reset (clear node markers + init state) and validate (collect darkmode
-// violations) are reimplemented here from the original fork's semantics.
-
-// @ts-expect-error — mp-darkmode ships an untyped UMD bundle.
+// darkmode stage: open-source mp-darkmode for conversion (run/getContrast);
+// validate/reset are engine-owned. validate respects data-ignore-dm (skip per
+// rule: low-contrast / text-bg-gradient / whitelist), mirroring upstream.
 import Darkmode from 'mp-darkmode';
 
 export interface DarkmodeRunOptions {
@@ -98,10 +95,13 @@ function validate(articleBody: Node, opts?: DarkmodeRunOptions): DarkmodeViolati
   while (walker.nextNode()) {
     const el = walker.currentNode as HTMLElement;
 
+    // data-ignore-dm: space-separated rules to skip (low-contrast / text-bg-gradient / whitelist).
+    const ignoreRules = (el.getAttribute('data-ignore-dm') || '').split(/\s+/);
+
     const hasText = Array.prototype.some.call(el.childNodes, (c: any) =>
       c.nodeType === 3 && c.nodeValue.replace(/\s/g, '').length > 0,
     );
-    if (hasText) {
+    if (!ignoreRules.includes('low-contrast') && hasText) {
       const textColor = readDarkAttr(el, DARK_COLOR_ATTR) || defaultDarkTextColor;
       const bgColor = readDarkAttr(el, DARK_ORIG_BG_ATTR) || readDarkAttr(el, DARK_BG_ATTR) || defaultDarkBgColor;
       const contrast = (Darkmode as any).getContrast ? (Darkmode as any).getContrast(textColor, bgColor) : 1;
@@ -110,11 +110,11 @@ function validate(articleBody: Node, opts?: DarkmodeRunOptions): DarkmodeViolati
       }
     }
 
-    if (readDarkAttr(el, DARK_BGIMAGE_ATTR)) {
+    if (!ignoreRules.includes('text-bg-gradient') && readDarkAttr(el, DARK_BGIMAGE_ATTR)) {
       violations.push({ dom: el, key: 'darkmode-no-gradient', violateRules: '文字背景尽量不要使用渐变（参考文档#4.1.2如非必要，文字背景尽量不要使用渐变）' });
     }
 
-    if (whitelistAttrs.some(attr => el.hasAttribute(attr))) {
+    if (!ignoreRules.includes('whitelist') && whitelistAttrs.some(attr => el.hasAttribute(attr))) {
       violations.push({ dom: el, key: 'darkmode-whitelist', violateRules: '注意，此处包含白名单属性，会跳过darkmode算法转换（参考文档#4.5.1 指定节点跳过算法转换）' });
     }
   }

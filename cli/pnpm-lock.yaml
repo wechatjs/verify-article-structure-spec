@@ -12,8 +12,8 @@ dependencies:
     specifier: ^24.1.3
     version: 24.1.3
   mp-darkmode:
-    specifier: 1.2.2
-    version: 1.2.2
+    specifier: 1.2.3-alpha.0
+    version: 1.2.3-alpha.0
   puppeteer:
     specifier: ^21.0.0
     version: 21.11.0(typescript@5.9.3)
@@ -1664,8 +1664,10 @@ packages:
       ufo: 1.6.4
     dev: true
 
-  /mp-darkmode@1.2.2:
-    resolution: {integrity: sha512-LbHCU08/Bs+po8Q8gtCKhWQ71C5ZicXh81Ppcdr7AUyAzrMJCRmvFkbWg8PPA3uIqSfqSrAkniijWyFA6f9y4Q==}
+  /mp-darkmode@1.2.3-alpha.0:
+    resolution: {integrity: sha512-lIpBvgYu28odFgWZgxbE9Q7p/hKfG7U9RN2wpjA9d9t6wTM7Uv6DsGMFlJzuFpYhfJChXbSpkcaC0jw0pSj9Fg==}
+    engines: {node: '>=23.11.0'}
+    requiresBuild: true
     dependencies:
       color: 3.2.1
       color-blend: 4.0.0
