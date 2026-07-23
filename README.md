@@ -23,41 +23,50 @@
 
 ## 本地检测 CLI
 
-`cli/` 子目录是一个**自包含**的检测 CLI（TypeScript + puppeteer），可独立安装运行，复用本仓的 `cases.config.js` 与 `__tests__/fixtures/` 作为回归用例。
+`cli/` 子目录是一个**自包含**的检测 CLI（TypeScript + puppeteer），已发布为 npm 包 `@tencent/verify-article-structure`，复用本仓的 `cases.config.js` 与 `__tests__/fixtures/` 作为回归用例。
 
-- **`check`（`pnpm check`）**：对本地 HTML 文件或线上文章 URL 跑引擎**全规则**校验（含布局类规则 width 差异 / height-zero / line-height 实测叠字等），输出违规结果。
-- **`dedupe`（`pnpm dedupe`）**：`check` 的姊妹能力，把检测出的冗余嵌套层真删掉，输出清理后的 HTML，形成「检测 → 清理 → 复测清零」闭环。
+- **`check`**：对本地 HTML 文件跑引擎**全规则**校验（含布局类规则 width 差异 / height-zero / line-height 实测叠字等），输出违规结果。
+- **`dedupe`**：`check` 的姊妹能力，把检测出的冗余嵌套层真删掉，输出清理后的 HTML，形成「检测 → 清理 → 复测清零」闭环。
 
 ### 安装
 
+**作为 npm 包安装（推荐）**：
+
 ```bash
-cd cli
-pnpm install --ignore-workspace   # 或 npm install
+npm i @tencent/verify-article-structure
 ```
 
-puppeteer 需要 Chromium：`pnpm install` 时会自动下载到 `~/.cache/puppeteer`（首次需联网，约几百 MB）。受限网络可跳过下载并用系统 Chromium：
+**从源码运行（开发）**：
 
 ```bash
-PUPPETEER_SKIP_DOWNLOAD=true pnpm install --ignore-workspace
-PUPPETEER_EXECUTABLE_PATH=/path/to/chrome pnpm check ./article.html
+cd cli
+pnpm install --ignore-workspace
+```
+
+puppeteer 需要 Chromium：安装时会自动下载到 `~/.cache/puppeteer`（首次需联网，约几百 MB）。受限网络可跳过下载并用系统 Chromium：
+
+```bash
+PUPPETEER_SKIP_DOWNLOAD=true npm i @tencent/verify-article-structure
+PUPPETEER_EXECUTABLE_PATH=/path/to/chrome npx verify-article-structure check ./article.html
 ```
 
 ### 快速上手
 
 ```bash
-cd cli
-
 # 检测本地 HTML 文件
-pnpm check ./article.html
-
-# 检测线上文章 URL
+npx verify-article-structure check ./article.html
 
 # 输出结构化 JSON
-pnpm check ./article.html --json
+npx verify-article-structure check ./article.html --json
 
 # 清理冗余嵌套，输出清理后的 HTML
-pnpm dedupe ./article.html --out=./cleaned.html
+npx verify-article-structure dedupe ./article.html --out=./cleaned.html
+
+# 清理并复测 before/after nestNodes
+npx verify-article-structure dedupe ./article.html --verify
 ```
+
+从源码运行时把 `npx verify-article-structure` 换成 `cd cli && pnpm`（如 `pnpm check ./article.html`）。
 
 更多用法、参数、退出码与架构说明见 [`cli/README.md`](./cli/README.md)。
 
