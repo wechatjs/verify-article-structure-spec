@@ -1,0 +1,29 @@
+{
+  "name": "verify-article-structure-cli",
+  "version": "0.1.0",
+  "private": true,
+  "description": "文章结构检测 CLI(本地跑全规则检测 + 清理冗余嵌套;puppeteer 真实浏览器)",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "probe": "tsx src/probe.ts",
+    "clean": "tsx src/clean.ts",
+    "typecheck": "tsc --noEmit",
+    "test:behavior": "vitest run tests/behavior/regression.test.ts",
+    "test:e2e": "vitest run tests/cli.test.ts",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "esbuild": "^0.21.5",
+    "jsdom": "^24.1.3",
+    "mp-darkmode": "1.2.2",
+    "puppeteer": "^21.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  }
+}

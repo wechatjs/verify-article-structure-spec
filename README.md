@@ -1,18 +1,66 @@
 # verify-article-structure-spec
 
-> 微信公众平台文章结构验证**规范仓**——面向第三方编辑器开发者的排版合规指南、测试用例与反馈通道。
+> 微信公众平台文章结构验证**规范仓**——面向第三方编辑器开发者的排版合规指南、测试用例、本地检测 CLI 与反馈通道。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ---
 
-本仓库制定微信公众号文章 HTML 结构的合规标准，涵盖测试用例与反馈机制。供第三方编辑器及排版校验插件的开发者参考。
+本仓库制定微信公众号文章 HTML 结构的合规标准，并提供检测能力与反馈机制。供第三方编辑器及排版校验插件的开发者参考。
+
+历史沿革：本仓最初只开源了**排版规范**（规范文档 + 测试用例 + fixtures），检测靠**在线接口**（`verify_api_usage.md`，真理源）。现在把**检测 CLI 也开源了**（`cli/` 子目录），相当于把真理源头的检测能力本地化开源——既能在本地跑全规则检测与冗余嵌套清理，也保留在线接口，两种方式并存。
 
 | 内容 | 文件 | 作用 |
 |---|---|---|
 | 📜 **规范文档** | [`verify_article_structure.md`](./verify_article_structure.md) | 所有检测规则的权威定义（章节号、阈值、判定逻辑） |
-| 🔌 **校验接口** | [`verify_api_usage.md`](./verify_api_usage.md) | 文章结构校验接口的请求方式、参数、响应结构与调用示例 |
+| 🖥️ **本地检测 CLI** | [`cli/`](./cli/) | 本地跑全规则检测（`editor:check`）+ 清理冗余嵌套（`editor:clean`），puppeteer 真实浏览器 |
+| 🔌 **在线校验接口** | [`verify_api_usage.md`](./verify_api_usage.md) | 文章结构校验接口的请求方式、参数、响应结构与调用示例 |
 | 🧪 **测试用例** | [`cases.config.js`](./cases.config.js) | 违规用例（badcases）+ 合规反向用例（goodcases）|
+
+> 三者并存：规范文档是规则真理源；本地 CLI 与在线接口都是规范的具体实现，均可用于检测文章合规性。
+
+---
+
+## 本地检测 CLI
+
+`cli/` 子目录是一个**自包含**的检测 CLI（TypeScript + puppeteer），可独立安装运行，复用本仓的 `cases.config.js` 与 `__tests__/fixtures/` 作为回归用例。
+
+- **`editor:check`（`pnpm start`）**：对本地 HTML 文件或线上文章 URL 跑引擎**全规则**校验（含布局类规则 width 差异 / height-zero / line-height 实测叠字等），输出违规结果。
+- **`editor:clean`（`pnpm clean`）**：`editor:check` 的姊妹能力，把检测出的冗余嵌套层真删掉，输出清理后的 HTML，形成「检测 → 清理 → 复测清零」闭环。
+
+### 安装
+
+```bash
+cd cli
+pnpm install --ignore-workspace   # 或 npm install
+```
+
+puppeteer 需要 Chromium：`pnpm install` 时会自动下载到 `~/.cache/puppeteer`（首次需联网，约几百 MB）。受限网络可跳过下载并用系统 Chromium：
+
+```bash
+PUPPETEER_SKIP_DOWNLOAD=true pnpm install --ignore-workspace
+PUPPETEER_EXECUTABLE_PATH=/path/to/chrome pnpm start ./article.html
+```
+
+### 快速上手
+
+```bash
+cd cli
+
+# 检测本地 HTML 文件
+pnpm start ./article.html
+
+# 检测线上文章 URL
+pnpm start --url=https://mp.weixin.qq.com/s/xxxx
+
+# 输出结构化 JSON
+pnpm start ./article.html --json
+
+# 清理冗余嵌套，输出清理后的 HTML
+pnpm clean ./article.html --out=./cleaned.html
+```
+
+更多用法、参数、退出码与架构说明见 [`cli/README.md`](./cli/README.md)。
 
 ---
 
@@ -93,8 +141,9 @@
 ```
 verify-article-structure-spec/
 ├── verify_article_structure.md    ← 📜 规范文档（权威源）
-├── verify_api_usage.md            ← 🔌 校验接口使用说明
+├── verify_api_usage.md            ← 🔌 在线校验接口使用说明
 ├── cases.config.js                ← 🧪 测试用例配置
+├── cli/                           ← 🖥️ 本地检测 CLI（editor:check 检测 + editor:clean 清理冗余嵌套）
 ├── __tests__/
 │   └── fixtures/                  ← 📂 文章 HTML 缓存
 │       ├── badcases/              ← 违规用例文章
