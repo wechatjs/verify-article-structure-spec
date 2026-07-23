@@ -473,7 +473,7 @@ caret-color: rgba(0, 0, 0, 0);
 **规范要求**
 
 `<span leaf>` 节点为行内容器，其内部只能包含行内元素（如 `span, strong, img` 等）或文本节点，严禁包裹任何块级元素（如 `section, div, p` 等）。
-  
+
 **错误示例**
 
 ```html
@@ -520,10 +520,10 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 ```
 
 **效果与影响：**
-| 环境        | 表现 |       
+| 环境        | 表现 |
 | :--------- | :--: |
-| 公众号编辑器     |  两段文字视觉一致，无法察觉问题。  | 
-| iOS 17+ 部分版本   |  两段文字因分别映射到 system-ui 和 PingFang SC 的同一字体不同版本，使得实际渲染后的文字大小和字间距上较为明显  | 
+| 公众号编辑器     |  两段文字视觉一致，无法察觉问题。  |
+| iOS 17+ 部分版本   |  两段文字因分别映射到 system-ui 和 PingFang SC 的同一字体不同版本，使得实际渲染后的文字大小和字间距上较为明显  |
 
 
 <table>
@@ -784,5 +784,28 @@ font-family: "mp-quote", PingFang SC, system-ui, -apple-system, BlinkMacSystemFo
 #### 4.5.2 不要使用 `!important`
 
 无论何种场景，平台均不建议创作者在排版时使用 `!important`，这会使平台添加的公共样式失效，同时 Dark Mode 算法也需搭配 `!important` 来实现样式覆盖。
+
+### 4.6 豁免机制：`data-ignore-dm`
+
+创作者如果已经充分了解了 Dark Mode 检测给出的警告，并确认 Dark Mode 的效果没问题，那么可以添加 `data-ignore-dm` 属性来告知校验引擎跳过**该节点**的指定 Dark Mode 规则检测。
+
+**使用方式**
+
+在需要豁免的节点上添加 `data-ignore-dm` 属性，属性值填写要忽略的规则，多个规则用空格进行分隔：
+
+- `low-contrast`：跳过「文字与背景色对比度太低」违规检测
+- `text-bg-gradient`：跳过「文字背景尽量不要使用渐变」违规检测
+- `whitelist`：跳过「注意，此处包含白名单属性，会跳过darkmode算法转换」违规检测
+
+```html
+<!-- 该 section 将跳过 low-contrast、text-bg-gradient、whitelist 违规检测 -->
+<section data-ignore-dm="low-contrast text-bg-gradient whitelist">...</section>
+```
+
+**生效范围**
+
+仅对标记了 `data-ignore-dm` 的节点生效，其后代节点如果有违规，依然会进行检测并提示。
+
+---
 
 本规范将持续更新，请开发者密切关注最新版本，确保插件功能与平台标准保持一致。
