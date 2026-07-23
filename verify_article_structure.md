@@ -235,6 +235,43 @@ caret-color: rgba(0, 0, 0, 0);
   </tr>
 </table>
 
+---
+
+#### 1.4.4 豁免机制：`data-ignore-width`
+
+在某些场景下，开发者**有意**使用固定宽度或超出容器的布局方式（例如横向滚动容器、溢出裁剪实现的视觉特效等）。此时可通过添加 `data-ignore-width` 属性来告知校验引擎跳过该节点及其所有子节点的 width 相关检测。
+
+**使用方式**
+
+在需要豁免的节点上添加 `data-ignore-width` 属性（值可为空）：
+
+```html
+<!-- 该 section 及其内部所有子元素将跳过 width 违规检测 -->
+<section data-ignore-width style="width: 800px;">
+  <span leaf="">这段内容虽然设置了固定宽度，但因标记了 data-ignore-width 而不会被判定为违规。</span>
+</section>
+```
+
+**生效范围**
+
+- **节点级豁免**：标记了 `data-ignore-width` 的节点本身不会被检测 width 违规
+- **子树级豁免**：该节点的所有后代元素同样被豁免（通过 `Element.closest('[data-ignore-width]')` 向上查找）
+- **段落级豁免**：如果段落节点（顶层 `<section>`/`<p>`）自身标记了 `data-ignore-width`，则该段落的溢出检测也会被跳过
+
+**适用场景**
+
+| 场景 | 说明 |
+|------|------|
+| 横向滚动容器 | 内容有意超出视口，通过 `overflow-x: scroll` 提供滚动查看 |
+| 视觉裁剪特效 | 利用 `overflow: hidden` + 固定宽度实现局部显示效果 |
+| 第三方嵌入组件 | 第三方提供的固定尺寸组件，无法修改为百分比宽度 |
+| SVG 交互布局 | SVG 交互效果中使用绝对定位和固定尺寸的容器 |
+
+**注意事项**
+
+- `data-ignore-width` 仅豁免 width 相关检测（居中布局不一致、溢出、宽度差异），不影响其他规则（如 line-height、height、opacity 等）的检测
+- 请仅在确实需要固定宽度的场景下使用此属性，避免滥用导致真正的排版问题被忽略
+
 ### 1.5 height
 
 高度设置不当将导致文字内容在移动端不可见，分为以下两种场景。
