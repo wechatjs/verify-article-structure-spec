@@ -1,11 +1,16 @@
 {
   "name": "@tencent/verify-article-structure",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "private": false,
-  "description": "Article structure & style checker CLI — full-rule detection via a real Puppeteer browser, plus redundant-nesting dedupe cleanup.",
+  "description": "Article structure & style checker — full-rule detection via a real Puppeteer browser, redundant-nesting dedupe cleanup, and a browser-runnable verifyArticleStructure export.",
   "type": "module",
   "license": "MIT",
-  "main": "dist/src/cli.js",
+  "main": "dist/engine/index.js",
+  "exports": {
+    ".": "./dist/engine/index.js",
+    "./browser": "./dist/verify-article-structure.browser.js",
+    "./package.json": "./package.json"
+  },
   "bin": {
     "verify-article-structure": "dist/src/cli.js"
   },
@@ -20,7 +25,8 @@
     "check": "tsx src/index.ts",
     "probe": "tsx src/probe.ts",
     "dedupe": "tsx src/clean.ts",
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json && node build-browser.mjs",
+    "build:browser": "node build-browser.mjs",
     "typecheck": "tsc --noEmit",
     "test:behavior": "vitest run tests/behavior/regression.test.ts",
     "test:e2e": "vitest run tests/cli.test.ts",
