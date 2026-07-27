@@ -88,11 +88,11 @@ function getParaList(element: any, opts: GetParaListOpts, isRoot = true): any[] 
   if (isRoot) {
     let needExecBr = true;
     for (let i = paragraphList.length - 1, c = paragraphList[i]; i >= 0; i--, c = paragraphList[i]) {
-      if (c.isWrapper) {
+      if (c && c.isWrapper) {
         needExecBr = true;
-      } else if (needExecBr && c.tagName === 'BR') {
+      } else if (c && needExecBr && c.tagName === 'BR') {
         needExecBr = false;
-        while (!c.isWrapper) {
+        while (c && !c.isWrapper) {
           if (c.nextElementSibling !== null) {
             paragraphList.splice(i + 1, 0, c.nextElementSibling);
             break;
