@@ -12,12 +12,11 @@
     "scripts/"
   ],
   "scripts": {
-    "fetch:fixtures": "node scripts/fetch-fixtures.js",
-    "push:spec": "bash scripts/push-to-standalone-repo.sh"
+    "fetch:fixtures": "node scripts/fetch-fixtures.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://git.woa.com/daisyhhuang/verify-article-structure-spec"
+    "url": "https://github.com/wechatjs/verify-article-structure-spec.git"
   },
   "keywords": [
     "wechat",

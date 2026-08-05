@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
   - name: 📖 规范文档
-    url: https://github.com/daisyhhuang/verify-article-structure-spec#readme
+    url: https://github.com/wechatjs/verify-article-structure-spec#readme
     about: 先查看规范文档确认你的问题是否已有说明
