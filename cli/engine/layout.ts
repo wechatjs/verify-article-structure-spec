@@ -46,6 +46,33 @@ function createLayoutSandbox(htmlString: string): HTMLDivElement {
   return sandbox;
 }
 
+// Wait for all <img> in the sandbox to settle (load or error) before measuring
+// layout — width detection depends on getBoundingClientRect, which is unstable
+// until remote images finish loading. Without this, the same HTML yields a
+// different width-violation count on each run (0/1/2/3). Timeout caps the wait
+// so a hung image never blocks detection; settled images are unaffected.
+async function waitForImagesToLoad(sandbox: HTMLElement, timeoutMs = 5000): Promise<void> {
+  const imgs = Array.from(sandbox.querySelectorAll('img'));
+  if (!imgs.length) return;
+
+  const settled: Promise<void>[] = imgs.map((img: any) => {
+    // Already complete (cached / no src) → no need to wait.
+    if (img.complete && img.naturalWidth !== 0) return Promise.resolve();
+    return new Promise<void>((resolve) => {
+      const done = () => resolve();
+      img.addEventListener('load', done, { once: true });
+      img.addEventListener('error', done, { once: true });
+      // Bail if the element is removed before loading (defensive).
+      img.addEventListener('DOMNodeRemoved', done, { once: true });
+    });
+  });
+
+  await Promise.race([
+    Promise.all(settled),
+    new Promise<void>((resolve) => setTimeout(resolve, timeoutMs)),
+  ]);
+}
+
 // Shallow clone shell (open+close tags only), debug markers stripped.
 function getShellHTML(el: any): string {
   if (!el || typeof el.cloneNode !== 'function') return '';
@@ -223,6 +250,10 @@ async function detectLayoutIssues(
 ): Promise<Record<string, ViolationEntry>> {
   const screenConfigs = opts.screenConfigs || DEFAULT_SCREENS;
   const sandbox = createLayoutSandbox(htmlString);
+
+  // Wait for remote images to settle before any measurement — width/height rules
+  // read getBoundingClientRect, which is non-deterministic until images load.
+  await waitForImagesToLoad(sandbox);
 
   const allScreenFindings: Record<string, ScreenFindings> = {};
   const caretColorNodes = invalidNodes.filter(n => n.property === 'caret-color');
