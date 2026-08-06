@@ -75,45 +75,32 @@ function createLayoutSandbox(htmlString: string): HTMLDivElement {
 
   document.body.appendChild(sandbox);
   sandbox.innerHTML = htmlString;
+  return sandbox;
+}
 
-  // 为所有 img 预设盒模型尺寸（参考 C 端 set_size.js 的占位逻辑），
-  // 彻底消除对图片网络加载的依赖，使 width 检测完全离线化。
-  //
-  // 优先级：inline style width > data-w > HTML width 属性 > width:100% 撑满父容器
-  const imgs = sandbox.querySelectorAll('img');
-  imgs.forEach((img: any) => {
-    // 跳过 ProseMirror 占位符
-    if ((img.className || '').includes('ProseMirror-separator')) return;
+// Wait for all <img> in the sandbox to settle (load or error) before measuring
+// layout. 大部分 img 已通过 createLayoutSandbox 的 data-w 占位拿到宽度，
+// 但少数没有 data-w 的 img 仍需等图片加载完才能得到正确的 getBoundingClientRect。
+async function waitForImagesToLoad(sandbox: HTMLElement, timeoutMs = 5000): Promise<void> {
+  const imgs = Array.from(sandbox.querySelectorAll('img'));
+  if (!imgs.length) return;
 
-    const dataW = parseFloat(img.getAttribute('data-w'));
-    const ratio = parseFloat(img.getAttribute('data-ratio'));
-    const inlineWidth = img.style.width;
-    const htmlWidthAttr = parseFloat(img.getAttribute('width'));
-
-    let width: number | null = null;
-    if (inlineWidth) {
-      width = parseFloat(inlineWidth);
-    }
-    if ((!width || width <= 0 || Number.isNaN(width)) && Number.isFinite(dataW) && dataW > 0) {
-      width = dataW;
-    }
-    if ((!width || width <= 0 || Number.isNaN(width)) && Number.isFinite(htmlWidthAttr) && htmlWidthAttr > 0) {
-      width = htmlWidthAttr;
-    }
-
-    if (width && width > 0 && Number.isFinite(width)) {
-      img.style.width = width + 'px';
-      if (ratio && ratio > 0 && Number.isFinite(ratio)) {
-        img.style.height = (width * ratio) + 'px';
-      }
-    } else {
-      // 没有任何宽度信息：设 width:100% 撑满父容器，
-      // 这样 getBoundingClientRect 能拿到正确的渲染宽度，完全不需要等图片加载
-      img.style.width = '100%';
-    }
+  const settled: Promise<void>[] = imgs.map((img: any) => {
+    // Already complete (cached / no src) → no need to wait.
+    if (img.complete && img.naturalWidth !== 0) return Promise.resolve();
+    return new Promise<void>((resolve) => {
+      const done = () => resolve();
+      img.addEventListener('load', done, { once: true });
+      img.addEventListener('error', done, { once: true });
+      // Bail if the element is removed before loading (defensive).
+      img.addEventListener('DOMNodeRemoved', done, { once: true });
+    });
   });
 
-  return sandbox;
+  await Promise.race([
+    Promise.all(settled),
+    new Promise<void>((resolve) => setTimeout(resolve, timeoutMs)),
+  ]);
 }
 
 // Shallow clone shell (open+close tags only), debug markers stripped.
@@ -294,9 +281,34 @@ async function detectLayoutIssues(
   const screenConfigs = opts.screenConfigs || DEFAULT_SCREENS;
   const sandbox = createLayoutSandbox(htmlString);
 
-  // Wait for remote images to settle before any measurement — width/height rules
-  // read getBoundingClientRect, which is non-deterministic until images load.
+  // 先等图片加载，优先用 naturalWidth；超时未加载的再 fallback 到 data-w 占位
   await waitForImagesToLoad(sandbox);
+
+  // 图片加载优先：加载成功的用 naturalWidth，没加载的用 data-w / inline width 兜底
+  sandbox.querySelectorAll('img').forEach((img: any) => {
+    if ((img.className || '').includes('ProseMirror-separator')) return;
+    // 已经加载成功（有 naturalWidth）→ 不需要兜底
+    if (img.complete && img.naturalWidth > 0) return;
+
+    // 没加载成功 → 用 data-w / inline width / HTML width 兜底
+    const dataW = parseFloat(img.getAttribute('data-w'));
+    const ratio = parseFloat(img.getAttribute('data-ratio'));
+    const inlineWidth = img.style.width;
+    const htmlWidthAttr = parseFloat(img.getAttribute('width'));
+
+    let width: number | null = null;
+    if (inlineWidth) width = parseFloat(inlineWidth);
+    if ((!width || width <= 0 || Number.isNaN(width)) && Number.isFinite(dataW) && dataW > 0) width = dataW;
+    if ((!width || width <= 0 || Number.isNaN(width)) && Number.isFinite(htmlWidthAttr) && htmlWidthAttr > 0) width = htmlWidthAttr;
+
+    if (width && width > 0 && Number.isFinite(width)) {
+      img.style.width = width + 'px';
+      if (ratio && ratio > 0 && Number.isFinite(ratio)) img.style.height = (width * ratio) + 'px';
+    } else {
+      // 啥都没有：塞一个 1x1 透明 SVG 当 src，防止 rect 坍缩为 0x0
+      img.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E";
+    }
+  });
 
   try {
     const allScreenFindings: Record<string, ScreenFindings> = {};
