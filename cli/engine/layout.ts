@@ -13,19 +13,51 @@ const DEFAULT_SCREENS = [
   { width: 375, style: { width: '375px' } },
 ];
 
+function removeLayoutSandbox(sandbox: any): void {
+  if (!sandbox || typeof sandbox.remove !== 'function') {
+    return;
+  }
+  // 清除超时自毁定时器
+  if (sandbox.__selfDestructTimer) {
+    clearTimeout(sandbox.__selfDestructTimer);
+    sandbox.__selfDestructTimer = null;
+  }
+  // 直接移除沙箱元素，所有样式和子元素会自动清理
+  try {
+    if (sandbox.parentNode) {
+      sandbox.parentNode.removeChild(sandbox);
+    }
+  } catch (e) { /* ignore */ }
+}
+
 function createLayoutSandbox(htmlString: string): HTMLDivElement {
-  const sandbox = document.createElement('div');
+  const sandbox = document.createElement('div') as any;
   sandbox.id = 'test';
   sandbox.className = 'rich_media_content';
+
+  // 离屏方案：元素参与布局（getComputedStyle/getBoundingClientRect 正常工作）
+  // 但对用户完全不可见，即使忘记 remove 也不影响页面
   Object.assign(sandbox.style, {
-    position: 'absolute',
-    'z-index': 10000,
+    position: 'fixed',
+    left: '-9999px',
+    top: '-9999px',
+    visibility: 'hidden',
+    pointerEvents: 'none',
+    zIndex: '-1',
     boxSizing: 'border-box',
     color: 'rgba(0, 0, 0, 0.9)',
     fontSize: 'var(--articleFontsize)',
     overflow: 'hidden',
     textAlign: 'justify',
   });
+
+  // 兜底：10s 后自动销毁，防止异常情况下 sandbox 残留
+  sandbox.__selfDestructTimer = setTimeout(() => {
+    if (sandbox.parentNode) {
+      console.warn('[LayoutSandbox] 超时自毁，可能 removeLayoutSandbox 未正常执行');
+      sandbox.parentNode.removeChild(sandbox);
+    }
+  }, 10000);
 
   if (!document.getElementById('rich-media-styles')) {
     const style = document.createElement('style');
@@ -43,34 +75,45 @@ function createLayoutSandbox(htmlString: string): HTMLDivElement {
 
   document.body.appendChild(sandbox);
   sandbox.innerHTML = htmlString;
-  return sandbox;
-}
 
-// Wait for all <img> in the sandbox to settle (load or error) before measuring
-// layout — width detection depends on getBoundingClientRect, which is unstable
-// until remote images finish loading. Without this, the same HTML yields a
-// different width-violation count on each run (0/1/2/3). Timeout caps the wait
-// so a hung image never blocks detection; settled images are unaffected.
-async function waitForImagesToLoad(sandbox: HTMLElement, timeoutMs = 5000): Promise<void> {
-  const imgs = Array.from(sandbox.querySelectorAll('img'));
-  if (!imgs.length) return;
+  // 为所有 img 预设盒模型尺寸（参考 C 端 set_size.js 的占位逻辑），
+  // 彻底消除对图片网络加载的依赖，使 width 检测完全离线化。
+  //
+  // 优先级：inline style width > data-w > HTML width 属性 > width:100% 撑满父容器
+  const imgs = sandbox.querySelectorAll('img');
+  imgs.forEach((img: any) => {
+    // 跳过 ProseMirror 占位符
+    if ((img.className || '').includes('ProseMirror-separator')) return;
 
-  const settled: Promise<void>[] = imgs.map((img: any) => {
-    // Already complete (cached / no src) → no need to wait.
-    if (img.complete && img.naturalWidth !== 0) return Promise.resolve();
-    return new Promise<void>((resolve) => {
-      const done = () => resolve();
-      img.addEventListener('load', done, { once: true });
-      img.addEventListener('error', done, { once: true });
-      // Bail if the element is removed before loading (defensive).
-      img.addEventListener('DOMNodeRemoved', done, { once: true });
-    });
+    const dataW = parseFloat(img.getAttribute('data-w'));
+    const ratio = parseFloat(img.getAttribute('data-ratio'));
+    const inlineWidth = img.style.width;
+    const htmlWidthAttr = parseFloat(img.getAttribute('width'));
+
+    let width: number | null = null;
+    if (inlineWidth) {
+      width = parseFloat(inlineWidth);
+    }
+    if ((!width || width <= 0 || Number.isNaN(width)) && Number.isFinite(dataW) && dataW > 0) {
+      width = dataW;
+    }
+    if ((!width || width <= 0 || Number.isNaN(width)) && Number.isFinite(htmlWidthAttr) && htmlWidthAttr > 0) {
+      width = htmlWidthAttr;
+    }
+
+    if (width && width > 0 && Number.isFinite(width)) {
+      img.style.width = width + 'px';
+      if (ratio && ratio > 0 && Number.isFinite(ratio)) {
+        img.style.height = (width * ratio) + 'px';
+      }
+    } else {
+      // 没有任何宽度信息：设 width:100% 撑满父容器，
+      // 这样 getBoundingClientRect 能拿到正确的渲染宽度，完全不需要等图片加载
+      img.style.width = '100%';
+    }
   });
 
-  await Promise.race([
-    Promise.all(settled),
-    new Promise<void>((resolve) => setTimeout(resolve, timeoutMs)),
-  ]);
+  return sandbox;
 }
 
 // Shallow clone shell (open+close tags only), debug markers stripped.
@@ -255,7 +298,8 @@ async function detectLayoutIssues(
   // read getBoundingClientRect, which is non-deterministic until images load.
   await waitForImagesToLoad(sandbox);
 
-  const allScreenFindings: Record<string, ScreenFindings> = {};
+  try {
+    const allScreenFindings: Record<string, ScreenFindings> = {};
   const caretColorNodes = invalidNodes.filter(n => n.property === 'caret-color');
   const opacityNodes = invalidNodes.filter(n => n.property === 'opacity');
   const textAlignNodes = invalidNodes.filter(n => n.property === 'text-align');
@@ -437,6 +481,10 @@ async function detectLayoutIssues(
   }
 
   return optimizedIssues;
+  } finally {
+    // 上线一定要记得还原，这里不能注释！！！！！！
+    removeLayoutSandbox(sandbox);
+  }
 }
 
-export { detectLayoutIssues, getCleanOuterHTML };
+export { detectLayoutIssues, removeLayoutSandbox, getCleanOuterHTML };
