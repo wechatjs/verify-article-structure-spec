@@ -14,9 +14,38 @@
  * NOTE: user-facing output strings stay Chinese (cli.test.ts asserts on them).
  */
 import type { VerifyResult, ViolationEntry, ViolationItem } from './browser-runner.js';
+import { propertyRules, WIDTH_DETAIL_RULES } from '../engine/rules-text.js';
 
 /** Max outerHTML length shown in human-readable output. */
 const OUTERHTML_TRUNCATE = 200;
+
+/**
+ * Resolve a human-readable description for a violation key.
+ *
+ * Priority:
+ *   1. entry.violateRules (set by the engine on the group)
+ *   2. propertyRules[key] (the product copy in rules-text.ts)
+ *   3. empty string (unknown key — caller skips the line)
+ */
+function getGroupDescription(key: string, entry: ViolationEntry | undefined): string {
+  const groupRules = entry?.violateRules;
+  if (typeof groupRules === 'string' && groupRules.trim().length > 0) return groupRules;
+  const fallback = propertyRules[key];
+  return typeof fallback === 'string' ? fallback : '';
+}
+
+/**
+ * Resolve a per-item description (e.g. width rules have sub-categories like
+ * "不同屏幕下宽度差异" → WIDTH_DETAIL_RULES lookup).
+ */
+function getItemDescription(key: string, item: ViolationItem): string {
+  const sub = (item as any).rules;
+  if (typeof sub !== 'string' || !sub.trim()) return '';
+  if (key === 'width') {
+    return WIDTH_DETAIL_RULES[sub] || sub;
+  }
+  return sub;
+}
 
 function truncate(s: string | undefined, max: number): string {
   if (!s) return '';
@@ -62,9 +91,11 @@ export function formatHuman(result: VerifyResult, source: string): string {
     const entry: ViolationEntry = inValidInfo[key];
     const items = entry?.items || [];
     const message = entry?.message || '';
+    const groupDesc = getGroupDescription(key, entry);
     lines.push('');
     lines.push(`[${idx + 1}] ${key}`);
     if (message) lines.push(`    描述：${message}`);
+    if (!message && groupDesc) lines.push(`    描述：${groupDesc}`);
     lines.push(`    违规节点 ${items.length} 个：`);
     items.slice(0, 5).forEach((item) => {
       const html = truncate(item.outerHTML, OUTERHTML_TRUNCATE);
@@ -74,7 +105,10 @@ export function formatHuman(result: VerifyResult, source: string): string {
         extras.push(`父 height: ${item.parentHeight}, 子 height: ${item.childHeight}`);
       }
       const extra = extras.length ? `  (${extras.join('; ')})` : '';
-      lines.push(`      - ${html}${extra}`);
+      // Per-item sub-description (e.g. width 子规则).
+      const subDesc = getItemDescription(key, item);
+      const subLine = subDesc ? `\n        原因：${subDesc}` : '';
+      lines.push(`      - ${html}${extra}${subLine}`);
     });
     if (items.length > 5) lines.push(`      ... 还有 ${items.length - 5} 条`);
   });
@@ -106,9 +140,12 @@ export function formatJson(result: VerifyResult, source: string): string {
     violations: keys.map((key) => {
       const entry: ViolationEntry = inValidInfo[key];
       const items = (entry?.items || []).map(formatItem);
+      // Prefer the engine-provided message; fall back to the rules-text lookup
+      // so consumers always get a non-empty description.
+      const message = entry?.message || getGroupDescription(key, entry);
       return {
         key,
-        message: entry?.message || '',
+        message,
         items,
       };
     }),

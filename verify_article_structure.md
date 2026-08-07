@@ -235,6 +235,33 @@ caret-color: rgba(0, 0, 0, 0);
   </tr>
 </table>
 
+**图片宽度检测说明**
+
+检测引擎采用「图片加载优先 + `data-w` 兜底」策略：
+
+1. 优先等待图片加载，用浏览器原生 `naturalWidth`（图片实际宽度）
+2. 超时未加载的图片，按以下优先级 fallback 获取宽度：
+   - `img.style.width`（内联样式）
+   - `data-w` 属性
+   - `width` HTML 属性
+3. 以上都没有的图片，塞一个 1×1 透明 SVG 兜底，防止盒模型坍缩
+
+**关于 `data-w`**
+
+`data-w` 是公众号编辑器为每张图片自动生成的属性，值为图片的**原始宽度**（单位 px，即图片文件本身的像素宽度）。例如一张 1080×800 的图片，其 `data-w` 为 `1080`。
+
+如果你在构造 HTML 时给 `<img>` 添加 `data-w` 属性，可以在图片加载超时时提供可靠的宽度 fallback，避免因加载时序差异导致 width 检测误报：
+
+```html
+<!-- 推荐：添加 data-w 确保各屏幕下宽度一致 -->
+<img data-w="300" src="https://example.com/image.jpg" alt="图片">
+
+<!-- 不推荐：没有 data-w 时依赖图片加载，不同屏幕加载时机不同可能导致误报 -->
+<img src="https://example.com/image.jpg" alt="图片">
+```
+
+`data-ratio`（高宽比 = 高度 / 宽度）非必需，仅用于高度计算，不影响 width 检测。
+
 ---
 
 #### 1.4.4 豁免机制：`data-ignore-width`

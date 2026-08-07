@@ -13,19 +13,51 @@ const DEFAULT_SCREENS = [
   { width: 375, style: { width: '375px' } },
 ];
 
+function removeLayoutSandbox(sandbox: any): void {
+  if (!sandbox || typeof sandbox.remove !== 'function') {
+    return;
+  }
+  // 清除超时自毁定时器
+  if (sandbox.__selfDestructTimer) {
+    clearTimeout(sandbox.__selfDestructTimer);
+    sandbox.__selfDestructTimer = null;
+  }
+  // 直接移除沙箱元素，所有样式和子元素会自动清理
+  try {
+    if (sandbox.parentNode) {
+      sandbox.parentNode.removeChild(sandbox);
+    }
+  } catch (e) { /* ignore */ }
+}
+
 function createLayoutSandbox(htmlString: string): HTMLDivElement {
-  const sandbox = document.createElement('div');
+  const sandbox = document.createElement('div') as any;
   sandbox.id = 'test';
   sandbox.className = 'rich_media_content';
+
+  // 离屏方案：元素参与布局（getComputedStyle/getBoundingClientRect 正常工作）
+  // 但对用户完全不可见，即使忘记 remove 也不影响页面
   Object.assign(sandbox.style, {
-    position: 'absolute',
-    'z-index': 10000,
+    position: 'fixed',
+    left: '-9999px',
+    top: '-9999px',
+    visibility: 'hidden',
+    pointerEvents: 'none',
+    zIndex: '-1',
     boxSizing: 'border-box',
     color: 'rgba(0, 0, 0, 0.9)',
     fontSize: 'var(--articleFontsize)',
     overflow: 'hidden',
     textAlign: 'justify',
   });
+
+  // 兜底：10s 后自动销毁，防止异常情况下 sandbox 残留
+  sandbox.__selfDestructTimer = setTimeout(() => {
+    if (sandbox.parentNode) {
+      console.warn('[LayoutSandbox] 超时自毁，可能 removeLayoutSandbox 未正常执行');
+      sandbox.parentNode.removeChild(sandbox);
+    }
+  }, 10000);
 
   if (!document.getElementById('rich-media-styles')) {
     const style = document.createElement('style');
@@ -47,10 +79,8 @@ function createLayoutSandbox(htmlString: string): HTMLDivElement {
 }
 
 // Wait for all <img> in the sandbox to settle (load or error) before measuring
-// layout — width detection depends on getBoundingClientRect, which is unstable
-// until remote images finish loading. Without this, the same HTML yields a
-// different width-violation count on each run (0/1/2/3). Timeout caps the wait
-// so a hung image never blocks detection; settled images are unaffected.
+// layout. 大部分 img 已通过 createLayoutSandbox 的 data-w 占位拿到宽度，
+// 但少数没有 data-w 的 img 仍需等图片加载完才能得到正确的 getBoundingClientRect。
 async function waitForImagesToLoad(sandbox: HTMLElement, timeoutMs = 5000): Promise<void> {
   const imgs = Array.from(sandbox.querySelectorAll('img'));
   if (!imgs.length) return;
@@ -251,11 +281,37 @@ async function detectLayoutIssues(
   const screenConfigs = opts.screenConfigs || DEFAULT_SCREENS;
   const sandbox = createLayoutSandbox(htmlString);
 
-  // Wait for remote images to settle before any measurement — width/height rules
-  // read getBoundingClientRect, which is non-deterministic until images load.
+  // 先等图片加载，优先用 naturalWidth；超时未加载的再 fallback 到 data-w 占位
   await waitForImagesToLoad(sandbox);
 
-  const allScreenFindings: Record<string, ScreenFindings> = {};
+  // 图片加载优先：加载成功的用 naturalWidth，没加载的用 data-w / inline width 兜底
+  sandbox.querySelectorAll('img').forEach((img: any) => {
+    if ((img.className || '').includes('ProseMirror-separator')) return;
+    // 已经加载成功（有 naturalWidth）→ 不需要兜底
+    if (img.complete && img.naturalWidth > 0) return;
+
+    // 没加载成功 → 用 data-w / inline width / HTML width 兜底
+    const dataW = parseFloat(img.getAttribute('data-w'));
+    const ratio = parseFloat(img.getAttribute('data-ratio'));
+    const inlineWidth = img.style.width;
+    const htmlWidthAttr = parseFloat(img.getAttribute('width'));
+
+    let width: number | null = null;
+    if (inlineWidth) width = parseFloat(inlineWidth);
+    if ((!width || width <= 0 || Number.isNaN(width)) && Number.isFinite(dataW) && dataW > 0) width = dataW;
+    if ((!width || width <= 0 || Number.isNaN(width)) && Number.isFinite(htmlWidthAttr) && htmlWidthAttr > 0) width = htmlWidthAttr;
+
+    if (width && width > 0 && Number.isFinite(width)) {
+      img.style.width = width + 'px';
+      if (ratio && ratio > 0 && Number.isFinite(ratio)) img.style.height = (width * ratio) + 'px';
+    } else {
+      // 啥都没有：塞一个 1x1 透明 SVG 当 src，防止 rect 坍缩为 0x0
+      img.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E";
+    }
+  });
+
+  try {
+    const allScreenFindings: Record<string, ScreenFindings> = {};
   const caretColorNodes = invalidNodes.filter(n => n.property === 'caret-color');
   const opacityNodes = invalidNodes.filter(n => n.property === 'opacity');
   const textAlignNodes = invalidNodes.filter(n => n.property === 'text-align');
@@ -437,6 +493,10 @@ async function detectLayoutIssues(
   }
 
   return optimizedIssues;
+  } finally {
+    // 上线一定要记得还原，这里不能注释！！！！！！
+    removeLayoutSandbox(sandbox);
+  }
 }
 
-export { detectLayoutIssues, getCleanOuterHTML };
+export { detectLayoutIssues, removeLayoutSandbox, getCleanOuterHTML };
