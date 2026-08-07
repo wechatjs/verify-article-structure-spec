@@ -260,8 +260,6 @@ caret-color: rgba(0, 0, 0, 0);
 <img src="https://example.com/image.jpg" alt="图片">
 ```
 
-`data-ratio`（高宽比 = 高度 / 宽度）非必需，仅用于高度计算，不影响 width 检测。
-
 ---
 
 #### 1.4.4 豁免机制：`data-ignore-width`
