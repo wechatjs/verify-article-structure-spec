@@ -12,10 +12,9 @@
 |---|---|---|
 | 📜 **规范文档** | [`verify_article_structure.md`](./verify_article_structure.md) | 所有检测规则的权威定义（章节号、阈值、判定逻辑） |
 | 🖥️ **本地检测 CLI** | [`cli/`](./cli/) | 本地跑全规则检测（`check`）+ 清理冗余嵌套（`dedupe`），puppeteer 真实浏览器 |
-| 🔌 **在线校验接口** | [`verify_api_usage.md`](./verify_api_usage.md) | 文章结构校验接口的请求方式、参数、响应结构与调用示例 |
 | 🧪 **测试用例** | [`cases.config.js`](./cases.config.js) | 违规用例（badcases）+ 合规反向用例（goodcases）|
 
-> 三者并存：规范文档是规则真理源；本地 CLI 与在线接口都是规范的具体实现，均可用于检测文章合规性。
+> 规范文档是规则真理源；本地 CLI 是规范的具体实现，可用于检测文章合规性。
 
 ---
 
@@ -142,7 +141,6 @@ npm run dedupe ./article.html --verify
 ```
 verify-article-structure-spec/
 ├── verify_article_structure.md    ← 📜 规范文档（权威源）
-├── verify_api_usage.md            ← 🔌 在线校验接口使用说明
 ├── cases.config.js                ← 🧪 测试用例配置
 ├── cli/                           ← 🖥️ 本地检测 CLI（check 检测 + dedupe 清理冗余嵌套）
 ├── __tests__/
