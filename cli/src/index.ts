@@ -17,6 +17,7 @@ const HELP = `文章样式检测 CLI（puppeteer 真实浏览器跑全规则）
 
 选项:
   --json              输出结构化 JSON
+  --debug-sandbox     保留 sandbox 在视野内，便于排查布局问题
   --executable-path=<path>  指定 Chromium 可执行文件路径（CI 场景）
   -h, --help          显示帮助
 
@@ -29,18 +30,21 @@ const HELP = `文章样式检测 CLI（puppeteer 真实浏览器跑全规则）
 interface ParsedArgs {
   file?: string;
   json: boolean;
+  debugSandbox: boolean;
   executablePath?: string;
   help: boolean;
 }
 
 function parseArgs(argv: string[]): ParsedArgs {
-  const args: ParsedArgs = { json: false, help: false };
+  const args: ParsedArgs = { json: false, debugSandbox: false, help: false };
   const positional: string[] = [];
   for (const a of argv) {
     if (a === '-h' || a === '--help') {
       args.help = true;
     } else if (a === '--json') {
       args.json = true;
+    } else if (a === '--debug-sandbox') {
+      args.debugSandbox = true;
     } else if (a.startsWith('--executable-path=')) {
       args.executablePath = a.slice('--executable-path='.length);
     } else if (a.startsWith('--')) {
@@ -88,7 +92,7 @@ async function main(args: string[]) {
 
   const { browser, page } = await launchBrowser({ executablePath: parsed.executablePath });
   try {
-    const result = await runVerify(page, html);
+    const result = await runVerify(page, html, undefined, { debugSandbox: parsed.debugSandbox });
     const out = parsed.json ? formatJson(result, source) : formatHuman(result, source);
     process.stdout.write(out + '\n');
     process.exit(result.isValid ? 0 : 1);

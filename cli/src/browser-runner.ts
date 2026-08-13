@@ -77,16 +77,19 @@ export async function runVerify(
   page: Page,
   html: string,
   verifyTimeoutMs = 60000,
+  options?: { debugSandbox?: boolean },
 ): Promise<VerifyResult> {
 // Matches run.js: use a plain div with innerHTML set, no position:absolute and no
 // appendChild to document.body (absolute+appendChild pollutes the layout sandbox
 // and causes false positives — verified empirically).
 const result = await page.evaluate(
-    async (articleHtml: string) => {
+    async (articleHtml: string, debugSandbox: boolean) => {
       const container = document.createElement('div');
       container.innerHTML = articleHtml;
       try {
-        const res = await (window as any).verifyArticleStructure(container);
+        const res = await (window as any).verifyArticleStructure(container, {
+          layoutDetectOptions: { debugSandbox },
+        });
         return res;
       } finally {
         // Container is not attached to document.body, so no removeChild needed;
@@ -94,6 +97,7 @@ const result = await page.evaluate(
       }
     },
     html,
+    options?.debugSandbox ?? false,
   );
   return result as VerifyResult;
 }
