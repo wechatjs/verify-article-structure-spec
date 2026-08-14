@@ -92,4 +92,6 @@ export interface VerifyOpts {
 
 export interface LayoutDetectOptions {
   screenConfigs?: { width: number; style: { width: string } }[];
+  /** Keep the sandbox in the viewport for debugging; do not auto-remove. */
+  debugSandbox?: boolean;
 }

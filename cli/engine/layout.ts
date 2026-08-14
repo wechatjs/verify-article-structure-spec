@@ -5,6 +5,8 @@ import type { InvalidNode, ScreenFindings, ViolationEntry, WidthFinding, LineHei
 
 interface DetectLayoutOpts {
   screenConfigs?: { width: number; style: { width: string } }[];
+  /** Keep the sandbox in the viewport for debugging; do not auto-remove. */
+  debugSandbox?: boolean;
 }
 
 const DEFAULT_SCREENS = [
@@ -15,6 +17,11 @@ const DEFAULT_SCREENS = [
 
 function removeLayoutSandbox(sandbox: any): void {
   if (!sandbox || typeof sandbox.remove !== 'function') {
+    return;
+  }
+  // 调试模式：不清理 sandbox，保留在视野内供手动排查
+  if (sandbox.__debugSandbox) {
+    console.log('[LayoutSandbox] 调试模式：sandbox 保留在 DOM 里，便于排查');
     return;
   }
   // 清除超时自毁定时器
@@ -30,34 +37,51 @@ function removeLayoutSandbox(sandbox: any): void {
   } catch (e) { /* ignore */ }
 }
 
-function createLayoutSandbox(htmlString: string): HTMLDivElement {
+function createLayoutSandbox(htmlString: string, options?: { debugSandbox?: boolean }): HTMLDivElement {
   const sandbox = document.createElement('div') as any;
   sandbox.id = 'test';
   sandbox.className = 'rich_media_content';
+  const debugSandbox = options?.debugSandbox === true;
 
-  // 离屏方案：元素参与布局（getComputedStyle/getBoundingClientRect 正常工作）
-  // 但对用户完全不可见，即使忘记 remove 也不影响页面
-  Object.assign(sandbox.style, {
-    position: 'fixed',
-    left: '-9999px',
-    top: '-9999px',
-    visibility: 'hidden',
-    pointerEvents: 'none',
-    zIndex: '-1',
-    boxSizing: 'border-box',
-    color: 'rgba(0, 0, 0, 0.9)',
-    fontSize: 'var(--articleFontsize)',
-    overflow: 'hidden',
-    textAlign: 'justify',
-  });
+  if (debugSandbox) {
+    // 调试模式：sandbox 在视野内，不被清理，不开自毁定时器
+    Object.assign(sandbox.style, {
+      position: 'absolute',
+      zIndex: '10000',
+      border: '2px dashed red',
+      background: '#fff',
+      boxSizing: 'border-box',
+      color: 'rgba(0, 0, 0, 0.9)',
+      fontSize: 'var(--articleFontsize)',
+      overflow: 'hidden',
+      textAlign: 'justify',
+    });
+    sandbox.__debugSandbox = true;
+  } else {
+    // 离屏方案：元素参与布局（getComputedStyle/getBoundingClientRect 正常工作）
+    // 但对用户完全不可见，即使忘记 remove 也不影响页面
+    Object.assign(sandbox.style, {
+      position: 'fixed',
+      left: '-9999px',
+      top: '-9999px',
+      visibility: 'hidden',
+      pointerEvents: 'none',
+      zIndex: '-1',
+      boxSizing: 'border-box',
+      color: 'rgba(0, 0, 0, 0.9)',
+      fontSize: 'var(--articleFontsize)',
+      overflow: 'hidden',
+      textAlign: 'justify',
+    });
 
-  // 兜底：10s 后自动销毁，防止异常情况下 sandbox 残留
-  sandbox.__selfDestructTimer = setTimeout(() => {
-    if (sandbox.parentNode) {
-      console.warn('[LayoutSandbox] 超时自毁，可能 removeLayoutSandbox 未正常执行');
-      sandbox.parentNode.removeChild(sandbox);
-    }
-  }, 10000);
+    // 兜底：10s 后自动销毁，防止异常情况下 sandbox 残留
+    sandbox.__selfDestructTimer = setTimeout(() => {
+      if (sandbox.parentNode) {
+        console.warn('[LayoutSandbox] 超时自毁，可能 removeLayoutSandbox 未正常执行');
+        sandbox.parentNode.removeChild(sandbox);
+      }
+    }, 10000);
+  }
 
   if (!document.getElementById('rich-media-styles')) {
     const style = document.createElement('style');
@@ -279,7 +303,7 @@ async function detectLayoutIssues(
   opts: DetectLayoutOpts = {},
 ): Promise<Record<string, ViolationEntry>> {
   const screenConfigs = opts.screenConfigs || DEFAULT_SCREENS;
-  const sandbox = createLayoutSandbox(htmlString);
+  const sandbox = createLayoutSandbox(htmlString, { debugSandbox: opts.debugSandbox });
 
   // 先等图片加载，优先用 naturalWidth；超时未加载的再 fallback 到 data-w 占位
   await waitForImagesToLoad(sandbox);
