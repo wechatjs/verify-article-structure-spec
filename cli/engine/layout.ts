@@ -46,9 +46,7 @@ function createLayoutSandbox(htmlString: string, options?: { debugSandbox?: bool
   if (debugSandbox) {
     // 调试模式：sandbox 在视野内，不被清理，不开自毁定时器
     Object.assign(sandbox.style, {
-      position: 'fixed',
-      top: '0',
-      left: '0',
+      position: 'absolute',
       zIndex: '10000',
       border: '2px dashed red',
       background: '#fff',
