@@ -102,11 +102,19 @@ function createLayoutSandbox(htmlString: string, options?: { debugSandbox?: bool
   return sandbox;
 }
 
-// Wait for all <img> in the sandbox to settle (load or error) before measuring
-// layout. 大部分 img 已通过 createLayoutSandbox 的 data-w 占位拿到宽度，
-// 但少数没有 data-w 的 img 仍需等图片加载完才能得到正确的 getBoundingClientRect。
+// Wait for <img> in the sandbox to settle (load or error) before measuring
+// layout. Only images WITHOUT a data-w placeholder need a real wait: images
+// with data-w are sized via the placeholder below and never need naturalWidth,
+// so waiting on their (possibly slow CDN) load just blocks the insert for
+// nothing. ProseMirror-separator is an editor cursor artifact, never content.
 async function waitForImagesToLoad(sandbox: HTMLElement, timeoutMs = 5000): Promise<void> {
-  const imgs = Array.from(sandbox.querySelectorAll('img'));
+  const imgs = Array.from(sandbox.querySelectorAll('img')).filter((img: any) => {
+    const cls = (img.className || '').toString();
+    if (cls.includes('ProseMirror-separator')) return false;
+    // data-w 占位的图用下方 fallback 直接定宽，无需等待真实加载。
+    if (img.getAttribute && Number.isFinite(parseFloat(img.getAttribute('data-w')))) return false;
+    return true;
+  });
   if (!imgs.length) return;
 
   const settled: Promise<void>[] = imgs.map((img: any) => {
