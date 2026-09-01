@@ -26,6 +26,39 @@ const getElementChildren = (node: any): any[] => {
   return children.filter((c: any) => !!c.tagName);
 };
 
+// Check whether a node has any "significant content" besides excludeChild.
+// Significant = non-empty text nodes, img, br, svg, video, audio, iframe, a, etc.
+// Used as a safety check before replaceChild: if the node being replaced still
+// holds other meaningful content, it must not be replaced forcefully.
+const hasOtherSignificantContent = (node: any, excludeChild: any): boolean => {
+  if (!node) return false;
+  // Real DOM mode: walk childNodes (includes text nodes, comment nodes, etc.)
+  if (node.childNodes && typeof node.childNodes.item === 'function') {
+    for (let i = 0; i < node.childNodes.length; i++) {
+      const child = node.childNodes[i];
+      if (child === excludeChild) continue;
+      // Text node (nodeType === 3) with non-whitespace content
+      if (child.nodeType === 3 && child.textContent && child.textContent.trim()) return true;
+      // Any element node (nodeType === 1): img, br, span with text, div, etc.
+      if (child.nodeType === 1) return true;
+    }
+    return false;
+  }
+  // AST mode: walk children array (includes text nodes type='text' with data)
+  if (node.children && Array.isArray(node.children)) {
+    for (let j = 0; j < node.children.length; j++) {
+      const c = node.children[j];
+      if (c === excludeChild) continue;
+      // AST text node: no tagName, has data and non-whitespace
+      if (!c.tagName && c.data && c.data.trim()) return true;
+      // AST element node: has tagName
+      if (c.tagName) return true;
+    }
+    return false;
+  }
+  return false;
+};
+
 function deleteNestNode({ root, isNeedDelete = false, isTest = false }: DeleteNestNodeOpts): any[] | undefined {
   // Real-delete (isNeedDelete) supports both real DOM and mutable AST: when a
   // node exposes replaceChild (real DOM) it uses the standard DOM API; otherwise
@@ -130,6 +163,13 @@ function deleteNestNode({ root, isNeedDelete = false, isTest = false }: DeleteNe
               if (!isTest) {
                 // real delete: upward replace (drop the wrapping parent layer)
                 const deletedNode = currentNode.parentNode;
+                // Safety check: does deletedNode hold significant content besides
+                // currentNode (text, img, etc.)? If so, skip to avoid losing content.
+                if (hasOtherSignificantContent(deletedNode, currentNode)) {
+                  currentNode = currentNode.parentNode;
+                  deleteLevel -= 1;
+                  continue;
+                }
                 const grandParentNode = currentNode.parentNode.parentNode;
                 if (grandParentNode.replaceChild) {
                   // real DOM: standard DOM API
@@ -187,6 +227,12 @@ function deleteNestNode({ root, isNeedDelete = false, isTest = false }: DeleteNe
                 if (!domUtils.specialTags.test(nodeTagName)) {
                   if (!isTest) {
                     // real delete: downward replace (lift child's children)
+                    // Safety check: does child hold significant content besides
+                    // childChildren[0] (text, img, etc.)? If so, skip to avoid loss.
+                    if (hasOtherSignificantContent(child, childChildren[0])) {
+                      stack.push(child);
+                      continue;
+                    }
                     const tmp = childChildren[0];
                     if (downNode.replaceChild) {
                       // real DOM: standard DOM API
