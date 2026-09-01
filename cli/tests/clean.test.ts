@@ -48,6 +48,21 @@ function nestedSpans(depth: number): string {
   return `<section>${inner}</section>`;
 }
 
+/**
+ * Badcase shape: a deep same-tag span chain where the innermost span wraps real
+ * body text (not just another span). deleteNestNode must unwrap redundant
+ * layers WITHOUT dropping the text (hasOtherSignificantContent guard).
+ */
+function deepSpanWrappingText(): string {
+  const body =
+    '王宁说Keep要做“像耐克一样的运动品牌”，但耐克花了50年建立品牌壁垒，' +
+    'Keep的消费品业务才刚过收入占比50%的拐点。从42.40港元到1.76港元，' +
+    '资本市场已经给出了它对当前叙事的定价。';
+  let inner = body;
+  for (let i = 0; i < 28; i++) inner = `<span>${inner}</span>`;
+  return `<p>${inner}</p>`;
+}
+
 function writeFixture(name: string, html: string): string {
   const p = path.join(FIXTURES, name);
   fs.writeFileSync(p, html, 'utf8');
@@ -128,5 +143,24 @@ describe('dedupe CLI (E2E)', () => {
     const m = r.stderr.match(/nestNodes:\s*(\d+)\s*→\s*(\d+)/);
     expect(m).not.toBeNull();
     expect(Number(m![2])).toBe(0);
+  });
+
+  // Deep single-child span chain that still wraps real body text (王宁 / Keep…).
+  // deleteNestNode must NOT strip the text when unwrapping redundant layers —
+  // hasOtherSignificantContent guards the replace against content loss.
+  const keepTextPath = writeFixture(
+    'clean-keep-significant-text.html',
+    deepSpanWrappingText()
+  );
+
+  test('深层 span 包裹正文 → clean → 正文文本完整保留（不被误删）', () => {
+    const r = runClean([keepTextPath]);
+    expect(r.code).toBe(0);
+    // 正文关键片段必须原样保留
+    expect(r.stdout).toContain('王宁');
+    expect(r.stdout).toContain('Keep');
+    expect(r.stdout).toContain('42.40港元');
+    // 冗余 span 层应被合并，但仍保留包裹正文的层
+    expect(countTags(r.stdout, 'span')).toBeLessThan(28);
   });
 });
