@@ -92,9 +92,8 @@ function deleteNestNode({ root, isNeedDelete = false, isTest = false }: DeleteNe
     if (node.children) {
       node.level = node.parentNode && node.parentNode.level ? node.parentNode.level + 1 : 1;
       // Annotate nesting level on the node for caller-side locating (AST + DOM).
-      // 暂时关闭：避免污染节点，需定位嵌套深度时再开启
-      // if (node.attrs) node.attrs['data-nest-level'] = String(node.level);
-      // if (typeof node.setAttribute === 'function') node.setAttribute('data-nest-level', String(node.level));
+      if (node.attrs) node.attrs['data-nest-level'] = String(node.level);
+      if (typeof node.setAttribute === 'function') node.setAttribute('data-nest-level', String(node.level));
       if (node.level >= MAX_STYLE_LEVEL) {
         hasNestedNode.push(node);
         return;
