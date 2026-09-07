@@ -235,6 +235,10 @@ const goodcases = [
     id: 'aISj197NyVblh8y0D-6TEg',
     url: 'https://mp.weixin.qq.com/s/aISj197NyVblh8y0D-6TEg',
     desc: '反向用例 #2 - 用户认可的合规文章（防止规则误报）',
+  },
+  {
+    id: 'img-width-100pct-responsive',
+    desc: '反向用例 #3 - width:100% 图片在小屏被 max-width 压缩属于正常响应式，不应报宽度差异',
   }
 ];
 

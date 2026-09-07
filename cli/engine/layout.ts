@@ -1,5 +1,7 @@
 // Layout detection: sandbox multi-screen measurement + width/line-height/pre/height judgments.
 
+// 调试日志由 opts.debugSandbox 控制，不再用硬编码开关
+
 import { propertyRules, WIDTH_DETAIL_RULES } from './rules-text.js';
 import type { InvalidNode, ScreenFindings, ViolationEntry, WidthFinding, LineHeightFinding, PreFinding } from './types.js';
 
@@ -161,7 +163,7 @@ function getCleanOuterHTML(el: any): string {
 
 interface WidthVarianceResult { isValid: boolean; rules: string }
 
-function hasWidthVariance(screenFindings: WidthFinding[], tolerance = 10, ratioTolerance = 0.2): WidthVarianceResult {
+function hasWidthVariance(screenFindings: WidthFinding[], tolerance = 10, ratioTolerance = 0.2, debug = false): WidthVarianceResult {
   if (!screenFindings.length) return { isValid: true, rules: '' };
 
   // overflowOnly nodes (the paragraph node itself) only check overflow, not centering.
@@ -171,6 +173,15 @@ function hasWidthVariance(screenFindings: WidthFinding[], tolerance = 10, ratioT
   const baseOverflowing = screenFindings[0].isOverflowing;
 
   const hasWidthDiff = screenFindings.some(f => Math.abs(f.computedWidth - baseWidth) > tolerance);
+
+  // 正常响应式放过：大屏宽度一致（元素有固定/内在宽度），小屏 computedWidth ≈ screenWidth
+  // （被容器 max-width 压住，widthRatio ≈ 1），这不是样式问题。
+  const isNormalResponsive = hasWidthDiff && screenFindings.every(f => {
+    const sameAsBase = Math.abs(f.computedWidth - baseWidth) <= tolerance;
+    const filledScreen = Math.abs(f.widthRatio - 1) < 0.1; // 被容器撑满（留余量给 padding/border）
+    return sameAsBase || filledScreen;
+  });
+
   // Stricter ratio tolerance (0) when any screen fills the container exactly.
   const dynamicRatioTolerance = screenFindings.some(f => f.widthRatio === 1) ? 0 : ratioTolerance;
   const hasRatioDiff = screenFindings.some(f => Math.abs(f.widthRatio - baseRatio) > dynamicRatioTolerance);
@@ -181,18 +192,32 @@ function hasWidthVariance(screenFindings: WidthFinding[], tolerance = 10, ratioT
     return { isValid: !isActuallyOverflowing, rules: isActuallyOverflowing ? '存在溢出问题' : '' };
   }
 
-  const hasCenter = screenFindings.every(f => f.isHorizontallyCentered);
   const hasCenterInconsistency = screenFindings.some(f => f.isHorizontallyCentered)
     && screenFindings.some(f => !f.isHorizontallyCentered);
 
-  const isValid = !(hasCenter ? hasOverflowDiff : (hasWidthDiff && hasRatioDiff) || hasOverflowDiff || hasCenterInconsistency);
+  // 三个维度独立判断，互不干扰：
+  // 1. 宽度差异：绝对值 + 比率都超阈值才算（跟居中无关）
+  // 2. 居中不一致：有的屏幕居中有的不居中
+  // 3. 溢出差异：有的屏幕溢出有的不溢出
+  const rulesList: string[] = [];
+  if (hasWidthDiff && hasRatioDiff && !isNormalResponsive) rulesList.push('不同屏幕下宽度差异');
+  if (hasCenterInconsistency) rulesList.push('居中布局不一致');
+  if (hasOverflowDiff) rulesList.push('存在溢出问题');
 
-  let rules = '';
-  if (!isValid) {
-    if (hasCenterInconsistency) rules = '居中布局不一致';
-    else if (hasOverflowDiff) rules = '存在溢出问题';
-    else if (hasWidthDiff && hasRatioDiff) rules = '不同屏幕下宽度差异';
+  const isValid = rulesList.length === 0;
+  const rules = rulesList.join('；');
+
+  if (debug) {
+    console.log('[DEBUG hasWidthVariance]', {
+      screenCount: screenFindings.length,
+      widths: screenFindings.map(f => `${f.screenWidth}→${f.computedWidth}(ratio=${f.widthRatio.toFixed(3)})`),
+      centered: screenFindings.map(f => `${f.screenWidth}→${f.isHorizontallyCentered}`),
+      overflow: screenFindings.map(f => `${f.screenWidth}→${f.isOverflowing}`),
+      hasWidthDiff, isNormalResponsive, hasRatioDiff, hasOverflowDiff, hasCenterInconsistency,
+      isValid, rules: rules || '(无)',
+    });
   }
+
   return { isValid, rules };
 }
 
@@ -311,6 +336,7 @@ async function detectLayoutIssues(
   opts: DetectLayoutOpts = {},
 ): Promise<Record<string, ViolationEntry>> {
   const screenConfigs = opts.screenConfigs || DEFAULT_SCREENS;
+  const debug = opts.debugSandbox === true;
   const sandbox = createLayoutSandbox(htmlString, { debugSandbox: opts.debugSandbox });
 
   // 先等图片加载，优先用 naturalWidth；超时未加载的再 fallback 到 data-w 占位
@@ -333,8 +359,11 @@ async function detectLayoutIssues(
     if ((!width || width <= 0 || Number.isNaN(width)) && Number.isFinite(dataW) && dataW > 0) width = dataW;
     if ((!width || width <= 0 || Number.isNaN(width)) && Number.isFinite(htmlWidthAttr) && htmlWidthAttr > 0) width = htmlWidthAttr;
 
+    if (debug) console.log('[DEBUG img fallback]', { inlineWidth, dataW, ratio, htmlWidthAttr, parsedWidth: width, src: img.src?.substring(0, 80), complete: img.complete, naturalWidth: img.naturalWidth });
+
     if (width && width > 0 && Number.isFinite(width)) {
       img.style.width = width + 'px';
+      if (debug) console.log('[DEBUG img fallback] → 设置 width:', width + 'px');
       if (ratio && ratio > 0 && Number.isFinite(ratio)) img.style.height = (width * ratio) + 'px';
     } else {
       // 啥都没有：塞一个 1x1 透明 SVG 当 src，防止 rect 坍缩为 0x0
@@ -384,8 +413,11 @@ async function detectLayoutIssues(
       const computedWidth = Math.round(parseFloat(rect.width as any));
       const leftDistance = rect.left - pRect.left;
       const rightDistance = pRect.right - rect.right;
-      const horizontalCenterDiff = Math.abs(leftDistance + rightDistance);
+      // 居中 = 左右边距之差接近 0（对称），用减法不是加法！
+      // 加法算的是"是否铺满"，减法才是"是否对称居中"。
+      const horizontalCenterDiff = Math.abs(leftDistance - rightDistance);
       const isHorizontallyCentered = horizontalCenterDiff <= 1;
+
       // +1px sub-pixel tolerance; exclude symmetric centered overflow (deliberate visual effect).
       const isOverflowing = (rect.left < pRect.left - 1 || rect.right > pRect.right + 1) && !isHorizontallyCentered;
 
@@ -441,7 +473,18 @@ async function detectLayoutIssues(
 
   Object.entries(allScreenFindings).forEach(([violationId, findings]) => {
     if (findings.width && findings.width.length > 0) {
-      const { isValid, rules } = hasWidthVariance(findings.width);
+      if (debug) {
+        console.log(`[DEBUG screenFindings] violationId=${violationId}`, findings.width.map(f => ({
+          screenWidth: f.screenWidth,
+          computedWidth: f.computedWidth,
+          widthRatio: f.widthRatio.toFixed(3),
+          isHorizontallyCentered: f.isHorizontallyCentered,
+          isOverflowing: f.isOverflowing,
+          isHeightZero: f.isHeightZero,
+          overflowOnly: f.overflowOnly,
+        })));
+      }
+      const { isValid, rules } = hasWidthVariance(findings.width, 10, 0.2, debug);
       if (!isValid) {
         const paragraphIndex = violationId.split('-')[1];
         const itemViolateRulesDesc = WIDTH_DETAIL_RULES[rules] || propertyRules['width'];
@@ -522,6 +565,23 @@ async function detectLayoutIssues(
           : '行高小于字体大小，且存在多行文本，可能导致文字重叠（实测）',
       });
     });
+  }
+
+  if (debug) {
+    const summary: Record<string, any> = {};
+    Object.entries(optimizedIssues).forEach(([key, entry]) => {
+      summary[key] = {
+        violateRules: (entry as any).violateRules,
+        count: (entry as any).items?.length || 0,
+        items: ((entry as any).items || []).map((it: any) => ({
+          violationId: it.violationId,
+          rules: it.rules,
+          paragraphIndex: it.paragraphIndex,
+          outerHTML: it.outerHTML?.substring(0, 120),
+        })),
+      };
+    });
+    console.log('[DEBUG detectLayoutIssues] 最终结果:', JSON.stringify(summary, null, 2));
   }
 
   return optimizedIssues;

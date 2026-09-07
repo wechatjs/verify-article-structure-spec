@@ -90,17 +90,21 @@ async function main(args: string[]) {
     process.exit(2);
   }
 
-  const { browser, page } = await launchBrowser({ executablePath: parsed.executablePath });
+  const { browser, page } = await launchBrowser({ executablePath: parsed.executablePath, debugSandbox: parsed.debugSandbox });
   try {
     const result = await runVerify(page, html, undefined, { debugSandbox: parsed.debugSandbox });
     const out = parsed.json ? formatJson(result, source) : formatHuman(result, source);
     process.stdout.write(out + '\n');
-    process.exit(result.isValid ? 0 : 1);
+    if (parsed.debugSandbox) {
+      process.stdout.write('\n🔧 调试模式：浏览器保持打开，按 Ctrl+C 退出\n');
+    } else {
+      process.exit(result.isValid ? 0 : 1);
+    }
   } catch (e) {
     process.stderr.write(`✗ 检测执行失败：${(e as Error).message}\n`);
-    process.exit(2);
+    if (!parsed.debugSandbox) process.exit(2);
   } finally {
-    await browser.close();
+    if (!parsed.debugSandbox) await browser.close();
   }
 }
 
@@ -119,6 +123,6 @@ export async function runCheck(args: string[]): Promise<void> {
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   main(process.argv.slice(2)).catch((e) => {
     process.stderr.write(`✗ 未捕获异常：${(e as Error)?.stack || e}\n`);
-    process.exit(2);
+    // process.exit(2);
   });
 }
