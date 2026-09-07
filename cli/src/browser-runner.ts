@@ -31,6 +31,8 @@ export interface RunnerOptions {
   executablePath?: string;
   /** Detection timeout (ms); default 60000. */
   verifyTimeoutMs?: number;
+  /** Debug mode: headless=false so browser window stays visible. */
+  debugSandbox?: boolean;
 }
 
 /** page.evaluate script mounting the bundle's factory onto window. */
@@ -47,7 +49,7 @@ export async function launchBrowser(opts: RunnerOptions = {}): Promise<{
   page: Page;
 }> {
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: opts.debugSandbox ? false : true,
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
     executablePath: opts.executablePath || process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
   });
