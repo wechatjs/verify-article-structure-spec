@@ -67,8 +67,20 @@ Usage: pnpm check <file.html> [options]   # check
 
 选项：
   --json            输出结构化 JSON
+  --debug-sandbox   调试模式：浏览器窗口保持打开（headless=false）、sandbox 保留在 DOM 中便于审查、
+                    打印 4 条精简日志（img fallback / screenFindings / hasWidthVariance / 最终结果）
   --executable-path=<path>  指定 Chromium 可执行文件路径（同 PUPPETEER_EXECUTABLE_PATH）
   -h, --help        帮助
+```
+
+#### 调试示例
+
+```bash
+# 调试布局检测问题：浏览器窗口会弹出，console 里可看到详细的多屏测量数据
+pnpm check ./article.html --debug-sandbox
+
+# 调试 + JSON 输出
+pnpm check ./article.html --debug-sandbox --json
 ```
 
 ### 退出码
