@@ -239,6 +239,10 @@ const goodcases = [
   {
     id: 'img-width-100pct-responsive',
     desc: '反向用例 #3 - width:100% 图片在小屏被 max-width 压缩属于正常响应式，不应报宽度差异',
+  },
+  {
+    id: 'line-height-single-line-padding',
+    desc: '反向用例 #4 - 单行文字 + padding/border 不应误报 line-height 叠字',
   }
 ];
 
