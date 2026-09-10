@@ -273,10 +273,36 @@ function checkChildHeightOverflow(
 
 interface FallbackItem { node: any; fontSize: number; lineHeight: number; elementHeight: number; estLines: number; text: string }
 
-// Computed-style line-height overlap fallback: catches inherited line-height:0
-// that inline-style collection misses. Rule A: lh===0 + height>0 + text → overlap.
-// Rule B: estLines≥2 + realLineHeight < fontSize*0.95 → multi-line overlap.
-function collectLineHeightFallback(sandbox: HTMLElement): FallbackItem[] {
+// 用 Range API 精确测量文本行框：lineCount（真实行数）+ contentHeight（纯内容高度，
+// 天然不含 padding/border），彻底替代「高度÷行高」的估算。
+// Rule A: line-height:0（行框塌缩）→ 直接叠字。
+// Rule B: 多行（lineCount≥2）且平均行高 < 0.95×字号 → 叠字。
+function detectLineHeightOverlap(node: any): {
+  fontSize: number; lineHeight: number; lineCount: number; contentHeight: number; overlapping: boolean;
+} {
+  const cs = window.getComputedStyle(node);
+  const fontSize = parseFloat(cs.fontSize);
+  const lhRaw = cs.lineHeight;
+  const lineHeight = lhRaw === 'normal' ? fontSize * 1.2 : parseFloat(lhRaw);
+
+  const range = document.createRange();
+  range.selectNodeContents(node);
+  const rects = Array.from(range.getClientRects()).filter((r: any) => r.height > 0);
+  const lineCount = rects.length;
+  const contentHeight = range.getBoundingClientRect().height;
+
+  let overlapping = false;
+  if (Number.isFinite(lineHeight) && lineHeight === 0) {
+    overlapping = true; // Rule A：line-height:0，行框塌缩，直接叠字
+  } else if (lineCount >= 2) {
+    const avgLineHeight = contentHeight / lineCount;
+    overlapping = avgLineHeight < fontSize * 0.95; // Rule B：平均行高 < 0.95 倍字号
+  }
+
+  return { fontSize, lineHeight, lineCount, contentHeight, overlapping };
+}
+
+function collectLineHeightFallback(sandbox: HTMLElement, debug = false): FallbackItem[] {
   const blockTags = new Set(['p', 'div', 'section', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li', 'td', 'a']);
   const items: FallbackItem[] = [];
 
@@ -289,26 +315,28 @@ function collectLineHeightFallback(sandbox: HTMLElement): FallbackItem[] {
     );
     if (!hasDirectText) return;
 
-    const cs = window.getComputedStyle(node);
-    const fontSize = parseFloat(cs.fontSize);
-    const lhRaw = cs.lineHeight;
-    const lineHeight = lhRaw === 'normal' ? fontSize * 1.2 : parseFloat(lhRaw);
-    const elementHeight = node.getBoundingClientRect().height;
     const text = (node.textContent || '').trim().replace(/\s+/g, ' ');
+    if (!text.length) return;
 
-    let overlapping = false;
-    let estLines = 0;
-    if (Number.isFinite(lineHeight) && lineHeight === 0 && elementHeight > 0 && text.length > 0 && Number.isFinite(fontSize) && fontSize > 0) {
-      overlapping = true;
-      estLines = elementHeight > 0 && fontSize > 0 ? Math.max(1, Math.round(elementHeight / fontSize)) : 1;
-    } else if (Number.isFinite(lineHeight) && lineHeight > 0 && Number.isFinite(fontSize) && fontSize > 0) {
-      estLines = Math.round(elementHeight / lineHeight);
-      const realLineHeight = estLines > 0 ? elementHeight / estLines : 0;
-      overlapping = estLines >= 2 && realLineHeight > 0 && realLineHeight < fontSize * 0.95;
+    const m = detectLineHeightOverlap(node);
+
+    if (debug) {
+      console.log('[DEBUG lineHeight]', tag, {
+        fontSize: m.fontSize, lineHeight: m.lineHeight,
+        lineCount: m.lineCount, contentHeight: m.contentHeight,
+        avgLineHeight: m.lineCount > 0 ? Number((m.contentHeight / m.lineCount).toFixed(2)) : 0,
+        overlapThreshold: Number((m.fontSize * 0.95).toFixed(2)),
+        textPreview: text.slice(0, 20),
+        overlapping: m.overlapping,
+      });
     }
 
-    if (overlapping) {
-      items.push({ node, fontSize, lineHeight, elementHeight, estLines, text: text.slice(0, 60) });
+    if (m.overlapping) {
+      items.push({
+        node, fontSize: m.fontSize, lineHeight: m.lineHeight,
+        elementHeight: node.getBoundingClientRect().height,
+        estLines: m.lineCount, text: text.slice(0, 60),
+      });
     }
   });
 
@@ -395,7 +423,7 @@ async function detectLayoutIssues(
     });
   }
 
-  const fallbackItems = collectLineHeightFallback(sandbox);
+  const fallbackItems = collectLineHeightFallback(sandbox, debug);
 
   for (const config of screenConfigs) {
     Object.assign(sandbox.style, config.style);
@@ -442,15 +470,9 @@ async function detectLayoutIssues(
       if (!violationId) return;
       const cloned = sandbox.querySelector(`[data-violation-id="${violationId}"]`);
       if (!cloned) return;
-      const styleNode = window.getComputedStyle(cloned);
-      const lineHeightRaw = styleNode.lineHeight;
-      const fontSize = parseFloat(styleNode.fontSize);
-      const lineHeight = lineHeightRaw === 'normal' ? fontSize * 1.2 : parseFloat(lineHeightRaw);
-      const elementHeight = cloned.getBoundingClientRect().height;
-      const hasMultipleLines = elementHeight > fontSize * 1.2;
-      const isOverlapping = hasMultipleLines && lineHeight + 10 < fontSize;
+      const m = detectLineHeightOverlap(cloned);
 
-      const finding: LineHeightFinding = { node: nodeInfo.node, violationId, property: 'line-height', isOverlapping };
+      const finding: LineHeightFinding = { node: nodeInfo.node, violationId, property: 'line-height', isOverlapping: m.overlapping };
       if (!allScreenFindings[violationId]) allScreenFindings[violationId] = { width: [], 'line-height': [] };
       allScreenFindings[violationId]['line-height'].push(finding);
     });
