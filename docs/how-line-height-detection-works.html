@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>line-height 叠字检测是怎么工作的？</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #FFFFFF; color: #1A1A1A;
+    max-width: 980px; margin: 0 auto; padding: 40px 32px 80px;
+    line-height: 1.75;
+  }
+  h1 { font-size: 26px; text-align: center; margin-bottom: 6px; }
+  .sub { text-align: center; color: #6B7280; font-size: 14px; margin-bottom: 8px; }
+  .rule-line { border-top: 1px solid #1A1A1A; margin: 16px 0 36px; }
+
+  .step { margin-bottom: 54px; }
+  .step-num {
+    display: inline-block; background: #1E3A8A; color: #fff;
+    font-size: 13px; font-weight: 600; padding: 2px 10px; border-radius: 3px;
+    margin-bottom: 8px; letter-spacing: 1px;
+  }
+  h2 { font-size: 19px; margin-bottom: 4px; }
+  .explain { font-size: 14.5px; color: #374151; margin-bottom: 18px; }
+  .explain b { color: #1A1A1A; }
+  .hl-red { color: #DC2626; font-weight: 600; }
+  .hl-blue { color: #1E3A8A; font-weight: 600; }
+  .hl-green { color: #059669; font-weight: 600; }
+  code {
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13px; background: #F3F4F6; padding: 1px 6px; border-radius: 3px;
+  }
+  .stage {
+    background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 8px;
+    padding: 24px 28px; margin-bottom: 14px;
+  }
+
+  /* 流程总览 */
+  .pipeline { display: flex; align-items: stretch; gap: 0; margin: 10px 0 6px; }
+  .pipe-node {
+    flex: 1; background: #fff; border: 1.5px solid #1E3A8A; border-radius: 8px;
+    padding: 12px 10px; text-align: center; position: relative;
+  }
+  .pipe-node .t { font-size: 14px; font-weight: 700; color: #1E3A8A; }
+  .pipe-node .d { font-size: 12px; color: #6B7280; margin-top: 4px; line-height: 1.5; }
+  .pipe-node.result { border-color: #DC2626; }
+  .pipe-node.result .t { color: #DC2626; }
+  .pipe-arrow {
+    display: flex; align-items: center; padding: 0 6px;
+    color: #9CA3AF; font-size: 20px; font-weight: 700;
+  }
+
+  /* 沙箱示意 */
+  .sandbox-demo { display: flex; gap: 24px; align-items: flex-start; }
+  .phone {
+    border: 2.5px solid #1A1A1A; border-radius: 14px; background: #fff;
+    width: 200px; padding: 12px 10px; flex-shrink: 0;
+  }
+  .phone .notch { width: 56px; height: 5px; background: #1A1A1A; border-radius: 3px; margin: 0 auto 10px; }
+  .phone .article-line { height: 10px; background: #E5E7EB; border-radius: 2px; margin: 7px 6px; }
+  .phone .article-line.title { height: 13px; width: 70%; background: #1E3A8A; opacity: .85; }
+  .phone .article-line.short { width: 55%; }
+  .phone-label { font-size: 12px; color: #6B7280; text-align: center; margin-top: 8px; }
+  .sandbox-list { flex: 1; }
+  .sandbox-item {
+    display: flex; align-items: center; gap: 10px; background: #fff;
+    border: 1px solid #E5E7EB; border-radius: 6px; padding: 10px 14px; margin-bottom: 8px;
+    font-size: 13.5px;
+  }
+  .sandbox-item .w {
+    font-family: Menlo, monospace; font-size: 12px; font-weight: 700; color: #fff;
+    background: #1E3A8A; border-radius: 4px; padding: 2px 8px; flex-shrink: 0;
+  }
+
+  /* 尺子/测量图 */
+  .measure-board { display: flex; gap: 28px; align-items: flex-start; }
+  .measure-text {
+    flex-shrink: 0; width: 300px; font-size: 16.5px; line-height: 42px;
+    border: 1px dashed #9CA3AF; border-radius: 6px; padding: 14px 16px; background: #fff;
+  }
+  .measure-text .frag { padding: 1px 2px; border-radius: 2px; }
+  .measure-text .f1 { background: rgba(30,58,138,.12); box-shadow: 0 0 0 1.5px #1E3A8A; }
+  .measure-text .f2 { background: rgba(220,38,38,.08); box-shadow: 0 0 0 1.5px #DC2626; }
+  .measure-text .f3 { background: rgba(217,119,6,.10); box-shadow: 0 0 0 1.5px #D97706; }
+  .ruler-side { flex: 1; }
+  .ruler-block { margin-bottom: 14px; }
+  .ruler-title { font-size: 13.5px; font-weight: 700; margin-bottom: 6px; }
+  .ruler-bar {
+    position: relative; background: #fff; border: 1px solid #E5E7EB;
+    border-radius: 6px; padding: 10px 14px;
+  }
+  .ruler-row { display: flex; align-items: center; gap: 8px; margin: 5px 0; font-size: 12.5px; }
+  .ruler-row .lb { font-family: Menlo, monospace; font-size: 11.5px; color: #374151; width: 96px; flex-shrink: 0; }
+  .ruler-track { flex: 1; height: 14px; background: #F3F4F6; border-radius: 3px; overflow: visible; position: relative; }
+  .ruler-fill { height: 100%; border-radius: 3px; }
+  .ruler-val { position: absolute; left: calc(100% + 6px); top: 0; font-family: Menlo,monospace; font-size: 11.5px; line-height: 14px; white-space: nowrap; }
+
+  /* 归并图 */
+  .merge-visual { display: flex; flex-direction: column; gap: 4px; }
+  .frag-line { display: flex; align-items: center; gap: 10px; }
+  .frag-box {
+    font-size: 14px; padding: 6px 10px; border-radius: 4px; border: 1.5px solid;
+    background: #fff; white-space: nowrap;
+  }
+  .frag-arrow { color: #9CA3AF; font-size: 16px; }
+  .line-pill {
+    font-size: 12.5px; font-weight: 700; color: #fff; background: #059669;
+    padding: 3px 14px; border-radius: 12px; white-space: nowrap;
+  }
+  .overlap-note {
+    margin-top: 14px; display: flex; gap: 14px; font-size: 13px;
+  }
+  .overlap-card { flex: 1; border-radius: 6px; padding: 12px 14px; border: 1px solid #E5E7EB; background: #fff; }
+  .overlap-card.good { border-color: #BBF7D0; background: #F0FDF4; }
+  .overlap-card.bad { border-color: #FECACA; background: #FEF2F2; }
+  .overlap-card .h { font-weight: 700; font-size: 13.5px; margin-bottom: 6px; }
+  .mini-rects { display: flex; flex-direction: column; gap: 2px; margin: 8px 0; }
+  .mini-rect { height: 14px; border-radius: 2px; background: rgba(30,58,138,.25); border: 1px solid #1E3A8A; }
+  .mini-rect.red { background: rgba(220,38,38,.15); border-color: #DC2626; }
+
+  /* 计算卡 */
+  .calc-flex { display: flex; gap: 20px; }
+  .calc-card { flex: 1; border-radius: 8px; padding: 18px 20px; border: 1px solid #E5E7EB; }
+  .calc-card.ok { background: #F0FDF4; border-color: #BBF7D0; }
+  .calc-card.ng { background: #FEF2F2; border-color: #FECACA; }
+  .calc-card h3 { font-size: 15px; margin-bottom: 10px; }
+  .calc-card.ok h3 { color: #059669; }
+  .calc-card.ng h3 { color: #DC2626; }
+  .formula {
+    font-family: Menlo, monospace; font-size: 13.5px; line-height: 2;
+    background: #fff; border-radius: 6px; padding: 12px 14px; border: 1px solid #eee;
+  }
+
+  /* 阈值标尺 */
+  .gauge { margin-top: 8px; }
+  .gauge-track {
+    position: relative; height: 34px; background: linear-gradient(to right, #FEE2E2 0%, #FEE2E2 30%, #FFF7ED 30%, #FFF7ED 47%, #F0FDF4 47%, #F0FDF4 100%);
+    border-radius: 6px; border: 1px solid #E5E7EB;
+  }
+  .gauge-mark { position: absolute; top: -4px; bottom: -4px; width: 0; border-left: 2.5px dashed #1A1A1A; }
+  .gauge-mark .lbl {
+    position: absolute; top: -26px; left: 50%; transform: translateX(-50%);
+    font-size: 11.5px; font-family: Menlo,monospace; white-space: nowrap; color: #1A1A1A; font-weight: 700;
+  }
+  .gauge-zone-lbl { position: absolute; top: 6px; font-size: 11.5px; text-align: center; width: 100%; }
+  .gauge-samples { display: flex; justify-content: space-between; font-size: 12px; color: #374151; margin-top: 26px; }
+  .sample { text-align: center; line-height: 1.5; }
+  .sample .dot { width: 10px; height: 10px; border-radius: 50%; margin: 0 auto 4px; }
+
+  .summary-box {
+    background: #F3F4F6; border-radius: 10px; padding: 22px 26px; margin-top: 6px;
+  }
+  .summary-box h2 { font-size: 17px; margin-bottom: 10px; }
+  .summary-box ol { padding-left: 22px; font-size: 14.5px; color: #374151; }
+  .summary-box li { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<h1>我们到底是怎么测「文字叠字」的？</h1>
+<div class="sub">整条流水线：找段落 → 关进沙箱 → 用尺子量 → 归并行数 → 算平均行距 → 对照阈值下结论</div>
+<div class="rule-line"></div>
+
+<!-- 总览 -->
+<div class="step">
+  <span class="step-num">总览</span>
+  <h2>五步流水线</h2>
+  <div class="stage">
+    <div class="pipeline">
+      <div class="pipe-node"><div class="t">① 找出段落</div><div class="d">扫描所有带文字的<br>p / div / section</div></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-node"><div class="t">② 装进沙箱</div><div class="d">隐藏 div 里真实排版<br>三档手机宽度</div></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-node"><div class="t">③ 量片段</div><div class="d">Range API 问浏览器：<br>每块文字在哪、多高</div></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-node"><div class="t">④ 归并行数</div><div class="d">y 区间重叠 &gt;50%<br>算同一行</div></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-node result"><div class="t">⑤ 判定</div><div class="d">总高度 ÷ 行数 = 行距<br>行距 &lt; 0.95×字号 → 报</div></div>
+    </div>
+  </div>
+  <p class="explain">核心思想：<b>不读代码里写的 line-height 数值，而是让浏览器真实排版一遍，用尺子量出「行与行实际离多远」</b>。所以继承的、动态的、混排的样式全都逃不掉。</p>
+</div>
+
+<!-- STEP 1 -->
+<div class="step">
+  <span class="step-num">STEP 1</span>
+  <h2>找出要检查的段落</h2>
+  <p class="explain">
+    遍历整篇文章的 DOM，凡是<span class="hl-blue">块级元素且直接包含文字</span>的（<code>&lt;p&gt;</code> / <code>&lt;div&gt;</code> / <code>&lt;section&gt;</code> / <code>&lt;h1-h6&gt;</code> / <code>&lt;li&gt;</code> / <code>&lt;td&gt;</code>），都列为「受检段落」。纯图片容器、空标签跳过。
+  </p>
+</div>
+
+<!-- STEP 2 -->
+<div class="step">
+  <span class="step-num">STEP 2</span>
+  <h2>把文章关进「沙箱」——一台虚拟手机</h2>
+  <p class="explain">
+    检测不能只在代码字符串上做（读不到继承样式），也不该污染用户页面。做法：<b>造一个屏幕外的隐藏 div，把文章 HTML 塞进去，让浏览器真实排版</b>。再依次把沙箱宽度调成三种手机屏宽，每个宽度都量一遍——因为换行不同，叠字可能只在某一档宽度下出现。
+  </p>
+  <div class="stage">
+    <div class="sandbox-demo">
+      <div>
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="article-line title"></div>
+          <div class="article-line"></div>
+          <div class="article-line"></div>
+          <div class="article-line short"></div>
+          <div class="article-line"></div>
+          <div class="article-line"></div>
+          <div class="article-line short"></div>
+        </div>
+        <div class="phone-label">沙箱 = 隐藏的 div<br>真实排版，人看不见</div>
+      </div>
+      <div class="sandbox-list">
+        <div class="sandbox-item"><span class="w">585px</span> iPhone 标准内容宽 —— 量一遍</div>
+        <div class="sandbox-item"><span class="w">677px</span> 大屏 / PC 内容宽 —— 再量一遍</div>
+        <div class="sandbox-item"><span class="w">375px</span> 小屏手机 —— 再量一遍</div>
+        <div class="sandbox-item" style="border-style:dashed; color:#6B7280;">同一篇文章在三档宽度下换行位置都不同，<br>叠字可能在某一档才出现，所以要各量一次</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 3 -->
+<div class="step">
+  <span class="step-num">STEP 3</span>
+  <h2>用 Range API 当尺子：问浏览器「每块文字在哪」</h2>
+  <p class="explain">
+    对每个段落调用 <code>range.selectNodeContents(p)</code> + <code>getClientRects()</code>。<b>浏览器会返回每个文字片段的矩形（位置 top / 高度 height）</b>——相当于让排版引擎自己把尺子量好报给我们。这一步能拿到 CJK 和英文混排、嵌套 span、行内图片的全部真实几何信息，这是只读 CSS 字符串永远做不到的。
+  </p>
+  <div class="stage">
+    <div class="measure-board">
+      <div class="measure-text">
+        <span class="frag f1">今晚我不讲理论，只说</span><span class="frag f2">真话</span><span class="frag f1">。我想诚恳地</span><br>
+        <span class="frag f1">问一句：您把孩子</span><span class="frag f3">送到学校</span><span class="frag f1">，之后呢？</span>
+      </div>
+      <div class="ruler-side">
+        <div class="ruler-block">
+          <div class="ruler-title" style="color:#1E3A8A;">浏览器报上来的片段矩形（节选）</div>
+          <div class="ruler-bar">
+            <div class="ruler-row"><span class="lb">frag A</span><div class="ruler-track"><div class="ruler-fill" style="width:62%; background:#1E3A8A;"></div><span class="ruler-val">top 100</span></div></div>
+            <div class="ruler-row"><span class="lb">frag B(真话)</span><div class="ruler-track"><div class="ruler-fill" style="width:14%; background:#DC2626;"></div><span class="ruler-val">top 100</span></div></div>
+            <div class="ruler-row"><span class="lb">frag C</span><div class="ruler-track"><div class="ruler-fill" style="width:40%; background:#1E3A8A;"></div><span class="ruler-val">top 142</span></div></div>
+            <div class="ruler-row"><span class="lb">frag D(送)</span><div class="ruler-track"><div class="ruler-fill" style="width:18%; background:#D97706;"></div><span class="ruler-val">top 142</span></div></div>
+          </div>
+        </div>
+        <div class="ruler-block">
+          <div class="ruler-title" style="color:#1A1A1A;">同时拿到整个段落的「内容总高度」</div>
+          <div class="ruler-bar">
+            <div class="ruler-row"><span class="lb">总高度</span><div class="ruler-track"><div class="ruler-fill" style="width:100%; background:#6B7280;"></div><span class="ruler-val">108px（纯文字，不含 padding）</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="explain">注意：片段数 ≠ 行数（上一张图的坑就在这）。所以有了第 ④ 步。</p>
+</div>
+
+<!-- STEP 4 -->
+<div class="step">
+  <span class="step-num">STEP 4</span>
+  <h2>归并出「真实行数」：y 区间重叠超过一半 = 同一行</h2>
+  <p class="explain">
+    拿到一堆片段矩形后，两两比较<b>垂直方向的重叠</b>：重叠部分超过较矮矩形高度的一半 → 它们在同一行。这样混进大字号、上下标（top 会偏移）也不会数错。
+  </p>
+  <div class="stage">
+    <div class="merge-visual">
+      <div class="frag-line">
+        <span class="frag-box" style="border-color:#1E3A8A;">frag A top100</span>
+        <span class="frag-box" style="border-color:#DC2626;">frag B top100</span>
+        <span class="frag-arrow">→</span>
+        <span class="line-pill">第 1 行</span>
+      </div>
+      <div class="frag-line">
+        <span class="frag-box" style="border-color:#1E3A8A;">frag C top142</span>
+        <span class="frag-box" style="border-color:#D97706;">frag D top142</span>
+        <span class="frag-arrow">→</span>
+        <span class="line-pill">第 2 行</span>
+      </div>
+    </div>
+    <div class="overlap-note">
+      <div class="overlap-card good">
+        <div class="h" style="color:#059669;">✓ 同一行（重叠 &gt; 50%）</div>
+        <div class="mini-rects">
+          <div class="mini-rect" style="width:70%;"></div>
+          <div class="mini-rect red" style="width:55%; margin-top:-6px;"></div>
+        </div>
+        大部分区间叠在一起 → 归并成一行
+      </div>
+      <div class="overlap-card bad">
+        <div class="h" style="color:#DC2626;">✗ 相邻两行（重叠 &lt; 50%）</div>
+        <div class="mini-rects">
+          <div class="mini-rect" style="width:70%;"></div>
+          <div class="mini-rect red" style="width:55%; margin-top:-11px;"></div>
+        </div>
+        只擦到一点点边 → 是两行，行距就是它俩的间距
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 5 -->
+<div class="step">
+  <span class="step-num">STEP 5</span>
+  <h2>算「平均行进距离」，对照阈值下结论</h2>
+  <p class="explain">
+    公式只有一条：<code>平均行距 = 内容总高度 ÷ 真实行数</code>。这个数就是「敲回车后光标每次往下走多远」。拿它和 <span class="hl-red">0.95 × 字号</span>（16px 字号即 15.2px）比较。
+  </p>
+  <div class="stage">
+    <div class="calc-flex">
+      <div class="calc-card ok">
+        <h3>正常段落</h3>
+        <div class="formula">
+          行距 = 108 ÷ 5 行<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <b style="color:#059669">21.6px</b><br>
+          21.6 ≥ 15.2 → ✅ 通过
+        </div>
+      </div>
+      <div class="calc-card ng">
+        <h3>真叠字段落</h3>
+        <div class="formula">
+          行距 = 70 ÷ 5 行<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <b style="color:#DC2626">14.0px</b><br>
+          14.0 &lt; 15.2 → 🚨 报「请核实」
+        </div>
+      </div>
+    </div>
+    <div class="gauge">
+      <div class="gauge-track">
+        <div class="gauge-mark" style="left:47%;"><span class="lbl">阈值 15.2px = 0.95×16</span></div>
+        <div class="gauge-zone-lbl" style="width:47%; color:#DC2626; font-weight:700;">🚨 报警区（行距 &lt; 阈值）</div>
+        <div class="gauge-zone-lbl" style="left:47%; width:53%; color:#059669; font-weight:700;">✅ 安全区</div>
+      </div>
+      <div class="gauge-samples">
+        <div class="sample"><div class="dot" style="background:#DC2626"></div>行高10px<br>严重叠字</div>
+        <div class="sample"><div class="dot" style="background:#DC2626"></div>行高14px<br>轻叠字</div>
+        <div class="sample"><div class="dot" style="background:#D97706"></div>行高15.5px<br>临界带·不报</div>
+        <div class="sample"><div class="dot" style="background:#059669"></div>行高21.6px<br>正常</div>
+        <div class="sample"><div class="dot" style="background:#059669"></div>行高32px<br>宽松</div>
+      </div>
+    </div>
+  </div>
+  <p class="explain">
+    另有一条<b>直通规则</b>：计算出的 line-height 恰好为 0（行框完全塌缩，图片无缝拼贴常用写法）时，只要段落里有真实文字就直接报，不用进公式。
+  </p>
+</div>
+
+<!-- 一句话总结 -->
+<div class="step">
+  <div class="summary-box">
+    <h2>一句话总结</h2>
+    <ol>
+      <li><b>不信任代码里写的数字</b>——把文章塞进隐藏沙箱，让浏览器真实排版三档宽度；</li>
+      <li><b>用 Range API 量</b>——每个文字片段的真实位置和高度，排版引擎就是尺子；</li>
+      <li><b>按垂直重叠归并行数</b>——重叠过半算同行，大字号/上下标都不怕；</li>
+      <li><b>行距 = 总高 ÷ 行数</b>，低于 0.95×字号就提示人工核实——这个阈值刚好贴住 16px 汉字的真实墨水高度（14.8px），低于它墨水就开始相交。</li>
+    </ol>
+  </div>
+</div>
+
+</body>
+</html>

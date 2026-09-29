@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>为什么 line-height 检测会误报？</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #FFFFFF; color: #1A1A1A;
+    max-width: 980px; margin: 0 auto; padding: 40px 32px 80px;
+    line-height: 1.7;
+  }
+  h1 { font-size: 26px; text-align: center; margin-bottom: 6px; }
+  .sub { text-align: center; color: #6B7280; font-size: 14px; margin-bottom: 8px; }
+  .rule-line { border-top: 1px solid #1A1A1A; margin: 16px 0 36px; }
+
+  .step { margin-bottom: 56px; }
+  .step-num {
+    display: inline-block; background: #1E3A8A; color: #fff;
+    font-size: 13px; font-weight: 600; padding: 2px 10px; border-radius: 3px;
+    margin-bottom: 8px; letter-spacing: 1px;
+  }
+  h2 { font-size: 19px; margin-bottom: 4px; }
+  .explain { font-size: 14.5px; color: #374151; margin-bottom: 18px; }
+  .explain b { color: #1A1A1A; }
+  .hl-red { color: #DC2626; font-weight: 600; }
+  .hl-blue { color: #1E3A8A; font-weight: 600; }
+  code {
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13px; background: #F3F4F6; padding: 1px 6px; border-radius: 3px;
+  }
+
+  /* ---------- 示例段落 ---------- */
+  .demo-stage {
+    background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 8px;
+    padding: 24px 28px; margin-bottom: 16px;
+  }
+  .demo-p {
+    font-size: 17px; line-height: 2.2; width: 34em; max-width: 100%;
+  }
+  .demo-p .frag { position: relative; padding: 0 1px; }
+  .demo-p .f1 { background: rgba(30,58,138,.10); box-shadow: 0 0 0 1.5px #1E3A8A; }
+  .demo-p .f2 { background: rgba(220,38,38,.08); box-shadow: 0 0 0 1.5px #DC2626; }
+  .demo-p .f3 { background: rgba(217,119,6,.10); box-shadow: 0 0 0 1.5px #D97706; }
+  .demo-p .f4 { background: rgba(5,150,105,.10); box-shadow: 0 0 0 1.5px #059669; }
+  .demo-p .f5 { background: rgba(107,114,128,.10); box-shadow: 0 0 0 1.5px #6B7280; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 18px; font-size: 13px; color: #374151; margin-top: 14px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .chip { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+
+  /* ---------- rect 分解图 ---------- */
+  .rect-board {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  .rect-col h3 { font-size: 14.5px; margin-bottom: 10px; }
+  .rect-list { display: flex; flex-direction: column; gap: 6px; }
+  .rect-item {
+    display: flex; align-items: center; gap: 10px;
+    border: 1px solid #E5E7EB; border-radius: 6px; padding: 7px 12px;
+    font-size: 13px; background: #fff;
+  }
+  .rect-item .tag {
+    font-family: Menlo, monospace; font-size: 11.5px; font-weight: 700;
+    padding: 1px 8px; border-radius: 3px; color: #fff; white-space: nowrap;
+  }
+  .rect-item .top { font-family: Menlo, monospace; color: #6B7280; font-size: 12px; margin-left: auto; }
+
+  .same-top-mark {
+    border-left: 3px dashed #059669; padding-left: 12px; margin: 4px 0 10px;
+    font-size: 12.5px; color: #059669;
+  }
+
+  /* ---------- 计算对比 ---------- */
+  .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .calc-card { border-radius: 8px; padding: 18px 20px; border: 1px solid #E5E7EB; }
+  .calc-card.bad { background: #FEF2F2; border-color: #FECACA; }
+  .calc-card.good { background: #F0FDF4; border-color: #BBF7D0; }
+  .calc-card h3 { font-size: 15.5px; margin-bottom: 12px; }
+  .calc-card.bad h3 { color: #DC2626; }
+  .calc-card.good h3 { color: #059669; }
+  .formula {
+    font-family: Menlo, monospace; font-size: 14px; line-height: 2;
+    background: #fff; border-radius: 6px; padding: 12px 14px; margin-bottom: 12px;
+    border: 1px solid #eee;
+  }
+  .verdict { font-size: 14px; font-weight: 600; }
+  .verdict .arrow { margin-right: 6px; }
+
+  .bar-wrap { background:#fff; border:1px solid #eee; border-radius:6px; padding:10px 14px; margin-bottom:10px; }
+  .bar-row { display:flex; align-items:center; gap:10px; font-size:12.5px; margin:6px 0; }
+  .bar-row .label { width: 110px; color:#374151; white-space:nowrap; font-family:Menlo,monospace; font-size:11.5px;}
+  .bar-track { flex:1; height:16px; background:#F3F4F6; border-radius:3px; position:relative; overflow:visible; }
+  .bar-fill { height:100%; border-radius:3px; }
+  .bar-val { position:absolute; left:calc(100% + 8px); top:0; font-family:Menlo,monospace; font-size:12px; line-height:16px; white-space:nowrap; }
+  .threshold-mark { position:absolute; top:-6px; bottom:-6px; width:0; border-left:2px dashed #D97706; }
+  .threshold-note { font-size:12px; color:#D97706; margin-top:6px; }
+
+  /* ---------- top 聚类示意 ---------- */
+  .cluster-demo {
+    background:#F9FAFB; border:1px solid #E5E7EB; border-radius:8px; padding:20px 24px;
+  }
+  .cluster-line { display:flex; align-items:center; gap:12px; margin:10px 0; }
+  .cluster-line .tops { display:flex; gap:8px; }
+  .top-chip {
+    font-family:Menlo,monospace; font-size:12px; padding:4px 10px; border-radius:4px;
+    border:1.5px solid; background:#fff;
+  }
+  .cluster-arrow { color:#6B7280; font-size:18px; }
+  .line-badge {
+    font-size:12.5px; font-weight:600; color:#fff; background:#059669;
+    padding:3px 12px; border-radius:12px;
+  }
+  .foot-note { font-size:13px; color:#6B7280; margin-top:12px; }
+</style>
+</head>
+<body>
+
+<h1>为什么「文字叠字检测」把正常段落误报了？</h1>
+<div class="sub">getClientRects() 的返回值是「片段 × 行」，我们错把它当成了「行数」</div>
+<div class="rule-line"></div>
+
+<!-- ============ STEP 1 ============ -->
+<div class="step">
+  <span class="step-num">STEP 1</span>
+  <h2>浏览器眼中的段落：一行文字 = 多个「行内片段」拼起来的</h2>
+  <p class="explain">
+    一段 HTML 里只要混了 <code>&lt;span&gt;</code> / <code>&lt;strong&gt;</code>，浏览器排版时就会把文字切成一个个
+    <b>行内片段（inline fragment）</b>。下面这段只有 <span class="hl-blue">2 行</span>，但被切成了 <b>8 个片段</b>：
+  </p>
+  <div class="demo-stage">
+    <div class="demo-p">
+      <span class="frag f1">今晚我不讲理论，</span><span class="frag f1"> </span><span class="frag f2">只说</span><span class="frag f2">真话</span><span class="frag f1">。我想诚恳地问一句：您把孩子</span><br>
+      <span class="frag f3">送到学校</span><span class="frag f1">，之后呢？教育从来</span><span class="frag f4">不是一次</span><span class="frag f5">“快递寄存”</span><span class="frag f1">。</span>
+    </div>
+    <div class="legend">
+      <span><i class="chip" style="background:#1E3A8A"></i>普通文本片段</span>
+      <span><i class="chip" style="background:#DC2626"></i>&lt;strong&gt; 片段</span>
+      <span><i class="chip" style="background:#D97706"></i>&lt;strong&gt; 片段（另一个）</span>
+      <span><i class="chip" style="background:#059669"></i>&lt;span&gt; 片段</span>
+      <span><i class="chip" style="background:#6B7280"></i>&lt;span&gt; 片段（引号）</span>
+    </div>
+  </div>
+  <p class="explain">
+    真实排版结果：<b>第 1 行 5 个片段 + 第 2 行 3 个片段 = 8 个片段</b>，但只有 <b>2 行字</b>。
+  </p>
+</div>
+
+<!-- ============ STEP 2 ============ -->
+<div class="step">
+  <span class="step-num">STEP 2</span>
+  <h2><code>getClientRects()</code> 返回的是什么？</h2>
+  <p class="explain">
+    我们以为它返回「段落的行数」。实际上它返回<b>每个片段所在的矩形</b> —— 有几个片段就给几个 rect：
+  </p>
+  <div class="rect-board">
+    <div class="rect-col">
+      <h3>❌ 我们原来的理解</h3>
+      <div class="rect-list">
+        <div class="rect-item" style="border-color:#FECACA; background:#FEF2F2;">
+          <span class="tag" style="background:#DC2626;">错误</span>
+          rects.length = 8 →「这个段落有 8 行」
+        </div>
+        <div class="rect-item" style="border-color:#FECACA; background:#FEF2F2;">
+          <span class="tag" style="background:#DC2626;">错误</span>
+          1165 实测：真实 5 行的段落，rects 数出 11~16 个
+        </div>
+      </div>
+    </div>
+    <div class="rect-col">
+      <h3>✅ 实际含义（每个 rect 带 top 坐标）</h3>
+      <div class="same-top-mark">top 相同（差 &lt; 2px）= 同一行 ↓</div>
+      <div class="rect-list">
+        <div class="rect-item"><span class="tag" style="background:#1E3A8A;">rect1</span>片段A<span class="top">top: 100</span></div>
+        <div class="rect-item"><span class="tag" style="background:#1E3A8A;">rect2</span>片段B<span class="top">top: 100</span></div>
+        <div class="rect-item"><span class="tag" style="background:#1E3A8A;">rect3</span>片段C<span class="top">top: 100</span></div>
+        <div class="rect-item"><span class="tag" style="background:#DC2626;">rect4</span>片段D<span class="top">top: 164</span></div>
+        <div class="rect-item"><span class="tag" style="background:#DC2626;">rect5</span>片段E<span class="top">top: 164</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ STEP 3 ============ -->
+<div class="step">
+  <span class="step-num">STEP 3</span>
+  <h2>行数数错 → 平均行高被「稀释」→ 误判叠字</h2>
+  <p class="explain">
+    判断是否叠字的公式是 <code>平均行高 = 内容总高度 ÷ 行数</code>，再和阈值 <code>0.95 × 字号</code> 比较。
+    b.html 第二段的真实数据：内容高 <b>108px</b>，字号 16px，阈值 <b>15.2px</b>。
+  </p>
+  <div class="calc-grid">
+    <div class="calc-card bad">
+      <h3>❌ 修复前：行数用 rects.length = 11</h3>
+      <div class="formula">
+        avgLineHeight<br>
+        = 108 ÷ <span style="color:#DC2626; font-weight:700;">11</span><br>
+        = <span style="color:#DC2626; font-weight:700;">9.8px</span>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar-row">
+          <span class="label">9.8px</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:31%; background:#DC2626;"></div>
+            <div class="threshold-mark" style="left:48%;"></div>
+            <span class="bar-val" style="color:#DC2626;">← 远低于阈值</span>
+          </div>
+        </div>
+        <div class="threshold-note">- - - 阈值 15.2px（0.95 × 16px）</div>
+      </div>
+      <div class="verdict" style="color:#DC2626;"><span class="arrow">→</span>9.8 &lt; 15.2，误判「叠字」报警 🚨</div>
+    </div>
+    <div class="calc-card good">
+      <h3>✅ 修复后：行数按 top 聚类 = 5</h3>
+      <div class="formula">
+        avgLineHeight<br>
+        = 108 ÷ <span style="color:#059669; font-weight:700;">5</span><br>
+        = <span style="color:#059669; font-weight:700;">21.6px</span>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar-row">
+          <span class="label">21.6px</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:68%; background:#059669;"></div>
+            <div class="threshold-mark" style="left:48%;"></div>
+            <span class="bar-val" style="color:#059669;">→ 高于阈值 ✓</span>
+          </div>
+        </div>
+        <div class="threshold-note">- - - 阈值 15.2px（0.95 × 16px）</div>
+      </div>
+      <div class="verdict" style="color:#059669;"><span class="arrow">→</span>21.6 ≥ 15.2，判定正常 ✅</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ STEP 4 ============ -->
+<div class="step">
+  <span class="step-num">STEP 4</span>
+  <h2>修复方法：按 top 坐标把 rect「聚类」回真实行</h2>
+  <p class="explain">
+    同一行里的所有片段 <code>top</code> 几乎相同（相差 &lt; 2px）；不同行之间 top 相差至少一个行高（≥ 16px）。
+    所以拿 top 做聚类，数出「有几种不同的 top」就是真实行数：
+  </p>
+  <div class="cluster-demo">
+    <div class="cluster-line">
+      <div class="tops">
+        <span class="top-chip" style="border-color:#1E3A8A; color:#1E3A8A;">top 100</span>
+        <span class="top-chip" style="border-color:#1E3A8A; color:#1E3A8A;">top 100</span>
+        <span class="top-chip" style="border-color:#1E3A8A; color:#1E3A8A;">top 100</span>
+      </div>
+      <span class="cluster-arrow">→</span>
+      <span class="line-badge">第 1 行</span>
+    </div>
+    <div class="cluster-line">
+      <div class="tops">
+        <span class="top-chip" style="border-color:#DC2626; color:#DC2626;">top 164</span>
+        <span class="top-chip" style="border-color:#DC2626; color:#DC2626;">top 164</span>
+      </div>
+      <span class="cluster-arrow">→</span>
+      <span class="line-badge">第 2 行</span>
+    </div>
+    <div class="cluster-line">
+      <div class="tops">
+        <span class="top-chip" style="border-color:#D97706; color:#D97706;">top 228</span>
+        <span class="top-chip" style="border-color:#D97706; color:#D97706;">top 229</span>
+        <span class="top-chip" style="border-color:#D97706; color:#D97706;">top 228</span>
+        <span class="top-chip" style="border-color:#D97706; color:#D97706;">top 228</span>
+      </div>
+      <span class="cluster-arrow">→</span>
+      <span class="line-badge">第 3 行</span>
+    </div>
+    <div class="foot-note">
+      8 个 rect → 归并成 3 行。另外空标签（如 <code>&lt;b&gt;&lt;/b&gt;</code>）产生的 0 宽度 rect 会被直接过滤掉，不参与计数。
+    </div>
+  </div>
+</div>
+
+<!-- ============ 一句话总结 ============ -->
+<div class="step">
+  <span class="step-num">一句话</span>
+  <h2>分子分母都对，就是分母被数大了 3~5 倍</h2>
+  <p class="explain" style="font-size:15.5px;">
+    内容总高度 108px 没变，行数从「片段数 11」纠正为「真实行数 5」之后，
+    平均行高从 <span class="hl-red">9.8px</span> 回到 <span class="hl-blue">21.6px</span>，
+    高于阈值 15.2px —— 正常段落不再误报，真正叠字（行高塌缩）的段落依然会低于阈值被抓住，两头都对。
+  </p>
+</div>
+
+</body>
+</html>

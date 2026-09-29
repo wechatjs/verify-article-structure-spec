@@ -176,6 +176,29 @@ const badcases = [
     requireLocalTpl: true,
   },
 
+  // ===== redundant-node =====
+  {
+    // 本地合成用例：同一父容器下 23 个 <section> 子节点、其中 16 个空节点，
+    // 满足 #3.4「子节点数 > 20 且空节点数 > 15」的冗余空节点定义。
+    id: 'redundant-empty-nodes',
+    relatedRule: 'redundant-node',
+    expectInvalidKeys: ['redundant-node'],
+    skip: true,
+    skipReason: 'redundant-node 规则尚未在 CLI 引擎实现（rules-text 已有文案），fixture 先行收集',
+    desc: '#3.4 冗余空节点 - 23 子节点 / 16 空节点（规则未实现，暂跳过）',
+    requireLocalTpl: true,
+  },
+  {
+    // 135 编辑器导出的臃肿文章（~5.8MB），真实生产样本，含大量冗余空节点。
+    id: 'redundant-135editor-bloated',
+    relatedRule: 'redundant-node',
+    expectInvalidKeys: ['redundant-node'],
+    skip: true,
+    skipReason: 'redundant-node 规则尚未在 CLI 引擎实现，fixture 先行收集',
+    desc: '#3.4 冗余空节点 - 135 编辑器臃肿导出真实样本（规则未实现，暂跳过）',
+    requireLocalTpl: true,
+  },
+
   // ===== pre =====
   {
     id: 'JAk9Sa9c7cCu9sX5pNIcZg',
@@ -255,6 +278,10 @@ const goodcases = [
   {
     id: 'line-height-baseline-mixed-fragments',
     desc: '反向用例 #7 - 同行混排大字号(28px)/行内图片/sub/sup 上下标：基线对齐导致片段 top 不等但属同一行，不应误报叠字（垂直区间重叠聚类）',
+  },
+  {
+    id: '1165-clean-article',
+    desc: '反向用例 #8 - 1165 清理版：纯图片占位 + 空段落骨架（width-variance 工作线收集），应保持零违规',
   }
 ];
 

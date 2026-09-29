@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>width 测量全流程 · verify-article-structure-spec</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 32px 24px 64px;
+    background: #FFFFFF;
+    color: #1A1A1A;
+    font-family: -apple-system, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; }
+
+  h1 { font-size: 26px; margin: 0 0 6px; color: #1A1A1A; letter-spacing: .5px; }
+  .sub { color: #6B7280; font-size: 13px; margin: 0 0 4px; }
+  .rule { height: 2px; background: #1A1A1A; margin: 14px 0 28px; }
+
+  h2 {
+    font-size: 17px; color: #1E3A8A; margin: 34px 0 12px;
+    padding-left: 10px; border-left: 4px solid #1E3A8A;
+  }
+
+  /* ---------- 竖向流水线 ---------- */
+  .flow { display: flex; flex-direction: column; align-items: stretch; }
+  .stage {
+    background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 10px;
+    padding: 12px 16px; display: flex; gap: 14px; align-items: flex-start;
+  }
+  .stage.hot { background: #FFF7F7; border-color: #FCA5A5; }
+  .stage .num {
+    flex: 0 0 28px; height: 28px; border-radius: 50%;
+    background: #1E3A8A; color: #fff; font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin-top: 2px;
+  }
+  .stage.hot .num { background: #DC2626; }
+  .stage .body { flex: 1; }
+  .stage .title { font-size: 14px; font-weight: 700; color: #1A1A1A; }
+  .stage .desc { font-size: 12.5px; color: #4B5563; margin-top: 2px; }
+  .stage .file { font-size: 11px; color: #9CA3AF; margin-top: 4px; font-family: ui-monospace, Menlo, monospace; }
+
+  .conn { text-align: center; color: #1E3A8A; font-size: 15px; line-height: 1.1; margin: 2px 0; }
+  .conn span { font-size: 11px; color: #6B7280; display: block; margin-bottom: -2px; }
+
+  /* ---------- 卡片 ---------- */
+  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .card {
+    background: #fff; border: 1px solid #E5E7EB; border-radius: 8px; padding: 11px 13px;
+  }
+  .card .ct { font-size: 13px; font-weight: 700; color: #1E3A8A; margin-bottom: 4px; }
+  .card .cd { font-size: 12px; color: #4B5563; }
+  .card .cd code { background: #F3F4F6; padding: 1px 4px; border-radius: 3px; font-size: 11.5px; }
+  .card.red .ct { color: #DC2626; }
+
+  /* ---------- 表格 ---------- */
+  table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 6px; }
+  th { background: #1E3A8A; color: #fff; font-weight: 600; text-align: left; padding: 7px 10px; }
+  td { padding: 7px 10px; border-bottom: 1px solid #EEE; color: #374151; vertical-align: top; }
+  tr:nth-child(even) td { background: #F9FAFB; }
+  td code { background: #F3F4F6; padding: 1px 4px; border-radius: 3px; font-family: ui-monospace, Menlo, monospace; font-size: 11px; }
+
+  .note {
+    background: #FFFBEB; border: 1px solid #FDE68A; border-left: 4px solid #D97706;
+    border-radius: 6px; padding: 10px 13px; font-size: 12.5px; color: #78350F; margin-top: 12px;
+  }
+  .note.blue { background: #EFF6FF; border-color: #BFDBFE; border-left-color: #1E3A8A; color: #1E3A8A; }
+
+  .legend { display: flex; gap: 18px; font-size: 11.5px; color: #6B7280; margin-top: 8px; }
+  .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+
+  .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #F3F4F6; color: #4B5563; }
+  .tag.ok { background: #ECFDF5; color: #059669; }
+  .tag.bad { background: #FEF2F2; color: #DC2626; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>width 是怎么测量的</h1>
+  <p class="sub">verify-article-structure-spec · cli/engine · collect.ts + layout.ts + rules/width.ts</p>
+  <div class="rule"></div>
+
+  <!-- ============ 总览 ============ -->
+  <h2>一、总览：静态挑候选 → 沙箱实测</h2>
+  <div class="flow">
+
+    <div class="stage">
+      <div class="num">0</div>
+      <div class="body">
+        <div class="title">输入：文章 DOM</div>
+        <div class="desc">编辑器里的 <code>articleBody</code>（完整 HTML）+ <code>paragraphList</code>（段落数组）</div>
+        <div class="file">cli/engine/index.ts</div>
+      </div>
+    </div>
+
+    <div class="conn"><span>每个段落 BFS 遍历</span>▼</div>
+
+    <div class="stage">
+      <div class="num">1</div>
+      <div class="body">
+        <div class="title">COLLECT：静态扫描，挑出「可能被量」的节点</div>
+        <div class="desc">读 inline style 的 <code>width</code>，按 tag 规则筛出候选，打上 <code>data-violation-id</code> 标记</div>
+        <div class="file">collect.ts → rules/width.ts :: checkWidthViolation()</div>
+      </div>
+    </div>
+
+    <div class="conn"><span>候选列表 invalidNodes（含 id + 原始 node）</span>▼</div>
+
+    <div class="stage">
+      <div class="num">2</div>
+      <div class="body">
+        <div class="title">SANDBOX：建离屏容器，还原公众号环境</div>
+        <div class="desc">离屏 <code>&lt;div id="test" class="rich_media_content"&gt;</code> + 强制样式 + 图片宽度兜底</div>
+        <div class="file">layout.ts :: createLayoutSandbox() + waitForImagesToLoad()</div>
+      </div>
+    </div>
+
+    <div class="conn"><span>同一份 DOM，换容器宽度</span>▼</div>
+
+    <div class="stage hot">
+      <div class="num">3</div>
+      <div class="body">
+        <div class="title">MEASURE：三屏循环实测（真正的测量）</div>
+        <div class="desc">依次把容器设为 <b>585 / 677 / 375</b> px，每次 <code>getBoundingClientRect()</code> 取真实渲染宽度，算出 5 个指标</div>
+        <div class="file">layout.ts :: detectLayoutIssues() 的 for (const config of screenConfigs)</div>
+      </div>
+    </div>
+
+    <div class="conn"><span>每节点 3 条 WidthFinding</span>▼</div>
+
+    <div class="stage hot">
+      <div class="num">4</div>
+      <div class="body">
+        <div class="title">JUDGE：跨屏比对，判定是否违规</div>
+        <div class="desc">绝对差 &gt; 10px + 占比差 &gt; 0.2 + 居中/溢出是否一致 → 命中 3 条规则之一</div>
+        <div class="file">layout.ts :: hasWidthVariance()</div>
+      </div>
+    </div>
+
+    <div class="conn"><span>violationId + rules + screenFindings + outerHTML</span>▼</div>
+
+    <div class="stage">
+      <div class="num">5</div>
+      <div class="body">
+        <div class="title">输出：optimizedIssues.width.items[]</div>
+        <div class="desc">命中规则文案取 <code>WIDTH_DETAIL_RULES[rules]</code>，最终进报告 / 前端高亮</div>
+        <div class="file">rules-text.ts :: WIDTH_DETAIL_RULES</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ Step 1 ============ -->
+  <h2>二、Step 1 — 谁会被挑出来（候选规则）</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="ct">① img</div>
+      <div class="cd">所有 <code>&lt;img&gt;</code> 无条件入队（跳过 <code>ProseMirror-separator</code> 光标占位图）</div>
+    </div>
+    <div class="card">
+      <div class="ct">② table → th</div>
+      <div class="cd">表只测 <code>thead th</code>，每个 th 一个候选（key = <code>pIdx_th0/1/2</code>），不再下钻单元格</div>
+    </div>
+    <div class="card">
+      <div class="ct">③ 固定宽度的普通元素</div>
+      <div class="cd">非 img/svg 且 inline <code>width</code> 有值且不匹配 <code>auto|100%</code></div>
+    </div>
+    <div class="card red">
+      <div class="ct">④ 段落本身（特殊）</div>
+      <div class="cd">段落节点也入队，标记 <code>overflowOnly:true</code> —— 只测溢出，不测居中/宽度差</div>
+    </div>
+  </div>
+  <div class="note">
+    <b>豁免：</b>节点自身或任一祖先带 <code>data-ignore-width</code> → 整个跳过（段落级候选单独判断，子节点照常跑）。<br>
+    <b>量的是渲染值不是声明值：</b>Step 1 只读 style 字符串做粗筛，真正的数字在 Step 3 测。
+  </div>
+
+  <!-- ============ Step 2 ============ -->
+  <h2>三、Step 2 — 沙箱怎么搭</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="ct">离屏但参与布局</div>
+      <div class="cd"><code>position:fixed; left/top:-9999px; visibility:hidden</code><br>
+      → 用户看不见，但 <code>getComputedStyle</code> / <code>getBoundingClientRect</code> 数值照常正确</div>
+    </div>
+    <div class="card">
+      <div class="ct">强制容器样式</div>
+      <div class="cd"><code>.rich_media_content * { max-width:100% !important; box-sizing:border-box !important; word-wrap:break-word !important }</code><br>模拟公众号正文容器的压制行为</div>
+    </div>
+    <div class="card">
+      <div class="ct">图片宽度兜底</div>
+      <div class="cd">优先等真实加载用 <code>naturalWidth</code>（5s 超时）；<br>没加载出来 → <code>inline width</code> → <code>data-w</code> → HTML <code>width</code> 属性；<br>三者皆无 → 塞 1×1 透明 SVG，防止 rect 坍缩成 0×0</div>
+    </div>
+    <div class="card">
+      <div class="ct">调试模式</div>
+      <div class="cd"><code>debugSandbox:true</code> 时 sandbox 停在视口内、红虚线框、不自动移除，方便手查</div>
+    </div>
+  </div>
+
+  <!-- ============ Step 3 ============ -->
+  <h2>四、Step 3 — 三屏实测（核心）</h2>
+
+  <svg viewBox="0 0 980 350" width="100%" style="border:1px solid #E5E7EB;border-radius:8px;background:#fff;margin-top:4px">
+    <!-- 行1: 677 -->
+    <text x="12" y="52" font-size="12" fill="#1E3A8A" font-weight="700">屏幕 677px</text>
+    <rect x="150" y="30" width="575" height="56" fill="#F3F4F6" stroke="#1A1A1A" stroke-width="1" stroke-dasharray="4 3"/>
+    <rect x="235" y="34" width="255" height="48" fill="#1E3A8A" opacity="0.85"/>
+    <text x="362" y="63" font-size="12" fill="#fff" text-anchor="middle">元素 300px</text>
+    <text x="192" y="100" font-size="10.5" fill="#6B7280">left 100</text>
+    <text x="600" y="100" font-size="10.5" fill="#6B7280">right 277</text>
+    <text x="760" y="58" font-size="11" fill="#059669">不居中 · 不溢出</text>
+
+    <!-- 行2: 585 -->
+    <text x="12" y="152" font-size="12" fill="#1E3A8A" font-weight="700">屏幕 585px</text>
+    <rect x="150" y="130" width="497" height="56" fill="#F3F4F6" stroke="#1A1A1A" stroke-width="1" stroke-dasharray="4 3"/>
+    <rect x="235" y="134" width="255" height="48" fill="#1E3A8A" opacity="0.85"/>
+    <text x="362" y="163" font-size="12" fill="#fff" text-anchor="middle">元素 300px</text>
+    <text x="192" y="200" font-size="10.5" fill="#6B7280">left 100</text>
+    <text x="560" y="200" font-size="10.5" fill="#6B7280">right 185</text>
+    <text x="760" y="158" font-size="11" fill="#059669">不居中 · 不溢出</text>
+
+    <!-- 行3: 375 溢出 -->
+    <text x="12" y="252" font-size="12" fill="#DC2626" font-weight="700">屏幕 375px</text>
+    <rect x="150" y="230" width="319" height="56" fill="#F3F4F6" stroke="#1A1A1A" stroke-width="1" stroke-dasharray="4 3"/>
+    <rect x="235" y="234" width="255" height="48" fill="#1E3A8A" opacity="0.85"/>
+    <rect x="469" y="234" width="21" height="48" fill="#DC2626"/>
+    <text x="362" y="263" font-size="12" fill="#fff" text-anchor="middle">元素 300px</text>
+    <text x="192" y="300" font-size="10.5" fill="#6B7280">left 100</text>
+    <text x="500" y="300" font-size="10.5" fill="#DC2626">right −21（越界）</text>
+    <text x="560" y="258" font-size="11" fill="#DC2626">溢出 21px</text>
+
+    <!-- 底部标注 -->
+    <line x1="150" y1="330" x2="830" y2="330" stroke="#EEE"/>
+    <text x="150" y="345" font-size="10.5" fill="#9CA3AF">示意图按 0.85 缩放；判定用的是真实 px：|left − right| &gt; 1 → 不居中；越界 &gt; 1px 且不居中 → isOverflowing</text>
+  </svg>
+
+  <div class="legend">
+    <span><i style="background:#F3F4F6;border:1px solid #1A1A1A"></i>容器（screenConfigs.width）</span>
+    <span><i style="background:#1E3A8A"></i>被测元素 rect</span>
+    <span><i style="background:#DC2626"></i>溢出部分</span>
+  </div>
+
+  <table>
+    <tr><th style="width:150px">指标</th><th style="width:330px">算法</th><th>含义</th></tr>
+    <tr>
+      <td><code>computedWidth</code></td>
+      <td><code>Math.round(rect.width)</code></td>
+      <td><b>真实渲染宽度</b>（非 CSS 声明值），是后面所有比较的基准</td>
+    </tr>
+    <tr>
+      <td><code>widthRatio</code></td>
+      <td><code>computedWidth / config.width</code></td>
+      <td>元素占容器的比例，用来识别「被容器压满」的正常响应式</td>
+    </tr>
+    <tr>
+      <td><code>isHorizontallyCentered</code></td>
+      <td><code>|leftGap − rightGap| ≤ 1</code></td>
+      <td><b>用减法判对称</b>（加法判的是「是否铺满」，判不出居中）</td>
+    </tr>
+    <tr>
+      <td><code>isOverflowing</code></td>
+      <td><code>(left &lt; pRect.left−1 ‖ right &gt; pRect.right+1) &amp;&amp; !isCentered</code></td>
+      <td>1px 亚像素容差；<b>对称居中的溢出不算</b>（视为刻意视觉效果）</td>
+    </tr>
+    <tr>
+      <td><code>isHeightZero</code></td>
+      <td><code>rect.height &lt; 1</code></td>
+      <td>高度坍缩，配合 height 规则用</td>
+    </tr>
+  </table>
+
+  <div class="note blue">
+    换屏后 <code>await sleep(100)</code> 再量，等浏览器完成重排；节点靠 <code>sandbox.querySelector('[data-violation-id="…"]')</code> 回查克隆体。
+  </div>
+
+  <!-- ============ Step 4 ============ -->
+  <h2>五、Step 4 — 跨屏怎么判定</h2>
+  <table>
+    <tr><th style="width:170px">判据</th><th style="width:340px">条件</th><th>说明</th></tr>
+    <tr><td><code>hasWidthDiff</code></td><td>任一屏 <code>|computedWidth − base| &gt; 10px</code></td><td>以第 0 屏（585）为基准</td></tr>
+    <tr><td><code>hasRatioDiff</code></td><td>任一屏 <code>|widthRatio − baseRatio| &gt; tol</code></td><td>tol 默认 0.2；若某屏 ratio 恰好 =1 则收紧到 0</td></tr>
+    <tr><td><code>isNormalResponsive</code></td><td>每屏要么 ≈ 基准，要么 <code>|widthRatio − 1| &lt; 0.1</code></td><td>被容器压满 = 正常响应式，<b>豁免</b></td></tr>
+    <tr><td><code>hasOverflowDiff</code></td><td>各屏 <code>isOverflowing</code> 不一致</td><td>大屏不溢出小屏溢出 → 命中</td></tr>
+    <tr><td><code>hasCenterInconsistency</code></td><td>有的屏居中、有的屏不居中</td><td>固定 px 宽 / margin 偏移的典型症状</td></tr>
+  </table>
+
+  <div class="cards" style="margin-top:14px">
+    <div class="card red">
+      <div class="ct">规则 A · 不同屏幕下宽度差异</div>
+      <div class="cd"><code>hasWidthDiff &amp;&amp; hasRatioDiff &amp;&amp; !isNormalResponsive</code><br>
+      <span class="tag bad">#1.4.3</span> 固定 px 宽没做响应式适配</div>
+    </div>
+    <div class="card red">
+      <div class="ct">规则 B · 居中布局不一致</div>
+      <div class="cd"><code>some(居中) &amp;&amp; some(不居中)</code><br>
+      <span class="tag bad">#1.4.1</span> 移动端与编辑器预览不一致</div>
+    </div>
+    <div class="card red">
+      <div class="ct">规则 C · 存在溢出问题</div>
+      <div class="cd"><code>hasOverflowDiff</code>（或 <code>overflowOnly</code> 节点任一屏溢出）<br>
+      <span class="tag bad">#1.4.2</span> margin/padding 偏移、transform 位移</div>
+    </div>
+    <div class="card">
+      <div class="ct">放过的情况</div>
+      <div class="cd"><span class="tag ok">三屏都居中</span><span class="tag ok">都被压满</span><span class="tag ok">宽度恒定且比例恒定</span><br>
+      段落级 <code>overflowOnly</code> 只跑规则 C，不跑 A/B</div>
+    </div>
+  </div>
+
+  <!-- ============ 输出 ============ -->
+  <h2>六、输出结构</h2>
+  <table>
+    <tr><th style="width:150px">字段</th><th>内容</th></tr>
+    <tr><td><code>violationId</code></td><td><code>violation-{段落号}-{序号}-{时间戳}</code>，前端据此高亮定位</td></tr>
+    <tr><td><code>screenFindings</code></td><td>3 条 WidthFinding（585/677/375 各自的宽度、比例、居中、溢出）</td></tr>
+    <tr><td><code>rules</code></td><td>命中的规则名，多条用「；」连接</td></tr>
+    <tr><td><code>paragraphIndex</code></td><td>从 violationId 反解出的段落号</td></tr>
+    <tr><td><code>outerHTML</code></td><td><code>getCleanOuterHTML()</code> 去掉 <code>data-blockidx</code> / <code>data-violation-id</code> 调试标记后的干净片段</td></tr>
+    <tr><td><code>violateRules</code></td><td><code>WIDTH_DETAIL_RULES[rules]</code>，取不到则回退 <code>propertyRules['width']</code></td></tr>
+  </table>
+
+  <!-- ============ 文件索引 ============ -->
+  <h2>七、文件索引</h2>
+  <table>
+    <tr><th style="width:280px">文件</th><th>职责</th></tr>
+    <tr><td><code>cli/engine/rules/width.ts</code></td><td>候选筛选规则（img / th / 固定宽 / 豁免）</td></tr>
+    <tr><td><code>cli/engine/collect.ts</code></td><td>段落 BFS、打 violation-id、汇总 invalidNodes</td></tr>
+    <tr><td><code>cli/engine/layout.ts</code></td><td>沙箱搭建、图片兜底、三屏实测、<code>hasWidthVariance()</code> 判定</td></tr>
+    <tr><td><code>cli/engine/rules-text.ts</code></td><td><code>propertyRules.width</code> 与 <code>WIDTH_DETAIL_RULES</code> 文案</td></tr>
+    <tr><td><code>cli/engine/rules/helpers.ts</code></td><td><code>getInlineStyleValue()</code> 从 style 字符串取值</td></tr>
+    <tr><td><code>cli/engine/index.ts</code></td><td>编排：getInvalidNodes → detectLayoutIssues</td></tr>
+  </table>
+
+  <div class="note">
+    <b>一句话总结：</b>量的是 <code>getBoundingClientRect().width</code> 在 585 / 677 / 375 三档容器下的真实渲染值，
+    再用「绝对差 10px + 占比差 0.2 + 居中/溢出一致性」三个维度跨屏比对出结论。CSS 里写的 width 只用于 Step 1 粗筛，不参与判定数字。
+  </div>
+
+</div>
+</body>
+</html>
