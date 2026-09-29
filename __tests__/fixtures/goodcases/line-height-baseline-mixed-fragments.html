@@ -1,0 +1,5 @@
+<section style="font-size:16px;">
+  <p style="line-height:1.8;">这是正文混排一个<span style="font-size:28px;">大字号</span>片段的段落，基线对齐时大字号片段的 top 与正文不同，不应被数成多行。</p>
+  <p style="line-height:1.8;">正文里嵌一张行内小图<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='36'%3E%3C/svg%3E" style="vertical-align:middle">继续文字内容，inline-block 图片参与行内排版，不应误报。</p>
+  <p style="line-height:1.8;">带一个下标 H<sub>2</sub>O 和上标 X<sup>2</sup> 的句子，sub/sup 让片段 top 偏移数个像素，仍是同一行，不应误报叠字。</p>
+</section>

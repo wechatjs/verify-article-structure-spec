@@ -243,6 +243,18 @@ const goodcases = [
   {
     id: 'line-height-single-line-padding',
     desc: '反向用例 #4 - 单行文字 + padding/border 不应误报 line-height 叠字',
+  },
+  {
+    id: 'line-height-inline-fragment-multiline',
+    desc: '反向用例 #5 - 多行纯文本 + 行内 span/b 片段混排（引号、空 b）不应误报 line-height 叠字（getClientRects 按行归并）',
+  },
+  {
+    id: 'line-height-rich-inline-fragments',
+    desc: '反向用例 #6 - 1165 场景：line-height:2 多行段落 + 每行多个 strong/span 片段（含 strong 嵌段中、列表 span）不应误报 line-height 叠字',
+  },
+  {
+    id: 'line-height-baseline-mixed-fragments',
+    desc: '反向用例 #7 - 同行混排大字号(28px)/行内图片/sub/sup 上下标：基线对齐导致片段 top 不等但属同一行，不应误报叠字（垂直区间重叠聚类）',
   }
 ];
 
