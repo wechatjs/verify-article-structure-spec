@@ -282,6 +282,10 @@ const goodcases = [
   {
     id: '1165-clean-article',
     desc: '反向用例 #8 - 1165 清理版：纯图片占位 + 空段落骨架（width-variance 工作线收集），应保持零违规',
+  },
+  {
+    id: 'srcless-img-no-wait',
+    desc: '反向用例 #9 - 无 src 的空 img（编辑器占位形态）：零违规，且不被 5s 图片等待硬控（waitForImagesToLoad 应提前过滤）',
   }
 ];
 
