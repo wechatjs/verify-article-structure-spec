@@ -80,4 +80,17 @@ describe('cli vendored engine — behavior regression (spec badcases/goodcases)'
       expect(Object.keys(result.inValidInfo)).toHaveLength(0);
     }, 120000);
   });
+
+  // #45: srcless <img /> must not trigger the 5s hard wait in waitForImagesToLoad.
+  test('srcless img does not hit the 5s image-wait timeout', async () => {
+    const html = loadFixture('srcless-img-no-wait', 'goodcases');
+    expect(html).toBeTruthy();
+    const t0 = Date.now();
+    const result = await runVerify(page!, html!);
+    const elapsed = Date.now() - t0;
+    expect(result.isValid).toBe(true);
+    // 修复前实测 ~5.4s（等满超时）；修复后 ~0.5s。阈值取 3s（超时 5s 的一半），
+    // 容忍 CI 波动的同时确保「死等超时」的回归必然被抓住。
+    expect(elapsed).toBeLessThan(3000);
+  }, 120000);
 });

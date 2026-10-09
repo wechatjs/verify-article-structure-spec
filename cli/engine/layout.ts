@@ -115,13 +115,18 @@ async function waitForImagesToLoad(sandbox: HTMLElement, timeoutMs = 5000): Prom
     if (cls.includes('ProseMirror-separator')) return false;
     // data-w 占位的图用下方 fallback 直接定宽，无需等待真实加载。
     if (img.getAttribute && Number.isFinite(parseFloat(img.getAttribute('data-w')))) return false;
+    // 无 src（含空字符串）的 img 不会发起加载，永远不会触发 load/error 事件，
+    // 不过滤会死等到 5s 超时（编辑器占位 <img /> 是常见形态，见 #45 用例）。
+    if (!img.getAttribute('src')) return false;
     return true;
   });
   if (!imgs.length) return;
 
   const settled: Promise<void>[] = imgs.map((img: any) => {
-    // Already complete (cached / no src) → no need to wait.
-    if (img.complete && img.naturalWidth !== 0) return Promise.resolve();
+    // complete=true 的 img 不会再触发 load 事件；若 naturalWidth=0 说明
+    // 加载失败（error 在监听前已触发、不会再有），两种情况都无需等待，
+    // 否则会死等到超时。
+    if (img.complete) return Promise.resolve();
     return new Promise<void>((resolve) => {
       const done = () => resolve();
       img.addEventListener('load', done, { once: true });
