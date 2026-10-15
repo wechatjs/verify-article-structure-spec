@@ -303,7 +303,12 @@ const goodcases = [
   {
     id: 'full-document-head-style',
     desc: '反向用例 #10 - 完整 HTML 文档（Cocoa 导出，含 head/style/meta）：非渲染标签不进段落列表，零矩形不误判溢出（d.html 场景）',
-  }
+  },
+  {
+    id: 'pre-scrollable-code',
+    desc: '#1.8 pre - issue #45 原始长短代码块：overflow-x:auto 可完整滚动阅读，不应误报',
+    requireLocalTpl: true,
+  },
 ];
 
 module.exports = { badcases, goodcases };

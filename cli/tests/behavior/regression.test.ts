@@ -81,6 +81,33 @@ describe('cli vendored engine — behavior regression (spec badcases/goodcases)'
     }, 120000);
   });
 
+  describe('pre horizontal overflow (#45)', () => {
+    const original = loadFixture('pre-scrollable-code', 'goodcases');
+    if (!original) throw new Error('Missing pre-scrollable-code fixture');
+    const blocks = original.match(/<pre\b[\s\S]*?<\/pre>/g)!;
+    const setOverflow = (css: string) => original.replace(/overflow-x: auto;/g, css);
+    const scenarios = [
+      { name: 'auto: original long and short code blocks', html: original, count: 0 },
+      { name: 'scroll: long code remains readable', html: setOverflow('overflow-x: scroll;'), count: 0 },
+      { name: 'default: unscrollable long code still warns', html: setOverflow(''), count: 1 },
+      { name: 'hidden: clipped long code still warns', html: setOverflow('overflow-x: hidden;'), count: 1 },
+      { name: 'clip: clipped long code still warns', html: setOverflow('overflow-x: clip;'), count: 1 },
+      { name: 'short: code fits without scrolling', html: blocks[1], count: 0 },
+      { name: 'wrap: long code fits after wrapping', html: setOverflow('').replace(/white-space: pre;/g, 'white-space: pre-wrap; overflow-wrap: anywhere;'), count: 0 },
+      { name: 'shorthand: overflow:auto enables scrolling', html: setOverflow('overflow: auto;'), count: 0 },
+      { name: 'class: computed CSS enables scrolling', html: '<style>.scrollable-code { overflow-x: auto; }</style>' + setOverflow('').replace(/<pre /g, '<pre class="scrollable-code" '), count: 0 },
+      { name: 'mixed: only the clipped long block warns', html: blocks[0] + blocks[0].replace('overflow-x: auto;', 'overflow-x: hidden;'), count: 1 },
+      { name: 'ignore-width: clipped pre still warns', html: setOverflow('overflow-x: hidden;').replace(/<pre /g, '<pre data-ignore-width '), count: 1 },
+    ];
+
+    test.each(scenarios)('$name', async ({ html, count }) => {
+      const result = await runVerify(page!, html);
+      expect(result.inValidInfo.pre?.items ?? []).toHaveLength(count);
+      expect(Object.keys(result.inValidInfo)).toEqual(count ? ['pre'] : []);
+      expect(result.isValid).toBe(count === 0);
+    }, 120000);
+  });
+
   // #45: srcless <img /> must not trigger the 5s hard wait in waitForImagesToLoad.
   test('srcless img does not hit the 5s image-wait timeout', async () => {
     const html = loadFixture('srcless-img-no-wait', 'goodcases');
