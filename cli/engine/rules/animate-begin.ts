@@ -9,7 +9,7 @@ export function checkAnimateBeginViolation(
   tag: string,
   ctx: RuleContext,
 ): RuleCandidate | null {
-  if (tag !== 'animate' && tag !== 'animateTransform' && tag !== 'animateMotion') return null;
+  if (tag !== 'animate' && tag !== 'animatetransform' && tag !== 'animatemotion') return null;
   const beginAttr = n.getAttribute && n.getAttribute('begin');
   if (beginAttr && /\btouchstart\b/i.test(beginAttr) && !/\bclick\b/i.test(beginAttr)) {
     const item: RuleCandidate = {

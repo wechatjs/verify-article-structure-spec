@@ -21,7 +21,7 @@ import type { InvalidNode } from './types.js';
 
 const commentRegex = /<!--[\s\S]*?-->/g;
 // Pre-filter: skip paragraphs whose HTML has no rule-relevant token.
-const quickRegex = /\b(?:font-family|caret-color|opacity|line-height|text-align|width|height|animate)\b|<pre[\s>]/i;
+const quickRegex = /\b(?:font-family|caret-color|opacity|line-height|text-align|width|height|animate(?:Transform|Motion)?)\b|<pre[\s>]/i;
 
 function toArray(maybeList: any): any[] {
   if (!maybeList) return [];

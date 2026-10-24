@@ -108,6 +108,39 @@ describe('cli vendored engine — behavior regression (spec badcases/goodcases)'
     }, 120000);
   });
 
+  describe('SVG animation triggers (#53)', () => {
+    const scenarios = ['animate', 'animateTransform', 'animateMotion'].flatMap(tag =>
+      ['touchstart', 'click', 'touchstart;click'].flatMap(begin =>
+        [false, true].map(hasWidth => ({ tag, begin, hasWidth })),
+      ),
+    );
+
+    test.each(scenarios)('$tag begin=$begin width=$hasWidth', async ({ tag, begin, hasWidth }) => {
+      const attrs = tag === 'animateTransform'
+        ? 'attributeName="transform" type="translate" from="0 0" to="10 0"'
+        : tag === 'animateMotion' ? 'path="M0,0 L10,0"' : 'attributeName="x" from="0" to="10"';
+      const html = `<p>动画示例<svg viewBox="0 0 80 80"${hasWidth ? ' width="80"' : ''}><g><circle r="5"/><${tag} ${attrs} begin="${begin}" dur="1s"/></g></svg></p>`;
+      const result = await runVerify(page!, html);
+      expect(result.inValidInfo['animate-begin']?.items ?? []).toHaveLength(begin === 'touchstart' ? 1 : 0);
+    }, 120000);
+  });
+
+  test('editing a reused node updates gradient diagnostics on every verification (#53)', async () => {
+    const counts = await page!.evaluate(async () => {
+      const container = document.createElement('div');
+      container.innerHTML = '<p style="color:#222">深色模式重复验证</p>';
+      const target = container.firstElementChild as HTMLElement;
+      const counts: number[] = [];
+      for (const background of ['linear-gradient(90deg,#fff,#eee)', 'none', 'linear-gradient(90deg,#fff,#eee)', 'none']) {
+        target.style.backgroundImage = background;
+        const result = await (window as any).verifyArticleStructure(container);
+        counts.push(result.inValidInfo['darkmode-no-gradient']?.items.length ?? 0);
+      }
+      return counts;
+    });
+    expect(counts).toEqual([1, 0, 1, 0]);
+  }, 120000);
+
   // #45: srcless <img /> must not trigger the 5s hard wait in waitForImagesToLoad.
   test('srcless img does not hit the 5s image-wait timeout', async () => {
     const html = loadFixture('srcless-img-no-wait', 'goodcases');
