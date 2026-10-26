@@ -411,7 +411,7 @@ caret-color: rgba(0, 0, 0, 0);
 
 **错误场景**
 
-设置`SVG`动画`animate`的`begin`属性时仅设置了`touchstart`
+设置 SVG 动画元素（`animate`、`animateTransform`、`animateMotion`）的 `begin` 属性时，包含 `touchstart` 但未包含 `click`。
 
 **错误示例**
 

@@ -108,6 +108,23 @@ describe('cli vendored engine — behavior regression (spec badcases/goodcases)'
     }, 120000);
   });
 
+  describe('SVG animation triggers (#53)', () => {
+    const scenarios = ['animate', 'animateTransform', 'animateMotion'].flatMap(tag =>
+      ['touchstart', 'click', 'touchstart;click'].flatMap(begin =>
+        [false, true].map(hasWidth => ({ tag, begin, hasWidth })),
+      ),
+    );
+
+    test.each(scenarios)('$tag begin=$begin width=$hasWidth', async ({ tag, begin, hasWidth }) => {
+      const attrs = tag === 'animateTransform'
+        ? 'attributeName="transform" type="translate" from="0 0" to="10 0"'
+        : tag === 'animateMotion' ? 'path="M0,0 L10,0"' : 'attributeName="x" from="0" to="10"';
+      const html = `<p>动画示例<svg viewBox="0 0 80 80"${hasWidth ? ' width="80"' : ''}><g><circle r="5"/><${tag} ${attrs} begin="${begin}" dur="1s"/></g></svg></p>`;
+      const result = await runVerify(page!, html);
+      expect(result.inValidInfo['animate-begin']?.items ?? []).toHaveLength(begin === 'touchstart' ? 1 : 0);
+    }, 120000);
+  });
+
   // #45: srcless <img /> must not trigger the 5s hard wait in waitForImagesToLoad.
   test('srcless img does not hit the 5s image-wait timeout', async () => {
     const html = loadFixture('srcless-img-no-wait', 'goodcases');
