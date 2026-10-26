@@ -19,16 +19,34 @@ const DARKMODE_RUN_OPTS = {
   noEmit: true,
 };
 
-// Reverse-lookup the paragraph index for a node via the nearest data-blockidx
-// ancestor, falling back to paragraphList.contains. Returns -1 when unknown.
+// Reverse-lookup the paragraph index for a node. Returns -1 when unknown.
 //
-// stamp 验证包含性：quickRegex 跳过的段落（如无 style 属性的 ul 列表块）
-// 自身子树没有盖章，其内部节点反查会一路穿透到被早期段落盖章的共享外层
-// 容器，得到错误的早期段号（曾把文末的 ul 列表归到第 1 段）。所以找到
-// stamp 后必须确认 paragraphList[idx] 确实包含该节点，否则继续向上；
-// 全部无效时落到 findIndex 兜底（第一个包含该节点的段落）。
+// 优先级 1：编辑器自带的 data-para-index（编辑器对 live DOM 盖的段落编号，
+// 是「定位」跳转的真正依据）。引擎自算的段号基于传入 HTML 的切分，与编辑器
+// 内部段落列表可能存在偏移（编辑态 DOM 带 span leaf 等产物、节点经编辑增删），
+// 实测同一节点我们算 41 而编辑器标 42，定位跳错一行。属性缺失（CLI 场景）时
+// 走优先级 2。
+// 优先级 2：data-blockidx stamp + 包含性验证。quickRegex 跳过的段落（如无
+// 样式关键词的 ul 列表块）自身子树没有盖章，其内部节点反查会一路穿透到被
+// 早期段落盖章的共享外层容器，得到错误的早期段号——所以找到 stamp 后必须
+// 确认 paragraphList[idx] 确实包含该节点。
+// 优先级 3：findIndex 兜底（第一个包含该节点的段落）。
 function resolveParagraphIndex(node: any, paragraphList: any[]): number {
+  // 优先级 1：编辑器自己的段落编号
   let el = node;
+  while (el) {
+    if (typeof el.getAttribute === 'function') {
+      const editorIdx = el.getAttribute('data-para-index');
+      if (editorIdx !== null && editorIdx !== '') {
+        const n = parseInt(editorIdx, 10);
+        if (Number.isFinite(n)) return n;
+      }
+    }
+    el = el.parentNode;
+  }
+
+  // 优先级 2：data-blockidx stamp + 包含性验证
+  el = node;
   while (el) {
     if (typeof el.getAttribute === 'function') {
       const idx = el.getAttribute('data-blockidx');
@@ -40,6 +58,8 @@ function resolveParagraphIndex(node: any, paragraphList: any[]): number {
     }
     el = el.parentNode;
   }
+
+  // 优先级 3：findIndex 兜底
   return paragraphList.findIndex((p: any) => p && p.contains && p.contains(node));
 }
 

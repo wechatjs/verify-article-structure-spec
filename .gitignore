@@ -10,3 +10,8 @@ coverage/
 # 临时
 *.log
 .DS_Store
+
+# fix-service（Agent 自动修复服务）—— 指向内网仓的软链，仅本地调试用，禁止提交公开仓
+# 原因：代码含内部域名（git.woa.com / Adams 网关 / 工蜂项目路径）
+# 注意：symlink 在 git 眼里是文件，规则不能带尾斜杠（fix-service/ 只匹配目录）
+fix-service
