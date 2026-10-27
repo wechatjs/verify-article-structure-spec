@@ -7,7 +7,7 @@ import { pathToFileURL } from 'node:url';
 import { launchBrowser, runVerify } from './browser-runner.js';
 import { formatHuman, formatJson } from './result-formatter.js';
 
-const HELP = `文章样式检测 CLI（puppeteer 真实浏览器跑全规则）
+const HELP = `文章样式检测 CLI（puppeteer 真实浏览器检测已实现的样式与结构规则）
 
 用法:
   pnpm check <file.html> [options]

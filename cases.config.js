@@ -192,13 +192,13 @@ const badcases = [
   // ===== redundant-node =====
   {
     // 本地合成用例：同一父容器下 23 个 <section> 子节点、其中 16 个空节点，
-    // 满足 #3.4「子节点数 > 20 且空节点数 > 15」的冗余空节点定义。
+    // 按预留文案「子节点数 > 20 且空节点数 > 15」收集，尚未纳入规范。
     id: 'redundant-empty-nodes',
     relatedRule: 'redundant-node',
     expectInvalidKeys: ['redundant-node'],
     skip: true,
     skipReason: 'redundant-node 规则尚未在 CLI 引擎实现（rules-text 已有文案），fixture 先行收集',
-    desc: '#3.4 冗余空节点 - 23 子节点 / 16 空节点（规则未实现，暂跳过）',
+    desc: '#2 文章结构类 - 冗余空节点：23 子节点 / 16 空节点（待补充规范，CLI 未实现，暂跳过）',
     requireLocalTpl: true,
   },
   {
@@ -208,7 +208,7 @@ const badcases = [
     expectInvalidKeys: ['redundant-node'],
     skip: true,
     skipReason: 'redundant-node 规则尚未在 CLI 引擎实现，fixture 先行收集',
-    desc: '#3.4 冗余空节点 - 135 编辑器臃肿导出真实样本（规则未实现，暂跳过）',
+    desc: '#2 文章结构类 - 冗余空节点：135 编辑器臃肿导出真实样本（待补充规范，CLI 未实现，暂跳过）',
     requireLocalTpl: true,
   },
 
@@ -303,7 +303,12 @@ const goodcases = [
   {
     id: 'full-document-head-style',
     desc: '反向用例 #10 - 完整 HTML 文档（Cocoa 导出，含 head/style/meta）：非渲染标签不进段落列表，零矩形不误判溢出（d.html 场景）',
-  }
+  },
+  {
+    id: 'pre-scrollable-code',
+    desc: '#1.8 pre - issue #45 原始长短代码块：overflow-x:auto 可完整滚动阅读，不应误报',
+    requireLocalTpl: true,
+  },
 ];
 
 module.exports = { badcases, goodcases };

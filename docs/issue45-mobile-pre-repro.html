@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Issue #45 · 手机代码块场景对照</title>
+<style>
+:root { --phone-width: 375px; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f1f3f6; color: #202936; font: 15px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.page-header, main, footer { max-width: 1220px; margin: 0 auto; padding: 0 24px; }
+.page-header { padding-top: 36px; }
+.eyebrow { margin: 0 0 6px; color: #617087; font-size: 12px; letter-spacing: .06em; }
+h1 { margin: 0; font-size: 28px; line-height: 1.4; }
+.intro { max-width: 820px; margin: 12px 0 18px; color: #596679; }
+.toolbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+.sizes { display: flex; gap: 6px; }
+button { border: 1px solid #ccd3de; border-radius: 7px; padding: 6px 12px; background: #fff; color: inherit; font: inherit; cursor: pointer; }
+button[aria-pressed="true"] { border-color: #1765c1; background: #eaf2ff; color: #1559a7; }
+.small, .shell-note { color: #617087; font-size: 13px; }
+.shell-note { margin: 0 0 20px; }
+details { border: 1px solid #dce2ea; border-radius: 8px; background: #fff; }
+summary { padding: 10px 14px; cursor: pointer; }
+.shared-shell { margin-bottom: 24px; }
+.shared-shell pre { margin: 0; padding: 0 14px 14px; overflow-x: auto; font-size: 12px; }
+.case { margin-bottom: 22px; border: 1px solid #dce2ea; border-radius: 12px; overflow: hidden; background: #fff; }
+.case-header { padding: 18px 20px 14px; border-bottom: 1px solid #e8ecf1; }
+.title-row { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+h2 { margin: 0; font-size: 18px; }
+.number { color: #8491a3; margin-right: 8px; font-variant-numeric: tabular-nums; }
+.badge { padding: 2px 9px; border-radius: 5px; font-size: 12px; white-space: nowrap; }
+.pass { color: #236447; background: #eaf5ed; }
+.warn { color: #92501a; background: #fff1df; }
+.description { margin: 8px 0 0; color: #596679; font-size: 14px; }
+.comparison { display: grid; grid-template-columns: var(--phone-width) minmax(0, 1fr); gap: 20px; align-items: start; padding: 20px; }
+.preview-column { width: 100%; min-width: 0; }
+.column-label { margin: 0 0 8px; color: #617087; font-size: 12px; }
+iframe { display: block; width: 100%; height: 260px; border: 0; outline: 1px solid #dce2ea; border-radius: 8px; background: #fff; }
+.source-column { min-width: 0; }
+.source { margin: 0; padding: 16px; border: 1px solid #dce2ea; border-radius: 8px; background: #f7f9fc; color: #263c55; font: 12px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; white-space: pre-wrap; overflow-wrap: anywhere; tab-size: 2; }
+.source code { font: inherit; }
+footer { padding-bottom: 32px; color: #617087; font-size: 13px; }
+a { color: #1765c1; }
+@media (max-width: 850px) {
+  .comparison { grid-template-columns: minmax(0, 1fr); }
+  .preview-column { width: min(100%, var(--phone-width)); }
+}
+@media (max-width: 500px) {
+  .page-header, main, footer { padding-left: 0; padding-right: 0; }
+  .page-header > :not(.shared-shell), footer { padding-left: 16px; padding-right: 16px; }
+  h1 { font-size: 24px; }
+  .case { border-radius: 0; border-left: 0; border-right: 0; }
+  .case-header { padding: 16px; }
+  .comparison { padding: 16px 0; }
+  .preview-column { justify-self: center; }
+  .source-column { padding: 0 16px; }
+  .column-label { padding-left: 8px; }
+}
+</style>
+</head>
+<body>
+<header class="page-header">
+  <p class="eyebrow">ISSUE #45 · 本地验证</p>
+  <h1>手机代码块 · 效果与源码对照</h1>
+  <p class="intro">左边是独立的手机宽度预览，右边是实际渲染的 HTML/CSS。长代码保持同一内容，逐项比较横向滑动、截断和自动换行的效果。</p>
+  <div class="toolbar">
+    <span class="small">预览宽度</span>
+    <div class="sizes" aria-label="手机视口宽度">
+      <button type="button" data-width="375" aria-pressed="true">375 px</button>
+      <button type="button" data-width="390" aria-pressed="false">390 px</button>
+      <button type="button" data-width="414" aria-pressed="false">414 px</button>
+    </div>
+    <span class="small">9 个场景 · 标签表示修复建议的预期结果，尚未运行规则检测</span>
+  </div>
+  <p class="shell-note">所有预览统一模拟文章左右留白 16px，并在页面外层裁剪横向溢出，便于观察阅读区边界。代码块自身能否滑动由各场景决定。</p>
+  <details class="shared-shell">
+    <summary>查看所有预览共用的页面样式（包含外层裁剪设置）</summary>
+    <pre><code id="shared-css"></code></pre>
+  </details>
+</header>
+<main id="cases"></main>
+<footer>原始反馈：<a href="https://github.com/wechatjs/verify-article-structure-spec/issues/45">Issue #45</a>。这里只模拟手机阅读区域；微信 App 内的实际表现仍需在手机预览中确认。窄屏查看时，源码会排在预览下方。</footer>
+<script>
+// Each iframe isolates article styles and supplies a mobile-width viewport.
+const previewCss = `* { box-sizing: border-box; }
+body {
+  margin: 0;
+  overflow-x: hidden; /* 模拟手机阅读区的外层裁剪，不设置在 pre 上 */
+  background: #fff;
+  color: #202124;
+  font: 16px/1.75 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+#js_content { padding: 16px; }
+pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }`;
+const original = `<div id="js_content">
+<section><span leaf="">下面是一段代码，长行在手机上横向滚动查看：</span></section>
+<pre style="overflow-x: auto; padding: 16px; background: #272822; color: #f8f8f2; border-radius: 8px;"><code style="display: block; white-space: pre; font-size: 14px; line-height: 1.75;"><span leaf="">const mod: typeof import("./news-generator/index-cctv-news.ts") = await import(new URL("./news-generator/index-cctv-news.ts", import.meta.url).href)</span></code></pre>
+<pre style="overflow-x: auto; padding: 16px; background: #272822; color: #f8f8f2; border-radius: 8px;"><code style="display: block; white-space: pre; font-size: 14px; line-height: 1.75;"><span leaf="">console.log("hi");</span></code></pre>
+</div>`;
+const longCode = 'const mod: typeof import("./news-generator/index-cctv-news.ts") = await import(new URL("./news-generator/index-cctv-news.ts", import.meta.url).href)';
+const commonPre = 'padding: 16px; background: #272822; color: #f8f8f2; border-radius: 8px;';
+function example({ overflow = '', text = longCode, wrap = false, className = '' } = {}) {
+  const preStyle = `${overflow ? overflow + '; ' : ''}${commonPre}`;
+  const codeStyle = `display: block; white-space: ${wrap ? 'pre-wrap' : 'pre'}; ${wrap ? 'overflow-wrap: anywhere; ' : ''}font-size: 14px; line-height: 1.75;`;
+  const classAttribute = className ? ` class="${className}"` : '';
+  return `<div id="js_content">
+  <pre${classAttribute} style="${preStyle}"><code style="${codeStyle}"><span leaf="">${text}</span></code></pre>
+</div>`;
+}
+const scenarios = [
+  {
+    id: 'original', title: '原始 case：长代码 + overflow-x: auto', pass: true,
+    description: '保留 issue 的原始 HTML 和两个代码块。在上面的长代码块内左右滑动，查看行尾 .href)。下面的短代码用于对照。',
+    html: original,
+  },
+  {
+    id: 'scroll', title: '长代码 + overflow-x: scroll', pass: true,
+    description: '代码保持单行，允许横向滑动查看全部内容。滚动条是否一直可见，取决于系统设置。',
+    html: example({ overflow: 'overflow-x: scroll' }),
+  },
+  {
+    id: 'default', title: '长代码 + 未设置 overflow', pass: false,
+    description: 'pre 默认向外溢出，自身不能横向滚动。在此页模拟的外层裁剪下，行尾不可见；若外层不裁剪，则可能撑出整页横向溢出。',
+    html: example(),
+  },
+  {
+    id: 'hidden', title: '长代码 + overflow-x: hidden', pass: false,
+    description: '代码块自身裁剪超宽内容，不提供手动横向滚动。尝试滑动，观察行尾是否始终不可见。',
+    html: example({ overflow: 'overflow-x: hidden' }),
+  },
+  {
+    id: 'clip', title: '长代码 + overflow-x: clip', pass: false,
+    description: '代码块自身裁剪超宽内容，不能横向滚动。用于确认修复不会放过真正被截断的代码。',
+    html: example({ overflow: 'overflow-x: clip' }),
+  },
+  {
+    id: 'short', title: '短代码 + overflow-x: auto', pass: true,
+    description: '内容本身能放下，没有超宽，也不需要横向滑动。',
+    html: example({ overflow: 'overflow-x: auto', text: 'console.log("hi");' }),
+  },
+  {
+    id: 'wrap', title: '长代码 + 自动换行', pass: true,
+    description: '同一段长代码自动折成多行，内容全部显示，无需横向滑动。可以直观看到它与保留单行的可读性差异。',
+    html: example({ wrap: true }),
+  },
+  {
+    id: 'shorthand', title: '长代码 + overflow: auto 简写', pass: true,
+    description: '使用 overflow 简写设置滚动，横向滑动效果与 overflow-x: auto 相同。',
+    html: example({ overflow: 'overflow: auto' }),
+  },
+  {
+    id: 'class', title: '长代码 + CSS 类设置滚动', pass: true,
+    description: '滚动设置来自 CSS 类，而非 pre 的内联样式。实际效果仍可横向滑动，应按最终计算样式判断。',
+    html: `<style>\n.scrollable-code { overflow-x: auto; }\n</style>\n${example({ className: 'scrollable-code' })}`,
+  },
+];
+document.querySelector('#shared-css').textContent = previewCss;
+const caseList = document.querySelector('#cases');
+scenarios.forEach((scenario, index) => {
+  const card = document.createElement('section');
+  card.className = 'case';
+  card.id = `case-${scenario.id}`;
+  card.innerHTML = `
+    <header class="case-header">
+      <div class="title-row">
+        <h2><span class="number">${String(index + 1).padStart(2, '0')}</span></h2>
+        <span class="badge ${scenario.pass ? 'pass' : 'warn'}">建议：${scenario.pass ? '不报 pre' : '提示 pre'}</span>
+      </div>
+      <p class="description"></p>
+    </header>
+    <div class="comparison">
+      <div class="preview-column">
+        <p class="column-label preview-label">手机预览 · 375 px</p>
+        <iframe sandbox="allow-same-origin"></iframe>
+      </div>
+      <div class="source-column">
+        <p class="column-label">对应实现 · HTML / CSS</p>
+        <pre class="source"><code></code></pre>
+      </div>
+    </div>`;
+  card.querySelector('h2').append(document.createTextNode(scenario.title));
+  card.querySelector('.description').textContent = scenario.description;
+  card.querySelector('.source code').textContent = scenario.html;
+  const frame = card.querySelector('iframe');
+  frame.title = scenario.title;
+  frame.srcdoc = `<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>${previewCss}</style>
+</head>
+<body>${scenario.html}</body>
+</html>`;
+  frame.addEventListener('load', updateLabels);
+  caseList.append(card);
+});
+function updateLabels() {
+  document.querySelectorAll('.preview-column').forEach(column => {
+    const width = Math.round(column.querySelector('iframe').getBoundingClientRect().width);
+    column.querySelector('.preview-label').textContent = `手机预览 · ${width} px（含左右各 16 px 留白）`;
+  });
+}
+document.querySelectorAll('[data-width]').forEach(button => {
+  button.addEventListener('click', () => {
+    document.documentElement.style.setProperty('--phone-width', `${button.dataset.width}px`);
+    document.querySelectorAll('[data-width]').forEach(item => {
+      item.setAttribute('aria-pressed', String(item === button));
+    });
+    updateLabels();
+  });
+});
+window.addEventListener('resize', updateLabels);
+updateLabels();
+</script>
+</body>
+</html>

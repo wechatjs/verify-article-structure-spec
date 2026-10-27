@@ -71,6 +71,15 @@ describe('article-style-checker CLI (E2E)', () => {
     expect(r.stdout).toContain('未检测到违规');
   });
 
+  test('issue #45：可横向滚动代码块无违规，JSON 为空，退出码 0', () => {
+    const fixture = path.resolve(CLI_DIR, '../__tests__/fixtures/goodcases/pre-scrollable-code.html');
+    const r = runCli([fixture, '--json']);
+    expect(r.code).toBe(0);
+    const parsed = JSON.parse(r.stdout);
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.violations).toEqual([]);
+  });
+
   test('--json：输出合法 JSON，含 isValid / source / violations（items 含 outerHTML 截断）', () => {
     const r = runCli([violationsPath, '--json']);
     expect(r.code).toBe(1);

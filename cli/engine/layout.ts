@@ -519,8 +519,10 @@ async function detectLayoutIssues(
       if (!violationId) return;
       const cloned = sandbox.querySelector(`[data-violation-id="${violationId}"]`);
       if (!cloned) return;
+      const overflowX = getComputedStyle(cloned).overflowX;
+      const canScrollX = overflowX === 'auto' || overflowX === 'scroll';
       // +1px cross-browser tolerance.
-      const isOverflowing = cloned.scrollWidth > cloned.clientWidth + 1;
+      const isOverflowing = cloned.scrollWidth > cloned.clientWidth + 1 && !canScrollX;
       if (!allScreenFindings[violationId]) allScreenFindings[violationId] = { width: [], 'line-height': [] };
       if (!allScreenFindings[violationId].pre) allScreenFindings[violationId].pre = [];
       const finding: PreFinding = { violationId, isOverflowing, screenWidth: config.width };

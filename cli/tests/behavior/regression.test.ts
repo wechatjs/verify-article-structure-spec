@@ -81,6 +81,50 @@ describe('cli vendored engine — behavior regression (spec badcases/goodcases)'
     }, 120000);
   });
 
+  describe('pre horizontal overflow (#45)', () => {
+    const original = loadFixture('pre-scrollable-code', 'goodcases');
+    if (!original) throw new Error('Missing pre-scrollable-code fixture');
+    const blocks = original.match(/<pre\b[\s\S]*?<\/pre>/g)!;
+    const setOverflow = (css: string) => original.replace(/overflow-x: auto;/g, css);
+    const scenarios = [
+      { name: 'auto: original long and short code blocks', html: original, count: 0 },
+      { name: 'scroll: long code remains readable', html: setOverflow('overflow-x: scroll;'), count: 0 },
+      { name: 'default: unscrollable long code still warns', html: setOverflow(''), count: 1 },
+      { name: 'hidden: clipped long code still warns', html: setOverflow('overflow-x: hidden;'), count: 1 },
+      { name: 'clip: clipped long code still warns', html: setOverflow('overflow-x: clip;'), count: 1 },
+      { name: 'short: code fits without scrolling', html: blocks[1], count: 0 },
+      { name: 'wrap: long code fits after wrapping', html: setOverflow('').replace(/white-space: pre;/g, 'white-space: pre-wrap; overflow-wrap: anywhere;'), count: 0 },
+      { name: 'shorthand: overflow:auto enables scrolling', html: setOverflow('overflow: auto;'), count: 0 },
+      { name: 'class: computed CSS enables scrolling', html: '<style>.scrollable-code { overflow-x: auto; }</style>' + setOverflow('').replace(/<pre /g, '<pre class="scrollable-code" '), count: 0 },
+      { name: 'mixed: only the clipped long block warns', html: blocks[0] + blocks[0].replace('overflow-x: auto;', 'overflow-x: hidden;'), count: 1 },
+      { name: 'ignore-width: clipped pre still warns', html: setOverflow('overflow-x: hidden;').replace(/<pre /g, '<pre data-ignore-width '), count: 1 },
+    ];
+
+    test.each(scenarios)('$name', async ({ html, count }) => {
+      const result = await runVerify(page!, html);
+      expect(result.inValidInfo.pre?.items ?? []).toHaveLength(count);
+      expect(Object.keys(result.inValidInfo)).toEqual(count ? ['pre'] : []);
+      expect(result.isValid).toBe(count === 0);
+    }, 120000);
+  });
+
+  describe('SVG animation triggers (#53)', () => {
+    const scenarios = ['animate', 'animateTransform', 'animateMotion'].flatMap(tag =>
+      ['touchstart', 'click', 'touchstart;click'].flatMap(begin =>
+        [false, true].map(hasWidth => ({ tag, begin, hasWidth })),
+      ),
+    );
+
+    test.each(scenarios)('$tag begin=$begin width=$hasWidth', async ({ tag, begin, hasWidth }) => {
+      const attrs = tag === 'animateTransform'
+        ? 'attributeName="transform" type="translate" from="0 0" to="10 0"'
+        : tag === 'animateMotion' ? 'path="M0,0 L10,0"' : 'attributeName="x" from="0" to="10"';
+      const html = `<p>动画示例<svg viewBox="0 0 80 80"${hasWidth ? ' width="80"' : ''}><g><circle r="5"/><${tag} ${attrs} begin="${begin}" dur="1s"/></g></svg></p>`;
+      const result = await runVerify(page!, html);
+      expect(result.inValidInfo['animate-begin']?.items ?? []).toHaveLength(begin === 'touchstart' ? 1 : 0);
+    }, 120000);
+  });
+
   // #45: srcless <img /> must not trigger the 5s hard wait in waitForImagesToLoad.
   test('srcless img does not hit the 5s image-wait timeout', async () => {
     const html = loadFixture('srcless-img-no-wait', 'goodcases');
@@ -92,5 +136,21 @@ describe('cli vendored engine — behavior regression (spec badcases/goodcases)'
     // 修复前实测 ~5.4s（等满超时）；修复后 ~0.5s。阈值取 3s（超时 5s 的一半），
     // 容忍 CI 波动的同时确保「死等超时」的回归必然被抓住。
     expect(elapsed).toBeLessThan(3000);
+  }, 120000);
+
+  test('editing a reused node updates gradient diagnostics on every verification (#53)', async () => {
+    const counts = await page!.evaluate(async () => {
+      const container = document.createElement('div');
+      container.innerHTML = '<p style="color:#222">深色模式重复验证</p>';
+      const target = container.firstElementChild as HTMLElement;
+      const counts: number[] = [];
+      for (const background of ['linear-gradient(90deg,#fff,#eee)', 'none', 'linear-gradient(90deg,#fff,#eee)', 'none']) {
+        target.style.backgroundImage = background;
+        const result = await (window as any).verifyArticleStructure(container);
+        counts.push(result.inValidInfo['darkmode-no-gradient']?.items.length ?? 0);
+      }
+      return counts;
+    });
+    expect(counts).toEqual([1, 0, 1, 0]);
   }, 120000);
 });

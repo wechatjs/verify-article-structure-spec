@@ -11,7 +11,7 @@ const HELP = `verify-article-structure — 文章结构检测 & 清理 CLI
   verify-article-structure <command> [options]
 
 命令:
-  check <file.html>     跑全规则检测（puppeteer 真实浏览器）
+  check <file.html>     检测已实现的样式与结构规则（puppeteer 真实浏览器）
   dedupe <file.html>    清理冗余嵌套（jsdom 真删 → 输出清理后 HTML）
 
 各命令的帮助:
