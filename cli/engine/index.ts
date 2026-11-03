@@ -76,7 +76,11 @@ async function verifyArticleStructure(articleBody: any, opts: VerifyOpts = {}): 
     needJudgeFirstPage: false,
     noEmit: true,
   });
-  const darkmodeResult = Darkmode.validate(articleBody);
+  // mp-darkmode 的 validate 在对比度分支无条件读 opt.minContrast——不传 opts
+  // 会在遇到第一个带文字的节点时抛 TypeError（PR #53 回归，0.2.25/0.2.26
+  // 发布包均受影响）。旧引擎自有 validate 的默认值是 MIN_CONTRAST = 1.5，
+  // 这里保持一致。
+  const darkmodeResult = Darkmode.validate(articleBody, { minContrast: 1.5 });
   if (detached) doc!.body.removeChild(articleBody);
 
   const paragraphList = getParaList(articleBody, {
