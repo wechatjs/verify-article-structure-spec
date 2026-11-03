@@ -1,6 +1,6 @@
 {
   "name": "verify-article-structure",
-  "version": "0.2.27",
+  "version": "0.2.28",
   "private": false,
   "description": "Article structure & style checker — full-rule detection via a real Puppeteer browser, redundant-nesting dedupe cleanup, and a browser-runnable verifyArticleStructure export.",
   "type": "module",
