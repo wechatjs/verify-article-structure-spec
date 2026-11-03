@@ -383,7 +383,12 @@ caret-color: rgba(0, 0, 0, 0);
 
 **错误场景**
 
-设置`text-align` 为`start，end`
+同时满足以下两个条件：
+
+1. 某节点的 `text-align` 设置为 `start` 或 `end`；
+2. 该值解析出的对齐方向（`start`→居左、`end`→居右）与其祖先容器实际生效的对齐方式不一致，如外层 `center` 内层 `start`、外层 `left` 内层 `end`。
+
+此时不同终端对该值的处理不同：支持的终端解析为左/右，不支持的终端回落继承外层对齐，两种渲染结果不同。
 
 **错误示例**
 ``` html
@@ -391,9 +396,22 @@ caret-color: rgba(0, 0, 0, 0);
    <span style="text-align: start;">看完了绚烂的灯光秀</span>
 </section>
 ```
+**无风险场景（不触发检测）**
+
+`start`/`end` 解析结果与外层对齐一致时，无论终端是否支持该值，渲染结果都相同，不会造成不一致体验：
+
+- 外层 `left`（或未设置，默认居左）内的 `start`
+- 外层 `right` 内的 `end`
+
+``` html
+<section style="text-align: left;">
+   <span style="text-align: start;">正常文字</span>
+</section>
+```
+
 **影响说明**
 
-不同终端对 `start` 值兼容性存在差异，造成部分设备文字居中、部分设备文字居左的不一致体验。
+不同终端对 `start`/`end` 值兼容性存在差异，在与外层对齐方式冲突时，造成部分设备按外层对齐、部分设备按左/右对齐的不一致体验。
 
 
 <table>

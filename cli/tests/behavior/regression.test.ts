@@ -125,6 +125,35 @@ describe('cli vendored engine — behavior regression (spec badcases/goodcases)'
     }, 120000);
   });
 
+  describe('text-align start/end conflict (#1.6)', () => {
+    // start/end 只有与外层生效对齐冲突时才报：忽略→继承外层，支持→解析为左/右，
+    // 两种渲染不同。解析结果与外层一致时（start 在 left 内 / end 在 right 内）无害。
+    const wrap = (outer: string, inner: string) =>
+      `<section style="text-align: ${outer};"><span style="text-align: ${inner};">看完了绚烂的灯光秀</span></section>`;
+    const scenarios = [
+      { name: 'conflict: start inside center', html: wrap('center', 'start'), count: 1 },
+      { name: 'conflict: end inside center', html: wrap('center', 'end'), count: 1 },
+      { name: 'conflict: end inside left', html: wrap('left', 'end'), count: 1 },
+      { name: 'conflict: start inside right', html: wrap('right', 'start'), count: 1 },
+      { name: 'harmless: start inside left', html: wrap('left', 'start'), count: 0 },
+      { name: 'harmless: end inside right', html: wrap('right', 'end'), count: 0 },
+      { name: 'harmless: start without outer alignment', html: '<span style="text-align: start;">纯 start</span>', count: 0 },
+      { name: 'harmless: non-logical value (left inside center)', html: wrap('center', 'left'), count: 0 },
+      {
+        name: 'conflict: nearest explicit ancestor (center>start>start flags middle only)',
+        html: '<section style="text-align: center;"><section style="text-align: start;"><span style="text-align: start;">嵌套</span></section></section>',
+        count: 1,
+      },
+    ];
+
+    test.each(scenarios)('$name', async ({ html, count }) => {
+      const result = await runVerify(page!, html);
+      expect(result.inValidInfo['text-align']?.items ?? []).toHaveLength(count);
+      expect(Object.keys(result.inValidInfo)).toEqual(count ? ['text-align'] : []);
+      expect(result.isValid).toBe(count === 0);
+    }, 120000);
+  });
+
   // #45: srcless <img /> must not trigger the 5s hard wait in waitForImagesToLoad.
   test('srcless img does not hit the 5s image-wait timeout', async () => {
     const html = loadFixture('srcless-img-no-wait', 'goodcases');
