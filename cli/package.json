@@ -1,6 +1,6 @@
 {
-  "name": "@tencent/verify-article-structure",
-  "version": "0.2.28",
+  "name": "verify-article-structure",
+  "version": "0.2.27",
   "private": false,
   "description": "Article structure & style checker — full-rule detection via a real Puppeteer browser, redundant-nesting dedupe cleanup, and a browser-runnable verifyArticleStructure export.",
   "type": "module",
@@ -19,7 +19,7 @@
     "README.md"
   ],
   "publishConfig": {
-    "registry": "https://mirrors.tencent.com/npm/"
+    "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
     "check": "tsx src/index.ts",
