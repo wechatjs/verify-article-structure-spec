@@ -1,0 +1,128 @@
+name: 发包到公网 npm
+
+# 触发条件：
+# 1. push 到 main 且 cli/package.json 有变更（版本号或包名改动）→ 自动构建、测试、发包、打 tag、建 Release
+# 2. workflow_dispatch 手动触发（跳过变更检测，强制走完整流程，用于补发/重试）
+#
+# 前置配置（一次性）：
+# 仓库 Settings → Secrets and variables → Actions 添加 NPM_TOKEN
+# （npmjs.com 账号 → Access Tokens → Generate New Token，选 Classic Automation 类型，
+#   或 Granular token 并勾选 Read and write 权限）
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'cli/package.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-main
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: 检测 cli/package.json 是否变更
+        id: detect
+        run: |
+          VERSION=$(node -p "require('./cli/package.json').version")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "手动触发，强制走完整流程"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          BEFORE="${{ github.event.before }}"
+          if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            BEFORE="HEAD^"
+          fi
+          if git diff --name-only "$BEFORE" HEAD -- cli/package.json | grep -q .; then
+            echo "cli/package.json 有变更 → 进入发包流程"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "cli/package.json 无变更 → 跳过"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 空转退出（无变更）
+        if: steps.detect.outputs.changed != 'true'
+        run: echo "本次推送未改动 cli/package.json，无需发包。"
+
+      - name: 校验 NPM_TOKEN 已配置
+        if: steps.detect.outputs.changed == 'true'
+        env:
+          HAS_TOKEN: ${{ secrets.NPM_TOKEN != '' }}
+        run: |
+          if [ "$HAS_TOKEN" != "true" ]; then
+            echo "::error::仓库 Secret NPM_TOKEN 未配置，无法发布公网 npm。"
+            echo "请到 Settings → Secrets and variables → Actions → New repository secret，"
+            echo "名称填 NPM_TOKEN，值为 npmjs.com 生成的 Access Token（Automation 类型）。"
+            echo "配置完成后可在 Actions 页面手动 Run workflow 重试。"
+            exit 1
+          fi
+
+      - name: 安装依赖
+        if: steps.detect.outputs.changed == 'true'
+        working-directory: cli
+        run: pnpm install --frozen-lockfile
+
+      - name: 幂等检查（版本是否已发布过）
+        id: should
+        if: steps.detect.outputs.changed == 'true'
+        run: |
+          VERSION="${{ steps.detect.outputs.version }}"
+          if npm view "verify-article-structure@$VERSION" version --registry=https://registry.npmjs.org/ >/dev/null 2>&1; then
+            echo "::notice::v$VERSION 已存在于公网 npm，跳过发包与打 tag"
+            echo "should=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "v$VERSION 未发布过 → 开始发包"
+            echo "should=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 发布（prepublishOnly 自动执行 build + 全量测试）
+        if: steps.should.outputs.should == 'true'
+        working-directory: cli
+        run: pnpm publish --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 打 git tag
+        if: steps.should.outputs.should == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          TAG="v${{ steps.detect.outputs.version }}"
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "::notice::tag $TAG 已存在，跳过"
+          else
+            git tag "$TAG"
+            git push origin "$TAG"
+            echo "已创建并推送 tag $TAG"
+          fi
+
+      - name: 创建 GitHub Release
+        if: steps.should.outputs.should == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.detect.outputs.version }}
+          generate_release_notes: true

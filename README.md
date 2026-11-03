@@ -27,7 +27,7 @@
 
 当前 CLI 尚未接入规范第 3 章的字体检测，以及第 2.2、2.3 节的 `span[leaf]` / `section[nodeleaf]` 结构检测。`redundant-node` 仅预留文案和跳过的用例，尚未纳入规范或实现检测。因此，CLI 检测通过并不代表已覆盖规范全部要求。
 
-> npm 包 `@tencent/verify-article-structure` 暂未对外开放发布，当前请从源码构建使用。
+> npm 包 `verify-article-structure` 发布于公网 npm（registry.npmjs.org）。PR 合并进 main 且 `cli/package.json` 变更时，GitHub Actions 自动执行「构建 → 测试 → 发包 → 打 git tag → 创建 Release」，无需手动发包。
 
 ### 安装（从源码构建）
 
@@ -190,7 +190,6 @@ verify-article-structure-spec/
 
 | 版本 | 日期 | 变更 |
 |---|---|---|
-| 0.2.28 | 2026-11-03 | text-align start/end 规则收紧（PR #58）：仅当 start/end 解析方向与祖先实际生效对齐不一致时才报（支持终端的解析结果 vs 不支持终端回退继承结果，两边不同才报）；线上日志抽样 97 条中 95 条误报（97.9%）消除，2 条真实冲突仍正确检出；新增 9 个回归用例覆盖 6 类场景 |
 | 0.2.27 | 2026-11-03 | **P0 修复**：Darkmode.validate 补回 opts（PR #53 回归导致 0.2.25/0.2.26 对任何含文字文章全量崩溃）；升级 0.2.25/0.2.26 的请直接跳到本版本 |
 | 0.2.25 | 2026-10-26 | darkmode 阶段去掉自实现：`mp-darkmode` 升至 1.2.3-alpha.6，删除 `cli/engine/darkmode.ts`，reset/validate 全部改用上游公开 API；顺带修掉旧自实现 reset 的两处失效（html class 名写死 `js_darkmode__`、用 `removeAttribute` 清 expando 标记，实际都清不掉）；34 个 spec fixture 改前改后检测结果完全一致，新增「复用节点重复验证」回归用例（#53） |
 | 0.2.24 | 2026-10-19 | 避免可横向滚动代码块的 pre 误报警告（PR #52） |
