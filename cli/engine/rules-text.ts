@@ -5,7 +5,7 @@ export const propertyRules: Record<string, string> = {
   'opacity': '该图片 opacity 值为 0（完全透明），移动端可能无法正常显示，且发布后无法通过后台替换，请确认是否符合预期（参考文档 #1.1 opacity）',
   'caret-color': '光标颜色（caret-color）被设置为透明，可能导致编辑时无法定位光标位置，请确认是否符合预期（参考文档 #1.2 caret-color）',
   'line-height': '当前内容行高（line-height）过小，多行文本可能存在重叠，请核实阅读效果是否正常（参考文档 #1.3 line-height）',
-  'text-align': '文本对齐属性使用了 start 或 end，不同终端解析可能存在差异，请核实各端显示是否一致（参考文档 #1.6 text-align）',
+  'text-align': '文本对齐属性使用了 start 或 end，且与外层容器的对齐方式不一致，不同终端解析差异会导致对齐效果不统一，请核实各端显示是否一致（参考文档 #1.6 text-align）',
   'height': '该容器 height 值为 0，可能导致移动端内容显示异常或不可见，请核实是否符合预期（参考文档 #1.5.1 height:0）',
   'width': '当前内容存在特殊排版，可能在不同屏幕下出现居中不一致、宽度差异或溢出问题，请核实显示是否正常（参考文档 #1.4 width）',
   'animate-begin': '该动画 begin 包含 touchstart 触摸事件，但未包含 click 点击事件，PC 端可能无法通过鼠标触发播放，请确认交互是否符合预期（参考文档 #1.7 begin）',
