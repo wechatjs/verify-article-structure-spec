@@ -190,6 +190,7 @@ verify-article-structure-spec/
 
 | 版本 | 日期 | 变更 |
 |---|---|---|
+| 0.2.27 | 2026-11-03 | **P0 修复**：Darkmode.validate 补回 opts（PR #53 回归导致 0.2.25/0.2.26 对任何含文字文章全量崩溃）；升级 0.2.25/0.2.26 的请直接跳到本版本 |
 | 0.2.25 | 2026-10-26 | darkmode 阶段去掉自实现：`mp-darkmode` 升至 1.2.3-alpha.6，删除 `cli/engine/darkmode.ts`，reset/validate 全部改用上游公开 API；顺带修掉旧自实现 reset 的两处失效（html class 名写死 `js_darkmode__`、用 `removeAttribute` 清 expando 标记，实际都清不掉）；34 个 spec fixture 改前改后检测结果完全一致，新增「复用节点重复验证」回归用例（#53） |
 | 0.2.24 | 2026-10-19 | 避免可横向滚动代码块的 pre 误报警告（PR #52） |
 | 0.2.23 | 2026-10-14 | 定位章与 quickRegex 解耦：段落子树无条件盖 data-blockidx，段号反查直接命中真实段落（PR #50 根治版，PR #49 的包含性验证保留为纵深防御；quickRegex 过滤原样保留，性能优化不受影响） |
