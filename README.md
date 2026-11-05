@@ -29,6 +29,14 @@
 
 > npm 包 `verify-article-structure` 发布于公网 npm（registry.npmjs.org）。PR 合并进 main 且 `cli/package.json` 变更时，GitHub Actions 自动执行「构建 → 测试 → 发包 → 打 git tag → 创建 Release」，无需手动发包。
 
+### 安装（npm 包，推荐）
+
+```bash
+npm install verify-article-structure
+```
+
+安装后即可在项目中调用检测能力，用法与参数说明见 [`cli/README.md`](./cli/README.md)。
+
 ### 安装（从源码构建）
 
 ```bash
@@ -190,6 +198,7 @@ verify-article-structure-spec/
 
 | 版本 | 日期 | 变更 |
 |---|---|---|
+| 0.2.28 | 2026-11-03 | 包名由内网 `@tencent/verify-article-structure` 改为公网 `verify-article-structure` 并首次发布至 registry.npmjs.org；新增 GitHub Actions 自动发版（PR 合并 main 且 `cli/package.json` 变更时自动构建、测试、发包、打 tag、建 Release） |
 | 0.2.27 | 2026-11-03 | **P0 修复**：Darkmode.validate 补回 opts（PR #53 回归导致 0.2.25/0.2.26 对任何含文字文章全量崩溃）；升级 0.2.25/0.2.26 的请直接跳到本版本 |
 | 0.2.25 | 2026-10-26 | darkmode 阶段去掉自实现：`mp-darkmode` 升至 1.2.3-alpha.6，删除 `cli/engine/darkmode.ts`，reset/validate 全部改用上游公开 API；顺带修掉旧自实现 reset 的两处失效（html class 名写死 `js_darkmode__`、用 `removeAttribute` 清 expando 标记，实际都清不掉）；34 个 spec fixture 改前改后检测结果完全一致，新增「复用节点重复验证」回归用例（#53） |
 | 0.2.24 | 2026-10-19 | 避免可横向滚动代码块的 pre 误报警告（PR #52） |
@@ -204,6 +213,19 @@ verify-article-structure-spec/
 | 0.2.15 | 2026-09-07 | 修复居中判断 bug（abs(left+right)→abs(left-right)）；宽度/居中/溢出三维度独立判断；正常响应式（大屏一致+小屏撑满容器）不再误报宽度差异；debug 模式增强 |
 | 0.2.14 | 2026-09-01 | 图片加载不再阻塞插入（带 `data-w` 的图直接用占位宽度）+ `deleteNestNode` 删除前增加有意义内容安全检查，避免误删正文 |
 | 1.0.0 | 2026-06-25 | 首个对外发布版本 · 含规范文档、测试用例与 Issue 反馈通道 |
+
+---
+
+## 发版流程（维护者）
+
+npm 发版已全自动化，**无需手动 `npm publish`**：
+
+1. 修改 `cli/package.json` 的 `version` 字段
+2. 提 PR 合并进 `main`——Actions 检测到 `cli/package.json` 变更后自动执行「构建 → 测试 → 发包 → 打 git tag → 创建 Release」（全程约 10-15 分钟）
+3. 以 `npm view verify-article-structure version` 为准确认发布成功（CI 绿 ≠ 可安装，npm 审核队列可能有几分钟延迟）
+4. 补发 / 重试：GitHub → Actions → 「发包到公网 npm」→ Run workflow 手动触发（跳过变更检测，强制走完整流程）
+
+注意：只有 push 到 `main` 且本次提交变更了 `cli/package.json` 才会触发发包；未改版本号的合并不会发包（预期行为，避免误发）。
 
 ---
 
