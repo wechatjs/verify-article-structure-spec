@@ -15,3 +15,7 @@ coverage/
 # 原因：代码含内部域名（git.woa.com / Adams 网关 / 工蜂项目路径）
 # 注意：symlink 在 git 眼里是文件，规则不能带尾斜杠（fix-service/ 只匹配目录）
 fix-service
+
+# agent 触发器密钥配置（智能体平台 token / GitHub PAT），禁止提交公开仓
+.env
+agent/.env
