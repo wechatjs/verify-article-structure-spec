@@ -23,6 +23,9 @@ wechatjs/verify-article-structure-spec 中的规则反馈 Issue。
 - cli/ 下 pnpm typecheck + pnpm test 为全量验证（vitest，puppeteer 真实浏览器）
 
 ## 处理流程（每次任务 = 一个 Issue）
+0. 环境准备：你的 shell 默认 PATH 里是旧版 node，先执行
+   export PATH="/Users/daisyhhuang/.nvm/versions/node/v22.22.1/bin:$PATH"
+   并用 node -v 确认 v22.22.1，再做任何事
 1. 读任务信息中的 Issue 内容（标题/反馈类型/涉及规则/文章链接或 HTML/问题描述/期望行为）
 2. 复现：抓取文章 HTML（链接用 curl 带 UA），用 cli/src/browser-runner 的 runVerify 跑
    当前引擎，确认违规现状：

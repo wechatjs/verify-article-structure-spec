@@ -130,6 +130,9 @@ function buildMessage(issue) {
     '',
     '## 环境说明',
     '- 仓库已在本地 clone，路径见终端环境变量 REPO_PATH',
+    '- ⚠️ 你的 shell 默认 PATH 里是旧版 node，每次任务开始先执行：',
+    '  export PATH="/Users/daisyhhuang/.nvm/versions/node/v22.22.1/bin:$PATH"',
+    '  并用 node -v 确认 v22.22.1，再继续后续操作',
     '- GITHUB_TOKEN 已注入终端环境变量：push 用 `https://x-access-token:$GITHUB_TOKEN@github.com/${CFG.repo}.git`，提 PR 用 GitHub API',
     '- 开始前先切干净分支：`git -C $REPO_PATH fetch origin && git -C $REPO_PATH checkout -B agent/issue-${issue.number} origin/main`',
     '- Issue 里的文章链接需自行抓取 HTML 后再复现（curl 带 UA）',
@@ -171,7 +174,7 @@ async function callKnotAgent(message) {
         enable_web_search: false,
         use_memory: false,
         chat_extra: {
-          agent_client_uuid: CFG.workspaceUuid,
+          ...(CFG.workspaceUuid ? { agent_client_uuid: CFG.workspaceUuid } : {}),
           terminal_env_infos: {
             GITHUB_TOKEN: CFG.ghToken,
             REPO_PATH: CFG.repoPath,
@@ -359,13 +362,12 @@ async function main() {
     return;
   }
 
-  // 配置校验
+  // 配置校验（KNOT_AGENT_CLIENT_UUID 可选——智能体绑定了工作区且开了"强制使用"时无需传）
   const missing = Object.entries({
     GITHUB_TOKEN: CFG.ghToken,
     KNOT_API_BASE: CFG.knotBase,
     KNOT_API_TOKEN: CFG.knotToken,
     KNOT_AGENT_ID: CFG.agentId,
-    KNOT_AGENT_CLIENT_UUID: CFG.workspaceUuid,
     REPO_PATH: CFG.repoPath,
   })
     .filter(([, v]) => !v)
