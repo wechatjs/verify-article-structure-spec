@@ -68,24 +68,8 @@ jobs:
         if: steps.detect.outputs.changed != 'true'
         run: echo "本次推送未改动 cli/package.json，无需发包。"
 
-      - name: 校验 NPM_TOKEN 已配置
-        if: steps.detect.outputs.changed == 'true'
-        env:
-          HAS_TOKEN: ${{ secrets.NPM_TOKEN != '' }}
-        run: |
-          if [ "$HAS_TOKEN" != "true" ]; then
-            echo "::error::仓库 Secret NPM_TOKEN 未配置，无法发布公网 npm。"
-            echo "请到 Settings → Secrets and variables → Actions → New repository secret，"
-            echo "名称填 NPM_TOKEN，值为 npmjs.com 生成的 Access Token（Automation 类型）。"
-            echo "配置完成后可在 Actions 页面手动 Run workflow 重试。"
-            exit 1
-          fi
-
-      - name: 安装依赖
-        if: steps.detect.outputs.changed == 'true'
-        working-directory: cli
-        run: pnpm install --frozen-lockfile
-
+      # ── 前置快速检查（在耗时的安装依赖之前，30 秒内完成判定）──
+      # 幂等检查提前：版本已发布过 → 后面的安装/构建/测试全部跳过，绿色空转退出
       - name: 幂等检查（版本是否已发布过）
         id: should
         if: steps.detect.outputs.changed == 'true'
@@ -98,6 +82,24 @@ jobs:
             echo "v$VERSION 未发布过 → 开始发包"
             echo "should=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: 校验 NPM_TOKEN 已配置
+        if: steps.detect.outputs.changed == 'true' && steps.should.outputs.should == 'true'
+        env:
+          HAS_TOKEN: ${{ secrets.NPM_TOKEN != '' }}
+        run: |
+          if [ "$HAS_TOKEN" != "true" ]; then
+            echo "::error::仓库 Secret NPM_TOKEN 未配置，无法发布公网 npm。"
+            echo "请到 Settings → Secrets and variables → Actions → New repository secret，"
+            echo "名称填 NPM_TOKEN，值为 npmjs.com 生成的 Access Token（Automation 类型）。"
+            echo "配置完成后可在 Actions 页面手动 Run workflow 重试。"
+            exit 1
+          fi
+
+      - name: 安装依赖
+        if: steps.detect.outputs.changed == 'true' && steps.should.outputs.should == 'true'
+        working-directory: cli
+        run: pnpm install --frozen-lockfile
 
       - name: 发布（prepublishOnly 自动执行 build + 全量测试）
         if: steps.should.outputs.should == 'true'

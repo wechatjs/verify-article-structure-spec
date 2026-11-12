@@ -1,0 +1,60 @@
+name: CI 全量测试
+
+# 触发条件：
+# 1. PR 到 main → 合并前跑全量验证（typecheck + build + vitest/puppeteer 全量测试）
+# 2. push 到 main → 合并后立即验证 main 健康（发包 workflow 的测试步骤会被幂等检查跳过，
+#    依赖升级等未 bump 版本的合并不跑测试，这里兜底）
+#
+# 背景：PR #63（mp-darkmode 2.0 alpha 升级）因无 PR CI，带着一个失败用例进了 main
+# （#4.1.1 低对比度检测失效）。本 workflow 补上这道闸门。
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: cli/pnpm-lock.yaml
+
+      # Puppeteer 的 Chrome 缓存（首跑约 4-6 分钟，命中后秒级）
+      # key 里的版本号与 cli/package.json 的 puppeteer 版本对应，升级 puppeteer 时换 key
+      - name: 缓存 Puppeteer Chrome
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/puppeteer
+          key: puppeteer-${{ runner.os }}-chrome-118
+
+      - name: 安装依赖
+        working-directory: cli
+        run: pnpm install --frozen-lockfile
+
+      - name: TypeScript 类型检查
+        working-directory: cli
+        run: pnpm exec tsc --noEmit
+
+      - name: 构建
+        working-directory: cli
+        run: pnpm build
+
+      - name: 全量测试（vitest + puppeteer 真实浏览器）
+        working-directory: cli
+        run: pnpm test
