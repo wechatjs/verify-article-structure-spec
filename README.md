@@ -198,6 +198,7 @@ verify-article-structure-spec/
 
 | 版本 | 日期 | 变更 |
 |---|---|---|
+| 0.2.29 | 2026-11-12 | `mp-darkmode` 依赖跨大版本升至 `2.0.0-alpha.4`（原 `1.2.3-alpha.6`）；同步更新 `cli/pnpm-lock.yaml`，移除旧版本带入、新版本不再需要的 `color@5.0.3` / `color-convert@3.1.3` / `color-string@2.1.4` 等传递依赖；CLI 自身代码未改动 |
 | 0.2.28 | 2026-11-03 | 包名由内网 `@tencent/verify-article-structure` 改为公网 `verify-article-structure` 并首次发布至 registry.npmjs.org；新增 GitHub Actions 自动发版（PR 合并 main 且 `cli/package.json` 变更时自动构建、测试、发包、打 tag、建 Release） |
 | 0.2.27 | 2026-11-03 | **P0 修复**：Darkmode.validate 补回 opts（PR #53 回归导致 0.2.25/0.2.26 对任何含文字文章全量崩溃）；升级 0.2.25/0.2.26 的请直接跳到本版本 |
 | 0.2.25 | 2026-10-26 | darkmode 阶段去掉自实现：`mp-darkmode` 升至 1.2.3-alpha.6，删除 `cli/engine/darkmode.ts`，reset/validate 全部改用上游公开 API；顺带修掉旧自实现 reset 的两处失效（html class 名写死 `js_darkmode__`、用 `removeAttribute` 清 expando 标记，实际都清不掉）；34 个 spec fixture 改前改后检测结果完全一致，新增「复用节点重复验证」回归用例（#53） |
