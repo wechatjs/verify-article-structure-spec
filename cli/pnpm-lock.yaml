@@ -12,8 +12,8 @@ dependencies:
     specifier: ^24.1.3
     version: 24.1.3
   mp-darkmode:
-    specifier: 1.2.3-alpha.6
-    version: 1.2.3-alpha.6
+    specifier: 2.0.0-alpha.4
+    version: 2.0.0-alpha.4
   puppeteer:
     specifier: ^21.0.0
     version: 21.11.0(typescript@5.9.3)
@@ -1066,13 +1066,6 @@ packages:
       color-name: 1.1.4
     dev: false
 
-  /color-convert@3.1.3:
-    resolution: {integrity: sha512-fasDH2ont2GqF5HpyO4w0+BcewlhHEZOFn9c1ckZdHpJ56Qb7MHhH/IcJZbBGgvdtwdwNbLvxiBEdg336iA9Sg==}
-    engines: {node: '>=14.6'}
-    dependencies:
-      color-name: 2.1.1
-    dev: false
-
   /color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
     dev: false
@@ -1080,21 +1073,6 @@ packages:
   /color-name@2.1.1:
     resolution: {integrity: sha512-p2FdgwVx1a9yWBHP2wI0VgShkDpgN4kZISkxdNipGBJWpa5G6b04OINlVWCyJj0JmfvcPrgqt95E9k8yvaOJFg==}
     engines: {node: '>=12.20'}
-    dev: false
-
-  /color-string@2.1.4:
-    resolution: {integrity: sha512-Bb6Cq8oq0IjDOe8wJmi4JeNn763Xs9cfrBcaylK1tPypWzyoy2G3l90v9k64kjphl/ZJjPIShFztenRomi8WTg==}
-    engines: {node: '>=18'}
-    dependencies:
-      color-name: 2.1.1
-    dev: false
-
-  /color@5.0.3:
-    resolution: {integrity: sha512-ezmVcLR3xAVp8kYOm4GS45ZLLgIE6SPAFoduLr6hTDajwb3KZ2F46gulK3XpcwRFb5KKGCSezCBAY4Dw4HsyXA==}
-    engines: {node: '>=18'}
-    dependencies:
-      color-convert: 3.1.3
-      color-string: 2.1.4
     dev: false
 
   /colorjs.io@0.6.1:
@@ -2090,11 +2068,10 @@ packages:
       ufo: 1.6.4
     dev: true
 
-  /mp-darkmode@1.2.3-alpha.6:
-    resolution: {integrity: sha512-UPcI174ShFEoeNce7q3IV2C7lJ98fT2dBssayLUEj9VIIpfuaRY8IDXBhYWezhZB5DoZZoFeymCpIQ7fsCJ05w==}
+  /mp-darkmode@2.0.0-alpha.4:
+    resolution: {integrity: sha512-IxuVP6RTkt79LACamWwbQU+XfzolXhs0TKJ22hmwQPP8M4bRCESXXjc5aHZgStyccUlJwSZqbP8qXHuabKIKeA==}
     engines: {node: '>=23.11.0'}
     dependencies:
-      color: 5.0.3
       color-blend: 4.0.0
       color-name: 2.1.1
       colorjs.io: 0.6.1
